@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>胡明亮 · 瑜伽服 AI 陪跑方案</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+  :root{
+    --bg:#0b0d12; --panel:#141821; --line:#232936; --ink:#e8ecf3;
+    --muted:#8a93a6; --accent:#ff6a00; --accent2:#ffb15c;
+    --ok:#2ecc71; --doing:#f1c40f; --todo:#5b6577;
+    --brand:#e91e63;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.7}
+  .wrap{max-width:1180px;margin:0 auto;padding:48px 32px}
+  h1{font-size:34px;margin:0 0 8px;letter-spacing:1px}
+  h2{font-size:22px;margin:48px 0 16px;padding-left:12px;border-left:4px solid var(--accent)}
+  h3{font-size:17px;margin:24px 0 10px;color:var(--accent2)}
+  .sub{color:var(--muted);font-size:14px}
+  .hero{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px;padding-bottom:24px;border-bottom:1px solid var(--line)}
+  .tag{display:inline-block;padding:3px 10px;border-radius:999px;background:var(--brand);color:#fff;font-size:12px;margin-right:6px;font-weight:600}
+  .tag.gray{background:#2c3340;color:var(--muted);font-weight:400}
+  .meta{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:24px}
+  .meta .card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+  .meta .k{font-size:12px;color:var(--muted)}
+  .meta .v{font-size:16px;margin-top:4px}
+
+  .ladder{position:relative;display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-top:16px}
+  .step{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 12px;position:relative}
+  .step .n{font-size:11px;color:var(--muted)}
+  .step .t{font-weight:600;margin-top:2px;font-size:14px}
+  .step .d{font-size:12px;color:var(--muted);margin-top:6px;line-height:1.5}
+  .step.done{border-color:#2ecc7144;background:#11261b}
+  .step.now{border-color:var(--accent);background:linear-gradient(180deg,#241408,#191c24);box-shadow:0 0 0 2px #ff6a0033}
+  .step.target{border-color:#3a4256;background:#181b24}
+  .step .badge{position:absolute;top:-10px;left:10px;font-size:10px;padding:2px 8px;border-radius:999px}
+  .step.done .badge{background:var(--ok);color:#08210f}
+  .step.now .badge{background:var(--accent);color:#fff}
+  .step.target .badge{background:#3a4256;color:#cdd3df}
+
+  .grid5{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:8px}
+  .m{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px}
+  .m .h{font-weight:600;font-size:14px;color:var(--accent2)}
+  .m .b{font-size:12.5px;color:#cdd3df;margin-top:6px;line-height:1.6}
+  .m .now{font-size:11px;margin-top:8px;color:var(--muted)}
+
+  .timeline{position:relative;margin-top:8px;border-left:2px solid var(--line);padding-left:22px}
+  .tl-item{position:relative;padding:14px 16px 14px 8px;background:var(--panel);border:1px solid var(--line);border-radius:10px;margin-bottom:14px}
+  .tl-item::before{content:"";position:absolute;left:-31px;top:20px;width:12px;height:12px;background:var(--accent);border-radius:50%;border:3px solid var(--bg)}
+  .tl-item .wk{display:inline-block;background:#2c3340;color:#cdd3df;padding:2px 10px;border-radius:6px;font-size:12px;margin-right:8px}
+  .tl-item h4{margin:0 0 6px;font-size:16px}
+  .tl-item ul{margin:6px 0 0 18px;padding:0;font-size:13.5px;color:#cdd3df}
+  .tl-item li{margin:3px 0}
+  .deliv{margin-top:10px;display:flex;flex-wrap:wrap;gap:6px}
+  .deliv span{font-size:11px;background:#1f2735;color:#9fb0d0;border:1px solid #2a3346;padding:3px 8px;border-radius:6px}
+  .deliv .s-agent{color:#ffb15c;border-color:#5a3a1a}
+  .deliv .s-skill{color:#7fd1ff;border-color:#1f4a66}
+  .deliv .s-flow{color:#a7f0a7;border-color:#1f5a2c}
+  .deliv .s-html{color:#ffd4f5;border-color:#5a2348}
+
+  .threecol{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-top:8px}
+  .col{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px}
+  .col h4{margin:0;font-size:16px}
+  .col .pain{font-size:12px;color:var(--muted);margin-top:4px;line-height:1.6}
+  .col .row{margin-top:14px;font-size:13px}
+  .col .row b{color:var(--accent2);font-weight:600}
+  .col .pill{display:inline-block;font-size:11px;padding:2px 8px;border-radius:6px;background:#1f2735;color:#9fb0d0;margin-right:4px;margin-top:4px}
+
+  .demo{background:linear-gradient(135deg,#1a1f2c,#13161e);border:1px dashed #3a4256;border-radius:12px;padding:20px;margin-top:8px}
+  .demo .flow{display:flex;align-items:center;flex-wrap:wrap;gap:6px;margin-top:10px}
+  .demo .node{background:#222a3a;border:1px solid #2f3b52;padding:8px 12px;border-radius:8px;font-size:13px}
+  .demo .arr{color:var(--accent);font-weight:700}
+  .demo .out{margin-top:14px;background:#0d0f15;border:1px solid #232936;border-radius:8px;padding:14px;font-size:12.5px;color:#cdd3df}
+
+  .promise{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:8px}
+  .promise .p{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px}
+  .promise .p b{color:var(--accent)}
+
+  footer{margin-top:60px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:12px}
+
+  @media (max-width:900px){
+    .meta,.grid5,.threecol,.promise{grid-template-columns:1fr 1fr}
+    .ladder{grid-template-columns:1fr 1fr;gap:10px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <section class="hero">
+    <div>
+      <div>
+        <span class="tag">瑜伽服</span>
+        <span class="tag gray">义乌 · 货架电商 + 跨境双线</span>
+        <span class="tag gray">基础款 · 单价 30-60 · 复购 20%</span>
+      </div>
+      <h1>胡总，这是接下来 2 个月我们一起跑的路</h1>
+      <div class="sub">陪跑客户：胡明亮 · 陪跑老师：Lion · 项目经理：花花 · 启动日：2026-05-24</div>
+    </div>
+    <div class="sub">版本 v1 · 2026-05-25</div>
+  </section>
+
+  <div class="meta">
+    <div class="card"><div class="k">业务模型</div><div class="v">国内（淘宝+拼多多+抖音商品卡）+ 跨境（亚马逊+虾皮东南亚）双线持平</div></div>
+    <div class="card"><div class="k">团队杠杆</div><div class="v">4 人业务（含 3 运营）+ 仓管 + 1 设计同事；月开发 20-30 款上新 5-10</div></div>
+    <div class="card"><div class="k">当前瓶颈</div><div class="v">AI 出图质性/长度不稳 · 老板策划能力没法下传 · 三个运营各用各的 AI</div></div>
+    <div class="card"><div class="k">核心打法</div><div class="v">"卖产品不卖图" —— 老板原话；产品经理型人格，自评模特脸不吃香</div></div>
+  </div>
+
+  <!-- ============ 一、AI 认知 ============ -->
+  <h2>一、先建立对 AI 的正确认知</h2>
+  <p class="sub">胡总你自己学过蒋帅管理课，已经认知到"职责拆分 = 能力提炼"——这是别人没有的起点。接下来 2 个月，我们做的就是把这件事推到底：把你脑子里的产品策划能力（定卖点、拆人群、写标题、出主图文字）和你已经在用的 AI 出图能力，分别提炼成两个智能体，让 3 个运营 + 设计同事不靠你亲自盯就能产出稳定质量的图。花花在场景确认会上点的那句"你给一张图，它能输出卖点+人群+标题+主图文字"——这就是首战交付标准。</p>
+
+  <h3>AI 成熟度 7 阶段 · 胡总当前位置</h3>
+  <div class="ladder">
+    <div class="step done"><span class="badge">✓ 已过</span><div class="n">阶段 1</div><div class="t">基础对话</div><div class="d">知道 GPT/Claude，偶尔用一下。</div></div>
+    <div class="step done"><span class="badge">✓ 已过</span><div class="n">阶段 2</div><div class="t">结构化要求</div><div class="d">能让 AI 写、翻、总结。</div></div>
+    <div class="step now"><span class="badge">▶ 你在这</span><div class="n">阶段 3</div><div class="t">爆款模仿 + 工具尝试</div><div class="d">已用 GPT 单一对话、AI 换图、评价分析（电透视+后台导出喂 ChatGPT）。工具齐备但都是单层使用，没有形成提示词稳定结构。</div></div>
+    <div class="step target"><span class="badge">W1-W2</span><div class="n">阶段 4</div><div class="t">反推提示词</div><div class="d">个体 AI 共生课 + 人生缩影对话激活 GPT 深度对话；把卖点表/抱怨表沉淀的口语反推成稳定提示词。</div></div>
+    <div class="step target"><span class="badge">W3-W4</span><div class="n">阶段 5</div><div class="t">系统提示词</div><div class="d">产品策划智能体 + 出图智能体上线，老板审美约束 + 面料规则 + 拷边线规则全部装进去。</div></div>
+    <div class="step target"><span class="badge">W5-W6</span><div class="n">阶段 6</div><div class="t">Skill 工作化</div><div class="d">两个智能体打包成 `/产品策划` `/出图` Skill，3 个运营+设计同事人人能用。</div></div>
+    <div class="step target"><span class="badge">W7-W8</span><div class="n">阶段 7</div><div class="t">业务系统化</div><div class="d">"评价分析→策划→出图"串成新品上线工作流，复制到跨境亚马逊+虾皮、新品类（罩衫/短袖）。</div></div>
+  </div>
+
+  <h3>对应你公司的 5 个层</h3>
+  <div class="grid5">
+    <div class="m"><div class="h">① 身份层</div><div class="b">让 AI 记住：胡总的瑜伽服基础款定位、瑜伽裤人群拆分（提臀塑形/裸感/菊花裤）、不靠模特脸卖货的产品观。</div><div class="now">起点：客户档案 + 共生课激活</div></div>
+    <div class="m"><div class="h">② 知识层</div><div class="b">已有：客户抱怨表（150 斤能穿、显脖子短、水洗膈应）、卖点表、评价导出。要补：面料规则（160g vs 210g）、拷边线规范、品牌审美样图。</div><div class="now">W1-W2 入库</div></div>
+    <div class="m"><div class="h">③ 工具层</div><div class="b">三个智能体：①产品策划 ②出图 ③评价分析升级版（喂回策划闭环）。</div><div class="now">W3 起逐个上线</div></div>
+    <div class="m"><div class="h">④ 协作层</div><div class="b">老板做产品 + 设计同事执行出图 + 3 运营拿同一套 Skill 输出——一套智能体跨国内三店+跨境两店通用。</div><div class="now">W6 验证</div></div>
+    <div class="m"><div class="h">⑤ 场景层</div><div class="b">新品上线 SOP：评价提炼→策划→出图→主图终稿。老板从盯每张图释放，专注开发与战略。</div><div class="now">W7-W8</div></div>
+  </div>
+
+  <!-- ============ 二、智能体 ============ -->
+  <h2>二、要搭建的 3 个智能体（按首战板块优先级）</h2>
+  <p class="sub">花花在场景确认会上明确指定：首战是"双智能体串联"——产品策划+出图，前者输出 {卖点/人群/标题/主图文字} 喂给后者出图。第三个智能体（评价分析升级版）把胡总现在散在 ChatGPT 里的评价分析能力沉淀下来，再反哺策划智能体——形成完整闭环。</p>
+
+  <div class="threecol">
+    <!-- 智能体 ① -->
+    <div class="col">
+      <h4>① 产品策划智能体</h4>
+      <div class="pain">痛点：胡总自述——"我能定卖点、拆人群，但运营、设计 get 不到"；老板亲自盯每张图、产品策划能力无法传递到团队。</div>
+      <div class="row"><b>角色设定</b>：胡总瑜伽服品类产品经理替身，懂基础款+半标产品逻辑、瑜伽裤人群拆分、面料差异点表达。</div>
+      <div class="row"><b>输入</b>：一张产品图片（+ 可选：客户抱怨表 / 评价分析结果）。</div>
+      <div class="row"><b>输出</b>：{产品卖点 + 目标人群 + 产品标题 + 主图可使用文字}——花花指定的标准输出结构。</div>
+      <div class="row"><span class="pill">阶段 5</span><span class="pill">W3-W4</span><span class="pill">首战</span></div>
+    </div>
+    <!-- 智能体 ② -->
+    <div class="col">
+      <h4>② 出图智能体</h4>
+      <div class="pain">痛点：胡总自述——AI 换图"拷边线 46 线互变"、衣服长度不稳、"160 克 vs 210 克面料看不出差异"。三运营各自换图无标准。</div>
+      <div class="row"><b>角色设定</b>：瑜伽服出图执行官，强约束拷边线规范+衣长锁定+面料差异点呈现规则。</div>
+      <div class="row"><b>输入</b>：策划智能体输出的 {卖点/人群/标题/主图文字} + 产品基础图片。</div>
+      <div class="row"><b>输出</b>：质性稳定、长度锁定、能承载非标差异的最终图（国内卖点型/跨境白底型按渠道自动切）。</div>
+      <div class="row"><span class="pill">阶段 5-6</span><span class="pill">W5-W6</span><span class="pill">首战串联</span></div>
+    </div>
+    <!-- 智能体 ③ -->
+    <div class="col">
+      <h4>③ 评价分析智能体（升级版）</h4>
+      <div class="pain">痛点：胡总现在已用 ChatGPT 做评价分析（电透视+后台导出喂进去），但散在三个运营手里、无统一格式、产出回不到策划环节。</div>
+      <div class="row"><b>角色设定</b>：评价洞察专员，从评价 + 客户抱怨提炼"还没被埋"的新卖点 / 新人群。</div>
+      <div class="row"><b>输入</b>：电透视 / 后台评价导出文件。</div>
+      <div class="row"><b>输出</b>：痛点表（已覆盖 vs 未覆盖）+ 新人群洞察——直接喂回策划智能体形成闭环。</div>
+      <div class="row"><span class="pill">阶段 6</span><span class="pill">W7</span></div>
+    </div>
+  </div>
+
+  <!-- ============ 三、Skills ============ -->
+  <h2>三、把智能体打包成 Skill（团队人人能用，跨品牌/跨账号复用）</h2>
+  <p class="sub">胡总自己说过（蒋帅管理课消化）："职责拆分 = 能力提炼"。Skill 就是把这件事推到底——把你的策划能力、出图能力、评价分析能力分别打包成 3 个按钮，运营/设计/老板自己都能调用同一个按钮，产出一致。国内三店通用、跨境亚马逊+虾皮通用、未来开新品类（罩衫/短袖）零额外开发。</p>
+
+  <div class="threecol">
+    <div class="col">
+      <h4>Skill 1 · 产品策划</h4>
+      <div class="row">触发词：<code style="color:var(--accent2)">/产品策划 &lt;产品图&gt;</code></div>
+      <div class="row">能力：一张图进，输出"卖点+人群+标题+主图文字"四件套——按花花指定的标准结构。</div>
+      <div class="row">复用：国内瑜伽裤 → 跨境瑜伽服 → 罩衫 → 短袖 通用，改身份层参数即可。</div>
+    </div>
+    <div class="col">
+      <h4>Skill 2 · 出图</h4>
+      <div class="row">触发词：<code style="color:var(--accent2)">/出图 &lt;策划输出+产品图&gt;</code></div>
+      <div class="row">能力：自动套用拷边线规则、衣长锁定、面料差异点呈现，输出可上传的主图。</div>
+      <div class="row">复用：国内卖点型/跨境白底型按渠道参数自动切，3 个运营 + 设计同事人人能跑。</div>
+    </div>
+    <div class="col">
+      <h4>Skill 3 · 评价分析</h4>
+      <div class="row">触发词：<code style="color:var(--accent2)">/评价分析 &lt;导出文件&gt;</code></div>
+      <div class="row">能力：评价导出→痛点表+新卖点/新人群清单，自动喂回 Skill 1 提示词。</div>
+      <div class="row">复用：每月跑一次老品复购评价，季度跑一次跨境差评——闭环驱动产品迭代。</div>
+    </div>
+  </div>
+
+  <!-- ============ 四、工作流 + HTML ============ -->
+  <h2>四、把 Skills 串成工作流，产出可交付的 HTML 报告</h2>
+  <p class="sub">三个 Skill 各自跑能解决"今天写个卖点 / 出个图 / 看看评价"的点；串成"新品策划-出图-验证"工作流之后，从一张产品图到可上架主图，全自动 10 分钟出。胡总不用再盯每张图，新人也能跑。</p>
+
+  <div class="demo">
+    <div style="font-size:13px;color:var(--muted)">工作流 · 新品策划-出图-验证 SOP（示例）</div>
+    <div class="flow">
+      <span class="node">🎯 输入：产品图 + 历史评价导出</span>
+      <span class="arr">→</span>
+      <span class="node">/评价分析 → 痛点/新卖点</span>
+      <span class="arr">→</span>
+      <span class="node">/产品策划 → 卖点+人群+标题+文字</span>
+      <span class="arr">→</span>
+      <span class="node">/出图 → 主图终稿</span>
+      <span class="arr">→</span>
+      <span class="node">📊 HTML 报告生成器</span>
+      <span class="arr">→</span>
+      <span class="node">📧 推送胡总+设计同事</span>
+    </div>
+    <div class="out">
+      <b style="color:var(--accent2)">交付物示例（HTML 报告：新品上架包）</b><br>
+      · 评价洞察卡：已覆盖卖点 vs 未覆盖人群（提臀塑形/裸感/菊花裤拆分到位没）<br>
+      · 策划四件套：卖点 + 目标人群 + 产品标题 + 主图可使用文字<br>
+      · 出图终稿：国内卖点型 + 跨境白底型 双版本（拷边线 + 衣长 + 面料差异点已锁定）<br>
+      · 老板审核位：标注"哪些是 AI 自动定的 / 哪些建议人工复核"——让胡总把"亲自盯"切换成"抽查"
+    </div>
+  </div>
+
+  <!-- ============ 时间轴 ============ -->
+  <h2>五、两个月周里程碑</h2>
+  <div class="timeline">
+
+    <div class="tl-item">
+      <h4><span class="wk">W1</span>认知打底 · 胡总个人激活</h4>
+      <ul>
+        <li>胡总：听个体 AI 共生课回放 + 完成人生缩影对话作业（GPT 3-4 小时深度对话激活）</li>
+        <li>把客户抱怨表（150 斤能穿 / 显脖子短 / 水洗膈应）、卖点表整理成知识库初稿</li>
+        <li>指定身边设计同事为首战智能体执行人——产品策划 + 出图二人配合落地</li>
+      </ul>
+      <div class="deliv"><span class="s-html">交付：胡总个人 AI 身份档案 + 知识库 v0</span></div>
+    </div>
+
+    <div class="tl-item">
+      <h4><span class="wk">W2</span>知识层入库 · 基础版提示词</h4>
+      <ul>
+        <li>陪跑团队交付产品策划智能体 + 出图智能体的基础版提示词（场景确认会作业 2）</li>
+        <li>补面料规则（160g vs 210g 差异表达）、拷边线规范、品牌审美样图入知识库</li>
+        <li>现场基于一张瑜伽裤产品图试跑产品策划智能体，看输出结构是否对齐花花的"四件套"</li>
+      </ul>
+      <div class="deliv"><span>知识库 v1</span><span class="s-agent">智能体 ① 雏形</span><span class="s-agent">智能体 ② 雏形</span></div>
+    </div>
+
+    <div class="tl-item">
+      <h4><span class="wk">W3-W4</span>产品策划智能体上线 · 调审美一致性</h4>
+      <ul>
+        <li>胡总 + 设计同事配合调优：跑 5-10 个真实产品 → 对比 AI 输出 vs 胡总亲自定的卖点</li>
+        <li>持续投喂调优（场景确认会已警示初版一致性不会高）</li>
+        <li>固化为团队可用版本——3 个运营开始用同一份策划输出做图</li>
+      </ul>
+      <div class="deliv"><span class="s-agent">智能体 ①</span><span class="s-skill">Skill /产品策划</span></div>
+    </div>
+
+    <div class="tl-item">
+      <h4><span class="wk">W5-W6</span>出图智能体上线 · 双智能体串联跑通</h4>
+      <ul>
+        <li>出图智能体强约束拷边线规则、衣长锁定、面料差异点</li>
+        <li>跟策划智能体串联：策划输出直接喂出图，少一次手动复制</li>
+        <li>跑 3-5 款瑜伽裤新品（覆盖提臀塑形 / 裸感 / 菊花裤）验证差异点能否上图</li>
+      </ul>
+      <div class="deliv"><span class="s-agent">智能体 ②</span><span class="s-skill">Skill /出图</span><span class="s-flow">双智能体串联 v1</span></div>
+    </div>
+
+    <div class="tl-item">
+      <h4><span class="wk">W7</span>评价分析升级版 · 完整工作流闭环</h4>
+      <ul>
+        <li>把胡总现有的 ChatGPT 评价分析提炼成 Skill，统一三运营标准</li>
+        <li>评价洞察喂回策划智能体——闭环工作流跑通</li>
+        <li>对比测试：以前 3 个运营各自换图 vs 现在工作流统一产出（一致性、卖点覆盖度）</li>
+      </ul>
+      <div class="deliv"><span class="s-agent">智能体 ③</span><span class="s-skill">Skill /评价分析</span><span class="s-flow">完整闭环工作流</span><span class="s-html">新品上架包 HTML</span></div>
+    </div>
+
+    <div class="tl-item">
+      <h4><span class="wk">W8</span>业务系统化 · 跨渠道复刻 · 结业</h4>
+      <ul>
+        <li>把同一套工作流复制到跨境（亚马逊白底图 / 虾皮东南亚）验证</li>
+        <li>评估抖音短视频赛道重启可行性（之前停在"达人素材跟不上"，看 AI 素材方案能否补）</li>
+        <li>结业报告：2 个月 KPI（老板盯图时长下降、运营出图一致性、瑜伽裤人群拆分上图率）+ 下一阶段方向</li>
+      </ul>
+      <div class="deliv"><span class="s-flow">完整业务系统</span><span class="s-html">交付：陪跑结业报告 HTML</span></div>
+    </div>
+
+  </div>
+
+  <!-- ============ 承诺 ============ -->
+  <h2>六、陪跑承诺</h2>
+  <div class="promise">
+    <div class="p"><b>① 落地承诺</b><br>花花在场景确认会明确定义了首战交付标准——"你给一张图，它能输出卖点+人群+标题+主图文字"。这就是 W3-W4 必须跑出的最小可用版本。不是教你用 AI，是陪你把这件事一次做到能跑。</div>
+    <div class="p"><b>② 复刻承诺</b><br>双智能体在国内瑜伽裤跑通后，迁移到跨境亚马逊+虾皮、其他品类（罩衫/短袖）零额外开发——同一套 Skill 改身份层参数横扫你所有渠道、所有店铺。</div>
+    <div class="p"><b>③ 员工承诺</b><br>胡总你自己在场景确认会上说过——"职责拆分 = 能力提炼"（蒋帅管理课消化）。我们用智能体把"老板亲自定卖点+设计同事出图"的隐性能力固化下来，3 个运营也能拿同一份输出做图，正面解决"老板亲自盯每张图"的死循环。</div>
+  </div>
+
+  <footer>
+    数据来源：2026-05-19 面试（妙记 obcnsy65j1cnflxxd6zarqww）+ 2026-05-24 场景确认（妙记 obcnsznf9qr5lui22yp67684）+ 客户档案 + AI 需求分析 + 落地清单。<br>
+    花花在场景确认会上对胡总的一句关键判断："你的'卖产品不卖图'是表象，电商本质卖图——必须把差异化卖点透到图上。"——本方案 2 个月节奏严格围绕这条主线展开。
+  </footer>
+
+</div>
+</body>
+</html>
