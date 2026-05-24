@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>邓丹 · 亚马逊小精品 AI 陪跑方案</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+  :root{
+    --bg:#0b0d12; --panel:#141821; --line:#232936; --ink:#e8ecf3;
+    --muted:#8a93a6; --accent:#ff6a00; --accent2:#ffb15c;
+    --ok:#2ecc71; --doing:#f1c40f; --todo:#5b6577;
+    --brand:#ff9900;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.7}
+  .wrap{max-width:1180px;margin:0 auto;padding:48px 32px}
+  h1{font-size:34px;margin:0 0 8px;letter-spacing:1px}
+  h2{font-size:22px;margin:48px 0 16px;padding-left:12px;border-left:4px solid var(--accent)}
+  h3{font-size:17px;margin:24px 0 10px;color:var(--accent2)}
+  .sub{color:var(--muted);font-size:14px}
+  .hero{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px;padding-bottom:24px;border-bottom:1px solid var(--line)}
+  .tag{display:inline-block;padding:3px 10px;border-radius:999px;background:var(--brand);color:#222;font-size:12px;margin-right:6px;font-weight:600}
+  .tag.gray{background:#2c3340;color:var(--muted);font-weight:400}
+  .meta{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:24px}
+  .meta .card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+  .meta .k{font-size:12px;color:var(--muted)}
+  .meta .v{font-size:16px;margin-top:4px}
+
+  .ladder{position:relative;display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-top:16px}
+  .step{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 12px;position:relative}
+  .step .n{font-size:11px;color:var(--muted)}
+  .step .t{font-weight:600;margin-top:2px;font-size:14px}
+  .step .d{font-size:12px;color:var(--muted);margin-top:6px;line-height:1.5}
+  .step.done{border-color:#2ecc7144;background:#11261b}
+  .step.now{border-color:var(--accent);background:linear-gradient(180deg,#241408,#191c24);box-shadow:0 0 0 2px #ff6a0033}
+  .step.target{border-color:#3a4256;background:#181b24}
+  .step .badge{position:absolute;top:-10px;left:10px;font-size:10px;padding:2px 8px;border-radius:999px}
+  .step.done .badge{background:var(--ok);color:#08210f}
+  .step.now .badge{background:var(--accent);color:#fff}
+  .step.target .badge{background:#3a4256;color:#cdd3df}
+
+  .grid5{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:8px}
+  .m{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px}
+  .m .h{font-weight:600;font-size:14px;color:var(--accent2)}
+  .m .b{font-size:12.5px;color:#cdd3df;margin-top:6px;line-height:1.6}
+  .m .now{font-size:11px;margin-top:8px;color:var(--muted)}
+
+  .timeline{position:relative;margin-top:8px;border-left:2px solid var(--line);padding-left:22px}
+  .tl-item{position:relative;padding:14px 16px 14px 8px;background:var(--panel);border:1px solid var(--line);border-radius:10px;margin-bottom:14px}
+  .tl-item::before{content:"";position:absolute;left:-31px;top:20px;width:12px;height:12px;background:var(--accent);border-radius:50%;border:3px solid var(--bg)}
+  .tl-item .wk{display:inline-block;background:#2c3340;color:#cdd3df;padding:2px 10px;border-radius:6px;font-size:12px;margin-right:8px}
+  .tl-item h4{margin:0 0 6px;font-size:16px}
+  .tl-item ul{margin:6px 0 0 18px;padding:0;font-size:13.5px;color:#cdd3df}
+  .tl-item li{margin:3px 0}
+  .deliv{margin-top:10px;display:flex;flex-wrap:wrap;gap:6px}
+  .deliv span{font-size:11px;background:#1f2735;color:#9fb0d0;border:1px solid #2a3346;padding:3px 8px;border-radius:6px}
+  .deliv .s-agent{color:#ffb15c;border-color:#5a3a1a}
+  .deliv .s-skill{color:#7fd1ff;border-color:#1f4a66}
+  .deliv .s-flow{color:#a7f0a7;border-color:#1f5a2c}
+  .deliv .s-html{color:#ffd4f5;border-color:#5a2348}
+
+  .threecol{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-top:8px}
+  .col{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px}
+  .col h4{margin:0;font-size:16px}
+  .col .pain{font-size:12px;color:var(--muted);margin-top:4px;line-height:1.6}
+  .col .row{margin-top:14px;font-size:13px}
+  .col .row b{color:var(--accent2);font-weight:600}
+  .col .pill{display:inline-block;font-size:11px;padding:2px 8px;border-radius:6px;background:#1f2735;color:#9fb0d0;margin-right:4px;margin-top:4px}
+
+  .demo{background:linear-gradient(135deg,#1a1f2c,#13161e);border:1px dashed #3a4256;border-radius:12px;padding:20px;margin-top:8px}
+  .demo .flow{display:flex;align-items:center;flex-wrap:wrap;gap:6px;margin-top:10px}
+  .demo .node{background:#222a3a;border:1px solid #2f3b52;padding:8px 12px;border-radius:8px;font-size:13px}
+  .demo .arr{color:var(--accent);font-weight:700}
+  .demo .out{margin-top:14px;background:#0d0f15;border:1px solid #232936;border-radius:8px;padding:14px;font-size:12.5px;color:#cdd3df}
+
+  .promise{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:8px}
+  .promise .p{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px}
+  .promise .p b{color:var(--accent)}
+
+  footer{margin-top:60px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:12px}
+
+  @media (max-width:900px){
+    .meta,.grid5,.threecol,.promise{grid-template-columns:1fr 1fr}
+    .ladder{grid-template-columns:1fr 1fr;gap:10px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <section class="hero">
+    <div>
+      <div>
+        <span class="tag">亚马逊小精品</span>
+        <span class="tag gray">文具 · 贴纸 · 笔 · 本子 · 礼品袋</span>
+        <span class="tag gray">义乌单店 · 设计驱动 + 多变体</span>
+      </div>
+      <h1>邓总，这是接下来 2 个月我们一起跑的路</h1>
+      <div class="sub">陪跑客户：邓丹 · 陪跑老师：Lion · 项目经理：待补 · 启动日：2026-05-23</div>
+    </div>
+    <div class="sub">版本 v1 · 2026-05-25</div>
+  </section>
+
+  <div class="meta">
+    <div class="card"><div class="k">业务模型</div><div class="v">亚马逊单渠道 · 设计驱动 + 单品 30 变体垄断小类</div></div>
+    <div class="card"><div class="k">团队杠杆</div><div class="v">运营 4-5 人多新人 · 美工外包深圳 · 自己抓开发+广告+培训</div></div>
+    <div class="card"><div class="k">当前瓶颈</div><div class="v">运营难招难培养 · 工作模块零散 · 提示词工程能力薄弱</div></div>
+    <div class="card"><div class="k">核心打法</div><div class="v">"很多运营工作本来就是 AI 干的" —— 邓丹原话</div></div>
+  </div>
+
+  <!-- ============ 一、AI 认知 ============ -->
+  <h2>一、先建立对 AI 的正确认知</h2>
+  <p class="sub">邓总你已经是 23 年就用 Midjourney 烧几千张会员额度做图案的"AI 重度用户"——这是别人没有的起点。但你也亲口说"提示词不太行，我自己写不出来，文案的提示词是亚马逊培训直接复制过来的"。所以接下来 2 个月，我们不是从零教你 AI，而是把你已有的"复刻人 + 复刻图案"的直觉，迁移到"复刻运营动作"上来——让 AI 把你脑子里的运营 SOP 复刻出来，让新人靠 AI 也能跑活。</p>
+
+  <h3>AI 成熟度 7 阶段 · 邓总当前位置</h3>
+  <div class="ladder">
+    <div class="step done"><span class="badge">✓ 已过</span><div class="n">阶段 1</div><div class="t">基础对话</div><div class="d">知道 GPT/Claude，偶尔用一下。</div></div>
+    <div class="step done"><span class="badge">✓ 已过</span><div class="n">阶段 2</div><div class="t">结构化要求</div><div class="d">能让 AI 写、翻、总结，但每次重来。</div></div>
+    <div class="step now"><span class="badge">▶ 你在这</span><div class="n">阶段 3</div><div class="t">爆款模仿 + 工具尝试</div><div class="d">23 年 MJ 大量做图、Lovart 做设计微调、GPT 写文案（复制版提示词）、Gemini 生图试过失败。工具用得多，但提示词不是自己的。</div></div>
+    <div class="step target"><span class="badge">W1-W2</span><div class="n">阶段 4</div><div class="t">反推提示词</div><div class="d">把现有"亚马逊培训复制版"提示词改造成自己业务定制版，理解 AI 输出问题怎么反推回提示词去改。</div></div>
+    <div class="step target"><span class="badge">W3-W4</span><div class="n">阶段 5</div><div class="t">系统提示词</div><div class="d">有角色（你的文具品类专家）、有目标（合规 listing）、有限制（违禁词+字符）的智能体雏形。</div></div>
+    <div class="step target"><span class="badge">W5-W6</span><div class="n">阶段 6</div><div class="t">Skill 工作化</div><div class="d">把"写文案 / 拉词筛词 / 评价提炼"打包成新人也能 `/触发` 的 Skill。</div></div>
+    <div class="step target"><span class="badge">W7-W8</span><div class="n">阶段 7</div><div class="t">业务系统化</div><div class="d">3 个 Skill 串成"新品上线 SOP"工作流，复刻到其他类目/账号，AI 跑业务流而非单任务。</div></div>
+  </div>
+
+  <h3>对应你公司的 5 个层</h3>
+  <div class="grid5">
+    <div class="m"><div class="h">① 身份层</div><div class="b">让 AI 记住：邓丹的亚马逊文具小精品品牌定位、单品 30 变体策略、垄断式占位的选品逻辑。</div><div class="now">起点：客户档案 + 业务自述</div></div>
+    <div class="m"><div class="h">② 知识层</div><div class="b">违禁词清单、亚马逊五要点规则、文具品类高频属性词、品牌色彩偏好、已有亚马逊培训提示词。</div><div class="now">W2 入库 v1</div></div>
+    <div class="m"><div class="h">③ 工具层</div><div class="b">三个智能体：listing 文案、拉/筛词、评价提炼属性词。</div><div class="now">W3 起逐个上线</div></div>
+    <div class="m"><div class="h">④ 协作层</div><div class="b">同一套 Skill，在贴纸店、笔类店、礼品袋类目复用——不用每次重训新人。</div><div class="now">W6 验证复刻</div></div>
+    <div class="m"><div class="h">⑤ 场景层</div><div class="b">新品上线 SOP 工作流——从找竞品到出 listing 一条线，新人按一个按钮完成。</div><div class="now">W7-W8</div></div>
+  </div>
+
+  <!-- ============ 二、智能体 ============ -->
+  <h2>二、要搭建的 3 个智能体（按首战板块优先级）</h2>
+  <p class="sub">花花在场景确认会上明确：先做文案智能体（已有通用版基础+痛点明确+产出可对比）；再让 AI 梳理"哪些运营工作可以智能体化"，从里面拆第二、第三个。三个智能体最终串成"新品上线"工作流——这条线一通，新人靠按钮就能跑活，解决你义乌运营难培养的根问题。</p>
+
+  <div class="threecol">
+    <!-- 智能体 ① -->
+    <div class="col">
+      <h4>① listing 文案撰写智能体</h4>
+      <div class="pain">痛点：邓丹原话——"提示词是复制过来的，亚马逊培训直接发的，我自己写不出来"；输出常出违禁词需另一软件查再换；字符常超长；五要点想拓到 6-7 行没规则约束。</div>
+      <div class="row"><b>角色设定</b>：邓丹文具小精品类目 listing 撰写专家，懂违禁词清单 + 字符规则 + 亚马逊五要点拓展规则。</div>
+      <div class="row"><b>输入</b>：产品基础信息 + 词表（按等级标好）+ 品牌定位 + 竞品参考 ASIN。</div>
+      <div class="row"><b>输出</b>：标题 + 5-7 行五要点（合规、无违禁词、字符达标、按等级埋词）。</div>
+      <div class="row"><span class="pill">阶段 5</span><span class="pill">W3-W4</span><span class="pill">首战</span></div>
+    </div>
+    <!-- 智能体 ② -->
+    <div class="col">
+      <h4>② 拉词 / 筛词智能体</h4>
+      <div class="pain">痛点：邓丹原话——"找竞品、拉词表、筛词表，我总觉得这都是 RPA 干的活，不是人干的"；运营每天大量时间花在 Excel 表格切换、相关性筛选、属性词归类。</div>
+      <div class="row"><b>角色设定</b>：亚马逊关键词分析师，按"相关性 × 搜索量"两维分级，自动归类属性词 / 人群词 / 场景词 / 功能词。</div>
+      <div class="row"><b>输入</b>：种子关键词或 5 个竞品 ASIN 拉出的词表 CSV。</div>
+      <div class="row"><b>输出</b>：分等级词表（第一级 → 标题；第二级 → 五要点；否词清单）+ 属性词分类清单。</div>
+      <div class="row"><span class="pill">阶段 5-6</span><span class="pill">W5-W6</span></div>
+    </div>
+    <!-- 智能体 ③ -->
+    <div class="col">
+      <h4>③ 评价属性词提炼智能体</h4>
+      <div class="pain">痛点：运营手动复制 QA 问答 → 扔 GPT 分析属性 → 人工对比"我们有没有埋这个词"——重复、易漏、新人做不准。</div>
+      <div class="row"><b>角色设定</b>：评价洞察专员，从竞品 QA + 用户评价里提炼"防水/耐用/送礼/学生用"等属性词。</div>
+      <div class="row"><b>输入</b>：竞品 ASIN 或导出的评价/QA 文本。</div>
+      <div class="row"><b>输出</b>：属性词清单（场景/人群/功能分类）+ 与现有 listing 对比的"埋词查漏补缺建议"。</div>
+      <div class="row"><span class="pill">阶段 6</span><span class="pill">W7</span></div>
+    </div>
+  </div>
+
+  <!-- ============ 三、Skills ============ -->
+  <h2>三、把智能体打包成 Skill（团队人人能用，跨场景复用）</h2>
+  <p class="sub">Lion 在场景确认会上的判断："前期打磨用智能体把经验讲清楚、捋明白，后面用 Skills 把每一个模块串联起来。"——智能体是单独可用的工具，Skill 是新人也能按一个按钮就触发的"工作机器人"。三个 Skill 之后，跨贴纸店、笔类店、礼品袋类目零成本复用。</p>
+
+  <div class="threecol">
+    <div class="col">
+      <h4>Skill 1 · listing 文案</h4>
+      <div class="row">触发词：<code style="color:var(--accent2)">/listing文案 &lt;产品+词表&gt;</code></div>
+      <div class="row">能力：自动套用文具品类违禁词清单、五要点字符规则，输出可直接贴的标题+5-7 行五要点。</div>
+      <div class="row">复用：贴纸店 → 笔类店 → 礼品袋类目，同一套 Skill 改品类参数即可。</div>
+    </div>
+    <div class="col">
+      <h4>Skill 2 · 拉词筛词</h4>
+      <div class="row">触发词：<code style="color:var(--accent2)">/拉词 &lt;竞品ASIN | 种子词&gt;</code></div>
+      <div class="row">能力：调外部词表软件导出 → 自动按相关性 × 搜索量分级 → 归类属性/人群/场景/功能。</div>
+      <div class="row">复用：所有亚马逊类目通用，新人无须懂"什么相关性算高"。</div>
+    </div>
+    <div class="col">
+      <h4>Skill 3 · 评价提炼</h4>
+      <div class="row">触发词：<code style="color:var(--accent2)">/评价提炼 &lt;ASIN&gt;</code></div>
+      <div class="row">能力：抓竞品 QA + 评价 → 提炼属性词 → 对比当前 listing 出"埋词查漏建议"。</div>
+      <div class="row">复用：新品上线前必跑、老品定期复跑（每月/每季度）。</div>
+    </div>
+  </div>
+
+  <!-- ============ 四、工作流 + HTML ============ -->
+  <h2>四、把 Skills 串成工作流，产出可交付的 HTML 报告</h2>
+  <p class="sub">三个 Skill 单独用能解决"今天写个文案 / 拉个词表"的点；串成"新品上线 SOP"工作流之后，从一个竞品 ASIN 到一份完整 listing 草稿，全自动 5 分钟出。这条线是义乌运营新人也能跑的——你只要把 ASIN 发给 AI，剩下交给工作流。</p>
+
+  <div class="demo">
+    <div style="font-size:13px;color:var(--muted)">工作流 · 新品上线 SOP（示例）</div>
+    <div class="flow">
+      <span class="node">🎯 输入：竞品 ASIN ×5</span>
+      <span class="arr">→</span>
+      <span class="node">/拉词 → 分级词表</span>
+      <span class="arr">→</span>
+      <span class="node">/评价提炼 → 属性词</span>
+      <span class="arr">→</span>
+      <span class="node">/listing文案 → 标题+五要点</span>
+      <span class="arr">→</span>
+      <span class="node">📊 HTML 报告生成器</span>
+      <span class="arr">→</span>
+      <span class="node">📧 推送邓总+组长</span>
+    </div>
+    <div class="out">
+      <b style="color:var(--accent2)">交付物示例（HTML 报告：新品 listing 上线包）</b><br>
+      · 竞品对标卡片：5 个 ASIN 的销量、广告结构、能不能打过他的判断<br>
+      · 词表分级表：标题用词 / 五要点用词 / 否词清单 一目了然<br>
+      · 属性词查漏补缺：竞品 QA 提炼的属性 vs 我们 listing 已有 → 缺哪些<br>
+      · listing 终稿：标题 + 5-7 行五要点（违禁词标红已替换、字符数标注）
+    </div>
+  </div>
+
+  <!-- ============ 时间轴 ============ -->
+  <h2>五、两个月周里程碑</h2>
+  <div class="timeline">
+
+    <div class="tl-item">
+      <h4><span class="wk">W1</span>认知打底 · 邓总个人激活</h4>
+      <ul>
+        <li>把现有"亚马逊培训复制版"文案提示词拿出来，跟 GPT 反复对话调优，亲手体验"调"的过程</li>
+        <li>整理违禁词清单：把"另一个软件"标红过的违禁词积累成清单，准备入知识库</li>
+        <li>Lion 同步本次会议文稿 + 三个大方向到客户群（落地清单作业 ③ 已确认）</li>
+      </ul>
+      <div class="deliv"><span class="s-html">交付：邓总个人 AI 身份档案 + 违禁词清单 v1</span></div>
+    </div>
+
+    <div class="tl-item">
+      <h4><span class="wk">W2</span>知识层入库 · AI 帮你梳理运营事项</h4>
+      <ul>
+        <li>把场景确认会议文稿 + 运营工作内容表喂给 AI，让它梳理"哪些工作事项可以智能体化"（落地清单作业 ②）</li>
+        <li>得到第二批落地候选清单（找竞品 / 拉词表 / 筛词表 / 收集评价 / 否词表 等择优）</li>
+        <li>把品牌定位、文具品类色彩偏好、五要点字符规则、亚马逊培训提示词全部入知识库</li>
+      </ul>
+      <div class="deliv"><span>知识层素材库 v1</span><span class="s-html">可智能体化工作事项清单</span></div>
+    </div>
+
+    <div class="tl-item">
+      <h4><span class="wk">W3-W4</span>智能体 ① listing 文案撰写上线</h4>
+      <ul>
+        <li>基于复制版提示词改造成定制化智能体：植入违禁词清单、字符规则、五要点拓展规则</li>
+        <li>测试 10 个真实产品 listing → 对比新旧版本（违禁词命中率、字符达标率、埋词完整度）</li>
+        <li>固化为团队可用版本，新人也能直接调用</li>
+      </ul>
+      <div class="deliv"><span class="s-agent">智能体 ①</span><span class="s-skill">Skill /listing文案</span></div>
+    </div>
+
+    <div class="tl-item">
+      <h4><span class="wk">W5-W6</span>智能体 ② 拉词筛词上线 · 工作流雏形</h4>
+      <ul>
+        <li>把"找竞品 + 拉词表 + 筛词表 + 归类属性词"打包成 Skill，替代运营手动 Excel 操作</li>
+        <li>跟 Skill 1 串联：词表自动喂给 listing 智能体，少一次手动复制粘贴</li>
+        <li>组长培训：把这两个 Skill 教给现有运营（含 2 个新人）</li>
+      </ul>
+      <div class="deliv"><span class="s-agent">智能体 ②</span><span class="s-skill">Skill /拉词</span><span class="s-flow">工作流 v1</span></div>
+    </div>
+
+    <div class="tl-item">
+      <h4><span class="wk">W7</span>智能体 ③ 评价提炼上线 · 完整工作流</h4>
+      <ul>
+        <li>抓竞品 QA + 评价提炼属性词，自动出"埋词查漏补缺"建议</li>
+        <li>三个 Skill 串成"新品上线 SOP"工作流：ASIN → 词表 → 属性词 → listing → HTML 报告</li>
+        <li>跑 1 个真实新品全流程，对比"以前要 3 个运营干 1 天 vs 现在 1 个新人 5 分钟"</li>
+      </ul>
+      <div class="deliv"><span class="s-agent">智能体 ③</span><span class="s-skill">Skill /评价提炼</span><span class="s-flow">完整工作流</span><span class="s-html">新品 listing 上线包 HTML</span></div>
+    </div>
+
+    <div class="tl-item">
+      <h4><span class="wk">W8</span>业务系统化 · 跨类目复刻 · 结业</h4>
+      <ul>
+        <li>把同一套工作流复制到笔类 / 礼品袋类目验证（不改 Skill，只换品类参数）</li>
+        <li>战略层：把"老板自己最懂运营+广告"的隐性知识沉淀到 AI 助手里，未来开发新品类先问 AI</li>
+        <li>结业报告：2 个月 KPI（新品上线效率、运营人时节省、违禁词命中率下降）+ 下一阶段方向（视频/详情/广告自动化备选）</li>
+      </ul>
+      <div class="deliv"><span class="s-flow">完整业务系统</span><span class="s-html">交付：陪跑结业报告 HTML</span></div>
+    </div>
+
+  </div>
+
+  <!-- ============ 承诺 ============ -->
+  <h2>六、陪跑承诺</h2>
+  <div class="promise">
+    <div class="p"><b>① 落地承诺</b><br>Lion 已在场景确认会承诺："前期用智能体把经验讲清楚、捋明白，后面用 Skills 把每一个模块串联起来。"——不是教你用 AI，是陪你把每一个工作事项一个一个落到能跑的智能体上。</div>
+    <div class="p"><b>② 复刻承诺</b><br>3 个 Skill 在文具品类跑通后，迁移到其他亚马逊小精品类目（贴纸 / 笔 / 本子 / 礼品袋 / 杂类）零额外开发——同一套工具横扫你所有店铺。</div>
+    <div class="p"><b>③ 员工承诺</b><br>把你"自己最懂运营+开发+广告"的隐性能力固化成智能体——新人不再依赖组长沟通能力（你自己说过"组长太啰嗦人家听不懂"），按一个 `/触发词` 就能干活，正面解决义乌运营难培养、流动性大的根问题。</div>
+  </div>
+
+  <footer>
+    数据来源：2026-05-23 场景确认会议（妙记 obcnsax1kz71v2nq81h35rnk）+ 客户档案 + AI 需求分析 + 落地清单。<br>
+    花花在会上对邓总的一句关键判断："你想做的太多了，必须一个一个工作事项地拆。"——本方案 2 个月节奏严格遵循这一原则：1 个智能体 / 月，固化一个再做下一个。
+  </footer>
+
+</div>
+</body>
+</html>
