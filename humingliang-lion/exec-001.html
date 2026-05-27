@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>瑜伽服-胡明亮 · 执行-001 会议总结</title>
+<style>
+  :root {
+    --bg: #F5F4ED;
+    --paper: #FAF9F5;
+    --ink: #2D2A26;
+    --ink-soft: #4A4742;
+    --muted: #8C8579;
+    --line: #E8E4D8;
+    --line-soft: #EFEBE0;
+    --accent: #C96442;
+    --accent-soft: #F4E4DA;
+    --accent-line: #E5BFAB;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body {
+    font-family: ui-serif, "Iowan Old Style", "Songti SC", "Source Han Serif SC", "Noto Serif CJK SC", "PingFang SC", Georgia, serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.75;
+    padding: 56px 20px 80px;
+    font-size: 16px;
+  }
+  .sans { font-family: -apple-system, "Inter", "PingFang SC", "Helvetica Neue", sans-serif; }
+  .container { max-width: 760px; margin: 0 auto; }
+
+  header {
+    background: var(--paper);
+    padding: 56px 56px 44px;
+    border-radius: 16px 16px 0 0;
+    border: 1px solid var(--line);
+    border-bottom: none;
+  }
+  .eyebrow {
+    font-family: -apple-system, "Inter", sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    color: var(--accent);
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 6px; height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    display: inline-block;
+  }
+  h1 {
+    font-size: 34px;
+    color: var(--ink);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+    margin-bottom: 14px;
+  }
+  .sub {
+    font-size: 16px;
+    color: var(--muted);
+    margin-bottom: 36px;
+    font-style: italic;
+  }
+  .meta {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 20px 32px;
+    padding-top: 28px;
+    border-top: 1px solid var(--line);
+  }
+  .meta-item { font-family: -apple-system, "Inter", sans-serif; font-size: 14px; }
+  .meta-item .k {
+    display: block;
+    color: var(--muted);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .meta-item .v { color: var(--ink); font-weight: 500; }
+
+  main {
+    background: var(--paper);
+    padding: 8px 56px 56px;
+    border-radius: 0 0 16px 16px;
+    border: 1px solid var(--line);
+    border-top: none;
+  }
+  section { padding: 36px 0; border-bottom: 1px solid var(--line-soft); }
+  section:last-child { border-bottom: none; padding-bottom: 12px; }
+
+  h2 {
+    font-family: -apple-system, "Inter", sans-serif;
+    font-size: 11px;
+    color: var(--accent);
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  h3 {
+    font-size: 17px;
+    color: var(--ink);
+    font-weight: 600;
+    margin-bottom: 14px;
+    letter-spacing: -0.005em;
+  }
+
+  ol, ul { padding-left: 0; list-style: none; }
+  .num-list { counter-reset: item; }
+  .num-list li {
+    counter-increment: item;
+    position: relative;
+    padding: 10px 0 10px 40px;
+    color: var(--ink-soft);
+    font-size: 16px;
+    line-height: 1.8;
+  }
+  .num-list li + li { border-top: 1px dashed var(--line-soft); }
+  .num-list li::before {
+    content: counter(item);
+    position: absolute;
+    left: 0;
+    top: 14px;
+    width: 26px;
+    height: 26px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: 700;
+    font-family: -apple-system, "Inter", sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .num-list strong { color: var(--ink); font-weight: 600; }
+
+  .quote {
+    margin: 32px 0 0;
+    padding: 24px 28px;
+    background: var(--accent-soft);
+    border-radius: 12px;
+    color: var(--ink);
+    font-size: 18px;
+    line-height: 1.65;
+    border-left: 3px solid var(--accent);
+  }
+  .quote-label {
+    display: block;
+    font-family: -apple-system, "Inter", sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+  .quote strong { font-weight: 700; }
+
+  .pull {
+    padding: 24px 28px;
+    background: var(--ink);
+    color: var(--paper);
+    margin-bottom: 24px;
+    font-size: 16px;
+    line-height: 1.7;
+    border-radius: 12px;
+  }
+  .pull-label {
+    display: block;
+    font-family: -apple-system, "Inter", sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--accent-line);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+  .pull strong { color: var(--paper); font-weight: 600; }
+
+  .grid {
+    background: var(--bg);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+  }
+  .grid-row {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    padding: 16px 22px;
+    border-bottom: 1px solid var(--line);
+    font-size: 15.5px;
+  }
+  .grid-row:last-child { border-bottom: none; }
+  .grid-row .k {
+    color: var(--muted);
+    font-size: 13px;
+    font-family: -apple-system, "Inter", sans-serif;
+    padding-top: 2px;
+  }
+  .grid-row .v { color: var(--ink-soft); line-height: 1.65; }
+
+  .role {
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 24px 26px;
+    margin-bottom: 16px;
+  }
+  .role:last-child { margin-bottom: 0; }
+  .role-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding-bottom: 14px;
+    margin-bottom: 6px;
+    border-bottom: 1px solid var(--line);
+  }
+  .role-header h3 { margin: 0; }
+  .role-tag {
+    font-family: -apple-system, "Inter", sans-serif;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .task {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 14px;
+    padding: 12px 0;
+    font-size: 15px;
+    color: var(--ink-soft);
+    line-height: 1.65;
+    border-bottom: 1px dashed var(--line-soft);
+  }
+  .task:last-child { border-bottom: none; }
+  .badge {
+    font-family: -apple-system, "Inter", sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding-top: 4px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .badge::before {
+    content: "";
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .badge.done { color: var(--muted); }
+  .badge.done::before { background: var(--muted); }
+  .badge.doing { color: var(--accent); }
+  .badge.doing::before { background: var(--accent); }
+  .badge.todo { color: var(--ink); }
+  .badge.todo::before { background: transparent; border: 1.5px solid var(--ink); }
+  .task-body .owner { color: var(--muted); font-size: 14px; margin-left: 4px; font-style: italic; }
+
+  .next {
+    background: var(--accent-soft);
+    border: 1px solid var(--accent-line);
+    border-radius: 12px;
+    padding: 26px 28px;
+  }
+  .next h3 {
+    color: var(--accent);
+    font-size: 17px;
+    margin-bottom: 18px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--accent-line);
+  }
+  .next-row {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    padding: 8px 0;
+    font-size: 15.5px;
+  }
+  .next-row .k {
+    color: var(--muted);
+    font-size: 13px;
+    font-family: -apple-system, "Inter", sans-serif;
+  }
+  .next-row .v { color: var(--ink); }
+
+  footer {
+    margin-top: 32px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-family: -apple-system, "Inter", sans-serif;
+  }
+
+  @media (max-width: 640px) {
+    body { padding: 32px 14px; font-size: 15px; }
+    header, main { padding-left: 28px; padding-right: 28px; }
+    h1 { font-size: 26px; }
+    .grid-row, .task, .next-row { grid-template-columns: 1fr; gap: 4px; }
+    .meta { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <div class="eyebrow">执行会议 · 001</div>
+  <h1>瑜伽服 — 胡明亮</h1>
+  <div class="sub">两个月三智能体路径锁定 · 产品策划智能体启动搭建</div>
+  <div class="meta">
+    <div class="meta-item"><span class="k">时间</span><span class="v">2026-05-27 09:59</span></div>
+    <div class="meta-item"><span class="k">时长</span><span class="v">36 分 30 秒</span></div>
+    <div class="meta-item"><span class="k">陪跑老师</span><span class="v">Lion</span></div>
+    <div class="meta-item"><span class="k">客户参会</span><span class="v">胡明亮（老板）</span></div>
+  </div>
+</header>
+
+<main>
+
+<section>
+  <h2>本次会议干了什么</h2>
+  <ol class="num-list">
+    <li><strong>核对两个月落地路径。</strong>聚焦三个智能体——①产品策划 ②出图 ③评价分析升级版；两个月精力有限，先把三个夯实，跑得快可以加。</li>
+    <li><strong>现场带搭产品策划智能体。</strong>Lion 屏幕共享走 GPTs 创建入口（探索 GPT → 创建 → 配置 → 指令/知识/对话开场白），指令结构定义为「目的 + 原理方法 + 步骤 + 边界」。</li>
+    <li><strong>理顺产品策划方法论。</strong>把胡总隐性思路拆成两条线：线 A（先做）—— 基于现有产品 → 找目标人群 → 分析购买动机 → 找卖点；线 B（后做）—— 先想卖点/人群再倒推开品。</li>
+    <li><strong>现场试跑提示词生成。</strong>胡总用语音输入法说需求 → 让 AI 输出多个智能体提示词模板 → 复制到 GPTs 指令位；Lion 强调"基于业务视角用 AI，不是它给啥都接受"。</li>
+    <li><strong>工具栈推荐。</strong>Typeless 语音转结构化文字（Win 版，30 天免费）—— 解决胡总不打字偏语音的输入瓶颈。</li>
+  </ol>
+
+  <div class="quote">
+    <span class="quote-label">Lion 方法论 · 一句话</span>
+    智能体提示词不用从零手写——先和 AI 对话，<strong>把你想说但说不出来的方法论具象成一个个文字</strong>，再喂给智能体。
+  </div>
+</section>
+
+<section>
+  <h2>本周核心决策</h2>
+
+  <div class="pull">
+    <span class="pull-label">节奏铁律</span>
+    一个智能体一个智能体地夯实。<strong>产品策划智能体不到能稳定产出，不启动出图。</strong>
+  </div>
+
+  <div class="grid">
+    <div class="grid-row"><div class="k">本周唯一动作</div><div class="v">双向打磨产品策划智能体初版：Lion 给一版标杆，胡总语音输入自己打磨一版，对比迭代</div></div>
+    <div class="grid-row"><div class="k">协作机制</div><div class="v">胡总群里同步进度，Lion 评估下一阶段触发；语音转文字 → 发群</div></div>
+    <div class="grid-row"><div class="k">第 2 个智能体启动条件</div><div class="v">产品策划稳定产出（能输出"卖点+人群+标题+主图文字"四件套）后启动出图智能体</div></div>
+    <div class="grid-row"><div class="k">方法论优先级</div><div class="v">线 A（基于现有产品打人群+卖点）优先；线 B（先卖点再开品）放后面</div></div>
+    <div class="grid-row"><div class="k">工具栈</div><div class="v">GPT + Typeless 语音转结构化（Win 版 30 天免费）</div></div>
+  </div>
+</section>
+
+<section>
+  <h2>落地清单</h2>
+
+  <div class="role">
+    <div class="role-header"><h3>客户侧</h3><span class="role-tag">胡明亮</span></div>
+    <div class="task"><div class="badge doing">进行中</div><div class="task-body">自己打磨产品策划智能体提示词初版（语音转文字发群）</div></div>
+    <div class="task"><div class="badge doing">进行中</div><div class="task-body">听个体 AI 共生课回放 + 做人生缩影对话（GPT 3-4 小时激活）<span class="owner">— 自述对话部分已完成</span></div></div>
+    <div class="task"><div class="badge todo">待启动</div><div class="task-body">安装试用 Typeless 语音转结构化文字（Win 版 30 天免费）</div></div>
+    <div class="task"><div class="badge todo">待启动</div><div class="task-body">整理产品信息表格（面料/克重/胸垫等属性）作为智能体知识库素材</div></div>
+  </div>
+
+  <div class="role">
+    <div class="role-header"><h3>陪跑团队侧</h3><span class="role-tag">Lion / 培培</span></div>
+    <div class="task"><div class="badge doing">进行中</div><div class="task-body">会后产出产品策划智能体初版（标杆参考）<span class="owner">— Lion 接管</span></div></div>
+    <div class="task"><div class="badge todo">待启动</div><div class="task-body">做出图智能体基础版提示词（产品策划稳后启动）<span class="owner">— Lion 接管</span></div></div>
+    <div class="task"><div class="badge todo">待启动</div><div class="task-body">发个体 AI 共生课回放 + 人生缩影提示词到群（如未发）<span class="owner">— 培培</span></div></div>
+  </div>
+
+  <div class="role">
+    <div class="role-header"><h3>本次会议已完成</h3><span class="role-tag">Closed</span></div>
+    <div class="task"><div class="badge done">完成</div><div class="task-body">核对两个月落地路径（三智能体方向锁定）</div></div>
+    <div class="task"><div class="badge done">完成</div><div class="task-body">现场完成产品策划智能体 GPTs 创建路径 + 指令结构教学</div></div>
+    <div class="task"><div class="badge done">完成</div><div class="task-body">出场景执行计划方案口头核对（书面群发待补 ⚠️）</div></div>
+  </div>
+</section>
+
+<section>
+  <h2>下次会议方向</h2>
+  <div class="next">
+    <h3>产品策划智能体双版本对比会</h3>
+    <div class="next-row"><span class="k">触发条件</span><span class="v">胡总自打磨版 + Lion 标杆版双初版到位</span></div>
+    <div class="next-row"><span class="k">预计时间</span><span class="v">1 周内（约 2026-06-03）</span></div>
+    <div class="next-row"><span class="k">会议内容</span><span class="v">双初版对比 + 选优；真实产品图试跑，看输出是否对齐"卖点+人群+标题+主图文字"四件套</span></div>
+  </div>
+</section>
+
+</main>
+
+<footer>正心 AI 陪跑项目 — 第 9 期 — Lion 组 — 2026.05.27</footer>
+
+</div>
+</body>
+</html>
