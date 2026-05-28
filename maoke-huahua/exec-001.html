@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>猫课-黄魏 · 执行-001 会议总结</title>
+<style>
+  :root {
+    --bg: #F5F4ED;
+    --paper: #FAF9F5;
+    --ink: #2D2A26;
+    --ink-soft: #4A4742;
+    --muted: #8C8579;
+    --line: #E8E4D8;
+    --line-soft: #EFEBE0;
+    --accent: #C96442;
+    --accent-soft: #F4E4DA;
+    --accent-line: #E5BFAB;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body {
+    font-family: ui-serif, "Iowan Old Style", "Songti SC", "Source Han Serif SC", "Noto Serif CJK SC", "PingFang SC", Georgia, serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.75;
+    padding: 56px 20px 80px;
+    font-size: 16px;
+  }
+  .sans { font-family: -apple-system, "Inter", "PingFang SC", "Helvetica Neue", sans-serif; }
+  .container { max-width: 760px; margin: 0 auto; }
+
+  header {
+    background: var(--paper);
+    padding: 56px 56px 44px;
+    border-radius: 16px 16px 0 0;
+    border: 1px solid var(--line);
+    border-bottom: none;
+  }
+  .eyebrow {
+    font-family: -apple-system, "Inter", sans-serif;
+    font-size: 11px; letter-spacing: 0.22em;
+    color: var(--accent); text-transform: uppercase;
+    font-weight: 600; margin-bottom: 20px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .eyebrow::before {
+    content: ""; width: 6px; height: 6px;
+    background: var(--accent); border-radius: 50%;
+    display: inline-block;
+  }
+  h1 {
+    font-size: 34px; color: var(--ink); font-weight: 500;
+    letter-spacing: -0.01em; line-height: 1.25; margin-bottom: 14px;
+  }
+  .sub { font-size: 16px; color: var(--muted); margin-bottom: 36px; font-style: italic; }
+  .meta {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 20px 32px; padding-top: 28px; border-top: 1px solid var(--line);
+  }
+  .meta-item { font-family: -apple-system, "Inter", sans-serif; font-size: 14px; }
+  .meta-item .k {
+    display: block; color: var(--muted); font-size: 11px;
+    letter-spacing: 0.14em; margin-bottom: 6px;
+    text-transform: uppercase; font-weight: 500;
+  }
+  .meta-item .v { color: var(--ink); font-weight: 500; }
+
+  main {
+    background: var(--paper); padding: 8px 56px 56px;
+    border-radius: 0 0 16px 16px;
+    border: 1px solid var(--line); border-top: none;
+  }
+  section { padding: 36px 0; border-bottom: 1px solid var(--line-soft); }
+  section:last-child { border-bottom: none; padding-bottom: 12px; }
+
+  h2 {
+    font-family: -apple-system, "Inter", sans-serif;
+    font-size: 11px; color: var(--accent); font-weight: 600;
+    letter-spacing: 0.22em; text-transform: uppercase; margin-bottom: 24px;
+  }
+  h3 {
+    font-size: 17px; color: var(--ink); font-weight: 600;
+    margin-bottom: 14px; letter-spacing: -0.005em;
+  }
+
+  ol, ul { padding-left: 0; list-style: none; }
+  .num-list { counter-reset: item; }
+  .num-list li {
+    counter-increment: item; position: relative;
+    padding: 10px 0 10px 40px; color: var(--ink-soft);
+    font-size: 16px; line-height: 1.8;
+  }
+  .num-list li + li { border-top: 1px dashed var(--line-soft); }
+  .num-list li::before {
+    content: counter(item); position: absolute;
+    left: 0; top: 14px; width: 26px; height: 26px;
+    background: var(--accent-soft); color: var(--accent);
+    border-radius: 50%; font-size: 12px; font-weight: 700;
+    font-family: -apple-system, "Inter", sans-serif;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .num-list strong { color: var(--ink); font-weight: 600; }
+
+  .quote {
+    margin: 32px 0 0; padding: 24px 28px;
+    background: var(--accent-soft); border-radius: 12px;
+    color: var(--ink); font-size: 18px; line-height: 1.65;
+    border-left: 3px solid var(--accent);
+  }
+  .quote-label {
+    display: block; font-family: -apple-system, "Inter", sans-serif;
+    font-size: 11px; letter-spacing: 0.18em;
+    color: var(--accent); text-transform: uppercase;
+    margin-bottom: 8px; font-weight: 600;
+  }
+  .quote strong { font-weight: 700; }
+
+  .pull {
+    padding: 24px 28px; background: var(--ink); color: var(--paper);
+    margin-bottom: 24px; font-size: 16px; line-height: 1.7; border-radius: 12px;
+  }
+  .pull-label {
+    display: block; font-family: -apple-system, "Inter", sans-serif;
+    font-size: 11px; letter-spacing: 0.2em;
+    color: var(--accent-line); text-transform: uppercase;
+    margin-bottom: 10px; font-weight: 600;
+  }
+  .pull strong { color: var(--paper); font-weight: 600; }
+
+  .grid {
+    background: var(--bg); border-radius: 12px;
+    overflow: hidden; border: 1px solid var(--line);
+  }
+  .grid-row {
+    display: grid; grid-template-columns: 200px 1fr;
+    padding: 16px 22px; border-bottom: 1px solid var(--line); font-size: 15.5px;
+  }
+  .grid-row:last-child { border-bottom: none; }
+  .grid-row .k {
+    color: var(--muted); font-size: 13px;
+    font-family: -apple-system, "Inter", sans-serif; padding-top: 2px;
+  }
+  .grid-row .v { color: var(--ink-soft); line-height: 1.65; }
+
+  .role {
+    background: var(--bg); border: 1px solid var(--line);
+    border-radius: 12px; padding: 24px 26px; margin-bottom: 16px;
+  }
+  .role:last-child { margin-bottom: 0; }
+  .role-header {
+    display: flex; align-items: baseline; justify-content: space-between;
+    padding-bottom: 14px; margin-bottom: 6px; border-bottom: 1px solid var(--line);
+  }
+  .role-header h3 { margin: 0; }
+  .role-tag {
+    font-family: -apple-system, "Inter", sans-serif; font-size: 11px;
+    color: var(--muted); letter-spacing: 0.1em;
+    text-transform: uppercase; font-weight: 500;
+  }
+
+  .task {
+    display: grid; grid-template-columns: 80px 1fr;
+    gap: 14px; padding: 12px 0; font-size: 15px;
+    color: var(--ink-soft); line-height: 1.65;
+    border-bottom: 1px dashed var(--line-soft);
+  }
+  .task:last-child { border-bottom: none; }
+  .badge {
+    font-family: -apple-system, "Inter", sans-serif;
+    font-size: 11px; letter-spacing: 0.08em;
+    text-transform: uppercase; padding-top: 4px;
+    font-weight: 600; display: flex; align-items: center; gap: 6px;
+  }
+  .badge::before {
+    content: ""; width: 8px; height: 8px;
+    border-radius: 50%; display: inline-block;
+  }
+  .badge.done { color: var(--muted); }
+  .badge.done::before { background: var(--muted); }
+  .badge.doing { color: var(--accent); }
+  .badge.doing::before { background: var(--accent); }
+  .badge.todo { color: var(--ink); }
+  .badge.todo::before { background: transparent; border: 1.5px solid var(--ink); }
+  .task-body .owner { color: var(--muted); font-size: 14px; margin-left: 4px; font-style: italic; }
+
+  .next {
+    background: var(--accent-soft); border: 1px solid var(--accent-line);
+    border-radius: 12px; padding: 26px 28px;
+  }
+  .next h3 {
+    color: var(--accent); font-size: 17px;
+    margin-bottom: 18px; padding-bottom: 14px;
+    border-bottom: 1px solid var(--accent-line);
+  }
+  .next-row {
+    display: grid; grid-template-columns: 110px 1fr;
+    padding: 8px 0; font-size: 15.5px;
+  }
+  .next-row .k {
+    color: var(--muted); font-size: 13px;
+    font-family: -apple-system, "Inter", sans-serif;
+  }
+  .next-row .v { color: var(--ink); }
+
+  footer {
+    margin-top: 32px; text-align: center; color: var(--muted);
+    font-size: 12px; letter-spacing: 0.18em;
+    text-transform: uppercase; font-family: -apple-system, "Inter", sans-serif;
+  }
+
+  @media (max-width: 640px) {
+    body { padding: 32px 14px; font-size: 15px; }
+    header, main { padding-left: 28px; padding-right: 28px; }
+    h1 { font-size: 26px; }
+    .grid-row, .task, .next-row { grid-template-columns: 1fr; gap: 4px; }
+    .meta { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <div class="eyebrow">执行会议 · 001</div>
+  <h1>猫课 — 黄魏</h1>
+  <div class="sub">配件作图陪跑 · 利用 Codex 打通配件 A+ 出图链路</div>
+  <div class="meta">
+    <div class="meta-item"><span class="k">时间</span><span class="v">2026-05-27 20:58</span></div>
+    <div class="meta-item"><span class="k">时长</span><span class="v">55 分 42 秒</span></div>
+    <div class="meta-item"><span class="k">陪跑老师</span><span class="v">花花组（本场由 Lion / 林韦韩 主导）</span></div>
+    <div class="meta-item"><span class="k">客户参会</span><span class="v">朱锦镭 (Sandro)、胡纯曼</span></div>
+  </div>
+</header>
+
+<main>
+
+<section>
+  <h2>本次会议干了什么</h2>
+  <ol class="num-list">
+    <li><strong>林韦韩演示 Codex 项目 + 引导功能。</strong>项目即文件夹分类沉淀；引导可在任务执行一半时打断并下达新指令，区别于"排队"模式；批准策略默认 Never 永远可用，提示词无安全风险。</li>
+    <li><strong>Lion 讲透 Codex vs 网页版 ChatGPT 的关键差异。</strong>Codex 把对话/文件/脚本沉淀到本地项目目录，本地学习能力是核心优势；网页版聊天记录在云端，账号收回即丢。</li>
+    <li><strong>把"智能体"翻译成"Skill"概念。</strong>Skill 是项目文件夹里的可运行指令包，多个 Skill 可串联成工作流；分享前期靠传文件夹，后期 GitHub 仓库实时同步是高阶动作。</li>
+    <li><strong>朱锦镭抛出终局工作流。</strong>"副图生成 → A+ 生图 → 图片打分 → 自动出套图 → 自迭代"闭环；Lion 认可方向，但要求<strong>先把 A+ 提示词跑稳</strong>再谈 Skill 化和串联。</li>
+    <li><strong>本地图片库结构 + Token 共享池。</strong>未来按主图 / 副图 / A+ 库分类，方便 AI 组合调用；Codex 与网页版 ChatGPT 共享账号 Token 额度，左下角可查剩余用量。</li>
+    <li><strong>自动化团队（陈思炫线）领下周作业。</strong>下次会议前给 Lion 提交团队 Skill 共享方案初稿，以 Lion 使用方向为基准做统一 pipeline。</li>
+  </ol>
+
+  <div class="quote">
+    <span class="quote-label">朱锦镭 · 终局想象</span>
+    出套图后让 AI 自行整理、自迭代——<strong>在 AI 之上建立公司。</strong>
+  </div>
+</section>
+
+<section>
+  <h2>本周核心决策</h2>
+
+  <div class="pull">
+    <span class="pull-label">节奏铁律</span>
+    先打磨提示词，再谈 Skill 化；先单点跑通，再谈飞书 / 云端串联。<strong>不要绕过这个顺序直接上飞书联动。</strong>
+  </div>
+
+  <div class="grid">
+    <div class="grid-row"><div class="k">本周客户侧动作</div><div class="v">朱锦镭团队基于业务打磨 A+ 生图提示词，在网页端测试稳定</div></div>
+    <div class="grid-row"><div class="k">本周陪跑侧动作</div><div class="v">自动化团队下周会议后产出 Skill 共享方案初稿，交 Lion 审核</div></div>
+    <div class="grid-row"><div class="k">下一阶段触发条件</div><div class="v">A+ 提示词跑稳 → Lion 指导封装 Skill → 再叠副图生成 / 图片打分 Skill 串联</div></div>
+    <div class="grid-row"><div class="k">工具栈基线</div><div class="v">Codex 本地项目 + Skills；飞书作为信息中台（会议纪要 / 待办）；GitHub 仓库共享为后期高阶选项</div></div>
+  </div>
+</section>
+
+<section>
+  <h2>落地清单</h2>
+
+  <div class="role">
+    <div class="role-header"><h3>客户侧</h3><span class="role-tag">朱锦镭 / 胡纯曼 / 自动化团队</span></div>
+    <div class="task"><div class="badge todo">待启动</div><div class="task-body">基于业务打磨 A+ 生图智能体提示词，网页端跑稳后向 Lion 学习封装 Skill<span class="owner">— 朱锦镭主操</span></div></div>
+    <div class="task"><div class="badge todo">待启动</div><div class="task-body">下周会议后向 Lion 提交团队 Skill 搭建方案初稿（含统一输入输出 + Skill 共享规范）<span class="owner">— 自动化团队</span></div></div>
+    <div class="task"><div class="badge todo">待启动</div><div class="task-body">建立本地图片库目录结构（主图 / 副图 / A+ 库分类），等 A+ 跑稳后接入 AI 调用<span class="owner">— 客户方</span></div></div>
+  </div>
+
+  <div class="role">
+    <div class="role-header"><h3>陪跑团队侧</h3><span class="role-tag">Lion / 林韦韩 / 陈思炫</span></div>
+    <div class="task"><div class="badge todo">待启动</div><div class="task-body">把前两周作图会议回放发送给林韦韩<span class="owner">— 陈思炫 (Aki)</span></div></div>
+    <div class="task"><div class="badge todo">待启动</div><div class="task-body">根据客户 A+ 提示词迭代进度，评估 Skill 封装时机<span class="owner">— Lion</span></div></div>
+    <div class="task"><div class="badge todo">待启动</div><div class="task-body">实时响应群里 Skill / Codex 使用问题</div></div>
+  </div>
+
+  <div class="role">
+    <div class="role-header"><h3>本次会议已完成</h3><span class="role-tag">Closed</span></div>
+    <div class="task"><div class="badge done">完成</div><div class="task-body">Codex / Skill 概念培训（项目 / 权限 / 引导 / 串联）</div></div>
+    <div class="task"><div class="badge done">完成</div><div class="task-body">确认陪跑节奏铁律：先单点跑通 → 再 Skill 化 → 再串联</div></div>
+    <div class="task"><div class="badge done">完成</div><div class="task-body">锁定首战场景：配件 A+ 生图提示词打磨</div></div>
+  </div>
+</section>
+
+<section>
+  <h2>下次会议方向</h2>
+  <div class="next">
+    <h3>Skill 共享方案审核 + A+ 提示词评估</h3>
+    <div class="next-row"><span class="k">触发条件</span><span class="v">自动化团队提交 Skill 共享方案初稿 + 业务端给出 A+ 提示词测试结果</span></div>
+    <div class="next-row"><span class="k">预计时间</span><span class="v">2026-06-03 ± 1（下周）</span></div>
+    <div class="next-row"><span class="k">会议内容</span><span class="v">（1）审核 Skill 共享方案；（2）评估 A+ 提示词稳定性；（3）确定 Skill 串联具体路径</span></div>
+  </div>
+</section>
+
+</main>
+
+<footer>正心 AI 陪跑项目 — 第 6 期 — 花花组 — 2026.05.27</footer>
+
+</div>
+</body>
+</html>
