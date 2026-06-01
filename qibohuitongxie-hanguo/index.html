@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>徐曼 · 七波辉童鞋 AI 陪跑方案</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+  :root{
+    --bg:#0b0d12; --panel:#141821; --line:#232936; --ink:#e8ecf3;
+    --muted:#8a93a6; --accent:#ff6a00; --accent2:#ffb15c;
+    --ok:#2ecc71; --doing:#f1c40f; --todo:#5b6577;
+    --brand:#e30613;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.7}
+  .wrap{max-width:1180px;margin:0 auto;padding:48px 32px}
+  h1{font-size:34px;margin:0 0 8px;letter-spacing:1px}
+  h2{font-size:22px;margin:48px 0 16px;padding-left:12px;border-left:4px solid var(--accent)}
+  h3{font-size:17px;margin:24px 0 10px;color:var(--accent2)}
+  .sub{color:var(--muted);font-size:14px}
+  .hero{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px;padding-bottom:24px;border-bottom:1px solid var(--line)}
+  .tag{display:inline-block;padding:3px 10px;border-radius:999px;background:var(--brand);color:#fff;font-size:12px;margin-right:6px}
+  .tag.gray{background:#2c3340;color:var(--muted)}
+  .meta{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:24px}
+  .meta .card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+  .meta .k{font-size:12px;color:var(--muted)}
+  .meta .v{font-size:16px;margin-top:4px}
+
+  .ladder{position:relative;display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-top:16px}
+  .step{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 12px;position:relative}
+  .step .n{font-size:11px;color:var(--muted)}
+  .step .t{font-weight:600;margin-top:2px;font-size:14px}
+  .step .d{font-size:12px;color:var(--muted);margin-top:6px;line-height:1.5}
+  .step.done{border-color:#2ecc7144;background:#11261b}
+  .step.now{border-color:var(--accent);background:linear-gradient(180deg,#241408,#191c24);box-shadow:0 0 0 2px #ff6a0033}
+  .step.target{border-color:#3a4256;background:#181b24}
+  .step .badge{position:absolute;top:-10px;left:10px;font-size:10px;padding:2px 8px;border-radius:999px}
+  .step.done .badge{background:var(--ok);color:#08210f}
+  .step.now .badge{background:var(--accent);color:#fff}
+  .step.target .badge{background:#3a4256;color:#cdd3df}
+
+  .grid5{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:8px}
+  .m{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px}
+  .m .h{font-weight:600;font-size:14px;color:var(--accent2)}
+  .m .b{font-size:12.5px;color:#cdd3df;margin-top:6px;line-height:1.6}
+  .m .now{font-size:11px;margin-top:8px;color:var(--muted)}
+
+  .timeline{position:relative;margin-top:8px;border-left:2px solid var(--line);padding-left:22px}
+  .tl-item{position:relative;padding:14px 16px 14px 8px;background:var(--panel);border:1px solid var(--line);border-radius:10px;margin-bottom:14px}
+  .tl-item::before{content:"";position:absolute;left:-31px;top:20px;width:12px;height:12px;background:var(--accent);border-radius:50%;border:3px solid var(--bg)}
+  .tl-item .wk{display:inline-block;background:#2c3340;color:#cdd3df;padding:2px 10px;border-radius:6px;font-size:12px;margin-right:8px}
+  .tl-item h4{margin:0 0 6px;font-size:16px}
+  .tl-item ul{margin:6px 0 0 18px;padding:0;font-size:13.5px;color:#cdd3df}
+  .tl-item li{margin:3px 0}
+  .deliv{margin-top:10px;display:flex;flex-wrap:wrap;gap:6px}
+  .deliv span{font-size:11px;background:#1f2735;color:#9fb0d0;border:1px solid #2a3346;padding:3px 8px;border-radius:6px}
+  .deliv .s-agent{color:#ffb15c;border-color:#5a3a1a}
+  .deliv .s-skill{color:#7fd1ff;border-color:#1f4a66}
+  .deliv .s-flow{color:#a7f0a7;border-color:#1f5a2c}
+  .deliv .s-html{color:#ffd4f5;border-color:#5a2348}
+
+  .threecol{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-top:8px}
+  .col{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px}
+  .col h4{margin:0;font-size:16px}
+  .col .pain{font-size:12px;color:var(--muted);margin-top:4px;line-height:1.6}
+  .col .row{margin-top:14px;font-size:13px}
+  .col .row b{color:var(--accent2);font-weight:600}
+  .col .pill{display:inline-block;font-size:11px;padding:2px 8px;border-radius:6px;background:#1f2735;color:#9fb0d0;margin-right:4px;margin-top:4px}
+
+  .demo{background:linear-gradient(135deg,#1a1f2c,#13161e);border:1px dashed #3a4256;border-radius:12px;padding:20px;margin-top:8px}
+  .demo .flow{display:flex;align-items:center;flex-wrap:wrap;gap:6px;margin-top:10px}
+  .demo .node{background:#222a3a;border:1px solid #2f3b52;padding:8px 12px;border-radius:8px;font-size:13px}
+  .demo .arr{color:var(--accent);font-weight:700}
+  .demo .out{margin-top:14px;background:#0d0f15;border:1px solid #232936;border-radius:8px;padding:14px;font-size:12.5px;color:#cdd3df}
+
+  .promise{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:8px}
+  .promise .p{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px}
+  .promise .p b{color:var(--accent)}
+
+  footer{margin-top:60px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:12px}
+
+  @media (max-width:900px){
+    .meta,.grid5,.threecol,.promise{grid-template-columns:1fr 1fr}
+    .ladder{grid-template-columns:1fr 1fr;gap:10px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <section class="hero">
+    <div>
+      <div>
+        <span class="tag">七波辉童鞋</span>
+        <span class="tag gray">抖音 · AI 视频赛马式推进</span>
+      </div>
+      <h1>徐总，这是接下来 2 个月我们一起跑的路</h1>
+      <div class="sub">陪跑客户：徐曼（执行：丁）· 陪跑老师：林韩 + Lion · 项目经理：待定 · 启动日：2026-05-06</div>
+    </div>
+    <div class="sub">版本 v1 · 2026-06-01</div>
+  </section>
+
+  <!-- 4 个关键卡片 -->
+  <div class="meta">
+    <div class="card"><div class="k">业务模型</div><div class="v">童鞋电商（大童+中小童，旋转纽扣鞋/凉鞋/匡子等多款式），抖音短视频带货</div></div>
+    <div class="card"><div class="k">团队杠杆</div><div class="v">丁：摄影 + AI 操作一肩挑（"摄影同学一直是我"）；黄金龙：福建 AI 视频负责人</div></div>
+    <div class="card"><div class="k">当前瓶颈</div><div class="v">早期爆款 AI 素材复制效果递减；镂空鞋幻觉/细节失真；经验散在脑子里难复用</div></div>
+    <div class="card"><div class="k">核心打法</div><div class="v">丁自述："智能体就是不停地培养它，最后成熟了导出来" — 实操派、追问密集</div></div>
+  </div>
+
+  <!-- ============ 一、AI 认知 ============ -->
+  <h2>一、先建立对 AI 的正确认知</h2>
+  <p class="sub">七波辉的打法本质是"复刻"——把一条跑通的爆款视频，复制成一条生产线。AI 陪跑做的是同一件事：把丁脑子里的拍摄审美、把那条跑出过爆款的经验，从"只在你手上"变成"任何人调用都自带这套经验"。Lion 这次说透了底层逻辑——<b>智能体就是一套提示词，你迭代的是它的指令</b>；我们这两个月，就是帮七波辉把"一次性的好运气"沉淀成"可复用的好资产"。</p>
+
+  <h3>AI 成熟度 7 阶段 · 徐总团队当前位置</h3>
+  <div class="ladder">
+    <div class="step done"><span class="badge">✓ 已过</span><div class="n">阶段 1</div><div class="t">基础对话</div><div class="d">已用 GPT/即梦做日常视频。</div></div>
+    <div class="step done"><span class="badge">✓ 已过</span><div class="n">阶段 2</div><div class="t">结构化要求</div><div class="d">能让 AI 拆分镜、写脚本、做分析。</div></div>
+    <div class="step done"><span class="badge">✓ 已过</span><div class="n">阶段 3</div><div class="t">爆款模仿 + 工具尝试</div><div class="d">即梦+GPT 跑通复刻全链路，跑出过一条优质 AI 素材。</div></div>
+    <div class="step done"><span class="badge">✓ 已过</span><div class="n">阶段 4</div><div class="t">反推提示词</div><div class="d">用参考视频做锚点，即梦"看图写话"自然语言提示词控幻觉。</div></div>
+    <div class="step now"><span class="badge">▶ 你在这</span><div class="n">阶段 5</div><div class="t">系统提示词 · 智能体</div><div class="d">6.1 已现场学会创建/导出 GPT，正式开搭第一个短视频分析智能体。</div></div>
+    <div class="step target"><span class="badge">W3-W5</span><div class="n">阶段 6</div><div class="t">Skill 工作化</div><div class="d">把诊断/脚本/拍摄经验打包成 /触发词，团队人人能用。</div></div>
+    <div class="step target"><span class="badge">W6-W8</span><div class="n">阶段 7</div><div class="t">业务系统化</div><div class="d">多个智能体串成"AI 视频生产线"，黄金龙团队可整建制复用。</div></div>
+  </div>
+
+  <h3>对应你公司的 5 个层</h3>
+  <div class="grid5">
+    <div class="m"><div class="h">① 身份层</div><div class="b">让 AI 记住七波辉童鞋的品类、人群、抖音账号矩阵与各账号定位。</div><div class="now">起点：账号新老号视频对比数据已喂入</div></div>
+    <div class="m"><div class="h">② 知识层</div><div class="b">镂空鞋多角度上脚图素材库、鞋底/纽扣细节图、平台规则、拍摄经验逐字稿。</div><div class="now">超 2000 字部分打包传知识库</div></div>
+    <div class="m"><div class="h">③ 工具层</div><div class="b">3 个垂直智能体：短视频分析 / 即梦视频生成 / 拍摄经验。</div><div class="now">短视频分析智能体搭建中</div></div>
+    <div class="m"><div class="h">④ 协作层</div><div class="b">智能体打磨好分享链接给同事；人群相同账号共用对话框，不同则分开。</div><div class="now">面向黄金龙福建团队复用</div></div>
+    <div class="m"><div class="h">⑤ 场景层</div><div class="b">终态：对标→诊断→拍摄→生成→数据回流的完整 AI 视频生产线。</div><div class="now">W6-W8 串成系统</div></div>
+  </div>
+
+  <!-- ============ 二、智能体 ============ -->
+  <h2>二、要搭建的 3 个智能体（按首战板块优先级）</h2>
+  <p class="sub">排序依据本周共识：先把"分析"做透（知道好视频好在哪），再固化"生成"（即梦提示词），最后沉淀"拍摄经验"（让丁一人的审美变成团队能力）。Lion 的铁律是——<b>每个智能体足够垂直，一个智能体只解决一个事</b>。</p>
+
+  <div class="threecol">
+    <!-- 智能体 ① -->
+    <div class="col">
+      <h4>① 短视频爆款分析智能体</h4>
+      <div class="pain">痛点：丁自述"早期跑出过一条优质 AI 素材，后续复制效果不稳"——爆款好在哪说不清，无法复制。</div>
+      <div class="row"><b>角色设定</b>：短视频数据分析师，基于心理学等机制原理，从人群/卖点/需求/场景多维拆解。</div>
+      <div class="row"><b>输入</b>：视频原素材 + 客观数据 + 账号信息 + 人群定位 + 正反案例。</div>
+      <div class="row"><b>输出</b>：多维诊断报告 + 可复用的"爆款要素清单"。</div>
+      <div class="row"><span class="pill">阶段 5</span><span class="pill">W1-W2</span><span class="pill">首战</span></div>
+    </div>
+    <!-- 智能体 ② -->
+    <div class="col">
+      <h4>② 即梦视频生成 / 复刻智能体</h4>
+      <div class="pain">痛点：镂空鞋出现空脚/凭空多鞋幻觉，鞋底纽扣细节失真，出图还得逐张调"影响速度"。</div>
+      <div class="row"><b>角色设定</b>：即梦分镜脚本师，用自然语言+看图写话，规避幻觉、@ 细节图。</div>
+      <div class="row"><b>输入</b>：参考视频/商品图 + 镂空鞋多角度上脚图 + 鞋底/纽扣细节图。</div>
+      <div class="row"><b>输出</b>：分镜脚本 + 即梦提示词（0 秒也填满、口播非字幕）。</div>
+      <div class="row"><span class="pill">阶段 5-6</span><span class="pill">W3-W5</span></div>
+    </div>
+    <!-- 智能体 ③ -->
+    <div class="col">
+      <h4>③ 拍摄经验智能体</h4>
+      <div class="pain">痛点：丁是唯一摄影同学，拍摄角度/光线的审美经验全在脑子里，黄金龙团队无法复用。</div>
+      <div class="row"><b>角色设定</b>：童鞋拍摄顾问，沉淀已知 + 聊出未知，整合成完整拍摄 SOP。</div>
+      <div class="row"><b>输入</b>：拍摄经验对话/录音逐字稿 + 对标账号拍摄拆解。</div>
+      <div class="row"><b>输出</b>：拍摄角度/光线/场景 SOP，下面的人传视频即可获指导。</div>
+      <div class="row"><span class="pill">阶段 6</span><span class="pill">W6-W7</span></div>
+    </div>
+  </div>
+
+  <!-- ============ 三、Skills ============ -->
+  <h2>三、把智能体打包成 Skill（团队人人能用，跨账号复用）</h2>
+  <p class="sub">智能体打磨满意后，"把链接分享给同事就能用"——Skill 化就是让丁一个人的经验，变成黄金龙福建团队、变成每个新账号都能直接调用的标准动作。</p>
+
+  <div class="threecol">
+    <div class="col">
+      <h4>Skill 1 · 爆款诊断</h4>
+      <div class="row">触发词：<code style="color:var(--accent2)">/爆款诊断</code></div>
+      <div class="row">能力：传一条视频 + 数据，输出多维拆解 + 要素清单。</div>
+      <div class="row">复用：所有童鞋账号、新老号都可用同一套诊断标准。</div>
+    </div>
+    <div class="col">
+      <h4>Skill 2 · 即梦脚本</h4>
+      <div class="row">触发词：<code style="color:var(--accent2)">/即梦脚本</code></div>
+      <div class="row">能力：传商品图+参考视频，出分镜脚本+即梦提示词。</div>
+      <div class="row">复用：换款式只换素材，提示词逻辑一套通用。</div>
+    </div>
+    <div class="col">
+      <h4>Skill 3 · 拍摄 SOP</h4>
+      <div class="row">触发词：<code style="color:var(--accent2)">/拍摄SOP</code></div>
+      <div class="row">能力：传待拍款式，给角度/光线/场景建议。</div>
+      <div class="row">复用：福建团队照着拍，不依赖丁亲自到场。</div>
+    </div>
+  </div>
+
+  <!-- ============ 四、工作流 + HTML ============ -->
+  <h2>四、把 Skills 串成工作流，产出可交付的 HTML 报告</h2>
+  <p class="sub">三个智能体单独用是工具，串起来就是一条"AI 视频生产线"——这正是赛马式推进要的东西：每条视频都走同一条流水线，数据回流再喂养智能体，越跑越准。</p>
+
+  <div class="demo">
+    <div style="font-size:13px;color:var(--muted)">工作流 · AI 视频生产线（示例）</div>
+    <div class="flow">
+      <span class="node">🎯 对标爆款</span>
+      <span class="arr">→</span>
+      <span class="node">/爆款诊断</span>
+      <span class="arr">→</span>
+      <span class="node">/拍摄SOP + 拍摄</span>
+      <span class="arr">→</span>
+      <span class="node">/即梦脚本 + 生成</span>
+      <span class="arr">→</span>
+      <span class="node">📊 HTML 报告生成器</span>
+      <span class="arr">→</span>
+      <span class="node">📧 推送相关人</span>
+    </div>
+    <div class="out">
+      <b style="color:var(--accent2)">交付物示例（每周 HTML 视频复盘报告）</b><br>
+      • 本周各账号视频数据排行 + 爆款/扑街对比拆解<br>
+      • 命中的"爆款要素"清单 与 上周对比的迭代点<br>
+      • 下周对标方向 + 待拍款式的拍摄 SOP 建议<br>
+      • 智能体指令本周新增/优化记录（沉淀可追溯）
+    </div>
+  </div>
+
+  <!-- ============ 时间轴 ============ -->
+  <h2>五、两个月周里程碑</h2>
+  <div class="timeline">
+
+    <div class="tl-item">
+      <h4><span class="wk">W1</span>智能体搭建 · 短视频分析启动</h4>
+      <ul>
+        <li>基于过去短视频分析萃取指令，创建短视频分析智能体（已现场学会流程）</li>
+        <li>配齐指令四要素：机制原理 / 分析角度 / 具体步骤 / 使用边界</li>
+        <li>抖音数据一周后跑准，持续投喂</li>
+      </ul>
+      <div class="deliv"><span class="s-agent">智能体 ① 雏形</span><span class="s-html">交付：爆款诊断初版</span></div>
+    </div>
+
+    <div class="tl-item">
+      <h4><span class="wk">W2</span>指令迭代 · 知识库入库</h4>
+      <ul>
+        <li>用"原指令+结果+负反馈→新对话→贴回"循环迭代到满意</li>
+        <li>镂空鞋多角度上脚图、鞋底/纽扣细节图、平台规则打包进知识库</li>
+        <li>"做短视频必须关注的要素"以反问逻辑督促查漏</li>
+      </ul>
+      <div class="deliv"><span>知识层素材库 v1</span><span class="s-skill">Skill /爆款诊断</span></div>
+    </div>
+
+    <div class="tl-item">
+      <h4><span class="wk">W3-W4</span>即梦视频生成智能体上线</h4>
+      <ul>
+        <li>把复刻+即梦提示词经验固化为智能体（自然语言+看图写话）</li>
+        <li>解决幻觉：细节单独传图 + 提示词 @ 引用；口播非字幕</li>
+        <li>Flash 2 试用结论纳入（场景/背景替换，控成本）</li>
+      </ul>
+      <div class="deliv"><span class="s-agent">智能体 ②</span><span class="s-skill">Skill /即梦脚本</span></div>
+    </div>
+
+    <div class="tl-item">
+      <h4><span class="wk">W5-W6</span>工作流串联 · HTML 复盘</h4>
+      <ul>
+        <li>诊断→拍摄→生成→数据回流串成 AI 视频生产线</li>
+        <li>每周自动产出 HTML 视频复盘报告</li>
+        <li>多账号策略落地：人群相同共用对话框，不同则分开</li>
+      </ul>
+      <div class="deliv"><span class="s-flow">工作流</span><span class="s-html">HTML 周报</span></div>
+    </div>
+
+    <div class="tl-item">
+      <h4><span class="wk">W7</span>拍摄经验智能体 · 团队复用</h4>
+      <ul>
+        <li>丁拍摄审美经验录音 → 妙记转逐字稿 → 知识库</li>
+        <li>沉淀为 /拍摄SOP，黄金龙福建团队照此拍摄</li>
+      </ul>
+      <div class="deliv"><span class="s-agent">智能体 ③</span><span class="s-skill">Skill /拍摄SOP</span></div>
+    </div>
+
+    <div class="tl-item">
+      <h4><span class="wk">W8</span>业务系统化 · 横向复刻验证</h4>
+      <ul>
+        <li>三智能体整建制移交黄金龙团队，验证跨团队复用</li>
+        <li>评估进入 Codex 进阶阶段（本地存储/全量迁移）</li>
+        <li>陪跑结业报告 + 下阶段年度陪跑规划</li>
+      </ul>
+      <div class="deliv"><span class="s-flow">完整 AI 视频生产线</span><span class="s-html">交付：陪跑结业报告 HTML</span></div>
+    </div>
+
+  </div>
+
+  <!-- ============ 承诺 ============ -->
+  <h2>六、陪跑承诺</h2>
+  <div class="promise">
+    <div class="p"><b>① 落地承诺</b><br>林韩、Lion 现场手把手带丁跑通智能体创建与指令迭代——"有任何问题群里反馈，有进度及时同步"，全程响应不掉线。</div>
+    <div class="p"><b>② 复刻承诺</b><br>智能体垂直、可分享链接给同事；提示词逻辑跨工具一致（GPT Image 2 + 即梦 seedance），换款换账号照搬即可。</div>
+    <div class="p"><b>③ 员工承诺</b><br>把丁一个人的拍摄/分析经验沉淀成智能体，让黄金龙福建团队和每个新人都能复用，不再依赖单点。</div>
+  </div>
+
+  <footer>
+    数据来源：执行会议-001（2026-05-12）、执行会议-002（2026-05-25）、执行会议-003（2026-06-01）三场妙记逐字稿 + 微信群「猫课-徐曼AI陪跑 第七期」聊天记录。<br>
+    陪跑团队判断：丁在镂空鞋空脚、鞋底幻觉、长视频拆分、指令迭代等具体问题上已能主动归纳总结，业务理解到位，具备独立搭建智能体的基础——"目前对话式已经基本算成熟，下一步开始做智能体"。
+  </footer>
+
+</div>
+</body>
+</html>
