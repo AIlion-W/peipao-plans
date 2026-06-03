@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>洪良攀 · 摩托车头盔 AI 陪跑方案</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+  :root{
+    --bg:#0b0d12; --panel:#141821; --line:#232936; --ink:#e8ecf3;
+    --muted:#8a93a6; --accent:#ff6a00; --accent2:#ffb15c;
+    --ok:#2ecc71; --doing:#f1c40f; --todo:#5b6577;
+    --brand:#e30613;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.7}
+  .wrap{max-width:1180px;margin:0 auto;padding:48px 32px}
+  h1{font-size:34px;margin:0 0 8px;letter-spacing:1px}
+  h2{font-size:22px;margin:48px 0 16px;padding-left:12px;border-left:4px solid var(--accent)}
+  h3{font-size:17px;margin:24px 0 10px;color:var(--accent2)}
+  .sub{color:var(--muted);font-size:14px}
+  .hero{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px;padding-bottom:24px;border-bottom:1px solid var(--line)}
+  .tag{display:inline-block;padding:3px 10px;border-radius:999px;background:var(--brand);color:#fff;font-size:12px;margin-right:6px}
+  .tag.gray{background:#2c3340;color:var(--muted)}
+  .meta{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:24px}
+  .meta .card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+  .meta .k{font-size:12px;color:var(--muted)}
+  .meta .v{font-size:16px;margin-top:4px}
+
+  .ladder{position:relative;display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-top:16px}
+  .step{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 12px;position:relative}
+  .step .n{font-size:11px;color:var(--muted)}
+  .step .t{font-weight:600;margin-top:2px;font-size:14px}
+  .step .d{font-size:12px;color:var(--muted);margin-top:6px;line-height:1.5}
+  .step.done{border-color:#2ecc7144;background:#11261b}
+  .step.now{border-color:var(--accent);background:linear-gradient(180deg,#241408,#191c24);box-shadow:0 0 0 2px #ff6a0033}
+  .step.target{border-color:#3a4256;background:#181b24}
+  .step .badge{position:absolute;top:-10px;left:10px;font-size:10px;padding:2px 8px;border-radius:999px}
+  .step.done .badge{background:var(--ok);color:#08210f}
+  .step.now .badge{background:var(--accent);color:#fff}
+  .step.target .badge{background:#3a4256;color:#cdd3df}
+
+  .grid5{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:8px}
+  .m{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px}
+  .m .h{font-weight:600;font-size:14px;color:var(--accent2)}
+  .m .b{font-size:12.5px;color:#cdd3df;margin-top:6px;line-height:1.6}
+  .m .now{font-size:11px;margin-top:8px;color:var(--muted)}
+
+  .timeline{position:relative;margin-top:8px;border-left:2px solid var(--line);padding-left:22px}
+  .tl-item{position:relative;padding:14px 16px 14px 8px;background:var(--panel);border:1px solid var(--line);border-radius:10px;margin-bottom:14px}
+  .tl-item::before{content:"";position:absolute;left:-31px;top:20px;width:12px;height:12px;background:var(--accent);border-radius:50%;border:3px solid var(--bg)}
+  .tl-item .wk{display:inline-block;background:#2c3340;color:#cdd3df;padding:2px 10px;border-radius:6px;font-size:12px;margin-right:8px}
+  .tl-item h4{margin:0 0 6px;font-size:16px}
+  .tl-item ul{margin:6px 0 0 18px;padding:0;font-size:13.5px;color:#cdd3df}
+  .tl-item li{margin:3px 0}
+  .deliv{margin-top:10px;display:flex;flex-wrap:wrap;gap:6px}
+  .deliv span{font-size:11px;background:#1f2735;color:#9fb0d0;border:1px solid #2a3346;padding:3px 8px;border-radius:6px}
+  .deliv .s-agent{color:#ffb15c;border-color:#5a3a1a}
+  .deliv .s-skill{color:#7fd1ff;border-color:#1f4a66}
+  .deliv .s-flow{color:#a7f0a7;border-color:#1f5a2c}
+  .deliv .s-html{color:#ffd4f5;border-color:#5a2348}
+
+  .threecol{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-top:8px}
+  .col{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px}
+  .col h4{margin:0;font-size:16px}
+  .col .pain{font-size:12px;color:var(--muted);margin-top:4px;line-height:1.6}
+  .col .row{margin-top:14px;font-size:13px}
+  .col .row b{color:var(--accent2);font-weight:600}
+  .col .pill{display:inline-block;font-size:11px;padding:2px 8px;border-radius:6px;background:#1f2735;color:#9fb0d0;margin-right:4px;margin-top:4px}
+
+  .demo{background:linear-gradient(135deg,#1a1f2c,#13161e);border:1px dashed #3a4256;border-radius:12px;padding:20px;margin-top:8px}
+  .demo .flow{display:flex;align-items:center;flex-wrap:wrap;gap:6px;margin-top:10px}
+  .demo .node{background:#222a3a;border:1px solid #2f3b52;padding:8px 12px;border-radius:8px;font-size:13px}
+  .demo .arr{color:var(--accent);font-weight:700}
+  .demo .out{margin-top:14px;background:#0d0f15;border:1px solid #232936;border-radius:8px;padding:14px;font-size:12.5px;color:#cdd3df}
+
+  .promise{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:8px}
+  .promise .p{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px}
+  .promise .p b{color:var(--accent)}
+
+  footer{margin-top:60px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:12px}
+
+  @media (max-width:900px){
+    .meta,.grid5,.threecol,.promise{grid-template-columns:1fr 1fr}
+    .ladder{grid-template-columns:1fr 1fr;gap:10px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <section class="hero">
+    <div>
+      <div>
+        <span class="tag">复古巡航摩托车头盔</span>
+        <span class="tag gray">纯电商 · 天猫前 15 · 小红书达人引流</span>
+      </div>
+      <h1>洪总，这是接下来 2 个月我们一起跑的路</h1>
+      <div class="sub">陪跑客户：洪良攀 · 陪跑老师：Lion（林韩补充） · 项目经理：待补充 · 启动日：2026-05-09</div>
+    </div>
+    <div class="sub">版本 v1 · 2026-06-03</div>
+  </section>
+
+  <!-- 4 个关键卡片：业务模型 / 团队杠杆 / 当前瓶颈 / 核心打法 -->
+  <div class="meta">
+    <div class="card"><div class="k">业务模型</div><div class="v">自有品牌复古头盔，天猫 4 店 + 抖音 + 小红书 6 号 + TK；站外引流为主</div></div>
+    <div class="card"><div class="k">团队杠杆</div><div class="v">新媒体 3 人（主运营 + 助理 + 剪辑）+ 主理人哥哥 IP / 产品开发</div></div>
+    <div class="card"><div class="k">当前瓶颈</div><div class="v">小红书选题与内容产能：一天仅 5-6 条，6 号要扩到 50 号撑不起</div></div>
+    <div class="card"><div class="k">核心打法</div><div class="v">"我喜欢把小的东西慢慢一步步做，先把这个学会了再往下"</div></div>
+  </div>
+
+  <!-- ============ 一、AI 认知 ============ -->
+  <h2>一、先建立对 AI 的正确认知</h2>
+  <p class="sub">洪总做复古头盔卖的是"穿搭和情绪价值"，靠的是每天有新选题、新内容去喂小红书矩阵。AI 陪跑做的事，本质上就是把你脑子里那套"怎么选题、怎么写标题、为什么参考这条笔记"的运营经验，一步步复刻成一个不知疲倦、可以横向复制到 50 个号的"数字运营"。第一刀不贪大——从你最熟、数据最全的"选题"切入，先跑通一个最小闭环。</p>
+
+  <h3>AI 成熟度 7 阶段 · 洪总当前位置</h3>
+  <div class="ladder">
+    <div class="step done"><span class="badge">✓ 已过</span><div class="n">阶段 1</div><div class="t">基础对话</div><div class="d">已用豆包/GPT，发过若干 AI 图。</div></div>
+    <div class="step done"><span class="badge">✓ 已过</span><div class="n">阶段 2</div><div class="t">结构化要求</div><div class="d">能给提示词出基础素材，标题用豆包 + 竞对标题库。</div></div>
+    <div class="step now"><span class="badge">▶ 你在这</span><div class="n">阶段 3</div><div class="t">爆款模仿 + 工具尝试</div><div class="d">看了 Codex 第一节，理解"提示词→Skill→Codebase"链路；Lovart/即梦试用初期；缺的是"怎么动手打磨提示词"。</div></div>
+    <div class="step target"><span class="badge">W2</span><div class="n">阶段 4</div><div class="t">反推提示词</div><div class="d">拿你历史高数据的选题/标题做参照系，让 AI 在有锚点的空间里生成。</div></div>
+    <div class="step target"><span class="badge">W3-W4</span><div class="n">阶段 5</div><div class="t">系统提示词</div><div class="d">选题智能体雏形：有角色、有目标、有"只参考人群/话术"的限制。</div></div>
+    <div class="step target"><span class="badge">W5-W7</span><div class="n">阶段 6</div><div class="t">Skill 工作化</div><div class="d">把选题/标题/文案 SOP 打包成 /触发词，团队人人能调。</div></div>
+    <div class="step target"><span class="badge">W8</span><div class="n">阶段 7</div><div class="t">业务系统化</div><div class="d">选题→标题→文案串成生产线，横向铺到 6→50 号，再延伸视频/品类。</div></div>
+  </div>
+
+  <h3>对应你公司的 5 个层</h3>
+  <div class="grid5">
+    <div class="m"><div class="h">① 身份层</div><div class="b">让 AI 记住：复古巡航头盔品牌、客单 700-1000、卖穿搭与情绪价值、人群是复古摩托文化爱好者。</div><div class="now">起点：产品卖点 + 人群画像入库</div></div>
+    <div class="m"><div class="h">② 知识层</div><div class="b">把去年 4-5 月至今每条笔记标题 + 近 7/24 天小眼睛数据、爆款选题分类喂进去——这是你最值钱的语料。</div><div class="now">动作：历史选题数据分类整理</div></div>
+    <div class="m"><div class="h">③ 工具层</div><div class="b">3 个智能体：小红书选题 → 标题 → 正文/评论，按首战顺序逐个落。</div><div class="now">首战：选题智能体</div></div>
+    <div class="m"><div class="h">④ 协作层</div><div class="b">一套智能体可复制到 6→50 号矩阵，未来斜挎包/衣服品类直接复用同一套逻辑。</div><div class="now">复用：跨号 + 跨品类</div></div>
+    <div class="m"><div class="h">⑤ 场景层</div><div class="b">终态：小红书内容生产线自动跑，AI 出选题/标题/文案，人只做"业务评分"和拍板。</div><div class="now">终态：内容生产线</div></div>
+  </div>
+
+  <!-- ============ 二、智能体 ============ -->
+  <h2>二、要搭建的 3 个智能体（按首战板块优先级）</h2>
+  <p class="sub">这个排序是 2026-06-03 执行会议上洪总自己定的——"选题是第一步，标题这些反而比较简单"。选题是自媒体最关键、你最熟、历史数据最全的板块，所以第一刀就切它，再横向复制到标题、文案。原定的 AI 视频素材降为并行推进，不放弃。</p>
+
+  <div class="threecol">
+    <!-- 智能体 ① -->
+    <div class="col">
+      <h4>① 小红书选题智能体</h4>
+      <div class="pain">痛点：洪总自述"现阶段就是不断地有题，你得有题才会吸引人"；一天只能产 5-6 条，要扩号产能严重不足。</div>
+      <div class="row"><b>角色设定</b>：懂复古摩托头盔人群的资深小红书选题策划</div>
+      <div class="row"><b>输入</b>：历史选题数据分类（每条笔记标题 + 近 7/24 天小眼睛）+ 产品卖点/人群 + 参考爆款（指明只参考人群/话术/热点）</div>
+      <div class="row"><b>输出</b>：贴合产品的选题方向清单 + 每条选题的参考逻辑</div>
+      <div class="row"><span class="pill">阶段 5</span><span class="pill">W3-W4</span><span class="pill">首战</span></div>
+    </div>
+    <!-- 智能体 ② -->
+    <div class="col">
+      <h4>② 小红书标题智能体</h4>
+      <div class="pain">痛点：标题目前靠豆包 + 竞对标题库散点拼凑；但你手里有大量带真实数据的历史标题——这是天然好语料。</div>
+      <div class="row"><b>角色设定</b>：吃透你账号数据的标题工程师</div>
+      <div class="row"><b>输入</b>：选题 + 历史高数据标题库（带小眼睛数据）+ 卖点</div>
+      <div class="row"><b>输出</b>：多版可 A/B 的标题候选 + 预估吸引点</div>
+      <div class="row"><span class="pill">阶段 5-6</span><span class="pill">W5-W6</span></div>
+    </div>
+    <!-- 智能体 ③ -->
+    <div class="col">
+      <h4>③ 小红书正文 / 评论智能体</h4>
+      <div class="pain">痛点：助理写正文 + 补评论区基础评论耗人力；发帖率上不去（想从一天 5-6 条往上提）。</div>
+      <div class="row"><b>角色设定</b>：小红书正文 + 评论区话术写手</div>
+      <div class="row"><b>输入</b>：选题 + 标题 + 卖点/人群</div>
+      <div class="row"><b>输出</b>：成稿正文 + 评论区基础话术</div>
+      <div class="row"><span class="pill">阶段 6</span><span class="pill">W7</span></div>
+    </div>
+  </div>
+
+  <!-- ============ 三、Skills ============ -->
+  <h2>三、把智能体打包成 Skill（团队人人能用，跨场景复用）</h2>
+  <p class="sub">林韩在会上说得很清楚——"我们这个 AI 培养完了，它是可以复制的、可以沉淀下来的，不是出完就忘记"。把每个智能体封装成一个 /触发词，运营、助理打开就能用；同一套选题逻辑，6 个号能用，将来 50 个号、斜挎包/衣服新品类也能用。</p>
+
+  <div class="threecol">
+    <div class="col">
+      <h4>Skill 1 · 选题</h4>
+      <div class="row">触发词：<code style="color:var(--accent2)">/选题</code></div>
+      <div class="row">能力：投喂参考素材 + 产品信息，一键出贴合人群的选题方向</div>
+      <div class="row">复用：6→50 号矩阵通用；品类拓展（斜挎包/衣服）换知识库即可</div>
+    </div>
+    <div class="col">
+      <h4>Skill 2 · 标题</h4>
+      <div class="row">触发词：<code style="color:var(--accent2)">/标题</code></div>
+      <div class="row">能力：基于历史高数据标题库，给选题出多版标题</div>
+      <div class="row">复用：所有小红书号 + 未来抖音/天猫主图文案场景</div>
+    </div>
+    <div class="col">
+      <h4>Skill 3 · 小红书文案</h4>
+      <div class="row">触发词：<code style="color:var(--accent2)">/小红书文案</code></div>
+      <div class="row">能力：选题 + 标题 → 成稿正文 + 评论区话术</div>
+      <div class="row">复用：矩阵号批量发帖；新品类内容直接套</div>
+    </div>
+  </div>
+
+  <!-- ============ 四、工作流 + HTML ============ -->
+  <h2>四、把 Skills 串成工作流，产出可交付的 HTML 报告</h2>
+  <p class="sub">三个智能体单独用已经省力，串起来就是一条"小红书发帖生产线"——这正对你"6→50 号矩阵缺产能"的核心瓶颈。</p>
+
+  <div class="demo">
+    <div style="font-size:13px;color:var(--muted)">工作流 · 小红书一条龙发帖（示例）</div>
+    <div class="flow">
+      <span class="node">🎯 /选题</span>
+      <span class="arr">→</span>
+      <span class="node">✍️ /标题</span>
+      <span class="arr">→</span>
+      <span class="node">📝 /小红书文案</span>
+      <span class="arr">→</span>
+      <span class="node">🖼️ 配图/视频素材（Lovart 并行）</span>
+      <span class="arr">→</span>
+      <span class="node">📊 HTML 发帖日报</span>
+      <span class="arr">→</span>
+      <span class="node">📧 推运营</span>
+    </div>
+    <div class="out">
+      <b style="color:var(--accent2)">交付物示例（HTML 发帖日报）</b><br>
+      · 本周可发选题清单（按人群/话题分类 + 参考逻辑）<br>
+      · 每条选题配 2-3 版候选标题 + 成稿正文 + 评论区话术<br>
+      · 预估对标爆款的数据参照（近 7/24 天小眼睛区间）<br>
+      · 一键分发到 6→50 号矩阵的排期建议
+    </div>
+  </div>
+
+  <!-- ============ 时间轴 ============ -->
+  <h2>五、两个月周里程碑</h2>
+  <div class="timeline">
+
+    <div class="tl-item">
+      <h4><span class="wk">W1</span>认知打底 · 个人激活</h4>
+      <ul>
+        <li>洪良攀 + 美工 + 运营 GPT/雀乐 APP 激活，继续 Codex 公开课</li>
+        <li>吃透提示词方法论：目标 + 输入 + 输出说清楚，参考要指明"只参考哪部分"</li>
+      </ul>
+      <div class="deliv"><span class="s-html">交付：个人 AI 身份档案</span></div>
+    </div>
+
+    <div class="tl-item">
+      <h4><span class="wk">W2</span>知识层入库 · 反推提示词</h4>
+      <ul>
+        <li>整理历史选题数据并分类（去年至今笔记标题 + 近 7/24 天小眼睛数据）</li>
+        <li>一条条/分类投喂，同时写下"为什么参考这条"的判断逻辑——像教新人运营</li>
+      </ul>
+      <div class="deliv"><span>知识层：选题语料库 v1</span></div>
+    </div>
+
+    <div class="tl-item">
+      <h4><span class="wk">W3-W4</span>智能体 ① 选题上线</h4>
+      <ul>
+        <li>陪跑团队共享屏幕带实操，打磨"小红书选题智能体"提示词</li>
+        <li>跑出第一版选题产出，由洪总按业务经验评分迭代</li>
+      </ul>
+      <div class="deliv"><span class="s-agent">智能体 ① 选题</span><span class="s-skill">Skill /选题</span></div>
+    </div>
+
+    <div class="tl-item">
+      <h4><span class="wk">W5-W6</span>智能体 ② 标题上线</h4>
+      <ul>
+        <li>用历史高数据标题库训练标题智能体</li>
+        <li>串"选题 → 标题"工作流，出 HTML 发帖日报雏形</li>
+      </ul>
+      <div class="deliv"><span class="s-agent">智能体 ② 标题</span><span class="s-skill">Skill /标题</span><span class="s-flow">工作流</span><span class="s-html">HTML 报告</span></div>
+    </div>
+
+    <div class="tl-item">
+      <h4><span class="wk">W7</span>智能体 ③ 正文/评论上线</h4>
+      <ul>
+        <li>落正文 + 评论区话术智能体，补齐发帖生产线</li>
+        <li>视频素材（Lovart/即梦）并行验证，达 70 分纳入工作流</li>
+      </ul>
+      <div class="deliv"><span class="s-agent">智能体 ③ 文案</span><span class="s-skill">Skill /小红书文案</span></div>
+    </div>
+
+    <div class="tl-item">
+      <h4><span class="wk">W8</span>业务系统化 · 老板战略层</h4>
+      <ul>
+        <li>选题→标题→正文一条龙跑通，横向复制到 6→50 号矩阵</li>
+        <li>验证复用到斜挎包/衣服品类；Codex 多店铺数据统计作为进阶候选</li>
+      </ul>
+      <div class="deliv"><span class="s-flow">完整内容生产线</span><span class="s-html">交付：陪跑结业报告 HTML</span></div>
+    </div>
+
+  </div>
+
+  <!-- ============ 承诺 ============ -->
+  <h2>六、陪跑承诺</h2>
+  <div class="promise">
+    <div class="p"><b>① 落地承诺</b><br>Lion 会上承诺"我带你走一遍 codebase 每一步操作，共享屏幕带你做"；林韩"一条条带你把提示词打磨出来"——不是给方法论，是手把手带跑出第一个可用智能体。</div>
+    <div class="p"><b>② 复刻承诺</b><br>林韩："AI 培养完了是可以复制、可以沉淀下来的。"一套选题/标题/文案智能体，6→50 号矩阵复用，未来斜挎包/衣服新品类换知识库即可，不重做。</div>
+    <div class="p"><b>③ 员工承诺</b><br>带美工 + 运营一起学；产出由有业务经验的人评分——林韩"为什么要有业务经验的人来推进？因为他的评分是人来定的"。沉淀团队可复制的 AI 能力。</div>
+  </div>
+
+  <footer>
+    数据来源：2026-04-29 首次面试 · 2026-05-09 关键场景沟通 · 2026-06-03 执行会议-001（首战转向小红书选题智能体）。<br>
+    陪跑团队评价：业务底盘扎实（头盔行业前 15 + 工厂产能拉爆）、学习路径清晰（连续跟过张斌/咕噜/犀牛/猫课）、稳扎稳打——"从 0 到 0.5 到 1，一步步来"。
+  </footer>
+
+</div>
+</body>
+</html>
