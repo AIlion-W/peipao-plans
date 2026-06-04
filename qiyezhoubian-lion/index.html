@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>晋梦妮 · 企业周边 AI 陪跑方案</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+  :root{
+    --bg:#0b0d12; --panel:#141821; --line:#232936; --ink:#e8ecf3;
+    --muted:#8a93a6; --accent:#ff6a00; --accent2:#ffb15c;
+    --ok:#2ecc71; --doing:#f1c40f; --todo:#5b6577;
+    --brand:#e30613;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.7}
+  .wrap{max-width:1180px;margin:0 auto;padding:48px 32px}
+  h1{font-size:34px;margin:0 0 8px;letter-spacing:1px}
+  h2{font-size:22px;margin:48px 0 16px;padding-left:12px;border-left:4px solid var(--accent)}
+  h3{font-size:17px;margin:24px 0 10px;color:var(--accent2)}
+  .sub{color:var(--muted);font-size:14px}
+  .hero{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px;padding-bottom:24px;border-bottom:1px solid var(--line)}
+  .tag{display:inline-block;padding:3px 10px;border-radius:999px;background:var(--brand);color:#fff;font-size:12px;margin-right:6px}
+  .tag.gray{background:#2c3340;color:var(--muted)}
+  .meta{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:24px}
+  .meta .card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+  .meta .k{font-size:12px;color:var(--muted)}
+  .meta .v{font-size:16px;margin-top:4px}
+
+  .ladder{position:relative;display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-top:16px}
+  .step{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 12px;position:relative}
+  .step .n{font-size:11px;color:var(--muted)}
+  .step .t{font-weight:600;margin-top:2px;font-size:14px}
+  .step .d{font-size:12px;color:var(--muted);margin-top:6px;line-height:1.5}
+  .step.done{border-color:#2ecc7144;background:#11261b}
+  .step.now{border-color:var(--accent);background:linear-gradient(180deg,#241408,#191c24);box-shadow:0 0 0 2px #ff6a0033}
+  .step.target{border-color:#3a4256;background:#181b24}
+  .step .badge{position:absolute;top:-10px;left:10px;font-size:10px;padding:2px 8px;border-radius:999px}
+  .step.done .badge{background:var(--ok);color:#08210f}
+  .step.now .badge{background:var(--accent);color:#fff}
+  .step.target .badge{background:#3a4256;color:#cdd3df}
+
+  .grid5{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:8px}
+  .m{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px}
+  .m .h{font-weight:600;font-size:14px;color:var(--accent2)}
+  .m .b{font-size:12.5px;color:#cdd3df;margin-top:6px;line-height:1.6}
+  .m .now{font-size:11px;margin-top:8px;color:var(--muted)}
+
+  .timeline{position:relative;margin-top:8px;border-left:2px solid var(--line);padding-left:22px}
+  .tl-item{position:relative;padding:14px 16px 14px 8px;background:var(--panel);border:1px solid var(--line);border-radius:10px;margin-bottom:14px}
+  .tl-item::before{content:"";position:absolute;left:-31px;top:20px;width:12px;height:12px;background:var(--accent);border-radius:50%;border:3px solid var(--bg)}
+  .tl-item .wk{display:inline-block;background:#2c3340;color:#cdd3df;padding:2px 10px;border-radius:6px;font-size:12px;margin-right:8px}
+  .tl-item h4{margin:0 0 6px;font-size:16px}
+  .tl-item ul{margin:6px 0 0 18px;padding:0;font-size:13.5px;color:#cdd3df}
+  .tl-item li{margin:3px 0}
+  .deliv{margin-top:10px;display:flex;flex-wrap:wrap;gap:6px}
+  .deliv span{font-size:11px;background:#1f2735;color:#9fb0d0;border:1px solid #2a3346;padding:3px 8px;border-radius:6px}
+  .deliv .s-agent{color:#ffb15c;border-color:#5a3a1a}
+  .deliv .s-skill{color:#7fd1ff;border-color:#1f4a66}
+  .deliv .s-flow{color:#a7f0a7;border-color:#1f5a2c}
+  .deliv .s-html{color:#ffd4f5;border-color:#5a2348}
+
+  .threecol{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-top:8px}
+  .col{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px}
+  .col h4{margin:0;font-size:16px}
+  .col .pain{font-size:12px;color:var(--muted);margin-top:4px;line-height:1.6}
+  .col .row{margin-top:14px;font-size:13px}
+  .col .row b{color:var(--accent2);font-weight:600}
+  .col .pill{display:inline-block;font-size:11px;padding:2px 8px;border-radius:6px;background:#1f2735;color:#9fb0d0;margin-right:4px;margin-top:4px}
+
+  .demo{background:linear-gradient(135deg,#1a1f2c,#13161e);border:1px dashed #3a4256;border-radius:12px;padding:20px;margin-top:8px}
+  .demo .flow{display:flex;align-items:center;flex-wrap:wrap;gap:6px;margin-top:10px}
+  .demo .node{background:#222a3a;border:1px solid #2f3b52;padding:8px 12px;border-radius:8px;font-size:13px}
+  .demo .arr{color:var(--accent);font-weight:700}
+  .demo .out{margin-top:14px;background:#0d0f15;border:1px solid #232936;border-radius:8px;padding:14px;font-size:12.5px;color:#cdd3df}
+
+  .promise{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:8px}
+  .promise .p{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px}
+  .promise .p b{color:var(--accent)}
+
+  .note{background:#181b24;border:1px solid #2a3346;border-radius:10px;padding:14px 16px;margin-top:14px;font-size:13px;color:#cdd3df}
+  .note b{color:var(--accent2)}
+
+  footer{margin-top:60px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:12px}
+
+  @media (max-width:900px){
+    .meta,.grid5,.threecol,.promise{grid-template-columns:1fr 1fr}
+    .ladder{grid-template-columns:1fr 1fr;gap:10px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <section class="hero">
+    <div>
+      <div>
+        <span class="tag">耐克 · 北面 · 富士</span>
+        <span class="tag gray">ToB 企业周边定制（策划+设计+打样+生产全链路）</span>
+      </div>
+      <h1>晋总，这是接下来两个月我们一起跑的路</h1>
+      <div class="sub">陪跑客户：晋梦妮（Snail） · 陪跑老师：Lion + 林韩 · 项目经理：待补充 · 启动日：2026-05-11</div>
+    </div>
+    <div class="sub">版本 v2 · 2026-06-03（执行-002 后更新）</div>
+  </section>
+
+  <!-- 4 个关键卡片 -->
+  <div class="meta">
+    <div class="card"><div class="k">业务模型</div><div class="v">ToB 企业周边定制，年营收 3000 万（卡 2 年）</div></div>
+    <div class="card"><div class="k">团队杠杆</div><div class="v">13 人 · 3 设计师 + 执行岗约 10 人 · 老板在伦敦远程</div></div>
+    <div class="card"><div class="k">当前瓶颈</div><div class="v">案例不可外传 + 转介绍单通道 + 执行岗大量纯手活重复劳动</div></div>
+    <div class="card"><div class="k">核心打法</div><div class="v">"把会扩散的想法一条条路封掉，聚焦在我们的问题上"</div></div>
+  </div>
+
+  <!-- ============ 一、AI 认知 ============ -->
+  <h2>一、先建立对 AI 的正确认知</h2>
+  <p class="sub">你们做企业周边的核心能力，是把一个客户的 brief 拆成"选品—设计—打样—生产—结案"一条条可复用的动作。用 AI 也是同一回事：把每个重复动作教会一个"新员工"，让它先跑通一个动作，再把动作串成生产线。这两个月最该警惕的，恰恰是这次执行-002 暴露的弯路——一上来就想搭"全公司中台"，摊子铺太大、单个改动吃掉一半 token，做了很多却没有一个真正落地验证。<b style="color:var(--accent2)">节奏铁律：一个场景一个场景跑通，先把一件事落地掉。</b></p>
+
+  <h3>AI 成熟度 7 阶段 · 晋总团队当前位置</h3>
+  <div class="ladder">
+    <div class="step done"><span class="badge">✓ 已过</span><div class="n">阶段 1</div><div class="t">基础对话</div><div class="d">老板用 GPT 看合同法务，客服用豆包问工艺。</div></div>
+    <div class="step done"><span class="badge">✓ 已过</span><div class="n">阶段 2</div><div class="t">结构化要求</div><div class="d">能让 AI 写、翻、总结，团队多模型散点尝试。</div></div>
+    <div class="step done"><span class="badge">✓ 已过</span><div class="n">阶段 3</div><div class="t">爆款模仿 + 工具尝试</div><div class="d">执行岗已下场用 Codex 做出 PO 处理、运费箱规模块。</div></div>
+    <div class="step now"><span class="badge">▶ 你在这</span><div class="n">阶段 4</div><div class="t">反推提示词 + 智能体雏形</div><div class="d">Aki 跑通 PO→成本总表→出货单链路；但一度想跳到搭系统，被三方拉回单场景。</div></div>
+    <div class="step target"><span class="badge">W1-W3</span><div class="n">阶段 5</div><div class="t">系统提示词</div><div class="d">把跑通的流程写成有角色/输入/输出的稳定智能体。</div></div>
+    <div class="step target"><span class="badge">W4-W6</span><div class="n">阶段 6</div><div class="t">Skill 工作化</div><div class="d">封装成可分发 Skill，执行岗人人能用，token 大降。</div></div>
+    <div class="step target"><span class="badge">W7-W8</span><div class="n">阶段 7</div><div class="t">业务系统化</div><div class="d">多个 Skill 串成执行生产线（远期，先夯实每块积木）。</div></div>
+  </div>
+
+  <div class="note">⚠️ <b>位置判断</b>：你们的执行岗动手能力其实已经摸到阶段 5-6 的门（在做智能体、试封装 skill），但因为"先搭系统再做模块"的顺序错了，反而卡在阶段 4。这两个月不是教更高级的技术，而是<b>把顺序倒过来——先把一个最纯手活的场景夯成 Skill，再谈串联</b>。</div>
+
+  <h3>对应你公司的 5 个层</h3>
+  <div class="grid5">
+    <div class="m"><div class="h">① 身份层</div><div class="b">让 Codex 记住"企业周边定制服务商"的身份：服务耐克/北面/富士，策划在前贸易在后。</div><div class="now">起点：写 memory.md 固定规则文件</div></div>
+    <div class="m"><div class="h">② 知识层</div><div class="b">成本总表 + 工厂供应链信息 + 箱规库 + 物流比价 + 过往案例设计稿，统一命名入库。</div><div class="now">Aki 的"成本总表=大本营"思路</div></div>
+    <div class="m"><div class="h">③ 工具层</div><div class="b">三个智能体：PO/出货单处理、运费箱规建议、品牌策划。</div><div class="now">前两个已有雏形</div></div>
+    <div class="m"><div class="h">④ 协作层</div><div class="b">封装成 Skill 后，同事只要文件命名统一就能索引复用——不必打包发原文件。</div><div class="now">分享=装 Codex + 发 skill</div></div>
+    <div class="m"><div class="h">⑤ 场景层</div><div class="b">执行岗的"接单→筛 SKU→下单→库存预警"整条生产线 AI 化（远期）。</div><div class="now">先单模块，后串联</div></div>
+  </div>
+
+  <!-- ============ 二、智能体 ============ -->
+  <h2>二、要搭建的 3 个智能体（按首战板块优先级）</h2>
+  <p class="sub">排序原则来自执行-002 的共识：先挑"最耗人力、重复性最高、最纯手活、判断标准最清晰"的场景——也就是执行岗的订单/物流处理（数据源明确、Codex 舒适区），它们已有跑通的雏形，最容易在业务上验证提效。设计岗的品牌策划智能体（001 主线）并行推进。</p>
+
+  <div class="threecol">
+    <!-- 智能体 ① -->
+    <div class="col">
+      <h4>① PO / 出货单处理智能体</h4>
+      <div class="pain">痛点：洋洋/Aki 每次做库存单，要从几百条 SKU 总表里一条条人工筛出这 50 条，再按工厂拆分下发——纯手活、极耗时。</div>
+      <div class="row"><b>角色设定</b>：订单处理助手，以"成本总表"为唯一基准</div>
+      <div class="row"><b>输入</b>：客户 PO（PDF）+ 成本总表</div>
+      <div class="row"><b>输出</b>：识别 SKU → 总表筛选 → 出货单 / 多工厂合并下单表（自动剔除标灰下架品）</div>
+      <div class="row"><span class="pill">阶段 5</span><span class="pill">W1-W3</span><span class="pill">首战·已跑通</span></div>
+    </div>
+    <!-- 智能体 ② -->
+    <div class="col">
+      <h4>② 运费与箱规建议智能体</h4>
+      <div class="pain">痛点：送不同品牌仓库有箱规要求，多家物流公司（顺丰/跨越）比价靠人工，慢且易错。</div>
+      <div class="row"><b>角色设定</b>：物流核算助手</div>
+      <div class="row"><b>输入</b>：产品 + 箱规 + 目的地仓库</div>
+      <div class="row"><b>输出</b>：箱规倒推建议 + 物流公司官网询价比价（修好"点跨越跳顺丰"的链接 bug）</div>
+      <div class="row"><span class="pill">阶段 5</span><span class="pill">W2-W4</span><span class="pill">Edwin·已做出</span></div>
+    </div>
+    <!-- 智能体 ③ -->
+    <div class="col">
+      <h4>③ 品牌策划智能体（设计岗·001 主线）</h4>
+      <div class="pain">痛点：设计岗 3 人，提案丰富度受限，选品常"富士自己也能想到、不出彩"。</div>
+      <div class="row"><b>角色设定</b>：品牌全案策划，懂客户行业 + 站客户角度</div>
+      <div class="row"><b>输入</b>：客户 brief + 项目背景 + 案例库 + 联网搜索</div>
+      <div class="row"><b>输出</b>：核心世界观 / 品牌洞察 / 视觉方向 / 选品推荐（充分上下文+反问+多轮迭代）</div>
+      <div class="row"><span class="pill">阶段 5-6</span><span class="pill">W4-W6</span><span class="pill">待拉回主线</span></div>
+    </div>
+  </div>
+
+  <!-- ============ 三、Skills ============ -->
+  <h2>三、把智能体打包成 Skill（执行岗人人能用，跨项目复用）</h2>
+  <p class="sub">Skill 就是一个文档：你把跑通的流程让 Codex 整理封装，分享给同事后，他那边只要文件命名一致（都叫"成本总表"），他的 Codex 就能索引到——不必打包发原文件。封装好后，搭建期那种"改代码吃掉一半 token"也会大降，后期纯文字处理省很多。</p>
+
+  <div class="threecol">
+    <div class="col">
+      <h4>Skill 1 · 出货单</h4>
+      <div class="row">触发词：<code style="color:var(--accent2)">/出货单</code></div>
+      <div class="row">能力：丢 PO（PDF）→ 自动识别 SKU → 基于成本总表生成出货单 / 工厂下单表</div>
+      <div class="row">复用：洋洋、Aki、所有执行岗同事，每个新订单一键跑</div>
+    </div>
+    <div class="col">
+      <h4>Skill 2 · 运费箱规</h4>
+      <div class="row">触发词：<code style="color:var(--accent2)">/运费箱规</code></div>
+      <div class="row">能力：输入产品+目的地 → 箱规建议 + 物流比价</div>
+      <div class="row">复用：跨品牌、跨项目通用，物流信息维护进知识层即可</div>
+    </div>
+    <div class="col">
+      <h4>Skill 3 · 策划案</h4>
+      <div class="row">触发词：<code style="color:var(--accent2)">/策划案</code></div>
+      <div class="row">能力：brief → 全案策划（世界观/洞察/视觉/选品）</div>
+      <div class="row">复用：3 名设计师共用，提案丰富度统一拉升</div>
+    </div>
+  </div>
+
+  <!-- ============ 四、工作流 + HTML ============ -->
+  <h2>四、把 Skills 串成工作流，产出可交付的 HTML 报告</h2>
+  <p class="sub">选执行岗最高频的"接单到下单"链路做示例——这是当前最纯手活、最该先自动化的一条线。先把单个 Skill 跑稳，再把它们顺序串起来。</p>
+
+  <div class="demo">
+    <div style="font-size:13px;color:var(--muted)">工作流 · 接单到工厂下单（示例）</div>
+    <div class="flow">
+      <span class="node">📄 客户 PO（PDF）</span>
+      <span class="arr">→</span>
+      <span class="node">/出货单（识别 SKU + 总表筛选）</span>
+      <span class="arr">→</span>
+      <span class="node">多工厂拆单</span>
+      <span class="arr">→</span>
+      <span class="node">/运费箱规（比价）</span>
+      <span class="arr">→</span>
+      <span class="node">📊 HTML 报告生成器</span>
+      <span class="arr">→</span>
+      <span class="node">📧 推送相关人</span>
+    </div>
+    <div class="out">
+      <b style="color:var(--accent2)">交付物示例（HTML 报告）</b><br>
+      · 本单 SKU 明细 + 按工厂拆分的下单表（标灰下架品已剔除）<br>
+      · 各工厂数量 / 单价 / 行总额汇总<br>
+      · 箱规建议 + 顺丰/跨越运费比价<br>
+      · 库存预警（出货后低于安全库存的 SKU 高亮提示补货）
+    </div>
+  </div>
+
+  <!-- ============ 时间轴 ============ -->
+  <h2>五、两个月周里程碑</h2>
+  <div class="note">📍 当前进度：启动日 2026-05-11，今天 2026-06-03 约 <b>W3-W4</b>。执行-001（5-18）打通认知，执行-002（6-3）完成执行岗纠偏 + 跑出前两个智能体雏形。下面是校准后的剩余节奏。</div>
+  <div class="timeline">
+
+    <div class="tl-item">
+      <h4><span class="wk">W1-W2 ✓</span>认知打底 · 工具底座</h4>
+      <ul>
+        <li>执行-001：四阶段路径 + GPT 项目文件夹规则 + "AI 是新员工"认知对齐</li>
+        <li>开 GPT business 团队版；执行岗下场用 Codex 实操</li>
+      </ul>
+      <div class="deliv"><span class="s-html">已完成：认知 + 工具底座</span></div>
+    </div>
+
+    <div class="tl-item">
+      <h4><span class="wk">W3 ✓</span>执行岗纠偏 · 单场景聚焦</h4>
+      <ul>
+        <li>执行-002：三方合力把团队从"搭中台"拉回"单场景落地"</li>
+        <li>Aki 跑通 PO→成本总表→出货单链路；Edwin 做出运费箱规模块</li>
+      </ul>
+      <div class="deliv"><span class="s-agent">智能体①②雏形</span></div>
+    </div>
+
+    <div class="tl-item">
+      <h4><span class="wk">W4</span>第一个 Skill 验收</h4>
+      <ul>
+        <li>周会前测好运费模块（Snail：「这已经是一个很大的炸弹了」）</li>
+        <li>/出货单 准确率打磨到 80%+，让 Codex 封装成可分发 Skill</li>
+        <li>写 memory.md 固定规则，解决 Codex 沟通重复问题</li>
+      </ul>
+      <div class="deliv"><span class="s-agent">智能体①</span><span class="s-skill">Skill /出货单</span></div>
+    </div>
+
+    <div class="tl-item">
+      <h4><span class="wk">W5-W6</span>第二个 Skill + 设计岗拉回</h4>
+      <ul>
+        <li>/运费箱规 封装上线，分发执行岗复用</li>
+        <li>设计岗品牌策划智能体重新拉回主线落地（林韩点名推进）</li>
+        <li>套餐分层落地：IT/设计组开个人 Pro，执行岗用按人头团队版</li>
+      </ul>
+      <div class="deliv"><span class="s-agent">智能体②③</span><span class="s-skill">Skill /运费箱规 · /策划案</span></div>
+    </div>
+
+    <div class="tl-item">
+      <h4><span class="wk">W7</span>串工作流 · 出 HTML 报告</h4>
+      <ul>
+        <li>把 /出货单 + /运费箱规 串成"接单到下单"工作流</li>
+        <li>产出可推送的 HTML 出货报告（含库存预警）</li>
+      </ul>
+      <div class="deliv"><span class="s-flow">工作流</span><span class="s-html">HTML 出货报告</span></div>
+    </div>
+
+    <div class="tl-item">
+      <h4><span class="wk">W8</span>沉淀复盘 · 老板战略层</h4>
+      <ul>
+        <li>三个 Skill 在执行岗 / 设计岗实跑验证提效幅度</li>
+        <li>老板个人 AI 提效（合同/业务探索/团队管理）+ 结业复盘</li>
+      </ul>
+      <div class="deliv"><span class="s-flow">执行生产线雏形</span><span class="s-html">交付：陪跑结业报告 HTML</span></div>
+    </div>
+
+  </div>
+
+  <!-- ============ 承诺 ============ -->
+  <h2>六、陪跑承诺</h2>
+  <div class="promise">
+    <div class="p"><b>① 落地承诺</b><br>林韩："会议结束我们去把策划的智能体落一落，确实对你们工作有比较大帮助，我们也去推。" Lion："有什么问题随时在群里问，具体下一步怎么操作都可以问。"</div>
+    <div class="p"><b>② 复刻承诺</b><br>跑通的流程一律封装成 Skill：同事文件命名统一即可索引复用，跨品牌、跨项目通用，不必重复造轮子、不必打包发原文件。</div>
+    <div class="p"><b>③ 员工承诺</b><br>不专门招 AI 工程师——每个岗位负责人自己学，因为业务经验才是不可替代的核心；老师只教 AI 工具部分，把岗位负责人带成会用 AI 的人。</div>
+  </div>
+
+  <footer>
+    数据来源：面试会议（2026-04-29）· 场景确认会议（2026-05-11）· 执行会议-001（2026-05-18）· 执行会议-002（2026-06-03）+ 全部逐字稿与微信聊天记录。<br>
+    陪跑团队判断：晋梦妮团队悟性高、动手能力强——执行岗已能独立跑通 PO 处理与运费模块；本阶段最大价值不是教更高级的技术，而是帮团队"做减法、定节奏"，把"先搭系统"的惯性扭成"先把一个场景夯成 Skill"。
+  </footer>
+
+</div>
+</body>
+</html>
