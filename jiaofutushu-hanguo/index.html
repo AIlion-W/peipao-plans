@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>宋艳 · 教辅图书 AI 陪跑方案</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+  :root{
+    --bg:#0b0d12; --panel:#141821; --line:#232936; --ink:#e8ecf3;
+    --muted:#8a93a6; --accent:#ff6a00; --accent2:#ffb15c;
+    --ok:#2ecc71; --doing:#f1c40f; --todo:#5b6577;
+    --brand:#e30613;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.7}
+  .wrap{max-width:1180px;margin:0 auto;padding:48px 32px}
+  h1{font-size:34px;margin:0 0 8px;letter-spacing:1px}
+  h2{font-size:22px;margin:48px 0 16px;padding-left:12px;border-left:4px solid var(--accent)}
+  h3{font-size:17px;margin:24px 0 10px;color:var(--accent2)}
+  .sub{color:var(--muted);font-size:14px}
+  .hero{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px;padding-bottom:24px;border-bottom:1px solid var(--line)}
+  .tag{display:inline-block;padding:3px 10px;border-radius:999px;background:var(--brand);color:#fff;font-size:12px;margin-right:6px}
+  .tag.gray{background:#2c3340;color:var(--muted)}
+  .meta{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:24px}
+  .meta .card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+  .meta .k{font-size:12px;color:var(--muted)}
+  .meta .v{font-size:16px;margin-top:4px}
+
+  .ladder{position:relative;display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-top:16px}
+  .step{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 12px;position:relative}
+  .step .n{font-size:11px;color:var(--muted)}
+  .step .t{font-weight:600;margin-top:2px;font-size:14px}
+  .step .d{font-size:12px;color:var(--muted);margin-top:6px;line-height:1.5}
+  .step.done{border-color:#2ecc7144;background:#11261b}
+  .step.now{border-color:var(--accent);background:linear-gradient(180deg,#241408,#191c24);box-shadow:0 0 0 2px #ff6a0033}
+  .step.target{border-color:#3a4256;background:#181b24}
+  .step .badge{position:absolute;top:-10px;left:10px;font-size:10px;padding:2px 8px;border-radius:999px}
+  .step.done .badge{background:var(--ok);color:#08210f}
+  .step.now .badge{background:var(--accent);color:#fff}
+  .step.target .badge{background:#3a4256;color:#cdd3df}
+
+  .grid5{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:8px}
+  .m{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px}
+  .m .h{font-weight:600;font-size:14px;color:var(--accent2)}
+  .m .b{font-size:12.5px;color:#cdd3df;margin-top:6px;line-height:1.6}
+  .m .now{font-size:11px;margin-top:8px;color:var(--muted)}
+
+  .timeline{position:relative;margin-top:8px;border-left:2px solid var(--line);padding-left:22px}
+  .tl-item{position:relative;padding:14px 16px 14px 8px;background:var(--panel);border:1px solid var(--line);border-radius:10px;margin-bottom:14px}
+  .tl-item::before{content:"";position:absolute;left:-31px;top:20px;width:12px;height:12px;background:var(--accent);border-radius:50%;border:3px solid var(--bg)}
+  .tl-item .wk{display:inline-block;background:#2c3340;color:#cdd3df;padding:2px 10px;border-radius:6px;font-size:12px;margin-right:8px}
+  .tl-item h4{margin:0 0 6px;font-size:16px}
+  .tl-item ul{margin:6px 0 0 18px;padding:0;font-size:13.5px;color:#cdd3df}
+  .tl-item li{margin:3px 0}
+  .deliv{margin-top:10px;display:flex;flex-wrap:wrap;gap:6px}
+  .deliv span{font-size:11px;background:#1f2735;color:#9fb0d0;border:1px solid #2a3346;padding:3px 8px;border-radius:6px}
+  .deliv .s-agent{color:#ffb15c;border-color:#5a3a1a}
+  .deliv .s-skill{color:#7fd1ff;border-color:#1f4a66}
+  .deliv .s-flow{color:#a7f0a7;border-color:#1f5a2c}
+  .deliv .s-html{color:#ffd4f5;border-color:#5a2348}
+
+  .threecol{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-top:8px}
+  .col{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px}
+  .col h4{margin:0;font-size:16px}
+  .col .pain{font-size:12px;color:var(--muted);margin-top:4px;line-height:1.6}
+  .col .row{margin-top:14px;font-size:13px}
+  .col .row b{color:var(--accent2);font-weight:600}
+  .col .pill{display:inline-block;font-size:11px;padding:2px 8px;border-radius:6px;background:#1f2735;color:#9fb0d0;margin-right:4px;margin-top:4px}
+
+  .demo{background:linear-gradient(135deg,#1a1f2c,#13161e);border:1px dashed #3a4256;border-radius:12px;padding:20px;margin-top:8px}
+  .demo .flow{display:flex;align-items:center;flex-wrap:wrap;gap:6px;margin-top:10px}
+  .demo .node{background:#222a3a;border:1px solid #2f3b52;padding:8px 12px;border-radius:8px;font-size:13px}
+  .demo .arr{color:var(--accent);font-weight:700}
+  .demo .out{margin-top:14px;background:#0d0f15;border:1px solid #232936;border-radius:8px;padding:14px;font-size:12.5px;color:#cdd3df}
+
+  .promise{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:8px}
+  .promise .p{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px}
+  .promise .p b{color:var(--accent)}
+
+  footer{margin-top:60px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:12px}
+
+  @media (max-width:900px){
+    .meta,.grid5,.threecol,.promise{grid-template-columns:1fr 1fr}
+    .ladder{grid-template-columns:1fr 1fr;gap:10px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <section class="hero">
+    <div>
+      <div>
+        <span class="tag">教辅图书</span>
+        <span class="tag gray">中小学教辅电商 · 拼多多 / 天猫 / 京东 / 新媒体多店</span>
+      </div>
+      <h1>宋总，这是接下来 2 个月我们一起跑的路</h1>
+      <div class="sub">陪跑客户：宋艳 · 陪跑老师：韩国 · 项目经理：林韦韩 · 启动日：2026-06-05</div>
+    </div>
+    <div class="sub">版本 v1 · 2026-06-05</div>
+  </section>
+
+  <!-- 4 个关键卡片 -->
+  <div class="meta">
+    <div class="card"><div class="k">业务模型</div><div class="v">小初高教辅图书，轻量化 + 专项，多平台多店（拼多多 13-15 店）</div></div>
+    <div class="card"><div class="k">团队杠杆</div><div class="v">整店营销团队 + 产品编辑部 + 设计 / 剪辑，年营收 4-5 亿、线上 SKU ~800</div></div>
+    <div class="card"><div class="k">当前瓶颈</div><div class="v">AI 用得多但散落在工具层，没沉淀成可复用智能体；选题经验全在脑子里</div></div>
+    <div class="card"><div class="k">核心打法</div><div class="v">"选题不好，运营再牛也玩不出花" —— 选题驱动、重质量、爱原创</div></div>
+  </div>
+
+  <!-- ============ 一、AI 认知 ============ -->
+  <h2>一、先建立对 AI 的正确认知</h2>
+  <p class="sub">你们其实不是"还没用 AI"的公司——组稿校对、数字人录课、短视频 AI 开头混剪、电商主图、影刀自动化、飞书智能体，AI 已经渗进编辑端和营销端。问题在于：这些能力都还停在"会用工具"这一层，分散在不同同事手里，没有被打包成一个个能稳定复用、跨店复制的"智能体"。接下来两个月，我们做的不是教你用新工具，而是把你公司最值钱的经验——尤其是选题——从"老师傅脑子里的判断"沉淀成 AI 能一起干的系统。</p>
+
+  <h3>AI 成熟度 7 阶段 · 宋总当前位置</h3>
+  <div class="ladder">
+    <div class="step done"><span class="badge">✓ 已过</span><div class="n">阶段 1</div><div class="t">基础对话</div><div class="d">早期学员，很早听蒋华老师课，团队日常用 GPT/飞书智能体。</div></div>
+    <div class="step done"><span class="badge">✓ 已过</span><div class="n">阶段 2</div><div class="t">结构化要求</div><div class="d">组稿校对、样张、PPT、数字人录课已全 AI 化。</div></div>
+    <div class="step done"><span class="badge">✓ 已过</span><div class="n">阶段 3</div><div class="t">爆款模仿 + 工具尝试</div><div class="d">短视频 AI 开头 + 混剪、电商主图 AI、筷子批量、影刀自动化都在跑。</div></div>
+    <div class="step now"><span class="badge">▶ 你在这</span><div class="n">阶段 4</div><div class="t">反推提示词</div><div class="d">已建素材分类库、大盘起量视频汇总（情景剧/学霸采访/口播问答…），但还靠人工经验定标准。下一步用爆款做锚点喂 AI。</div></div>
+    <div class="step target"><span class="badge">W3-W4</span><div class="n">阶段 5</div><div class="t">系统提示词</div><div class="d">把推广图裂变、选题判断写成有角色/目标/限制的智能体雏形。</div></div>
+    <div class="step target"><span class="badge">W5-W6</span><div class="n">阶段 6</div><div class="t">Skill 工作化</div><div class="d">把选题 / 复盘 / 裂变 SOP 打包成 /触发词，全店通用。</div></div>
+    <div class="step target"><span class="badge">W7-W8</span><div class="n">阶段 7</div><div class="t">业务系统化</div><div class="d">选题→图→视频→复盘串成生产线，13-15 个店复用一套系统。</div></div>
+  </div>
+
+  <h3>对应你公司的 5 个层</h3>
+  <div class="grid5">
+    <div class="m"><div class="h">① 身份层</div><div class="b">让 AI 记住教辅图书定位：小初高、轻量化 + 专项、向同步品转型、选题委员会机制、质量优先。</div><div class="now">起点：公司定位 + 选题标准写成身份卡</div></div>
+    <div class="m"><div class="h">② 知识层</div><div class="b">把选题委员会的选题表格留痕、爆款视频分类库、大盘起量视频汇总、产品主图素材喂进去。</div><div class="now">已有素材分类，缺结构化投喂</div></div>
+    <div class="m"><div class="h">③ 工具层</div><div class="b">三个智能体：推广图裂变 → 爆款视频复盘 → 选题策划。</div><div class="now">本期核心交付</div></div>
+    <div class="m"><div class="h">④ 协作层</div><div class="b">同一套智能体在拼多多 13-15 店 + 天猫 / 京东 / 新媒体跨店跨平台复用。</div><div class="now">一次搭、全店用</div></div>
+    <div class="m"><div class="h">⑤ 场景层</div><div class="b">选题→推广图→视频→复盘形成内容生产闭环，AI 跑流程而非单点。</div><div class="now">两个月终态</div></div>
+  </div>
+
+  <!-- ============ 二、智能体 ============ -->
+  <h2>二、要搭建的 3 个智能体（按首战板块优先级）</h2>
+  <p class="sub">花花老师在会上定的顺序很清楚——"先从推广图裂变开始，因为这个离业务最近，而且反馈最快"。所以排序不是按价值高低，而是按"哪个最快能看到结果、最快建立团队信心"。选题智能体价值最高（你自己说"选题对我们是最重要的"），但它要先拆工作流，放到后面慢慢啃。</p>
+
+  <div class="threecol">
+    <!-- 智能体 ① -->
+    <div class="col">
+      <h4>① 推广图裂变智能体</h4>
+      <div class="pain">痛点：宋总说"目前做推广图只能人工，想利用 AI 做裂变但不知元素拆解如何下手"（前景/后景/卖点位置）。</div>
+      <div class="row"><b>角色设定</b>：拼多多推广图裂变手——不做优化、不做创造，只在已验证的产品图基础上裂变出多版主图。</div>
+      <div class="row"><b>输入</b>：一张产品图（已有的主图 / 卖点图）。</div>
+      <div class="row"><b>输出</b>：多张不同类型推广图，供测点击。核心指标 = 可测素材数量。</div>
+      <div class="row"><span class="pill">阶段 5</span><span class="pill">W3-W4</span><span class="pill">首战</span></div>
+    </div>
+    <!-- 智能体 ② -->
+    <div class="col">
+      <h4>② 爆款视频复盘智能体</h4>
+      <div class="pain">痛点：你们做了大盘起量视频汇总和素材分类，但复盘靠人，难沉淀。花花："至少让一个聪明的大脑帮你做数据积累"。</div>
+      <div class="row"><b>角色设定</b>：爆款视频分析师——喂视频内容 + 数据，做复盘与规律提炼。</div>
+      <div class="row"><b>输入</b>：爆款视频 + 一系列数据指标。</div>
+      <div class="row"><b>输出</b>：复盘结论 + 可复用的视频类型/钩子规律（配合视频类型分类）。</div>
+      <div class="row"><span class="pill">阶段 5-6</span><span class="pill">W5-W6</span><span class="pill">分支线</span></div>
+    </div>
+    <!-- 智能体 ③ -->
+    <div class="col">
+      <h4>③ 选题（选品）智能体 · 拆分</h4>
+      <div class="pain">痛点：宋总自述"选题对我们是最重要的，你选题不好运营再牛也玩不出花"，但选题逻辑全在脑子里，来源宽泛分散、靠经验判断。</div>
+      <div class="row"><b>角色设定</b>：基于过往经验总结规律 + 裂变选题。拆成主图分析出选题 / 详情页出选题 / 评价出选题等子智能体。</div>
+      <div class="row"><b>输入</b>：渠道信息（小红书 / 拼多多截图等）+ 历史选题表格留痕。</div>
+      <div class="row"><b>输出</b>：选题建议清单，供选题委员会过会。</div>
+      <div class="row"><span class="pill">阶段 6</span><span class="pill">W7</span><span class="pill">最高价值</span></div>
+    </div>
+  </div>
+
+  <!-- ============ 三、Skills ============ -->
+  <h2>三、把智能体打包成 Skill（团队人人能用，跨店复用）</h2>
+  <p class="sub">你们一年 4-5 亿、拼多多 13-15 个店——同一个能力如果只活在一个同事的对话框里，就只能服务一个店。打包成 Skill，意味着一次搭好，营销、设计、产品编辑部任何人敲一个 /触发词 就能调用，13-15 个店、天猫京东新媒体全平台复用同一套标准。这正是你们做"复刻"最擅长的逻辑，只是把它用在了工作流上。</p>
+
+  <div class="threecol">
+    <div class="col">
+      <h4>Skill 1 · 推广图裂变</h4>
+      <div class="row">触发词：<code style="color:var(--accent2)">/推广图裂变</code></div>
+      <div class="row">能力：丢一张产品图，输出多版可测推广图。</div>
+      <div class="row">复用：拼多多 13-15 店 + 天猫 / 京东全平台主图测试。</div>
+    </div>
+    <div class="col">
+      <h4>Skill 2 · 视频复盘</h4>
+      <div class="row">触发词：<code style="color:var(--accent2)">/视频复盘</code></div>
+      <div class="row">能力：喂爆款视频 + 数据，出复盘 + 类型规律。</div>
+      <div class="row">复用：抖音 / 快手 / 视频号每条起量视频都能进复盘。</div>
+    </div>
+    <div class="col">
+      <h4>Skill 3 · 选题策划</h4>
+      <div class="row">触发词：<code style="color:var(--accent2)">/选题策划</code></div>
+      <div class="row">能力：渠道信息 + 历史经验 → 选题建议。</div>
+      <div class="row">复用：产品编辑部全员选题策划提速，沉淀公司选题资产。</div>
+    </div>
+  </div>
+
+  <!-- ============ 四、工作流 + HTML ============ -->
+  <h2>四、把 Skills 串成工作流，产出可交付的 HTML 报告</h2>
+  <p class="sub">单个 Skill 是点，串起来才是你们要的"中枢和大脑"——花花在会上说的"智能场景智能体清单"就是这个中枢的起点。下面用"新品上架内容生产线"做示例：从选题到出图到视频到复盘，AI 把一条龙串起来，最后自动出一份给管理层看的 HTML 报告。</p>
+
+  <div class="demo">
+    <div style="font-size:13px;color:var(--muted)">工作流 · 新品上架内容生产线（示例）</div>
+    <div class="flow">
+      <span class="node">💡 /选题策划 出选题</span>
+      <span class="arr">→</span>
+      <span class="node">🖼 /推广图裂变 出多版主图</span>
+      <span class="arr">→</span>
+      <span class="node">🎬 视频类型分类 + AI 生成</span>
+      <span class="arr">→</span>
+      <span class="node">📈 /视频复盘 回流数据</span>
+      <span class="arr">→</span>
+      <span class="node">📊 HTML 报告生成器</span>
+      <span class="arr">→</span>
+      <span class="node">📧 推送选题委员会 / 运营</span>
+    </div>
+    <div class="out">
+      <b style="color:var(--accent2)">交付物示例（HTML 报告）</b><br>
+      · 本批选题来源与通过/否决理由（选题委员会留痕结构化）<br>
+      · 每个新品的推广图测试矩阵 + 点击率排序<br>
+      · 爆款视频类型分布与复盘结论（哪类钩子起量）<br>
+      · 下一批选题与素材方向建议（AI 裂变给出）
+    </div>
+  </div>
+
+  <!-- ============ 时间轴 ============ -->
+  <h2>五、两个月周里程碑</h2>
+  <p class="sub">节奏按花花会上说的来——"两个月一个场景一个场景去推动，如果速度快全部能做完，慢的话不会卡这个时间点"。下面是参考节拍，实际以你们推进速度为准。</p>
+  <div class="timeline">
+
+    <div class="tl-item">
+      <h4><span class="wk">W1</span>认知打底 · 清单立项</h4>
+      <ul>
+        <li>会后宋总把场景智能体清单 + 会议文档 + 会议文字发群，给 AI 一句提示词出执行计划（中枢大脑起点）</li>
+        <li>培培老师出"智能场景智能体清单"，明确三大模块各要做什么、怎么做</li>
+        <li>韩国老师 + 考拉老师对齐项目，确认推广图裂变首战范围</li>
+      </ul>
+      <div class="deliv"><span class="s-html">交付：智能场景智能体清单</span></div>
+    </div>
+
+    <div class="tl-item">
+      <h4><span class="wk">W2</span>知识层入库 · 推广图元素拆解</h4>
+      <ul>
+        <li>收集已验证的产品主图 / 卖点图样本，明确"前景 / 后景 / 卖点位置"拆解口径</li>
+        <li>选定一个拼多多重点店 / 重点品作为首个裂变试点</li>
+      </ul>
+      <div class="deliv"><span>推广图素材库 v1</span></div>
+    </div>
+
+    <div class="tl-item">
+      <h4><span class="wk">W3-W4</span>智能体 ① 上线 · 推广图裂变</h4>
+      <ul>
+        <li>搭推广图裂变智能体：一张产品图 → 多版推广图</li>
+        <li>跑首批测点击，按反馈迭代裂变规则；打包成 /推广图裂变</li>
+      </ul>
+      <div class="deliv"><span class="s-agent">智能体 ①</span><span class="s-skill">Skill /推广图裂变</span></div>
+    </div>
+
+    <div class="tl-item">
+      <h4><span class="wk">W5-W6</span>智能体 ② 上线 · 视频复盘 + 类型分类对接</h4>
+      <ul>
+        <li>把传统视频类型分类与 AI 视频生成逻辑结合，给视频小组更清晰策略（做几类、各多少量、混剪结果）</li>
+        <li>搭爆款视频复盘智能体；整理完由韩国老师过一遍给建议</li>
+      </ul>
+      <div class="deliv"><span class="s-agent">智能体 ②</span><span class="s-skill">Skill /视频复盘</span><span class="s-flow">工作流</span><span class="s-html">HTML 报告</span></div>
+    </div>
+
+    <div class="tl-item">
+      <h4><span class="wk">W7</span>智能体 ③ 上线 · 选题智能体拆分</h4>
+      <ul>
+        <li>拆解原选题工作流：渠道信息 → 选题委员会留痕的输入输出</li>
+        <li>先做一个子智能体（如"主图分析出选题"或"评价出选题"）跑通，再横向复制</li>
+      </ul>
+      <div class="deliv"><span class="s-agent">智能体 ③</span><span class="s-skill">Skill /选题策划</span></div>
+    </div>
+
+    <div class="tl-item">
+      <h4><span class="wk">W8</span>业务系统化 · 串生产线</h4>
+      <ul>
+        <li>三个智能体串成"新品上架内容生产线"，跨拼多多多店复用验证</li>
+        <li>沉淀智能场景智能体清单为公司 AI 项目中枢；结业 HTML 报告</li>
+      </ul>
+      <div class="deliv"><span class="s-flow">完整内容生产系统</span><span class="s-html">交付：陪跑结业报告 HTML</span></div>
+    </div>
+
+  </div>
+
+  <!-- ============ 承诺 ============ -->
+  <h2>六、陪跑承诺</h2>
+  <div class="promise">
+    <div class="p"><b>① 落地承诺</b><br>花花会上定调"一个场景一个场景去推动、不卡时间点"；韩国老师跟项目、考拉老师协同，整理完的资料陪跑老师会逐一过一遍、给反馈。</div>
+    <div class="p"><b>② 复刻承诺</b><br>每个智能体都打包成 Skill，一次搭好在拼多多 13-15 店 + 天猫 / 京东 / 新媒体全平台复用，不重复造轮子。</div>
+    <div class="p"><b>③ 员工承诺</b><br>培培老师产出场景智能体清单作为团队中枢；营销、设计、产品编辑部全员敲 /触发词即用，AI 能力沉淀进公司而非个人。</div>
+  </div>
+
+  <footer>
+    数据来源：场景确认会议妙记《正心AI-宋艳-【6.5关键场景沟通】》（2026-06-05，时长 1h10m，花花/黄温祥主导）。<br>
+    陪跑团队判断：客户 AI 成熟度已较高、执行力强、重质量爱原创，陪跑价值点在于把分散经验沉淀成可复用场景智能体——尤其选题智能体是公司命脉级最高价值场景。
+  </footer>
+
+</div>
+</body>
+</html>
