@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>张文玺 · 穿透力单车 AI 陪跑方案</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+  :root{
+    --bg:#0b0d12; --panel:#141821; --line:#232936; --ink:#e8ecf3;
+    --muted:#8a93a6; --accent:#ff6a00; --accent2:#ffb15c;
+    --ok:#2ecc71; --doing:#f1c40f; --todo:#5b6577;
+    --brand:#e30613;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.7}
+  .wrap{max-width:1180px;margin:0 auto;padding:48px 32px}
+  h1{font-size:34px;margin:0 0 8px;letter-spacing:1px}
+  h2{font-size:22px;margin:48px 0 16px;padding-left:12px;border-left:4px solid var(--accent)}
+  h3{font-size:17px;margin:24px 0 10px;color:var(--accent2)}
+  .sub{color:var(--muted);font-size:14px}
+  .hero{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px;padding-bottom:24px;border-bottom:1px solid var(--line)}
+  .tag{display:inline-block;padding:3px 10px;border-radius:999px;background:var(--brand);color:#fff;font-size:12px;margin-right:6px}
+  .tag.gray{background:#2c3340;color:var(--muted)}
+  .meta{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:24px}
+  .meta .card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+  .meta .k{font-size:12px;color:var(--muted)}
+  .meta .v{font-size:16px;margin-top:4px}
+
+  .ladder{position:relative;display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-top:16px}
+  .step{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 12px;position:relative}
+  .step .n{font-size:11px;color:var(--muted)}
+  .step .t{font-weight:600;margin-top:2px;font-size:14px}
+  .step .d{font-size:12px;color:var(--muted);margin-top:6px;line-height:1.5}
+  .step.done{border-color:#2ecc7144;background:#11261b}
+  .step.now{border-color:var(--accent);background:linear-gradient(180deg,#241408,#191c24);box-shadow:0 0 0 2px #ff6a0033}
+  .step.target{border-color:#3a4256;background:#181b24}
+  .step .badge{position:absolute;top:-10px;left:10px;font-size:10px;padding:2px 8px;border-radius:999px}
+  .step.done .badge{background:var(--ok);color:#08210f}
+  .step.now .badge{background:var(--accent);color:#fff}
+  .step.target .badge{background:#3a4256;color:#cdd3df}
+
+  .grid5{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:8px}
+  .m{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px}
+  .m .h{font-weight:600;font-size:14px;color:var(--accent2)}
+  .m .b{font-size:12.5px;color:#cdd3df;margin-top:6px;line-height:1.6}
+  .m .now{font-size:11px;margin-top:8px;color:var(--muted)}
+
+  .timeline{position:relative;margin-top:8px;border-left:2px solid var(--line);padding-left:22px}
+  .tl-item{position:relative;padding:14px 16px 14px 8px;background:var(--panel);border:1px solid var(--line);border-radius:10px;margin-bottom:14px}
+  .tl-item::before{content:"";position:absolute;left:-31px;top:20px;width:12px;height:12px;background:var(--accent);border-radius:50%;border:3px solid var(--bg)}
+  .tl-item .wk{display:inline-block;background:#2c3340;color:#cdd3df;padding:2px 10px;border-radius:6px;font-size:12px;margin-right:8px}
+  .tl-item h4{margin:0 0 6px;font-size:16px}
+  .tl-item ul{margin:6px 0 0 18px;padding:0;font-size:13.5px;color:#cdd3df}
+  .tl-item li{margin:3px 0}
+  .deliv{margin-top:10px;display:flex;flex-wrap:wrap;gap:6px}
+  .deliv span{font-size:11px;background:#1f2735;color:#9fb0d0;border:1px solid #2a3346;padding:3px 8px;border-radius:6px}
+  .deliv .s-agent{color:#ffb15c;border-color:#5a3a1a}
+  .deliv .s-skill{color:#7fd1ff;border-color:#1f4a66}
+  .deliv .s-flow{color:#a7f0a7;border-color:#1f5a2c}
+  .deliv .s-html{color:#ffd4f5;border-color:#5a2348}
+
+  .threecol{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-top:8px}
+  .col{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px}
+  .col h4{margin:0;font-size:16px}
+  .col .pain{font-size:12px;color:var(--muted);margin-top:4px;line-height:1.6}
+  .col .row{margin-top:14px;font-size:13px}
+  .col .row b{color:var(--accent2);font-weight:600}
+  .col .pill{display:inline-block;font-size:11px;padding:2px 8px;border-radius:6px;background:#1f2735;color:#9fb0d0;margin-right:4px;margin-top:4px}
+
+  .demo{background:linear-gradient(135deg,#1a1f2c,#13161e);border:1px dashed #3a4256;border-radius:12px;padding:20px;margin-top:8px}
+  .demo .flow{display:flex;align-items:center;flex-wrap:wrap;gap:6px;margin-top:10px}
+  .demo .node{background:#222a3a;border:1px solid #2f3b52;padding:8px 12px;border-radius:8px;font-size:13px}
+  .demo .arr{color:var(--accent);font-weight:700}
+  .demo .out{margin-top:14px;background:#0d0f15;border:1px solid #232936;border-radius:8px;padding:14px;font-size:12.5px;color:#cdd3df}
+
+  .promise{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:8px}
+  .promise .p{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px}
+  .promise .p b{color:var(--accent)}
+
+  footer{margin-top:60px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:12px}
+
+  @media (max-width:900px){
+    .meta,.grid5,.threecol,.promise{grid-template-columns:1fr 1fr}
+    .ladder{grid-template-columns:1fr 1fr;gap:10px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <section class="hero">
+    <div>
+      <div>
+        <span class="tag">穿透力单车 · 苏比特（自行车）</span>
+        <span class="tag gray">线上代理 + 实体门店 + 品牌方品宣</span>
+      </div>
+      <h1>罐总，这是接下来 2 个月我们一起跑的路</h1>
+      <div class="sub">陪跑客户：张文玺（罐子） · 陪跑老师：Lion · 项目经理：待定 · 启动日：2026-05-06</div>
+    </div>
+    <div class="sub">版本 v1 · 2026-06-14</div>
+  </section>
+
+  <!-- 4 个关键卡片 -->
+  <div class="meta">
+    <div class="card"><div class="k">业务模型</div><div class="v">自行车线上代理 + 实体门店，兼做品牌方品宣素材分发</div></div>
+    <div class="card"><div class="k">团队杠杆</div><div class="v">多岗位员工（运营 / 美工）+ NAS + 飞书企业知识库</div></div>
+    <div class="card"><div class="k">当前瓶颈</div><div class="v">单点 AI 已很强，缺自动化闭环、Skills 跨系统分发、微信内容入 AI 记忆库</div></div>
+    <div class="card"><div class="k">核心打法</div><div class="v">老板亲自上手「不睡觉，不停找需求喂 AI」</div></div>
+  </div>
+
+  <!-- ============ 一、AI 认知 ============ -->
+  <h2>一、先对齐对 AI 的认知（你已经走得很前）</h2>
+  <p class="sub">罐总你这进度，Lion 原话是「甩我们其他陪跑客户 10 条街都不止」。你已经把龙虾/OpenClaw 的记忆整体迁移到 Codex，飞书 CLI 自动记录实体店销售推多维表格，给各岗位员工自建了一堆 skill，还自己用 Codex 写过抓竞对销量增量做跟品分析的 Python 脚本——这已经不是「学用 AI」，而是「用 AI 跑业务」。所以这份方案的重点不是教你工具，而是帮你把已有的零散能力，收口成一套<strong>自动运转的业务系统</strong>。</p>
+
+  <h3>AI 成熟度 7 阶段 · 罐总当前位置</h3>
+  <div class="ladder">
+    <div class="step done"><span class="badge">✓ 已过</span><div class="n">阶段 1</div><div class="t">基础对话</div><div class="d">知道 GPT/Claude/Codex，日常在用。</div></div>
+    <div class="step done"><span class="badge">✓ 已过</span><div class="n">阶段 2</div><div class="t">结构化要求</div><div class="d">能让 AI 稳定写、翻、总结。</div></div>
+    <div class="step done"><span class="badge">✓ 已过</span><div class="n">阶段 3</div><div class="t">爆款模仿 + 工具尝试</div><div class="d">AI 生图控制词打磨到位（脚踏排坑、自行车场景词库）。</div></div>
+    <div class="step done"><span class="badge">✓ 已过</span><div class="n">阶段 4</div><div class="t">反推提示词</div><div class="d">英文 peddle / 中文「脚踏板」名词化等大量原创排坑。</div></div>
+    <div class="step done"><span class="badge">✓ 已过</span><div class="n">阶段 5</div><div class="t">系统提示词</div><div class="d">给各岗位员工开发了大量带角色/目标的 Codex skill。</div></div>
+    <div class="step now"><span class="badge">▶ 你在这</span><div class="n">阶段 6</div><div class="t">Skill 工作化</div><div class="d">飞书 CLI 自动记录销售、跟品分析脚本——已把 SOP 打包成可调用 Skill。</div></div>
+    <div class="step target"><span class="badge">W1-W8</span><div class="n">阶段 7</div><div class="t">业务系统化</div><div class="d">把抓取→分析→推送串成自动生产线，AI 替运营每天跑业务。</div></div>
+  </div>
+
+  <h3>对应你公司的 5 个层</h3>
+  <div class="grid5">
+    <div class="m"><div class="h">① 身份层</div><div class="b">让 Codex 记住穿透力单车的品类、客群、品牌方关系。</div><div class="now">起点：Obsidian 本地知识库 + cloud.md / Source of Truth 双文件共管</div></div>
+    <div class="m"><div class="h">② 知识层</div><div class="b">销售数据、竞品数据、运营课方法论、微信好文章入本地库。</div><div class="now">已有：飞书云文档 + 企业知识库 → 迁本地 MD 省 token</div></div>
+    <div class="m"><div class="h">③ 工具层</div><div class="b">3 个智能体：自动化运营 / 微信文案库检索 / 跟品分析。</div><div class="now">已有大量员工 skill，待收口</div></div>
+    <div class="m"><div class="h">④ 协作层</div><div class="b">Skills 经 GitHub 跨 Mac/Win 分发，员工 clone 直接调用、保持原生态。</div><div class="now">替代「手动复制文件夹」</div></div>
+    <div class="m"><div class="h">⑤ 场景层</div><div class="b">后台每天自动抓取→分析→飞书 CLI 推日报，人只做判断。</div><div class="now">终态：成熟功能做成小软件给非技术岗员工</div></div>
+  </div>
+
+  <!-- ============ 二、智能体 ============ -->
+  <h2>二、要收口的 3 个智能体（按你当前的首战顺序）</h2>
+  <p class="sub">排序依据你自己的原话——「我现在需求挖得差不多了，接下来要做自动化」。所以第一优先是自动化运营；第二是你反复提的「飞书解决不了」的微信文案库；第三是你已起步的跟品分析。</p>
+
+  <div class="threecol">
+    <div class="col">
+      <h4>① 自动化运营智能体</h4>
+      <div class="pain">痛点（罐总原话）：「让后台他每天代替我的运营，去给我抓东西做分析，到点给我」「还没实现自动化的全平台抓取」</div>
+      <div class="row"><b>角色设定</b>：替代人工运营，每日定时抓取竞品/后台数据并出分析</div>
+      <div class="row"><b>输入</b>：竞品/后台页面地址 + 操作流程截图 + （可选）盗版运营课蒸馏的方法论</div>
+      <div class="row"><b>输出</b>：Python 脚本 + Cron 定时 + 飞书 CLI 推送日报</div>
+      <div class="row"><span class="pill">阶段 7</span><span class="pill">W1-W3</span><span class="pill">首战</span></div>
+    </div>
+    <div class="col">
+      <h4>② 微信文案库检索智能体</h4>
+      <div class="pain">痛点（罐总原话）：「把微信好文章变成我的 AI 记忆……skill 自动检索……帮我写文案，这是飞书给我解决不了的」</div>
+      <div class="row"><b>角色设定</b>：文章链接 → 本地文案/选题库 → skill 检索喂料写文案</div>
+      <div class="row"><b>输入</b>：公众号/朋友圈文章链接（合规下载，避微信反爬）</div>
+      <div class="row"><b>输出</b>：结构化文案库 + 按选题自动检索的素材包</div>
+      <div class="row"><span class="pill">阶段 6-7</span><span class="pill">W4-W5</span></div>
+    </div>
+    <div class="col">
+      <h4>③ 跟品分析智能体</h4>
+      <div class="pain">痛点（罐总原话）：「抓竞对今天/昨天/前天的销量增量，再做分析，哪个爆了我想卖哪个」</div>
+      <div class="row"><b>角色设定</b>：抓竞品销量/增量做跟品决策分析</div>
+      <div class="row"><b>输入</b>：竞品页面 / 类目榜单</div>
+      <div class="row"><b>输出</b>：跟品数据报告（增量趋势 + 选品建议）</div>
+      <div class="row"><span class="pill">阶段 7</span><span class="pill">W6-W7</span></div>
+    </div>
+  </div>
+
+  <!-- ============ 三、Skills ============ -->
+  <h2>三、把智能体打包成 Skill（员工人人能用，跨平台复用）</h2>
+  <p class="sub">你已经在做这件事了——做完 skill 让 Codex 生成 MD 文档给员工复制。这一步我们升级：用 GitHub 仓库做 Skills 跨系统分发，员工 clone 直接调用、保持原生态，你不用再手动复制文件夹（Mac→Win 也不再失效）。</p>
+
+  <div class="threecol">
+    <div class="col">
+      <h4>Skill 1 · 自动运营日报</h4>
+      <div class="row">触发词：<code style="color:var(--accent2)">/运营日报</code></div>
+      <div class="row">能力：Python 抓取 + 数据分析 + 飞书 CLI 推送</div>
+      <div class="row">复用：换页面地址即可迁到全平台（小红书/抖音/京东）</div>
+    </div>
+    <div class="col">
+      <h4>Skill 2 · 文案蒸馏</h4>
+      <div class="row">触发词：<code style="color:var(--accent2)">/文案蒸馏</code></div>
+      <div class="row">能力：文章/逐字稿 → 方法论蒸馏 → 入文案库</div>
+      <div class="row">复用：任意博主蒸馏（如你说的「江湖说 470 篇」）</div>
+    </div>
+    <div class="col">
+      <h4>Skill 3 · 跟品分析</h4>
+      <div class="row">触发词：<code style="color:var(--accent2)">/跟品分析</code></div>
+      <div class="row">能力：竞品销量增量抓取 + 趋势分析 + 选品建议</div>
+      <div class="row">复用：任意品类/平台，给品牌方也能用</div>
+    </div>
+  </div>
+
+  <!-- ============ 四、工作流 + HTML ============ -->
+  <h2>四、把 Skills 串成工作流，产出可交付的 HTML 报告</h2>
+  <p class="sub">选「每日自动化运营日报」做示例——这正是你说的终极目标：「只要我电脑开着，他就自动运转」。Cron 定时触发，全程无人值守，到点把分析结果推到你飞书。</p>
+
+  <div class="demo">
+    <div style="font-size:13px;color:var(--muted)">工作流 · 每日自动化运营日报（示例）</div>
+    <div class="flow">
+      <span class="node">⏰ Cron 定时触发</span>
+      <span class="arr">→</span>
+      <span class="node">🐍 Python 抓取竞品/后台</span>
+      <span class="arr">→</span>
+      <span class="node">/跟品分析 算增量</span>
+      <span class="arr">→</span>
+      <span class="node">/运营日报 出洞察</span>
+      <span class="arr">→</span>
+      <span class="node">📊 HTML 报告生成器</span>
+      <span class="arr">→</span>
+      <span class="node">📧 飞书 CLI 推给罐总</span>
+    </div>
+    <div class="out">
+      <b style="color:var(--accent2)">交付物示例（HTML 日报）</b><br>
+      • 竞品昨日 vs 前日销量增量榜 + 爆品预警<br>
+      • 自家各平台后台核心指标对比（点击/转化/客单）<br>
+      • 今日「值得跟」的品 Top 3 + 跟品理由<br>
+      • 异常项人工复核清单（AI 不确定的交给人判断）
+    </div>
+  </div>
+
+  <!-- ============ 时间轴 ============ -->
+  <h2>五、两个月周里程碑（从 Skill 工作化 → 业务系统化）</h2>
+  <div class="timeline">
+
+    <div class="tl-item">
+      <h4><span class="wk">W1</span>本地知识库收口 · Skills 上 GitHub</h4>
+      <ul>
+        <li>Obsidian 本地库结构化：脚本/视频数据/方法论分层归位</li>
+        <li>本地电脑与 GitHub 验证关联，把现有员工 Skills 推仓库（声明「适配所有系统」）</li>
+        <li>员工 clone 调用跑通一个 skill，验证跨 Mac/Win</li>
+      </ul>
+      <div class="deliv"><span class="s-skill">Skills GitHub 仓库</span><span class="s-html">交付：本地知识库结构图</span></div>
+    </div>
+
+    <div class="tl-item">
+      <h4><span class="wk">W2-W3</span>智能体 ① 自动化运营上线</h4>
+      <ul>
+        <li>把一条运营动作（如竞品页面分析）梳理成文字流程 + 截图喂 Codex 生成 Python 脚本</li>
+        <li>Cron 定时 + 飞书 CLI 推送跑通首版日报</li>
+        <li>（可选）买运营付费课让 Codex 蒸馏方法论，补强分析质量</li>
+      </ul>
+      <div class="deliv"><span class="s-agent">智能体 ①</span><span class="s-skill">Skill /运营日报</span><span class="s-flow">工作流</span></div>
+    </div>
+
+    <div class="tl-item">
+      <h4><span class="wk">W4-W5</span>智能体 ② 微信文案库检索上线</h4>
+      <ul>
+        <li>确定合规抓取路径（避微信反爬/封号风险），文章链接下载入本地</li>
+        <li>/文案蒸馏 把文章 → 结构化文案/选题库</li>
+        <li>写文案 skill 接通文案库自动检索喂料</li>
+      </ul>
+      <div class="deliv"><span class="s-agent">智能体 ②</span><span class="s-skill">Skill /文案蒸馏</span></div>
+    </div>
+
+    <div class="tl-item">
+      <h4><span class="wk">W6-W7</span>智能体 ③ 跟品分析上线</h4>
+      <ul>
+        <li>复用已有跟品脚本，扩成竞品销量增量趋势分析</li>
+        <li>串进每日日报工作流，出「值得跟的品」建议</li>
+        <li>给品牌方品宣场景做一版九宫格批量出图的取舍 SOP（接受模型边界 + 人工接手点）</li>
+      </ul>
+      <div class="deliv"><span class="s-agent">智能体 ③</span><span class="s-skill">Skill /跟品分析</span><span class="s-html">HTML 跟品报告</span></div>
+    </div>
+
+    <div class="tl-item">
+      <h4><span class="wk">W8</span>业务系统化 · 小软件化交付</h4>
+      <ul>
+        <li>三个智能体 + 工作流收口成「无人值守」业务系统</li>
+        <li>把成熟功能做成小软件/前端页面，发给非技术岗员工用</li>
+        <li>结业：沉淀「输入→赚钱」闭环方法论，老板转战略层</li>
+      </ul>
+      <div class="deliv"><span class="s-flow">完整业务系统</span><span class="s-html">交付：陪跑结业报告 HTML</span></div>
+    </div>
+
+  </div>
+
+  <!-- ============ 承诺 ============ -->
+  <h2>六、陪跑承诺</h2>
+  <div class="promise">
+    <div class="p"><b>① 落地承诺</b><br>Lion 原话：「用 Codex 有耐心点，你到哪一步点哪个，他不懂会告诉你——我也一行代码没写过，也能写出来。」有不会的随时问，陪跑团队实时答疑。</div>
+    <div class="p"><b>② 复刻承诺</b><br>所有 Skills 经 GitHub 跨系统分发，保持原生态；一套能力可跨平台、跨品牌、给品牌方复用。</div>
+    <div class="p"><b>③ 员工承诺</b><br>把成熟功能做成小软件，让不会用 Codex 的非技术岗员工也能一键调用，能力沉淀在公司而非个人。</div>
+  </div>
+
+  <footer>
+    数据来源：执行会议-001 妙记（2026-06-11，正心AI-穿透力单车-【6.11执行沟通会议】）+ 客户档案 + 微信聊天记录（猫课-穿透力单车AI陪跑 第七期）。<br>
+    陪跑团队评价（Lion 原话）：「你这进度甩我们其他陪跑客户 10 条街都不止，跑得挺快。」
+  </footer>
+
+</div>
+</body>
+</html>
