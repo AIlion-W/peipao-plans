@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>直播电商-荣道清 · 执行-003 会议总结</title>
+<style>
+  :root {
+    --bg: #F5F4ED;
+    --paper: #FAF9F5;
+    --ink: #2D2A26;
+    --ink-soft: #4A4742;
+    --muted: #8C8579;
+    --line: #E8E4D8;
+    --line-soft: #EFEBE0;
+    --accent: #C96442;
+    --accent-soft: #F4E4DA;
+    --accent-line: #E5BFAB;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body {
+    font-family: ui-serif, "Iowan Old Style", "Songti SC", "Source Han Serif SC", "Noto Serif CJK SC", "PingFang SC", Georgia, serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.75;
+    padding: 56px 20px 80px;
+    font-size: 16px;
+  }
+  .sans {
+    font-family: -apple-system, "Inter", "PingFang SC", "Helvetica Neue", sans-serif;
+  }
+  .container { max-width: 760px; margin: 0 auto; }
+
+  /* HEADER */
+  header {
+    background: var(--paper);
+    padding: 56px 56px 44px;
+    border-radius: 16px 16px 0 0;
+    border: 1px solid var(--line);
+    border-bottom: none;
+  }
+  .eyebrow {
+    font-family: -apple-system, "Inter", sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    color: var(--accent);
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 6px; height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    display: inline-block;
+  }
+  h1 {
+    font-size: 34px;
+    color: var(--ink);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+    margin-bottom: 14px;
+  }
+  .sub {
+    font-size: 16px;
+    color: var(--muted);
+    margin-bottom: 36px;
+    font-style: italic;
+  }
+  .meta {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 20px 32px;
+    padding-top: 28px;
+    border-top: 1px solid var(--line);
+  }
+  .meta-item { font-family: -apple-system, "Inter", sans-serif; font-size: 14px; }
+  .meta-item .k {
+    display: block;
+    color: var(--muted);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .meta-item .v { color: var(--ink); font-weight: 500; }
+
+  /* MAIN */
+  main {
+    background: var(--paper);
+    padding: 8px 56px 56px;
+    border-radius: 0 0 16px 16px;
+    border: 1px solid var(--line);
+    border-top: none;
+  }
+  section { padding: 36px 0; border-bottom: 1px solid var(--line-soft); }
+  section:last-child { border-bottom: none; padding-bottom: 12px; }
+
+  h2 {
+    font-family: -apple-system, "Inter", sans-serif;
+    font-size: 11px;
+    color: var(--accent);
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  h3 {
+    font-size: 17px;
+    color: var(--ink);
+    font-weight: 600;
+    margin-bottom: 14px;
+    letter-spacing: -0.005em;
+  }
+
+  /* LISTS */
+  ol, ul { padding-left: 0; list-style: none; }
+  .num-list { counter-reset: item; }
+  .num-list li {
+    counter-increment: item;
+    position: relative;
+    padding: 10px 0 10px 40px;
+    color: var(--ink-soft);
+    font-size: 16px;
+    line-height: 1.8;
+  }
+  .num-list li + li { border-top: 1px dashed var(--line-soft); }
+  .num-list li::before {
+    content: counter(item);
+    position: absolute;
+    left: 0;
+    top: 14px;
+    width: 26px;
+    height: 26px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: 700;
+    font-family: -apple-system, "Inter", sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .num-list strong { color: var(--ink); font-weight: 600; }
+
+  /* QUOTE */
+  .quote {
+    margin: 32px 0 0;
+    padding: 24px 28px;
+    background: var(--accent-soft);
+    border-radius: 12px;
+    color: var(--ink);
+    font-size: 18px;
+    line-height: 1.65;
+    border-left: 3px solid var(--accent);
+  }
+  .quote + .quote { margin-top: 16px; }
+  .quote-label {
+    display: block;
+    font-family: -apple-system, "Inter", sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+  .quote strong { font-weight: 700; }
+
+  /* PULL */
+  .pull {
+    padding: 24px 28px;
+    background: var(--ink);
+    color: var(--paper);
+    margin-bottom: 24px;
+    font-size: 16px;
+    line-height: 1.7;
+    border-radius: 12px;
+  }
+  .pull-label {
+    display: block;
+    font-family: -apple-system, "Inter", sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--accent-line);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+  .pull strong { color: var(--paper); font-weight: 600; }
+
+  /* DECISION GRID */
+  .grid {
+    background: var(--bg);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+  }
+  .grid-row {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    padding: 16px 22px;
+    border-bottom: 1px solid var(--line);
+    font-size: 15.5px;
+  }
+  .grid-row:last-child { border-bottom: none; }
+  .grid-row .k {
+    color: var(--muted);
+    font-size: 13px;
+    font-family: -apple-system, "Inter", sans-serif;
+    padding-top: 2px;
+  }
+  .grid-row .v { color: var(--ink-soft); line-height: 1.65; }
+
+  /* ROLE */
+  .role {
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 24px 26px;
+    margin-bottom: 16px;
+  }
+  .role:last-child { margin-bottom: 0; }
+  .role-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding-bottom: 14px;
+    margin-bottom: 6px;
+    border-bottom: 1px solid var(--line);
+  }
+  .role-header h3 { margin: 0; }
+  .role-tag {
+    font-family: -apple-system, "Inter", sans-serif;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  /* TASK */
+  .task {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 14px;
+    padding: 12px 0;
+    font-size: 15px;
+    color: var(--ink-soft);
+    line-height: 1.65;
+    border-bottom: 1px dashed var(--line-soft);
+  }
+  .task:last-child { border-bottom: none; }
+  .badge {
+    font-family: -apple-system, "Inter", sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding-top: 4px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .badge::before {
+    content: "";
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .badge.done { color: var(--muted); }
+  .badge.done::before { background: var(--muted); }
+  .badge.doing { color: var(--accent); }
+  .badge.doing::before { background: var(--accent); }
+  .badge.todo { color: var(--ink); }
+  .badge.todo::before { background: transparent; border: 1.5px solid var(--ink); }
+  .task-body .owner { color: var(--muted); font-size: 14px; margin-left: 4px; font-style: italic; }
+
+  /* NEXT */
+  .next {
+    background: var(--accent-soft);
+    border: 1px solid var(--accent-line);
+    border-radius: 12px;
+    padding: 26px 28px;
+  }
+  .next h3 {
+    color: var(--accent);
+    font-size: 17px;
+    margin-bottom: 18px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--accent-line);
+  }
+  .next-row {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    padding: 8px 0;
+    font-size: 15.5px;
+  }
+  .next-row .k {
+    color: var(--muted);
+    font-size: 13px;
+    font-family: -apple-system, "Inter", sans-serif;
+  }
+  .next-row .v { color: var(--ink); }
+
+  /* FOOTER */
+  footer {
+    margin-top: 32px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-family: -apple-system, "Inter", sans-serif;
+  }
+
+  @media (max-width: 640px) {
+    body { padding: 32px 14px; font-size: 15px; }
+    header, main { padding-left: 28px; padding-right: 28px; }
+    h1 { font-size: 26px; }
+    .grid-row, .task, .next-row { grid-template-columns: 1fr; gap: 4px; }
+    .meta { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <div class="eyebrow">执行会议 · 003</div>
+  <h1>直播电商 — 荣道清</h1>
+  <div class="sub">即梦 C4D 2.0 视频生成教学 · 视频脚本维度升级 · 产品主图生成新需求</div>
+  <div class="meta">
+    <div class="meta-item"><span class="k">时间</span><span class="v">2026-06-15</span></div>
+    <div class="meta-item"><span class="k">时长</span><span class="v">1 小时 8 分钟</span></div>
+    <div class="meta-item"><span class="k">陪跑老师</span><span class="v">Lion（林韩主讲即梦/生图）</span></div>
+    <div class="meta-item"><span class="k">客户参会</span><span class="v">荣道清 + 运营同学</span></div>
+  </div>
+</header>
+
+<main>
+
+<section>
+  <h2>本次会议干了什么</h2>
+  <ol class="num-list">
+    <li><strong>确认第二阶段入门。</strong>荣道清已掌握智能体写法——写了一个流程（把爆款复刻+创意生成合并进一个智能体），GPT 出脚本比编导手动拆片快得多，有明确提效体感。</li>
+    <li><strong>即梦 C4D 2.0 完整教学。</strong>林韩讲透视频生成模型参数：选 2.0 版本（不用 FAST）；全能参考（首尾帧/智能多帧）；参考素材权重视频&gt;图片&gt;提示词；时长必须匹配脚本长度；素材上传时命名+标注，在提示词中 @ 引用。「画质超高清」等是无效提示词。</li>
+    <li><strong>视频复刻脚本维度升级。</strong>客户现有剧情对话复刻 SOP 表格维度不够细，需补充：人物动作、场景、道具、服装、台词语气。让 AI 在对话里按这些维度拆解视频，磨好再封装智能体（输入视频→自动出带维度拍摄脚本）。</li>
+    <li><strong>即梦提示词逻辑讲透。</strong>C4D 2.0 适配中文+大白话叙事，按故事线推进；提示词让人脑海里能想象出画面才是好提示词；越精准，幻觉率越低——让 AI 没有牛角尖可钻。</li>
+    <li><strong>产品主图生成新需求。</strong>荣道清提出：测爆产品原始图不够用，重新拍摄周期长费钱，希望用 AI 基于详情页主图生成新主图。林韩现场介绍 GPT + Lovart 三步生图法，并约定提供生图提示词模板。</li>
+    <li><strong>约定下次课。</strong>网络卡顿导致即梦无法线上演示，下课自行实操。下次课定 2026-06-18（周三）下午 2 点，Lion 发链接到群。</li>
+  </ol>
+
+  <div class="quote">
+    <span class="quote-label">林韩金句 · 提示词精准</span>
+    提示词越精准，产出的视频幻觉率越低。<strong>让 AI 没有牛角尖可钻。</strong>
+  </div>
+
+  <div class="quote">
+    <span class="quote-label">林韩金句 · 表达严谨</span>
+    我们的表达够不够严谨？<strong>越严谨，AI 就越符合我们的预期。</strong>
+  </div>
+</section>
+
+<section>
+  <h2>本周核心决策</h2>
+
+  <div class="pull">
+    <span class="pull-label">节奏铁律</span>
+    先在对话里磨好维度和提示词，<strong>磨到产出脚本可以直接进即梦</strong>，再封装智能体。不追求一步到位。
+  </div>
+
+  <div class="grid">
+    <div class="grid-row"><div class="k">视频生成主力模型</div><div class="v">即梦 C4D 2.0（字节出品，抖音数据量强）；选 2.0 版本，不用 FAST；素材命名标注+时长匹配是出好视频关键</div></div>
+    <div class="grid-row"><div class="k">SOP 维度升级</div><div class="v">在剧情对话复刻 SOP 表格补充：人物动作 / 场景 / 道具 / 服装 / 台词语气，再用 AI 迭代提示词</div></div>
+    <div class="grid-row"><div class="k">图片生成工具栈</div><div class="v">优先 GPT，不满足再用 Lovart（内置 Claude，设计专用，约 50 美金/月 / 11000 积分档）；先试 GPT 汇报结果</div></div>
+    <div class="grid-row"><div class="k">生图三步逻辑</div><div class="v">① 解释清楚素材（命名/描述）② 告诉 AI 要模仿参考图生成 ③ 说清楚怎么做（角度/卖点/风格/色调）；一套图必须说"分别生成 N 张"</div></div>
+    <div class="grid-row"><div class="k">会期调整</div><div class="v">下次课 2026-06-18（周三）下午 2 点；后续固定会期从周六调整为周三</div></div>
+  </div>
+</section>
+
+<section>
+  <h2>落地清单</h2>
+
+  <div class="role">
+    <div class="role-header"><h3>客户侧</h3><span class="role-tag">荣道清 / 运营团队</span></div>
+    <div class="task"><div class="badge todo">待启动</div><div class="task-body">在剧情对话复刻 SOP 表格补充维度（人物动作/场景/道具/服装/台词语气），用 AI 迭代提示词<span class="owner">— 荣道清</span></div></div>
+    <div class="task"><div class="badge todo">待启动</div><div class="task-body">课后练习：通过智能体提示词打磨生成拍摄脚本，复制到即梦生成对应视频<span class="owner">— 荣道清</span></div></div>
+    <div class="task"><div class="badge todo">待启动</div><div class="task-body">准备产品多角度图（正/背/侧面）+ 3-8 张参考图，先用 GPT 生图实操，周三汇报<span class="owner">— 荣道清</span></div></div>
+    <div class="task"><div class="badge todo">待启动</div><div class="task-body">研究 Lovart 定价，注册账号（谷歌登录，支付宝购 11000 积分档），如 GPT 不满足需求<span class="owner">— 荣道清</span></div></div>
+  </div>
+
+  <div class="role">
+    <div class="role-header"><h3>陪跑团队侧</h3><span class="role-tag">Lion / 林韩</span></div>
+    <div class="task"><div class="badge todo">待启动</div><div class="task-body">提供生图提示词模板（GPT/Lovart 生成详情页主图用）<span class="owner">— 林韦韩</span></div></div>
+    <div class="task"><div class="badge todo">待启动</div><div class="task-body">发送周三下午 2 点会议链接到群里<span class="owner">— Lion</span></div></div>
+  </div>
+
+  <div class="role">
+    <div class="role-header"><h3>本次会议已完成</h3><span class="role-tag">Closed</span></div>
+    <div class="task"><div class="badge done">完成</div><div class="task-body">确认客户已掌握智能体写法，GPT 出脚本有明确提效体感</div></div>
+    <div class="task"><div class="badge done">完成</div><div class="task-body">林韩完整讲透即梦 C4D 2.0 视频生成参数逻辑</div></div>
+    <div class="task"><div class="badge done">完成</div><div class="task-body">讲清楚视频复刻脚本维度补充方向（人物动作/场景/道具/服装/台词语气）</div></div>
+    <div class="task"><div class="badge done">完成</div><div class="task-body">林韩现场介绍 GPT/Lovart 生图三步逻辑，约定提供生图提示词模板</div></div>
+    <div class="task"><div class="badge done">完成</div><div class="task-body">约定下次课 2026-06-18（周三）下午 2 点</div></div>
+  </div>
+</section>
+
+<section>
+  <h2>下次会议方向</h2>
+  <div class="next">
+    <h3>GPT 生图结果 + 即梦完整链路实操</h3>
+    <div class="next-row"><span class="k">触发条件</span><span class="v">客户完成 GPT 生图实操（素材准备 + 用林韩提示词模板试用）；视频脚本提示词持续打磨</span></div>
+    <div class="next-row"><span class="k">预计时间</span><span class="v">2026-06-18（周三）下午 2 点（Lion 发链接到群）</span></div>
+    <div class="next-row"><span class="k">会议内容</span><span class="v">① 核对 GPT 生图效果（是否满足主图需求）；② 真实演示即梦完整链路（视频→脚本→即梦→成片）；③ 解决网络问题后的实操演练</span></div>
+  </div>
+</section>
+
+</main>
+
+<footer>正心 AI 陪跑项目 — 第 9 期 — Lion 组 — 2026.06.15</footer>
+
+</div>
+</body>
+</html>
