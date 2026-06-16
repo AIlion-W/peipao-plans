@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>鸿星尔克-蒋成楠 · 执行-005 会议总结</title>
+<style>
+  :root {
+    --bg: #F5F4ED;
+    --paper: #FAF9F5;
+    --ink: #2D2A26;
+    --ink-soft: #4A4742;
+    --muted: #8C8579;
+    --line: #E8E4D8;
+    --line-soft: #EFEBE0;
+    --accent: #C96442;
+    --accent-soft: #F4E4DA;
+    --accent-line: #E5BFAB;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body {
+    font-family: ui-serif, "Iowan Old Style", "Songti SC", "Source Han Serif SC", "Noto Serif CJK SC", "PingFang SC", Georgia, serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.75;
+    padding: 56px 20px 80px;
+    font-size: 16px;
+  }
+  .sans {
+    font-family: -apple-system, "Inter", "PingFang SC", "Helvetica Neue", sans-serif;
+  }
+  .container { max-width: 760px; margin: 0 auto; }
+
+  /* HEADER */
+  header {
+    background: var(--paper);
+    padding: 56px 56px 44px;
+    border-radius: 16px 16px 0 0;
+    border: 1px solid var(--line);
+    border-bottom: none;
+  }
+  .eyebrow {
+    font-family: -apple-system, "Inter", sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    color: var(--accent);
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 6px; height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    display: inline-block;
+  }
+  h1 {
+    font-size: 34px;
+    color: var(--ink);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+    margin-bottom: 14px;
+  }
+  .sub {
+    font-size: 16px;
+    color: var(--muted);
+    margin-bottom: 36px;
+    font-style: italic;
+  }
+  .meta {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 20px 32px;
+    padding-top: 28px;
+    border-top: 1px solid var(--line);
+  }
+  .meta-item { font-family: -apple-system, "Inter", sans-serif; font-size: 14px; }
+  .meta-item .k {
+    display: block;
+    color: var(--muted);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .meta-item .v { color: var(--ink); font-weight: 500; }
+
+  /* MAIN */
+  main {
+    background: var(--paper);
+    padding: 8px 56px 56px;
+    border-radius: 0 0 16px 16px;
+    border: 1px solid var(--line);
+    border-top: none;
+  }
+  section { padding: 36px 0; border-bottom: 1px solid var(--line-soft); }
+  section:last-child { border-bottom: none; padding-bottom: 12px; }
+
+  h2 {
+    font-family: -apple-system, "Inter", sans-serif;
+    font-size: 11px;
+    color: var(--accent);
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  h3 {
+    font-size: 17px;
+    color: var(--ink);
+    font-weight: 600;
+    margin-bottom: 14px;
+    letter-spacing: -0.005em;
+  }
+
+  /* LISTS */
+  ol, ul { padding-left: 0; list-style: none; }
+  .num-list { counter-reset: item; }
+  .num-list li {
+    counter-increment: item;
+    position: relative;
+    padding: 10px 0 10px 40px;
+    color: var(--ink-soft);
+    font-size: 16px;
+    line-height: 1.8;
+  }
+  .num-list li + li { border-top: 1px dashed var(--line-soft); }
+  .num-list li::before {
+    content: counter(item);
+    position: absolute;
+    left: 0;
+    top: 14px;
+    width: 26px;
+    height: 26px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: 700;
+    font-family: -apple-system, "Inter", sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .num-list strong { color: var(--ink); font-weight: 600; }
+
+  /* QUOTE */
+  .quote {
+    margin: 32px 0 0;
+    padding: 24px 28px;
+    background: var(--accent-soft);
+    border-radius: 12px;
+    color: var(--ink);
+    font-size: 18px;
+    line-height: 1.65;
+    border-left: 3px solid var(--accent);
+  }
+  .quote-label {
+    display: block;
+    font-family: -apple-system, "Inter", sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+  .quote strong { font-weight: 700; }
+
+  /* PULL */
+  .pull {
+    padding: 24px 28px;
+    background: var(--ink);
+    color: var(--paper);
+    margin-bottom: 24px;
+    font-size: 16px;
+    line-height: 1.7;
+    border-radius: 12px;
+  }
+  .pull-label {
+    display: block;
+    font-family: -apple-system, "Inter", sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--accent-line);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+  .pull strong { color: var(--paper); font-weight: 600; }
+
+  /* DECISION GRID */
+  .grid {
+    background: var(--bg);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+  }
+  .grid-row {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    padding: 16px 22px;
+    border-bottom: 1px solid var(--line);
+    font-size: 15.5px;
+  }
+  .grid-row:last-child { border-bottom: none; }
+  .grid-row .k {
+    color: var(--muted);
+    font-size: 13px;
+    font-family: -apple-system, "Inter", sans-serif;
+    padding-top: 2px;
+  }
+  .grid-row .v { color: var(--ink-soft); line-height: 1.65; }
+
+  /* ROLE */
+  .role {
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 24px 26px;
+    margin-bottom: 16px;
+  }
+  .role:last-child { margin-bottom: 0; }
+  .role-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding-bottom: 14px;
+    margin-bottom: 6px;
+    border-bottom: 1px solid var(--line);
+  }
+  .role-header h3 { margin: 0; }
+  .role-tag {
+    font-family: -apple-system, "Inter", sans-serif;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  /* TASK */
+  .task {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 14px;
+    padding: 12px 0;
+    font-size: 15px;
+    color: var(--ink-soft);
+    line-height: 1.65;
+    border-bottom: 1px dashed var(--line-soft);
+  }
+  .task:last-child { border-bottom: none; }
+  .badge {
+    font-family: -apple-system, "Inter", sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding-top: 4px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .badge::before {
+    content: "";
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .badge.done { color: var(--muted); }
+  .badge.done::before { background: var(--muted); }
+  .badge.doing { color: var(--accent); }
+  .badge.doing::before { background: var(--accent); }
+  .badge.todo { color: var(--ink); }
+  .badge.todo::before { background: transparent; border: 1.5px solid var(--ink); }
+  .task-body .owner { color: var(--muted); font-size: 14px; margin-left: 4px; font-style: italic; }
+
+  /* NEXT */
+  .next {
+    background: var(--accent-soft);
+    border: 1px solid var(--accent-line);
+    border-radius: 12px;
+    padding: 26px 28px;
+  }
+  .next h3 {
+    color: var(--accent);
+    font-size: 17px;
+    margin-bottom: 18px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--accent-line);
+  }
+  .next-row {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    padding: 8px 0;
+    font-size: 15.5px;
+  }
+  .next-row .k {
+    color: var(--muted);
+    font-size: 13px;
+    font-family: -apple-system, "Inter", sans-serif;
+  }
+  .next-row .v { color: var(--ink); }
+
+  /* FOOTER */
+  footer {
+    margin-top: 32px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-family: -apple-system, "Inter", sans-serif;
+  }
+
+  @media (max-width: 640px) {
+    body { padding: 32px 14px; font-size: 15px; }
+    header, main { padding-left: 28px; padding-right: 28px; }
+    h1 { font-size: 26px; }
+    .grid-row, .task, .next-row { grid-template-columns: 1fr; gap: 4px; }
+    .meta { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <div class="eyebrow">执行会议 · 005</div>
+  <h1>鸿星尔克 — 蒋成楠</h1>
+  <div class="sub">商品卡智能体提示词打磨 · 从出图到迭代闭环的认知跃迁</div>
+  <div class="meta">
+    <div class="meta-item"><span class="k">时间</span><span class="v">2026-06-16</span></div>
+    <div class="meta-item"><span class="k">时长</span><span class="v">1 小时 6 分钟</span></div>
+    <div class="meta-item"><span class="k">陪跑老师</span><span class="v">Lion</span></div>
+    <div class="meta-item"><span class="k">客户参会</span><span class="v">侯帅康、戴俊贤、蒋成楠（后半段）</span></div>
+  </div>
+</header>
+
+<main>
+
+<section>
+  <h2>本次会议干了什么</h2>
+  <ol class="num-list">
+    <li><strong>侯帅康屏幕共享全程复盘。</strong>展示了上周用智能体跑的七八轮对话，从拆解上架图优化点→生成三个方案→裂变图片→跑去即梦→回 GPT 继续改，完整展示了真实执行路径和卡点所在。</li>
+    <li><strong>Lion 逐一点破对话方式的问题。</strong>说"杂乱/太丑了"是无效反馈——AI 需要具体描述哪个元素/哪种配色/什么比例；批量出三张再批量改会让 AI 混乱；负反馈一次只说一个浪费对话轮次；发现不满意后切新对话框会丢失上下文。</li>
+    <li><strong>确立提示词迭代闭环。</strong>目标不是出一张好图，而是每次对话结束让 AI 汇总优化需求，输出 MD 格式完整提示词，更新到智能体指令层，每天至少一个版本，飞书记录。</li>
+    <li><strong>戴俊贤说明商品卡赛马机制。</strong>同一商品裂变三条链接分别打卖点型/价格型/场景类型，后台跑数据，哪种类型好就定位为该鞋款主图方向——这是智能体批量生产的业务底层逻辑。</li>
+    <li><strong>蒋总后半段入会定规矩。</strong>群里没有问题就是最大的问题；从今天起设立硬性指标——每天迭代一版提示词，飞书记录，Lion 监督，执行不到位 @蒋总本人；蒋总亲自接了两个作业。</li>
+  </ol>
+
+  <div class="quote">
+    <span class="quote-label">蒋成楠 · 原话</span>
+    今天老师请进来，老师时间是有限的，一共两个月，<strong>现在已经过去一半了。</strong>老板请花钱把老师请进来，老师哼哧哼哧地上课，把饭端在你面前——这种我很难接受。
+  </div>
+</section>
+
+<section>
+  <h2>本周核心决策</h2>
+
+  <div class="pull">
+    <span class="pull-label">节奏铁律</span>
+    每次对话结束，<strong>让 AI 汇总你的负反馈，输出优化后的完整提示词（MD 格式），发给 Lion，更新到智能体。每天至少迭代一版。</strong>
+  </div>
+
+  <div class="grid">
+    <div class="grid-row"><div class="k">执行硬指标</div><div class="v">侯帅康每天至少迭代一版提示词，记录在飞书表格，发到群</div></div>
+    <div class="grid-row"><div class="k">监督机制</div><div class="v">Lion 每天查飞书更新记录，发现执行不到位即 @蒋总</div></div>
+    <div class="grid-row"><div class="k">聚焦原则</div><div class="v">前期只深耕一个智能体，不分散到多个；有限时间要往深打</div></div>
+    <div class="grid-row"><div class="k">赛马机制</div><div class="v">同商品裂变三条链接：卖点型 / 价格型 / 场景类型，后台数据定位鞋款主图方向</div></div>
+  </div>
+</section>
+
+<section>
+  <h2>落地清单</h2>
+
+  <div class="role">
+    <div class="role-header"><h3>侯帅康 · 执行同学</h3><span class="role-tag">商品卡</span></div>
+    <div class="task"><div class="badge doing">进行中</div><div class="task-body">每天至少迭代一版智能体提示词，飞书表格记录，发到群（<strong>硬性指标</strong>）<span class="owner">— 侯帅康</span></div></div>
+    <div class="task"><div class="badge todo">待启动</div><div class="task-body">完成首次完整迭代闭环：本次对话→AI汇总负反馈→输出MD提示词→发Lion→更新智能体→验证出图效果<span class="owner">— 侯帅康</span></div></div>
+    <div class="task"><div class="badge todo">待启动</div><div class="task-body">自建爆款主图裂变智能体（按四段结构：身份层/方法层/执行层/使用边界），从通用智能体迭代出专属版<span class="owner">— 侯帅康</span></div></div>
+    <div class="task"><div class="badge todo">待启动</div><div class="task-body">深度分析爆款图：拆为什么爆（卖点/人群/场景/视觉维度），数据做表格，再让 AI 补充提示词<span class="owner">— 侯帅康</span></div></div>
+  </div>
+
+  <div class="role">
+    <div class="role-header"><h3>蒋成楠 · 老板</h3><span class="role-tag">管理 + 老板作业</span></div>
+    <div class="task"><div class="badge todo">待启动</div><div class="task-body">观看花花老师上周公开课（AI 如何落地到具体业务中 · 全局视角）<span class="owner">— 蒋成楠（已接作业）</span></div></div>
+    <div class="task"><div class="badge todo">待启动</div><div class="task-body">看完后整理智能体表格（场景 / 解决什么问题 / 要到什么样的结果 / 预期）<span class="owner">— 蒋成楠</span></div></div>
+  </div>
+
+  <div class="role">
+    <div class="role-header"><h3>Lion · 陪跑老师</h3><span class="role-tag">Lion 组</span></div>
+    <div class="task"><div class="badge todo">待启动</div><div class="task-body">课后整理本次指导要点，输出优化提示词方法给商品卡同学<span class="owner">— Lion</span></div></div>
+    <div class="task"><div class="badge doing">进行中</div><div class="task-body">每天查看飞书提示词更新记录，执行不到位即 @蒋成楠<span class="owner">— Lion</span></div></div>
+    <div class="task"><div class="badge todo">再次挂账</div><div class="task-body">会后发会议回放 + 执行清单到群（三次挂账）<span class="owner">— Lion</span></div></div>
+  </div>
+
+  <div class="role">
+    <div class="role-header"><h3>本次会议已完成</h3><span class="role-tag">Closed</span></div>
+    <div class="task"><div class="badge done">完成</div><div class="task-body">侯帅康演示完整智能体实操对话过程，暴露出真实卡点</div></div>
+    <div class="task"><div class="badge done">完成</div><div class="task-body">Lion 逐一点破并讲清五大对话问题（模糊/批量/不完整/换框/绕路）</div></div>
+    <div class="task"><div class="badge done">完成</div><div class="task-body">确立每日提示词迭代闭环机制，硬性指标设立</div></div>
+  </div>
+</section>
+
+<section>
+  <h2>下次会议方向</h2>
+  <div class="next">
+    <h3>提示词迭代成果验收 + 赛马机制启动</h3>
+    <div class="next-row"><span class="k">触发条件</span><span class="v">侯帅康完成至少一个完整迭代闭环，有新版提示词可对比</span></div>
+    <div class="next-row"><span class="k">验收内容</span><span class="v">飞书迭代记录 · 优化前后出图效果对比 · 蒋总智能体表格</span></div>
+    <div class="next-row"><span class="k">推进方向</span><span class="v">评估是否可开始赛马机制测试（三类型主图裂变上架）</span></div>
+  </div>
+</section>
+
+</main>
+
+<footer>正心 AI 陪跑项目 — 第 9 期 — Lion 组 — 2026.06.16</footer>
+
+</div>
+</body>
+</html>
