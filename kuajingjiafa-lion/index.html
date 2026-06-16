@@ -9,7 +9,7 @@
     --bg:#0b0d12; --panel:#141821; --line:#232936; --ink:#e8ecf3;
     --muted:#8a93a6; --accent:#ff6a00; --accent2:#ffb15c;
     --ok:#2ecc71; --doing:#f1c40f; --todo:#5b6577;
-    --brand:#7b2ff7;
+    --brand:#e30613;
   }
   *{box-sizing:border-box}
   body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.7}
@@ -48,6 +48,10 @@
   .timeline{position:relative;margin-top:8px;border-left:2px solid var(--line);padding-left:22px}
   .tl-item{position:relative;padding:14px 16px 14px 8px;background:var(--panel);border:1px solid var(--line);border-radius:10px;margin-bottom:14px}
   .tl-item::before{content:"";position:absolute;left:-31px;top:20px;width:12px;height:12px;background:var(--accent);border-radius:50%;border:3px solid var(--bg)}
+  .tl-item.done-item{border-color:#2ecc7144;background:#0f1e16}
+  .tl-item.done-item::before{background:var(--ok)}
+  .tl-item.now-item{border-color:var(--accent);background:linear-gradient(135deg,#1e1208,#141821)}
+  .tl-item.now-item::before{background:var(--accent)}
   .tl-item .wk{display:inline-block;background:#2c3340;color:#cdd3df;padding:2px 10px;border-radius:6px;font-size:12px;margin-right:8px}
   .tl-item h4{margin:0 0 6px;font-size:16px}
   .tl-item ul{margin:6px 0 0 18px;padding:0;font-size:13.5px;color:#cdd3df}
@@ -91,131 +95,129 @@
   <section class="hero">
     <div>
       <div>
-        <span class="tag">跨境假发 · 美区黑人真人发蕾丝头套</span>
-        <span class="tag gray">独立站 + 亚马逊 + TK · 工厂供应链</span>
+        <span class="tag">跨境假发 · Amanda hair</span>
+        <span class="tag gray">美区黑人真人发蕾丝头套 · 亚马逊 + 独立站双渠道</span>
       </div>
       <h1>李总，这是接下来 2 个月我们一起跑的路</h1>
-      <div class="sub">陪跑客户：李德奎 · 陪跑老师：Lion（莱恩） · 项目经理：待补充 · 启动日：2026-06-06</div>
+      <div class="sub">陪跑客户：李德奎 · 陪跑老师：Lion · 助教：林韩 / 考拉 · 启动日：2026-06-06</div>
     </div>
-    <div class="sub">版本 v1 · 2026-06-06</div>
+    <div class="sub">版本 v2 · 2026-06-16</div>
   </section>
 
-  <!-- 4 个关键卡片 -->
   <div class="meta">
-    <div class="card"><div class="k">业务模型</div><div class="v">美区黑人真人发蕾丝头套，独立站（2 站月 130 万美金）+ 亚马逊（月 200 万美金），自有工厂</div></div>
-    <div class="card"><div class="k">团队杠杆</div><div class="v">亚马逊 3 组≤10 人；独立站 2 站各有负责人；标准同学统筹 TK + 独立站 Amanda 站（7 年老员工）</div></div>
-    <div class="card"><div class="k">当前瓶颈</div><div class="v">素材端成本极高——单产品红人素材可达 500 美金，量不足、本地内容人才稀缺、自制素材受模特/面孔/发丝多重局限</div></div>
-    <div class="card"><div class="k">核心打法</div><div class="v">「找一个着力点，先把一个点做好」——老板肯放权配合：「你直接要求我去做就行了，我肯定配合」</div></div>
+    <div class="card"><div class="k">业务模型</div><div class="v">亚马逊月销 200 万美金 + 独立站 2 站月销 130 万美金；许昌自有工厂，真人发为主</div></div>
+    <div class="card"><div class="k">团队杠杆</div><div class="v">~100 人团队，工厂供应链极强；内容端薄弱，许昌+深圳双城协作，AI 补内容人才密度</div></div>
+    <div class="card"><div class="k">当前最大卡点</div><div class="v">单产品红人素材成本高达 500 美金；每月找 35-40 个红人；本地黑人模特难找，亚裔面孔影响平台受众</div></div>
+    <div class="card"><div class="k">陪跑核心共识</div><div class="v">"AI 擅长复刻和复制已在市场拿到结果的东西，先做素材补充，验证后再横向铺开"</div></div>
   </div>
 
   <!-- ============ 一、AI 认知 ============ -->
   <h2>一、先建立对 AI 的正确认知</h2>
-  <p class="sub">你们的工厂强在原料采购、生产经验、产品开发，弱在销售端——独立站经验、品牌理解跟不上，导致散单为主、爆款不集中。素材端是这个短板的最痛处：找红人寄样一个假发 100-150 美金、合作费 100-500 美金，单条素材成本可达 500 美金，而且优质素材量还不够。AI 不是凭空造素材，而是<strong>把市场上已经验证过的爆款素材当模板，复刻出你国内拍不出来的国外模特素材</strong>——花花老师在会上说得很清楚：「AI 最擅长的是复刻和复制，不是凭空生成，而是找到那些已经在市场上拿到过结果的东西，让 AI 去分析它成功在哪里，再来做复制。」</p>
+  <p class="sub">李总的工厂积累了多年生产工艺，今天我们做的事情和当年工厂提升工艺是同一个逻辑——把"在市场验证过的打法"固化成可复制的流程。AI 在这里扮演的不是"创意天才"，而是"复刻机器"：把你们已经跑通的爆款图、爆款视频、爆款卖点，批量复制到新产品、新场景、新渠道上。</p>
 
-  <h3>AI 成熟度 7 阶段 · 李总当前位置</h3>
+  <h3>AI 成熟度 7 阶段 · 李总团队当前位置</h3>
   <div class="ladder">
-    <div class="step done"><span class="badge">✓ 已过</span><div class="n">阶段 1</div><div class="t">基础对话</div><div class="d">老板个人在用「猫课」，觉得好用。</div></div>
-    <div class="step done"><span class="badge">✓ 已过</span><div class="n">阶段 2</div><div class="t">结构化要求</div><div class="d">独立站图片已经开始用 AI 制作。</div></div>
-    <div class="step now"><span class="badge">▶ 你在这</span><div class="n">阶段 3</div><div class="t">爆款模仿 + 工具尝试</div><div class="d">图片在试 AI，视频曾因「头发丝精度差距」放弃；还没自己的 GPT 账号、没有方法体系，「不知道 AI 到底能给我们做什么」。</div></div>
-    <div class="step target"><span class="badge">W1-W2</span><div class="n">阶段 4</div><div class="t">反推提示词</div><div class="d">拉 Meta 后台高消耗爆款素材做参照系，AI 在有锚点的空间里生成。</div></div>
-    <div class="step target"><span class="badge">W3-W4</span><div class="n">阶段 5</div><div class="t">系统提示词</div><div class="d">有角色、有目标、有限制的 AI 图片素材智能体雏形。</div></div>
-    <div class="step target"><span class="badge">W5-W6</span><div class="n">阶段 6</div><div class="t">Skill 工作化</div><div class="d">把素材生产 SOP 打包成可调用的 Skill。</div></div>
-    <div class="step target"><span class="badge">W7-W8</span><div class="n">阶段 7</div><div class="t">业务系统化</div><div class="d">图片+视频+爆款分析串成素材生产线，复刻到 TK / 亚马逊。</div></div>
+    <div class="step done"><span class="badge">✓ 已过</span><div class="n">阶段 1</div><div class="t">基础对话</div><div class="d">知道 GPT/Claude，老板个人在用猫课，偶尔用一下。</div></div>
+    <div class="step done"><span class="badge">✓ 已过</span><div class="n">阶段 2</div><div class="t">结构化要求</div><div class="d">独立站已开始用 AI 图片；张兆清能让 AI 写简单需求，但每次重来。</div></div>
+    <div class="step now"><span class="badge">▶ 你在这</span><div class="n">阶段 3</div><div class="t">爆款模仿 + 工具尝试</div><div class="d">开始构建主图智能体，但提示词精度不够（颜色/发型变化），尚未完成第一轮闭环迭代。</div></div>
+    <div class="step target"><span class="badge">W4-W5</span><div class="n">阶段 4</div><div class="t">反推提示词</div><div class="d">以自家 + 竞品爆款图为锚点，让 AI 在有参照系的空间里生成，负反馈写进指令迭代。</div></div>
+    <div class="step target"><span class="badge">W5-W6</span><div class="n">阶段 5</div><div class="t">系统提示词</div><div class="d">有角色、有产品方法论、有产出约束的专属智能体，白底图→真人场景图可批量跑。</div></div>
+    <div class="step target"><span class="badge">W6-W7</span><div class="n">阶段 6</div><div class="t">Skill 工作化</div><div class="d">把假发图片和视频两套智能体打包成可调用的 Skill，团队人人能触发。</div></div>
+    <div class="step target"><span class="badge">W8</span><div class="n">阶段 7</div><div class="t">业务系统化</div><div class="d">从选品到素材到投放，全链路由 AI 主导。红人费用降 50%+，月素材产出量翻倍。</div></div>
   </div>
 
   <h3>对应你公司的 5 个层</h3>
   <div class="grid5">
-    <div class="m"><div class="h">① 身份层</div><div class="b">让 AI 记住跨境假发的品牌定位：美区黑人女性、真人发蕾丝头套、Amanda hair 站调性、款式（蕾丝/无胶/机制款）。</div><div class="now">起点：公司开 GPT 账号 + 老板听「个人 AI 共生」课</div></div>
-    <div class="m"><div class="h">② 知识层</div><div class="b">把 Meta 后台高消耗爆款素材 + 数据、低效素材对照、达人爆款、产品款式库喂给 AI。</div><div class="now">起点：先拉独立站 LB 10-15 个高/低消耗素材做表格</div></div>
-    <div class="m"><div class="h">③ 工具层</div><div class="b">3 个智能体：AI 图片素材 → AI 视频素材 → 爆款素材分析（锚点引擎）。</div><div class="now">起点：先做 Meta/Facebook 图文 AI 图片智能体</div></div>
-    <div class="m"><div class="h">④ 协作层</div><div class="b">独立站 LB 跑通后，同一套智能体复刻到 TK、亚马逊；跨 2 个独立站 + 3 个亚马逊组复用。</div><div class="now">先单试点，标准同学牵头主导</div></div>
-    <div class="m"><div class="h">⑤ 场景层</div><div class="b">素材生产线：把「红人寄样 500 美金/条」变成「AI 批量产出 + 市场验证」，覆盖图文 + 视频，反哺 Meta 投放。</div><div class="now">终态：素材端降本 + 提量 + 补充</div></div>
+    <div class="m"><div class="h">① 身份层</div><div class="b">让 AI 记住：美区黑人真人发蕾丝头套品牌、独立站+亚马逊双渠道、产品细节极敏感（发丝/肤色/蕾丝/场景代入感）</div><div class="now">起点：张兆清正在构建产品身份档案</div></div>
+    <div class="m"><div class="h">② 知识层</div><div class="b">Meta 后台高跑量素材（按消耗降序）、同行/跨界爆款图、假发行业方法论（真实感/黑人化脸型/高发量/生活化场景）</div><div class="now">状态：首批高表现素材已展示，结构化素材库待补齐</div></div>
+    <div class="m"><div class="h">③ 工具层</div><div class="b">爆款图拆解/裂变智能体 → 白底图转真人场景图智能体 → AI 视频素材智能体（三阶段递进，每阶段内部还需拆分）</div><div class="now">状态：智能体清单待老板听完第 10 节课后输出</div></div>
+    <div class="m"><div class="h">④ 协作层</div><div class="b">智能体打包成 Skill，许昌+深圳两地团队共享同一套 AI 方法论；亚马逊/TK/独立站三渠道横向复用</div><div class="now">目标：W8 跑通后横向复制到其他站点</div></div>
+    <div class="m"><div class="h">⑤ 场景层</div><div class="b">每张新素材从拆解到生成到投放全由 AI 主导；红人费用从月 35-40 个降至辅助量级；月素材产出从依赖人工变为 AI 批产</div><div class="now">终态：素材端 AI 成本结构重构</div></div>
   </div>
 
   <!-- ============ 二、智能体 ============ -->
-  <h2>二、要搭建的 3 个智能体（按首战板块优先级）</h2>
-  <p class="sub">会上达成的共识：第一阶段聚焦素材端，亚马逊运营类智能体先不作为重点；先以独立站 LB（Amanda hair 站）为试点，<strong>先图片、后视频</strong>，跑通一个模块再横向铺开。所以智能体按「图片 → 视频 → 爆款分析引擎」推进，第三个是给前两个供锚点、并能跨渠道复用的底座。</p>
+  <h2>二、要搭建的 3 个智能体方向（按首战板块优先级）</h2>
+  <p class="sub">这三个方向来自 2026-06-06 场景确认会议共识：先以图片为核心做 AI 素材（替代国外模特素材），产出 OK 后再做视频素材。注意：每个大方向内部还需进一步拆分成独立子智能体（审美分析/场景图/卖点/合主图各做各的），贪多嚼不烂，按顺序推进。</p>
 
   <div class="threecol">
-    <!-- 智能体 ① -->
     <div class="col">
-      <h4>① AI 图片素材智能体（Meta/Facebook 图文）</h4>
-      <div class="pain">痛点：李总自述「一个假发成本 100-150 美元，跟红人合作 100-500，加起来可能得 500 美金……所以我想借助 AI 这种工具看能不能提高一下」；亚裔面孔出镜影响账号受众，本地黑人模特又难找。</div>
-      <div class="row"><b>角色设定</b>：跨境假发 Meta 图文素材设计师，懂黑人女性蕾丝头套审美 + Meta 图文爆款结构。</div>
-      <div class="row"><b>输入</b>：高消耗爆款图片 + 数据、产品款式信息、目标人群。</div>
-      <div class="row"><b>输出</b>：可直接投 Meta/Facebook 的图文素材（替代国外模特拍摄）。</div>
-      <div class="row"><span class="pill">阶段 5</span><span class="pill">W3-W4</span><span class="pill">首战</span></div>
+      <h4>① 爆款主图拆解/裂变</h4>
+      <div class="pain">痛点：李总自述"找红人特别贵，假发样品 100-150 美元加上红人合作费，单产品成本可达 500 美金，每月要找 35-40 个红人，行业极卷"。核心是缺乏从爆款图中提炼可复刻成交逻辑的能力。</div>
+      <div class="row"><b>角色设定</b>：跨境假发电商资深图片策划，精通美区黑人美发市场，专门分析爆款图片并产出可复刻的裂变方案</div>
+      <div class="row"><b>输入</b>：自家/同行/跨界爆款图片 + 产品信息 + 目标平台（Meta 独立站 LB）</div>
+      <div class="row"><b>输出</b>：爆款图拆解报告（构图/场景/卖点/颜色分析）+ 3-5 个裂变方向 + 生成图初稿</div>
+      <div class="row"><span class="pill">首战板块</span><span class="pill">W4-W5</span><span class="pill">图片优先</span></div>
     </div>
-    <!-- 智能体 ② -->
     <div class="col">
-      <h4>② AI 视频素材智能体（Meta 视频）</h4>
-      <div class="pain">痛点：找红人视频「费用特别高、优质素材和视频量不够、内容也不行」；许昌本地几乎没有做内容的商家，自制视频局限大。共识是不做纯 AI、要 AI+真人混剪。</div>
-      <div class="row"><b>角色设定</b>：以爆款模板为基底的视频素材补充师（前 3 秒钩子→产品特写→达人/场景混剪）。</div>
-      <div class="row"><b>输入</b>：图片素材 + 达人原素材 + 爆款视频结构模板。</div>
-      <div class="row"><b>输出</b>：结构化视频素材（分镜补充剪进达人素材，而非纯 AI）。</div>
-      <div class="row"><span class="pill">阶段 5-6</span><span class="pill">W5-W6</span></div>
+      <h4>② 白底图→真人场景图</h4>
+      <div class="pain">痛点："本地黑人模特难找且配合度低；亚裔面孔出镜影响平台受众；假发非标、精确到发丝、拍摄局限大"——这个智能体的目标就是用 AI 替代国外模特素材。</div>
+      <div class="row"><b>角色设定</b>：专业 AI 图片生成导演，专注美区黑人假发模特场景图，保持产品细节（发丝/发色/蕾丝）不变，改变模特和场景</div>
+      <div class="row"><b>输入</b>：头模/白底图 + 场景要求（黑人化脸型/肤色/生活化场景/动作）+ 假发产品描述</div>
+      <div class="row"><b>输出</b>：真人模特佩戴同款假发的生活化场景图；负反馈 → 指令迭代闭环</div>
+      <div class="row"><span class="pill">W5-W6</span><span class="pill">核心降本点</span></div>
     </div>
-    <!-- 智能体 ③ -->
     <div class="col">
-      <h4>③ 爆款素材分析智能体（锚点引擎）</h4>
-      <div class="pain">痛点：团队对内容创作「基本没什么认知」，不知道什么素材能跑量。花花的方法论：AI 复刻已经拿到结果的东西，先分析成功概率在哪，再复制。</div>
-      <div class="row"><b>角色设定</b>：Meta/TK 素材数据分析师，按消耗降序拆解高消耗素材成功要素、升序盘点低效素材避坑。</div>
-      <div class="row"><b>输入</b>：Meta 后台消耗排序表（高消耗 + 10-15 个低效素材及数据）。</div>
-      <div class="row"><b>输出</b>：爆款要素拆解 + 投喂给 ①② 的素材模板锚点；可复用到 TK / 亚马逊。</div>
-      <div class="row"><span class="pill">阶段 6</span><span class="pill">W2 起贯穿</span></div>
+      <h4>③ AI 视频素材</h4>
+      <div class="pain">痛点："视频素材量不够，常重复剪辑旧素材；许昌当地内容创作/剪辑人才稀缺，团队对内容创作几乎无认知"。视频曾因效果差未做，图片稳定后启动。</div>
+      <div class="row"><b>角色设定</b>：Meta 跨境视频策划，以爆款视频结构为基底，AI 生成画面 + 真人口播/旁白混剪</div>
+      <div class="row"><b>输入</b>：爆款视频模板（结构/节奏/钩子）+ 产品场景图 + 卖点文案</div>
+      <div class="row"><b>输出</b>：可投放的 AI+真人混剪视频素材；按爆款结构批量产出不同产品/场景版本</div>
+      <div class="row"><span class="pill">阶段 6</span><span class="pill">W7-W8</span><span class="pill">图片稳定后启动</span></div>
     </div>
   </div>
 
   <!-- ============ 三、Skills ============ -->
   <h2>三、把智能体打包成 Skill（团队人人能用，跨场景复用）</h2>
-  <p class="sub">你们是项目制 / 类中台逻辑：一个站负责人下面带广告、谷歌、社媒、红人、客服一群人。把智能体打包成一句 <code>/触发词</code>，标准同学带的团队就能人人调用——独立站 LB 跑通的同一套能力，可以平移到另一个独立站、TK 小店、3 个亚马逊组。</p>
+  <p class="sub">Skill 就是你们工厂的"工艺 SOP"——不是每次都重新教新员工，而是把标准动作固化下来。张兆清用一次之后，下一个同学输一个词就能复用，许昌和深圳的团队共享一套 AI 方法论。</p>
 
   <div class="threecol">
     <div class="col">
-      <h4>Skill 1 · 图文素材生成</h4>
-      <div class="row">触发词：<code style="color:var(--accent2)">/假发图文素材</code></div>
-      <div class="row">能力：输入产品 + 爆款锚点 → 一键出 Meta/Facebook 图文素材。</div>
-      <div class="row">复用：独立站 LB → 另一独立站 → TK 图文 → 亚马逊主图变体。</div>
+      <h4>Skill 1 · 假发主图裂变</h4>
+      <div class="row">触发词：<code style="color:var(--accent2)">/假发主图裂变</code></div>
+      <div class="row">能力：输入任意一张爆款图（自家/同行/跨界），输出拆解报告 + 5 个裂变变体方向 + 生图初稿</div>
+      <div class="row">复用：Meta 图文、亚马逊主图、TK 封面 — 同一个 Skill 横向覆盖所有渠道</div>
     </div>
     <div class="col">
-      <h4>Skill 2 · 视频素材合成</h4>
+      <h4>Skill 2 · 假发场景图</h4>
+      <div class="row">触发词：<code style="color:var(--accent2)">/假发场景图</code></div>
+      <div class="row">能力：输入头模/白底图，输出黑人真人模特佩戴场景图；内置发丝/肤色/场景约束，不改变产品外观</div>
+      <div class="row">复用：每款新品上市直接跑，替代找模特；不同场景（街头/室内/海滩）一键切换</div>
+    </div>
+    <div class="col">
+      <h4>Skill 3 · 假发视频素材</h4>
       <div class="row">触发词：<code style="color:var(--accent2)">/假发视频素材</code></div>
-      <div class="row">能力：图片素材 + 达人素材 + 爆款模板 → 结构化混剪视频。</div>
-      <div class="row">复用：Meta 视频 → TK 视频 → YouTube 测试频道。</div>
-    </div>
-    <div class="col">
-      <h4>Skill 3 · 爆款素材拆解</h4>
-      <div class="row">触发词：<code style="color:var(--accent2)">/爆款素材拆解</code></div>
-      <div class="row">能力：拉后台消耗排序 → 拆高消耗成功要素 + 低效避坑表。</div>
-      <div class="row">复用：任何渠道、任何品类的素材库都能投喂。</div>
+      <div class="row">能力：输入爆款视频模板 + 产品图，输出结构化 AI+真人混剪素材脚本和分镜稿</div>
+      <div class="row">复用：爆款结构通用，产品图换一下，视频素材批量产出</div>
     </div>
   </div>
 
   <!-- ============ 四、工作流 + HTML ============ -->
-  <h2>四、把 Skills 串成工作流，产出可交付的 HTML 报告</h2>
-  <p class="sub">选「Meta 素材生产 + 验证周报」工作流，因为它正好串起会上定的三阶段：资料收集 → 素材生成 → 市场验证。老板不用看后台，每周拿一份 HTML 报告就知道 AI 素材跑得怎么样、值不值得扩量。</p>
+  <h2>四、把 Skills 串成工作流，产出可交付的素材报告</h2>
+  <p class="sub">图片素材批产工作流是第一个可以量化产出的闭环：每周花 2 小时用 AI，产出当周所有 Meta 测试图，全部留档追踪数据，好的加量，差的迭代指令。</p>
 
   <div class="demo">
-    <div style="font-size:13px;color:var(--muted)">工作流 · Meta 素材生产 + 验证周报（示例）</div>
+    <div style="font-size:13px;color:var(--muted)">工作流 · 每周 Meta 素材批产（示例）</div>
     <div class="flow">
-      <span class="node">📥 拉 Meta 后台消耗排序</span>
+      <span class="node">📸 本周爆款图/产品新款</span>
       <span class="arr">→</span>
-      <span class="node">🔍 /爆款素材拆解</span>
+      <span class="node">/假发主图裂变（拆解+方向）</span>
       <span class="arr">→</span>
-      <span class="node">🖼️ /假发图文素材</span>
+      <span class="node">筛选 Top 3 方向</span>
       <span class="arr">→</span>
-      <span class="node">🎬 /假发视频素材</span>
+      <span class="node">/假发场景图（批量生成）</span>
       <span class="arr">→</span>
-      <span class="node">📊 HTML 报告生成器</span>
+      <span class="node">张兆清质量审核</span>
       <span class="arr">→</span>
-      <span class="node">📧 推送李总 + 标准同学</span>
+      <span class="node">📊 本周素材报告</span>
+      <span class="arr">→</span>
+      <span class="node">📤 投放 Meta + 数据追踪</span>
     </div>
     <div class="out">
-      <b style="color:var(--accent2)">交付物示例（HTML 报告）</b><br>
-      • 本周 AI 素材产出量 vs 红人素材成本对比（一条红人素材 ≈ 500 美金 → AI 单条成本）<br>
-      • 高消耗爆款拆解：哪些要素被复刻、复刻后的素材投放数据（消耗 / ROS 对比基准 1.6）<br>
-      • 图片 / 视频两条线进度与下周扩量建议<br>
-      • 独立站 LB 试点结论：是否可以复刻到 TK / 亚马逊
+      <b style="color:var(--accent2)">每周交付物（素材报告）</b><br>
+      · 本周产出图片数量 / 合格率（通过张兆清人工审核的比例）<br>
+      · 爆款裂变方向得分（哪个方向 AI 产出质量最高）<br>
+      · 发丝/颜色/场景问题记录 → 下周指令迭代方向<br>
+      · 对比数据：AI 素材 vs 红人素材的 Meta 投放 CTR / ROAS（待积累后加入）
     </div>
   </div>
 
@@ -223,63 +225,76 @@
   <h2>五、两个月周里程碑</h2>
   <div class="timeline">
 
-    <div class="tl-item">
-      <h4><span class="wk">W1</span>认知打底 · 个人激活</h4>
+    <div class="tl-item done-item">
+      <h4><span class="wk">W1</span>场景锁定 · 首战共识（2026-06-06）</h4>
       <ul>
-        <li>公司层面开一个 GPT 账号；老板听「老板个人 AI 共生」课，决定要不要自己也弄一个</li>
-        <li>Lion 交付项目落地计划 + 清单（核心场景 + 三阶段），标准同学定为试点核心负责人</li>
-        <li>老板向业务负责人传递底层逻辑：AI 复刻已验证结果，并参与资料收集过程</li>
+        <li>✅ 场景确认会议：锁定首战 = Meta/Facebook 图文素材 AI 图片智能体（独立站 LB 试点）</li>
+        <li>✅ 确认三阶段：资料收集 → 素材生成 → 市场验证</li>
+        <li>✅ 达成方法论共识：AI 做素材补充，不做纯 AI 素材，先图片后视频</li>
       </ul>
-      <div class="deliv"><span class="s-html">交付：项目落地计划与清单</span></div>
+      <div class="deliv"><span class="s-html">✅ 落地路线确认</span></div>
+    </div>
+
+    <div class="tl-item done-item">
+      <h4><span class="wk">W2</span>AI 图片智能体首轮教学（2026-06-09）</h4>
+      <ul>
+        <li>✅ Lion 演示爆款主图拆解/裂变思路，GPT 智能体搭建方法</li>
+        <li>✅ 张兆清确认 GPT 账号已开通</li>
+        <li>✅ 首批高表现图片素材展示，假发类目方法论整理（真实感/黑人化脸型/高发量/生活化场景）</li>
+        <li>⏳ 待完成：实操闭环（"耳朵会了，手不会"，需要会后亲手跑一轮）</li>
+      </ul>
+      <div class="deliv"><span class="s-agent">首轮教学完成</span><span>实操待跑</span></div>
+    </div>
+
+    <div class="tl-item now-item">
+      <h4><span class="wk">W3</span>▶ 你在这 · 智能体诊断 + 补课（2026-06-16）</h4>
+      <ul>
+        <li>✅ 林韩+考拉诊断主图智能体问题：颜色/发型变化根因 = 提示词精度不够 + 智能体承担了三件事</li>
+        <li>✅ 考拉规划课程学习路线：老板听第 10+2 节，做图同学听第 3、4、5 节</li>
+        <li>⏳ 进行中：团队一周内完成课程，李总产出智能体清单发群</li>
+      </ul>
+      <div class="deliv"><span>学习路线布置</span><span class="s-html">智能体清单（待输出）</span></div>
     </div>
 
     <div class="tl-item">
-      <h4><span class="wk">W2</span>知识层入库 · 反推提示词</h4>
+      <h4><span class="wk">W4</span>智能体清单确认 + 重新规划</h4>
       <ul>
-        <li>以独立站 LB（Meta）为切入：后台按消耗降序拉高消耗素材 + 数据，升序拉 10-15 个差素材</li>
-        <li>汇总成图片 / 视频两列表格，作为 AI 图片智能体投喂资料</li>
-        <li>Lion 把过往直播的图片课程、视频课程单独给到团队</li>
+        <li>李总发出全业务智能体清单，陪跑团队确认优先级</li>
+        <li>重新拆分规划：白底图→真人场景图智能体（指令重写，基于课程所学）</li>
+        <li>检查 W2 遗留实操作业是否完成（反萃→搭建→试用→迭代第一轮）</li>
       </ul>
-      <div class="deliv"><span>知识层素材库 v1</span><span class="s-agent">爆款素材分析智能体（起步）</span></div>
+      <div class="deliv"><span class="s-agent">智能体清单 v1</span><span>场景图智能体雏形</span></div>
     </div>
 
     <div class="tl-item">
-      <h4><span class="wk">W3-W4</span>智能体 ① 上线（首战）</h4>
+      <h4><span class="wk">W5-W6</span>图片双智能体上线 · 首批 Meta 素材投放</h4>
       <ul>
-        <li>搭 Meta/Facebook 图文 AI 图片素材智能体，先把图片这个核心阶段跑通</li>
-        <li>用 AI 完成「国内找不到的国外模特」素材，判断产出质量</li>
-        <li>小批量投放做市场真实验证</li>
+        <li>爆款主图裂变智能体跑通（自家/同行/跨界三类素材入库 → 拆解 → 裂变生图）</li>
+        <li>白底图→真人场景图智能体跑通（发丝/颜色/肤色/场景精度达标）</li>
+        <li>首批 AI 素材进入 Meta 投放测试，开始积累 CTR/ROAS 数据</li>
       </ul>
-      <div class="deliv"><span class="s-agent">智能体 ① 图片素材</span><span class="s-skill">Skill /假发图文素材</span></div>
+      <div class="deliv"><span class="s-agent">智能体 ① 爆款裂变</span><span class="s-agent">智能体 ② 场景图</span><span class="s-skill">Skill /假发主图裂变</span><span class="s-skill">Skill /假发场景图</span></div>
     </div>
 
     <div class="tl-item">
-      <h4><span class="wk">W5-W6</span>智能体 ② 上线</h4>
+      <h4><span class="wk">W7</span>审美智能体 + 卖点合主图完整链路</h4>
       <ul>
-        <li>基于图片素材做视频素材：以爆款模板为基底做结构化补充（AI+真人混剪，不做纯 AI）</li>
-        <li>视频素材投 Meta 验证，跑通后封装成 Skill</li>
-        <li>评估 Facebook vs TK 谁作为素材核心渠道（可两渠道同时测）</li>
+        <li>审美智能体：用 Meta 后台数据筛高跑量图 → AI 分析共同特征 → 建立品牌做图审美标准</li>
+        <li>卖点分析智能体：独立输出 2-3 个单词的核心卖点（每条不超过 3 个单词，不让 AI 自由发挥）</li>
+        <li>合主图智能体：把场景图 + 卖点 + 排版合成最终 Meta 主图</li>
+        <li>完整工作流闭环测试：爆款图 → 裂变 → 场景图 → 卖点 → 合图 → 投放</li>
       </ul>
-      <div class="deliv"><span class="s-agent">智能体 ② 视频素材</span><span class="s-skill">Skill /假发视频素材</span><span class="s-flow">工作流</span><span class="s-html">素材验证周报</span></div>
+      <div class="deliv"><span class="s-agent">智能体 ③ 审美+卖点+合图</span><span class="s-flow">完整图片工作流</span><span class="s-html">每周素材报告 HTML</span></div>
     </div>
 
     <div class="tl-item">
-      <h4><span class="wk">W7</span>智能体 ③ 固化 · 锚点引擎</h4>
+      <h4><span class="wk">W8</span>AI 视频素材启动 + 业务系统化</h4>
       <ul>
-        <li>把爆款素材分析沉淀为可调用 Skill，稳定供给 ①② 的素材锚点</li>
-        <li>下次会议让亚马逊 / TK 核心主管旁听（只听不参与），建立 AI 重要性认知</li>
+        <li>图片智能体稳定后，启动 AI 视频素材智能体（爆款视频结构 + AI 画面 + 真人口播混剪）</li>
+        <li>全业务智能体横向复制到其他渠道（TK 小店 / 亚马逊）</li>
+        <li>量化评估：AI 素材 vs 红人素材 Meta ROAS 对比，测算降本效果</li>
       </ul>
-      <div class="deliv"><span class="s-agent">智能体 ③ 爆款分析</span><span class="s-skill">Skill /爆款素材拆解</span></div>
-    </div>
-
-    <div class="tl-item">
-      <h4><span class="wk">W8</span>业务系统化 · 老板战略层</h4>
-      <ul>
-        <li>三个智能体串成 Meta 素材生产线，按产出决定复刻到 TK / 亚马逊的时间</li>
-        <li>老板用个人 AI 账号聊战略、管理；按试点产出决定其他部门加入节奏</li>
-        <li>结业：素材端降本 / 提量 / 补充成果盘点</li>
-      </ul>
-      <div class="deliv"><span class="s-flow">完整素材生产系统</span><span class="s-html">交付：陪跑结业报告 HTML</span></div>
+      <div class="deliv"><span class="s-agent">智能体 ④ AI 视频素材</span><span class="s-skill">Skill /假发视频素材</span><span class="s-flow">视频工作流</span><span class="s-html">陪跑结业报告 HTML</span></div>
     </div>
 
   </div>
@@ -287,13 +302,14 @@
   <!-- ============ 承诺 ============ -->
   <h2>六、陪跑承诺</h2>
   <div class="promise">
-    <div class="p"><b>① 落地承诺</b><br>花花老师会上明确：项目负责老师莱恩（Lion）会带着团队做整个后面项目的落地，会后给到计划和清单，明确落地核心场景。先单点切入、一个模块一个模块做，不贪多。</div>
-    <div class="p"><b>② 复刻承诺</b><br>独立站 LB（Amanda hair 站）跑通的同一套图片 / 视频 / 爆款分析智能体，封装成 Skill 后可平移到另一个独立站、TK 小店、3 个亚马逊组——一次搭建，跨渠道复用。</div>
-    <div class="p"><b>③ 员工承诺</b><br>以标准同学（7 年老员工、业务精通）为试点核心负责人，筛选有意愿的同学先做小样板；过程中团队对 AI 的理解和能力同步加深，再决定扩人。</div>
+    <div class="p"><b>① 落地承诺</b><br>每次执行会议都让你看到可用的东西，不是讲理论。Lion 组（Lion + 林韩 + 考拉）三人并行：策略方向、技术教学、基础认知三条线同时跑，不让任何一个问题卡住进度。</div>
+    <div class="p"><b>② 复刻承诺</b><br>"AI 擅长复刻和复制已在市场拿到结果的东西。"（Lion 2026-06-09 会议原话）先把你们已验证的爆款素材逻辑固化成智能体，再横向铺开到新品、新渠道——不赌创意，只复刻被市场验证的结果。</div>
+    <div class="p"><b>③ 团队培养承诺</b><br>"感兴趣就从前往后看，全部开放给大家。"（考拉 2026-06-16 会议原话）每个阶段配套课程，做图同学、AI 负责人、老板各有专属学习路线；贪多嚼不烂，一节课一节课帮团队建立 AI 体感。</div>
   </div>
 
   <footer>
-    数据来源：面试妙记（2026-05-20）+ 场景确认会议妙记（2026-06-06，花花主导 · Lion 陪跑）。陪跑团队判断：素材端是这家工厂供应链型卖家最痛、价值最高、且独立站 LB 单渠道试点落地最快的切口——老板肯放权配合（「你直接要求我去做就行了，我肯定配合」），首战只要把 Meta 图文素材这一个点做好，就能撬动整条素材生产线。
+    数据来源：面试妙记（2026-05-20）· 场景确认妙记（2026-06-06）· 执行会议-001 逐字稿（2026-06-09）· 执行会议-002 逐字稿（2026-06-16）<br>
+    考拉对本次陪跑的判断："我发现咱们团队对于 AI 的理解度呢，目前是一个刚刚开始接触的这么一个程度。所以我们要从更加基础和打地基的部分开始——贪多嚼不烂，先把地基打牢。"
   </footer>
 
 </div>
