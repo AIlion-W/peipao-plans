@@ -2,14 +2,14 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<title>南总 · 南京花黄金贵金属 AI 陪跑方案</title>
+<title>南总 · 南京花贵金属 AI 陪跑方案</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <style>
   :root{
     --bg:#0b0d12; --panel:#141821; --line:#232936; --ink:#e8ecf3;
     --muted:#8a93a6; --accent:#ff6a00; --accent2:#ffb15c;
     --ok:#2ecc71; --doing:#f1c40f; --todo:#5b6577;
-    --brand:#d4af37;
+    --brand:#c8a951;
   }
   *{box-sizing:border-box}
   body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.7}
@@ -19,8 +19,8 @@
   h3{font-size:17px;margin:24px 0 10px;color:var(--accent2)}
   .sub{color:var(--muted);font-size:14px}
   .hero{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px;padding-bottom:24px;border-bottom:1px solid var(--line)}
-  .tag{display:inline-block;padding:3px 10px;border-radius:999px;background:var(--brand);color:#222;font-size:12px;margin-right:6px;font-weight:600}
-  .tag.gray{background:#2c3340;color:var(--muted);font-weight:400}
+  .tag{display:inline-block;padding:3px 10px;border-radius:999px;background:var(--brand);color:#1a1200;font-size:12px;margin-right:6px;font-weight:600}
+  .tag.gray{background:#2c3340;color:var(--muted)}
   .meta{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:24px}
   .meta .card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
   .meta .k{font-size:12px;color:var(--muted)}
@@ -48,7 +48,13 @@
   .timeline{position:relative;margin-top:8px;border-left:2px solid var(--line);padding-left:22px}
   .tl-item{position:relative;padding:14px 16px 14px 8px;background:var(--panel);border:1px solid var(--line);border-radius:10px;margin-bottom:14px}
   .tl-item::before{content:"";position:absolute;left:-31px;top:20px;width:12px;height:12px;background:var(--accent);border-radius:50%;border:3px solid var(--bg)}
+  .tl-item.done-item{border-color:#2ecc7144}
+  .tl-item.done-item::before{background:var(--ok)}
+  .tl-item.now-item{border-color:var(--accent);box-shadow:0 0 0 1px #ff6a0033}
+  .tl-item.now-item::before{background:var(--accent)}
   .tl-item .wk{display:inline-block;background:#2c3340;color:#cdd3df;padding:2px 10px;border-radius:6px;font-size:12px;margin-right:8px}
+  .tl-item.done-item .wk{background:#11261b;color:var(--ok)}
+  .tl-item.now-item .wk{background:#ff6a0022;color:var(--accent)}
   .tl-item h4{margin:0 0 6px;font-size:16px}
   .tl-item ul{margin:6px 0 0 18px;padding:0;font-size:13.5px;color:#cdd3df}
   .tl-item li{margin:3px 0}
@@ -58,24 +64,31 @@
   .deliv .s-skill{color:#7fd1ff;border-color:#1f4a66}
   .deliv .s-flow{color:#a7f0a7;border-color:#1f5a2c}
   .deliv .s-html{color:#ffd4f5;border-color:#5a2348}
+  .deliv .s-done{color:var(--ok);border-color:#2ecc7144}
 
   .threecol{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-top:8px}
   .col{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px}
+  .col.highlight{border-color:var(--accent);background:linear-gradient(180deg,#1e1208,#141821)}
   .col h4{margin:0;font-size:16px}
   .col .pain{font-size:12px;color:var(--muted);margin-top:4px;line-height:1.6}
   .col .row{margin-top:14px;font-size:13px}
   .col .row b{color:var(--accent2);font-weight:600}
   .col .pill{display:inline-block;font-size:11px;padding:2px 8px;border-radius:6px;background:#1f2735;color:#9fb0d0;margin-right:4px;margin-top:4px}
+  .col .pill.hot{background:#3a1a08;color:var(--accent2)}
 
   .demo{background:linear-gradient(135deg,#1a1f2c,#13161e);border:1px dashed #3a4256;border-radius:12px;padding:20px;margin-top:8px}
   .demo .flow{display:flex;align-items:center;flex-wrap:wrap;gap:6px;margin-top:10px}
   .demo .node{background:#222a3a;border:1px solid #2f3b52;padding:8px 12px;border-radius:8px;font-size:13px}
+  .demo .node.hot{background:#2a1808;border-color:#5a3010;color:var(--accent2)}
   .demo .arr{color:var(--accent);font-weight:700}
   .demo .out{margin-top:14px;background:#0d0f15;border:1px solid #232936;border-radius:8px;padding:14px;font-size:12.5px;color:#cdd3df}
 
   .promise{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:8px}
   .promise .p{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px}
   .promise .p b{color:var(--accent)}
+
+  .quote-block{margin:20px 0;padding:18px 22px;background:#1a1f2c;border-left:3px solid var(--accent);border-radius:0 10px 10px 0;font-size:14px;color:#cdd3df;line-height:1.8}
+  .quote-block .who{font-size:11px;color:var(--muted);margin-top:8px}
 
   footer{margin-top:60px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:12px}
 
@@ -91,198 +104,198 @@
   <section class="hero">
     <div>
       <div>
-        <span class="tag">南京花</span>
-        <span class="tag gray">黄金 · 白银 · 贵金属</span>
-        <span class="tag gray">深圳水贝 · ToB 服务平台</span>
-        <span class="tag gray">云仓 + 客服 + 展厅</span>
+        <span class="tag">黄金·白银·贵金属</span>
+        <span class="tag" style="background:#1a3060;color:#8ab0ff">ToB 云仓服务</span>
+        <span class="tag gray">客服23人 · 技术6人 · 决策链短</span>
       </div>
-      <h1>南总，这是接下来 2 个月我们一起跑的路</h1>
-      <div class="sub">陪跑客户：南总 · 陪跑老师：Lion · 项目经理：Lion · 启动日：2026-05-21</div>
+      <h1>南总，这是接下来我们一起跑的路</h1>
+      <div class="sub">陪跑客户：南总（南京花）· 陪跑老师：Lion · 启动日：2026-05-21</div>
     </div>
-    <div class="sub">版本 v2 · 2026-06-10（执行-001 后更新）</div>
+    <div class="sub">版本 v2 · 2026-06-17（执行会议-002 后更新）</div>
   </section>
 
   <div class="meta">
-    <div class="card"><div class="k">业务模型</div><div class="v">ToB 服务（80% 营收）+ 自有品类开发试水 · 服务多平台店铺（天猫/抖音/淘宝）</div></div>
-    <div class="card"><div class="k">团队杠杆</div><div class="v">客服 23（顶峰外包 ~50）+ 技术 6 + 物流 20+ + 管理 · 老板单点决策链短</div></div>
-    <div class="card"><div class="k">当前瓶颈</div><div class="v">科学上网已通 · GPT 账号待充 Plus（卡个人卡付费+发票，走代充）· 老板尚未动手搭智能体</div></div>
-    <div class="card"><div class="k">核心打法</div><div class="v">"整个经营管理都是我来"——南总自述；权限大、配合度高</div></div>
+    <div class="card"><div class="k">业务模型</div><div class="v">黄金 ToB 云仓+客服<br><span style="font-size:13px;color:var(--muted)">20+家店铺接单，退差100%人工</span></div></div>
+    <div class="card"><div class="k">团队杠杆</div><div class="v">客服20+人<br><span style="font-size:13px;color:var(--muted)">顶峰一人1400单/天，AI释放空间大</span></div></div>
+    <div class="card"><div class="k">当前卡点</div><div class="v">Plus 待充值<br><span style="font-size:13px;color:var(--muted)">战略智能体尚未封装，三账号待开通</span></div></div>
+    <div class="card"><div class="k">南总自述</div><div class="v">"搭积木"<br><span style="font-size:13px;color:var(--muted)">野心大但愿从小积木开始，配合度高</span></div></div>
   </div>
 
   <!-- ============ 一、AI 认知 ============ -->
   <h2>一、先建立对 AI 的正确认知</h2>
-  <p class="sub">南总你听过很多课，但本人没用过 GPT、电脑刚换、企微还没装——AI 体感是这一期所有客户里最空白的。这不是缺点，是干净起点。花花在场景确认会上定了节奏："搭积木一样从最小的小积木开始，不一上来做大系统。"接下来 2 个月，我们做的是把你从"听过 AI 课"切到"能跟 AI 讨论决策"，再让技术部 6 个人能用 Codex自己接金价——你不亲自执行技术，但你的 AI 大脑必须先转起来。</p>
+  <p class="sub">贵金属 ToB 服务的核心是"快速响应 + 准确核算"——退差每天 800-1400 单全靠人工，金价变了人工改价，多系统数据靠 Excel 对账。这些都是 AI 能替掉的"体力活"，但前提是南总自己先用 AI 做过决策，才能判断下面的人在干什么。</p>
+
+  <div class="quote-block">
+    「搭积木一样从最小的小积木开始，不一上来做大系统。」
+    <div class="who">— 花花，场景确认会议 2026-05-21</div>
+  </div>
 
   <h3>AI 成熟度 7 阶段 · 南总当前位置</h3>
   <div class="ladder">
-    <div class="step done"><span class="badge">✓ 已过</span><div class="n">阶段 1</div><div class="t">基础对话</div><div class="d">已用 GPT 普通版浅聊人生缩影两三天（自述"还没聊出重点"）。科学上网已通、账号已备好。</div></div>
-    <div class="step now"><span class="badge">▶ 你在这</span><div class="n">阶段 2</div><div class="t">结构化要求</div><div class="d">执行-001 已上"智能体搭建启蒙课"：五段指令 + MD 知识库 + 负反馈迭代 + 结构化提问法。待充 Plus 后动手把"浅聊"升级成"结构化对话"。</div></div>
-    <div class="step target"><span class="badge">W1-W2</span><div class="n">阶段 3</div><div class="t">爆款模仿 + 工具尝试</div><div class="d">充 Plus（走代充）→ 用人生缩影提示词 + GPT 反向提问积累语料 → 让 GPT 输出指令 → 搭出第一个战略对话智能体。</div></div>
-    <div class="step target"><span class="badge">W3-W4</span><div class="n">阶段 4</div><div class="t">反推提示词</div><div class="d">Codex做第一个数据分析（对账/退差/爆款三选一），从 AI 输出反推回提示词调优。</div></div>
-    <div class="step target"><span class="badge">W5-W6</span><div class="n">阶段 5</div><div class="t">系统提示词</div><div class="d">技术部用 Codex接实时金价（参考荣通金案例 / computer use 不爬虫）。</div></div>
-    <div class="step target"><span class="badge">W7</span><div class="n">阶段 6</div><div class="t">Skill 工作化</div><div class="d">三个 Skill（战略对话 / 对账分析 / 实时金价）打包，团队按按钮跑。</div></div>
-    <div class="step target"><span class="badge">W8</span><div class="n">阶段 7</div><div class="t">业务系统化</div><div class="d">"周经营复盘"工作流串通，ToB 商户销售看板雏形可演示。</div></div>
+    <div class="step done"><span class="badge">✓ 已过</span><div class="n">阶段 1</div><div class="t">基础对话</div><div class="d">知道 GPT 能干什么，用普通版浅聊过人生缩影几天。</div></div>
+    <div class="step now"><span class="badge">▶ 你在这</span><div class="n">阶段 2</div><div class="t">结构化要求</div><div class="d">学了五段指令法（身份/问题/知识/工具/方法），但第一个智能体还没封装出来。硬卡点=Plus 还没充。</div></div>
+    <div class="step target"><span class="badge">W3-W4</span><div class="n">阶段 3</div><div class="t">爆款模仿+工具</div><div class="d">战略对话智能体封装完，能用指令稳定输出决策建议；三账号并行打磨启动。</div></div>
+    <div class="step target"><span class="badge">W5-W6</span><div class="n">阶段 4</div><div class="t">反推提示词</div><div class="d">客服经理售前智能体 + OPM 成本核算智能体各自跑通，负反馈循环激活。</div></div>
+    <div class="step target"><span class="badge">W6-W7</span><div class="n">阶段 5</div><div class="t">系统提示词</div><div class="d">三个智能体都打磨到 90 分，Codex 数据分析启动（对账/退差/爆款）。</div></div>
+    <div class="step target"><span class="badge">W7</span><div class="n">阶段 6</div><div class="t">Skill 工作化</div><div class="d">客服用 /售前助手 兜底话术；OPM 用 /成本核算 替掉 Excel；南总用 /战略对话 做日常决策。</div></div>
+    <div class="step target"><span class="badge">W8</span><div class="n">阶段 7</div><div class="t">业务系统化</div><div class="d">Codex 接实时金价（技术部）；ToB 商户销售看板雏形；退差 AI 自动处理率目标 90%。</div></div>
   </div>
 
-  <h3>对应你公司的 5 个层</h3>
+  <h3>对应南京花的 5 个层</h3>
   <div class="grid5">
-    <div class="m"><div class="h">① 身份层</div><div class="b">让 AI 记住南总的"整个经营管理都是我来"决策风格、ToB 服务平台定位、克重敏感的业务特性。</div><div class="now">起点：客户档案</div></div>
-    <div class="m"><div class="h">② 知识层</div><div class="b">展厅 ERP / 云仓 / 客服系统 / 各平台 SaaS 数据格式、克重对账规则、退差规则、行业新政（2025-11 税改）限制。</div><div class="now">W2-W3 入库</div></div>
-    <div class="m"><div class="h">③ 工具层</div><div class="b">只装 GPT + Codex（花花原话："Gemini/Claude 对你不适合，充了浪费钱"）。三个智能体：战略对话 / 数据分析 / 实时金价。</div><div class="now">W1 起逐个上线</div></div>
-    <div class="m"><div class="h">④ 协作层</div><div class="b">南总做战略层、技术部 6 人做执行层、客服 23 人未来转主管/销售——同一套 Codex跨岗位通用。</div><div class="now">W6 验证</div></div>
-    <div class="m"><div class="h">⑤ 场景层</div><div class="b">周经营复盘 SOP：多系统数据合并 → 对账 → 退差异常 → 爆款分析 → ToB 商户看板。</div><div class="now">W7-W8</div></div>
+    <div class="m"><div class="h">① 身份层</div><div class="b">让 AI 记住：ToB 贵金属云仓服务平台、退差业务核心逻辑（克重精算/退差规则）、商业模式（服务80%+自有品类20%）、南总的决策风格。</div><div class="now">起点：普通版浅聊，尚未建身份档案</div></div>
+    <div class="m"><div class="h">② 知识层</div><div class="b">喂进去：退差业务规则文件、各平台客服话术库、历史爆款数据、金价规则说明（MD 格式，AI 最易读）。</div><div class="now">待建：客服话术 + 退差规则</div></div>
+    <div class="m"><div class="h">③ 工具层</div><div class="b">三个智能体：① 战略对话（南总）② 售前/客服（客服经理）③ 成本核算（OPM 经理）。各自一个账号，打磨各自提示词。</div><div class="now">进行中：① 学了方法，待封装</div></div>
+    <div class="m"><div class="h">④ 协作层</div><div class="b">三账号提示词打磨好后，互相分享 → 南总可在上面升维迭代。给客服的链接不透露提示词，员工换了照用。</div><div class="now">目标：W5-W6 三账号并行</div></div>
+    <div class="m"><div class="h">⑤ 场景层</div><div class="b">终态：客服扔进一个难题 → AI 兜底给话术模板 → 粘回发出去；南总遇到决策 → 问战略智能体 → 拿多种方案；退差 90% AI 自动处理。</div><div class="now">目标：W8 验证</div></div>
   </div>
 
   <!-- ============ 二、智能体 ============ -->
-  <h2>二、要搭建的 3 个智能体（搭积木顺序）</h2>
-  <p class="sub">花花在场景确认会上明确分工：南总学战略对话+数据分析（决策层），技术部学 Codex做实时金价（执行层）——老板不亲自执行。三个智能体按"从最小积木开始"顺序：南总个人激活 → Codex数据分析 → 技术部接金价。前两个跑通了，第三个就是技术部自学，陪跑方教学不单独收费。</p>
+  <h2>二、要搭建的 3 个智能体（按首战板块优先级）</h2>
+  <p class="sub">花花的原话："搭积木从最小积木开始"——南总本人先建 AI 大脑（战略对话），再让团队各自建自己的工具。三人并行打磨效率最高，但节奏铁律是：一个账号打磨一件事，不混。</p>
 
   <div class="threecol">
-    <!-- 智能体 ① -->
-    <div class="col">
-      <h4>① GPT 战略对话智能体</h4>
-      <div class="pain">痛点：南总自述——"还没达到智能体的程度"，AI 体感为零；下面人推不动，因为老板自己不懂的事下面人不动（花花原话："你给我开发个微信 = 不合理需求"）。</div>
-      <div class="row"><b>角色设定</b>：南总的战略思考搭子，懂 ToB 服务平台业务 + 行业新政（2025-11 税改）背景。</div>
-      <div class="row"><b>输入</b>：南总的决策问题（业务方向 / 资源分配 / 套餐选型）。</div>
-      <div class="row"><b>输出</b>：多方案对比 + 风险点 + 下一步操作建议——给南总做"决策辅助大脑"。</div>
-      <div class="row"><span class="pill">阶段 3-4</span><span class="pill">W1-W2</span><span class="pill">首战</span></div>
+    <div class="col highlight">
+      <h4>① 战略对话智能体 <span style="font-size:12px;color:var(--accent)">▶ 南总进行中</span></h4>
+      <div class="pain">痛点：南总自述「战略层太广……我不知道怎么跟 AI 区分商业模式和系统」——体感为零，决策没有 AI 辅助</div>
+      <div class="row"><b>角色设定</b>：南总的专属 AI 战略顾问，熟悉贵金属 ToB 服务商的商业模式，基于第一性原理/剃刀原则/段永平思维模式给决策建议</div>
+      <div class="row"><b>输入</b>：一个经营决策问题（商业模式/定价/扩张/危机）</div>
+      <div class="row"><b>输出</b>：多角度方案 + 下一步建议（指令层五段式，GPT 5.5 thinking）</div>
+      <div class="row"><span class="pill hot">首战·南总</span><span class="pill">阶段 2→3</span><span class="pill">ChatGPT 5.5 thinking</span></div>
     </div>
-    <!-- 智能体 ② -->
     <div class="col">
-      <h4>② Codex数据分析智能体</h4>
-      <div class="pain">痛点：克重维度合并对账靠 Excel 一个专员"电脑都带不动"；退差顶峰 1400 单/天/人；爆款分析没产出能力。</div>
-      <div class="row"><b>角色设定</b>：多系统数据对账员，懂展厅 ERP / 云仓 / 客服系统 / 平台 SaaS 数据接口。</div>
-      <div class="row"><b>输入</b>：多源 Excel（按需选对账 / 退差 / 爆款三选一作首跑）。</div>
-      <div class="row"><b>输出</b>：克重维度合并报表 + 退差异常清单 + 爆款热销分析——南总能直接看决策。</div>
-      <div class="row"><span class="pill">阶段 4-5</span><span class="pill">W3-W4</span></div>
+      <h4>② 售前/客服智能体</h4>
+      <div class="pain">痛点：客服顶峰一人1400单/天，碰到棘手问题「慌了」——遇到退差纠纷/平台规则/刁钻客户无标准话术兜底</div>
+      <div class="row"><b>角色设定</b>：贵金属行业售前专家，熟悉克重精算/退差规则/各平台话术红线，给客服经理标准回复模板</div>
+      <div class="row"><b>输入</b>：客户发来的问题原文（直接粘贴）</div>
+      <div class="row"><b>输出</b>：3 种回复话术方案 + 应对策略（可直接复制发出）</div>
+      <div class="row"><span class="pill">阶段 4→5</span><span class="pill">W4-W6</span><span class="pill">客服经理账号</span></div>
     </div>
-    <!-- 智能体 ③ -->
     <div class="col">
-      <h4>③ 实时金价接口（技术部交付）</h4>
-      <div class="pain">痛点：黄金随上海金交所/伦敦金实时波动，店铺多了手动改价跟不上；之前对接 AI 公司被 API + 奇门资质卡死。</div>
-      <div class="row"><b>角色设定</b>：金价数据采集器，用 Codex computer use 模拟操作（不爬虫，违法）。</div>
-      <div class="row"><b>输入</b>：上海金交所 / 伦敦金来源配置 + 跨店铺改价规则。</div>
-      <div class="row"><b>输出</b>：实时金价数据 + 跨店铺自动改价触发——参考荣通金案例。</div>
-      <div class="row"><span class="pill">阶段 5</span><span class="pill">W5-W6</span><span class="pill">技术部</span></div>
+      <h4>③ 成本核算智能体</h4>
+      <div class="pain">痛点：OPM 经理目前靠 Excel 做报价/报表——「耗时耗费人力，可以让 AI 自己核算」——南总原话</div>
+      <div class="row"><b>角色设定</b>：贵金属报价/成本核算专家，熟悉克重差价/平台扣点/退差规则，按输入数据自动给出核算结果</div>
+      <div class="row"><b>输入</b>：订单数据/报价需求（Excel 数据粘贴或上传）</div>
+      <div class="row"><b>输出</b>：核算结果 + 报价方案（替代人工 Excel 操作）</div>
+      <div class="row"><span class="pill">阶段 5</span><span class="pill">W5-W6</span><span class="pill">OPM 经理账号</span></div>
     </div>
   </div>
 
   <!-- ============ 三、Skills ============ -->
-  <h2>三、把智能体打包成 Skill（跨岗位、跨平台复用）</h2>
-  <p class="sub">花花在场景确认会上定了一条铁律："老板不亲自执行"。Skill 就是让你不用做技术细节、只按一个按钮调用结果——南总你按 `/战略对话` 出决策建议，对账专员按 `/对账分析` 出合并报表，技术部按 `/实时金价` 自动改价。一套 Skill 跨展厅 ERP / 云仓 / 客服 / 多平台 SaaS 通用。</p>
+  <h2>三、把智能体打包成 Skill（提示词是资产，员工换了照用）</h2>
+  <p class="sub">Lion 的原话："提示词是核心，不是账号。员工 95 分的提示词提炼出来，谁拿到谁都能用。" 给员工用链接，不透露提示词内容——这是保密方案，也是可复制的标准化资产。</p>
 
   <div class="threecol">
     <div class="col">
       <h4>Skill 1 · 战略对话</h4>
-      <div class="row">触发词：<code style="color:var(--accent2)">/战略对话 &lt;决策问题&gt;</code></div>
-      <div class="row">能力：套陪跑方"GPT 战略对话课"提示词模板，输出多方案对比 + 风险点 + 操作建议。</div>
-      <div class="row">复用：业务决策 → 团队管理 → 套餐选型 → 行业新政应对，全场景通用。</div>
+      <div class="row">触发词：<code style="color:var(--accent2)">/战略对话</code></div>
+      <div class="row">能力：南总遇到任何经营决策，发一个问题进去，自动输出多角度方案</div>
+      <div class="row">资产化：提示词只有南总知道，其他人用链接——人走了提示词留在公司</div>
     </div>
     <div class="col">
-      <h4>Skill 2 · 对账分析</h4>
-      <div class="row">触发词：<code style="color:var(--accent2)">/对账分析 &lt;Excel&gt;</code></div>
-      <div class="row">能力：Codex读多源 Excel → 克重维度合并 → 自动出退差异常清单 + 爆款分析。</div>
-      <div class="row">复用：现有 20+ 家店铺通用；新政后量小阶段调试好，量起来直接 scale。</div>
+      <h4>Skill 2 · 售前助手</h4>
+      <div class="row">触发词：<code style="color:var(--accent2)">/售前助手</code></div>
+      <div class="row">能力：客服把难问题粘进去，自动给 3 种回复话术方案，30 秒出结果</div>
+      <div class="row">规模化：新客服来了直接给链接，不用培训话术——一个 Skill 替代口口相传</div>
     </div>
     <div class="col">
-      <h4>Skill 3 · 实时金价</h4>
-      <div class="row">触发词：<code style="color:var(--accent2)">/实时金价</code></div>
-      <div class="row">能力：Codex computer use 取上海金交所/伦敦金，跨店铺自动改价。</div>
-      <div class="row">复用：每个新接入平台店铺直接调用，技术部维护成本极低。</div>
+      <h4>Skill 3 · 成本核算</h4>
+      <div class="row">触发词：<code style="color:var(--accent2)">/成本核算</code></div>
+      <div class="row">能力：OPM 粘进订单数据，自动输出核算结果和报价方案，替代 Excel 手工</div>
+      <div class="row">延伸：后期接 Codex，实现定时自动跑报表（OPM 只看结果，不操作数据）</div>
     </div>
   </div>
 
   <!-- ============ 四、工作流 + HTML ============ -->
-  <h2>四、把 Skills 串成"周经营复盘"工作流，产出 ToB 商户看板</h2>
-  <p class="sub">三个 Skill 各自跑能解决"今天对账 / 改价 / 决策"的点；串成"周经营复盘"工作流后，每周自动产出一份给 ToB 商户的销售看板——这就是南总野心里的"赋能商户加分项"，落到实处。</p>
+  <h2>四、把 Skills 串成工作流，让 AI 替掉每天的重复操作</h2>
+  <p class="sub">先跑通单次对话的 Skill，再用 Codex 串成自动流水线。这是"搭积木"的节奏——不一步到位，每块积木稳了再叠下一块。</p>
 
   <div class="demo">
-    <div style="font-size:13px;color:var(--muted)">工作流 · 周经营复盘 SOP（示例）</div>
+    <div style="font-size:13px;color:var(--muted)">工作流示例 · 每日退差处理（阶段 6-7 目标）</div>
     <div class="flow">
-      <span class="node">🎯 每周一 8:00 触发</span>
+      <span class="node">📋 当天退差订单（Excel 导出）</span>
       <span class="arr">→</span>
-      <span class="node">/实时金价 → 周金价波动</span>
+      <span class="node hot">/成本核算</span>
       <span class="arr">→</span>
-      <span class="node">/对账分析 → 克重合并 + 退差异常</span>
+      <span class="node">自动核算差价</span>
       <span class="arr">→</span>
-      <span class="node">/战略对话 → 南总周决策建议</span>
+      <span class="node hot">/售前助手</span>
       <span class="arr">→</span>
-      <span class="node">📊 HTML 报告生成器</span>
+      <span class="node">退差话术生成</span>
       <span class="arr">→</span>
-      <span class="node">📧 推送南总 + 20 家 ToB 商户</span>
+      <span class="node">✅ 客服直接发出</span>
     </div>
     <div class="out">
-      <b style="color:var(--accent2)">交付物示例（HTML 报告：周经营复盘 + ToB 商户看板）</b><br>
-      · 金价波动卡：本周金交所/伦敦金 K 线 + 跨店铺改价记录<br>
-      · 对账报告：克重维度合并 + 退差异常清单（自动 vs 人工标注）<br>
-      · 爆款分析：Top 10 SKU 跨平台对比 + 库存建议<br>
-      · 南总决策位：基于本周数据的下周三件事建议（战略对话 AI 自动出）<br>
-      · ToB 商户看板：每家商户独立分页，可发链接给商户老板看
+      <b style="color:var(--accent2)">当前阶段目标（W3-W4）</b><br>
+      单次对话：南总把战略问题发给 /战略对话，拿到决策建议<br>
+      单次对话：客服把难问题粘给 /售前助手，拿到话术模板<br><br>
+      <b style="color:var(--accent2)">后期目标（W7-W8）</b><br>
+      Codex 接实时金价（技术部，参考荣通金案例，陪跑期内可问）<br>
+      退差 AI 自动处理率从 70% 提到 90%+（不依赖人工判断）
     </div>
   </div>
 
   <!-- ============ 时间轴 ============ -->
-  <h2>五、两个月周里程碑</h2>
+  <h2>五、两个月周里程碑（D+0 = 2026-05-21）</h2>
   <div class="timeline">
 
-    <div class="tl-item">
-      <h4><span class="wk">W1</span>装备就位 · 南总 AI 体感启动 <span style="color:var(--doing);font-size:13px">（执行-001 已开，进行中）</span></h4>
+    <div class="tl-item done-item">
+      <h4><span class="wk">W1-W2</span>✅ 基础设施就位（D+0 ~ D+14）</h4>
       <ul>
-        <li>✅ 办公电脑科学上网已搞定（公司 WiFi 方式，红线：不说"翻墙"）</li>
-        <li>🔄 GPT 账号已备好（公司邮箱登录），待充 Plus —— 卡个人卡付费+发票，Lion 推代充微信（超 1000 开发票）</li>
-        <li>✅ 执行-001 已上 GPT 战略对话智能体搭建启蒙课：五段指令 / 8000 字 MD 知识库 / GPT 5.5 thinking / 负反馈迭代 / 人生缩影提示词挑模块 + GPT 反向提问积累语料</li>
-        <li>🔄 Lion 群里分享智能体搭建对话 + 结构化提问资料（替代原裴老师同步）</li>
+        <li>公司 WiFi 科学上网搞定，GPT 账号备好（公司邮箱）</li>
+        <li>执行-001：Lion 全程讲 GPT 智能体搭建法——五段指令 + 8000字知识库 + 负反馈迭代</li>
+        <li>南总用普通版聊过人生缩影，学了方法，但 Plus 仍未充（代充方案定了）</li>
       </ul>
-      <div class="deliv"><span class="s-html">已交付：启蒙课 + 科学上网就位</span><span class="s-agent">下一步：第一个战略对话智能体</span></div>
+      <div class="deliv"><span class="s-done">✅ 科学上网完成</span><span class="s-done">✅ 智能体方法论学完</span></div>
+    </div>
+
+    <div class="tl-item done-item">
+      <h4><span class="wk">W3-W4（当前）</span>✅ 企业三账号方案定型（D+27）</h4>
+      <ul>
+        <li>执行-002：企业三账号方案确认（南总战略 / 客服经理售前 / OPM 成本核算）</li>
+        <li>澄清 GPT vs Codex 路径：现阶段=单次对话，Codex=后期</li>
+        <li>提示词资产化概念打通（保密方案 + 员工离职不丢资产）</li>
+      </ul>
+      <div class="deliv"><span class="s-done">✅ 三账号方案定型</span><span class="s-done">✅ 路径澄清</span></div>
+    </div>
+
+    <div class="tl-item now-item">
+      <h4><span class="wk">W4-W5</span>▶ 现在 · 三账号并行启动（节后）</h4>
+      <ul>
+        <li>南总：充 Plus + 完成战略对话智能体封装（人生缩影提示词→GPT 反向提问→输出指令→搭智能体→迭代）</li>
+        <li>客服经理：开账号，开始打磨售前话术智能体</li>
+        <li>OPM 经理：开账号，开始打磨成本核算智能体</li>
+      </ul>
+      <div class="deliv"><span class="s-agent">智能体① 战略对话</span><span class="s-agent">智能体② 售前</span><span class="s-agent">智能体③ 成本核算</span></div>
     </div>
 
     <div class="tl-item">
-      <h4><span class="wk">W2</span>战略对话跑顺 · 技术部启动</h4>
+      <h4><span class="wk">W6</span>三智能体到 85 分 · Skill 化</h4>
       <ul>
-        <li>南总用战略对话讨论 3-5 个真实决策问题（套餐选型 / 资源分配 / 行业新政应对）</li>
-        <li>装 Codex，跑通 Hello World</li>
-        <li>把陪跑方 Codex线上直播课分享给技术老大，技术部 6 人启动自学</li>
+        <li>战略对话：10 条产出 9 条满意（90 分），封装成 /战略对话 Skill</li>
+        <li>售前助手：客服经理能用，不依赖南总或 Lion 在场</li>
+        <li>成本核算：OPM 经理能独立跑，替代 Excel 手工核算</li>
       </ul>
-      <div class="deliv"><span class="s-agent">智能体 ① 战略对话</span><span>知识库 v1</span></div>
+      <div class="deliv"><span class="s-skill">Skill /战略对话</span><span class="s-skill">Skill /售前助手</span><span class="s-skill">Skill /成本核算</span></div>
     </div>
 
     <div class="tl-item">
-      <h4><span class="wk">W3-W4</span>Codex数据分析智能体上线（对账/退差/爆款三选一）</h4>
+      <h4><span class="wk">W7</span>Codex 数据分析启动</h4>
       <ul>
-        <li>Codex读对账 Excel（展厅 ERP + 云仓 + 客服 + 平台 SaaS）按克重维度合并</li>
-        <li>对比"专员 Excel 卡顿 vs Codex合并"——量化人天工时下降</li>
-        <li>固化第一个数据分析 Skill，对账专员从苦力切到抽查</li>
+        <li>南总装 Codex，做第一个 Excel 数据分析（对账/退差/爆款三选一）</li>
+        <li>把 Code 叉直播课分享给技术老大，技术部开始自学接实时金价</li>
       </ul>
-      <div class="deliv"><span class="s-agent">智能体 ②</span><span class="s-skill">Skill /对账分析</span></div>
+      <div class="deliv"><span class="s-flow">Codex 数据分析</span><span class="s-skill">技术部 金价接口</span></div>
     </div>
 
     <div class="tl-item">
-      <h4><span class="wk">W5-W6</span>实时金价接口（技术部自交付）</h4>
+      <h4><span class="wk">W8</span>业务系统化 · 结业交付</h4>
       <ul>
-        <li>技术部用 Codex computer use 接上海金交所/伦敦金（参考荣通金案例，不爬虫）</li>
-        <li>跨店铺自动改价规则配置 + 异常告警</li>
-        <li>陪跑方答疑（陪跑期内 Codex问题不单独收费）</li>
+        <li>退差处理链路：核算→话术→发出，AI 处理率目标 70%→90%</li>
+        <li>ToB 商户销售看板雏形（周/月爆款分析）</li>
+        <li>所有 Skill 打包，客服/OPM/技术 各自独立操作</li>
       </ul>
-      <div class="deliv"><span class="s-agent">智能体 ③</span><span class="s-skill">Skill /实时金价</span></div>
-    </div>
-
-    <div class="tl-item">
-      <h4><span class="wk">W7</span>ToB 商户销售看板雏形 · 完整工作流</h4>
-      <ul>
-        <li>把"对账分析 + 爆款分析"输出做成 ToB 商户独立分页看板（南总野心里的"加分项"落地）</li>
-        <li>三个 Skill 串成"周经营复盘"工作流，每周自动跑</li>
-        <li>挑 3 家试点商户发链接，收反馈</li>
-      </ul>
-      <div class="deliv"><span class="s-flow">完整工作流</span><span class="s-html">ToB 商户看板 HTML</span></div>
-    </div>
-
-    <div class="tl-item">
-      <h4><span class="wk">W8</span>业务系统化 · 客服 Agent 设计初版 · 结业</h4>
-      <ul>
-        <li>基于前 7 周 AI 体感和数据基础，设计客服 Agent（让客服转主管/销售）方案初版</li>
-        <li>结业报告：2 个月 KPI（对账人天工时下降、退差自动率、金价改价时延、ToB 商户看板订阅）+ 续约方向（推荐全年套餐）</li>
-      </ul>
-      <div class="deliv"><span class="s-flow">业务系统初版</span><span class="s-html">陪跑结业报告 HTML</span></div>
+      <div class="deliv"><span class="s-flow">退差自动化</span><span class="s-html">交付：陪跑结业报告 HTML</span></div>
     </div>
 
   </div>
@@ -290,15 +303,14 @@
   <!-- ============ 承诺 ============ -->
   <h2>六、陪跑承诺</h2>
   <div class="promise">
-    <div class="p"><b>① 落地承诺</b><br>花花在场景确认会上明确节奏——"搭积木一样从最小的小积木开始，不一上来做大系统"。每一步都从你能 hold 住的最小积木开始，避免你以前对接 AI 公司被 API + 奇门资质卡死、被骗 60-140 万的覆辙。</div>
-    <div class="p"><b>② 复刻承诺</b><br>陪跑方 Codex教学**陪跑期内不单独收费**，技术部所有 Codex技术问题都可问。三个 Skill 跨现有 20+ 商户店铺通用，新接入店铺零额外开发；行业新政量小时调试好，量起来直接 scale。</div>
-    <div class="p"><b>③ 员工承诺</b><br>花花定的铁律——"老板不亲自执行"。你只学战略对话 + 数据分析（决策层）；技术部 6 人学 Codex做执行层；未来客服 23 人通过客服 Agent 转主管/销售。每个岗位都有该岗位的 AI 工具，老板不下场写代码。</div>
+    <div class="p"><b>① 落地承诺</b><br>一块积木稳了再叠下一块。南总的战略智能体封装之前，不推进下一模块。遇到卡点——群里一两句说不清楚的，直接拉会，不靠文字猜。</div>
+    <div class="p"><b>② 复刻承诺</b><br>Code 叉接实时金价，陪跑期内有问题随时问——不单独收费（花花在场景确认会议明确：这是陪跑服务包含的内容）。技术部自学，陪跑方答疑。</div>
+    <div class="p"><b>③ 员工承诺</b><br>三个智能体打磨好之后，提示词是公司资产：给员工用链接不给提示词，人走了智能体留下来。客服/OPM/技术都能独立用，不依赖南总一人扛。</div>
   </div>
 
   <footer>
-    数据来源：2026-04-29 面试 + 2026-05-21 场景确认（妙记 obcnq23o99i7je41nsp2fk49）+ 2026-06-10 执行-001（妙记 obcn5qt5j1q4337n17r6tjgy）+ 客户档案 + AI 需求分析 + 落地清单。<br>
-    花花在场景确认会上的两条关键原则：①「搭积木从最小积木开始」②「老板不亲自执行」。本方案 2 个月节奏严格遵循这两条。<br>
-    红线提醒：① 「科学上网」不说「翻墙」 ② 直播链接 / 提示词不外传 ③ 老板不亲自执行技术细节。
+    数据来源：面试（2026-04-29）+ 场景确认（2026-05-21）+ 执行会议-001（2026-06-10）+ 执行会议-002（2026-06-17）完整逐字稿 · 本版本（v2）基于执行会议-002 更新<br><br>
+    陪跑团队判断：「南总野心大、配合度高、决策链短——推进效率有保障，但必须主动帮她做减法，不让她被野心带跑。」 · Lion 组 · 第 8 期
   </footer>
 
 </div>
