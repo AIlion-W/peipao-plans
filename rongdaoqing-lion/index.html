@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<title>荣道清 · 直播电商 AI 陪跑方案</title>
+<title>荣总 · 直播电商 AI 陪跑方案</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <style>
   :root{
@@ -48,7 +48,13 @@
   .timeline{position:relative;margin-top:8px;border-left:2px solid var(--line);padding-left:22px}
   .tl-item{position:relative;padding:14px 16px 14px 8px;background:var(--panel);border:1px solid var(--line);border-radius:10px;margin-bottom:14px}
   .tl-item::before{content:"";position:absolute;left:-31px;top:20px;width:12px;height:12px;background:var(--accent);border-radius:50%;border:3px solid var(--bg)}
+  .tl-item.done-item{border-color:#2ecc7144}
+  .tl-item.done-item::before{background:var(--ok)}
+  .tl-item.now-item{border-color:var(--accent);box-shadow:0 0 0 1px #ff6a0033}
+  .tl-item.now-item::before{background:var(--accent)}
   .tl-item .wk{display:inline-block;background:#2c3340;color:#cdd3df;padding:2px 10px;border-radius:6px;font-size:12px;margin-right:8px}
+  .tl-item.done-item .wk{background:#11261b;color:var(--ok)}
+  .tl-item.now-item .wk{background:#ff6a0022;color:var(--accent)}
   .tl-item h4{margin:0 0 6px;font-size:16px}
   .tl-item ul{margin:6px 0 0 18px;padding:0;font-size:13.5px;color:#cdd3df}
   .tl-item li{margin:3px 0}
@@ -58,21 +64,22 @@
   .deliv .s-skill{color:#7fd1ff;border-color:#1f4a66}
   .deliv .s-flow{color:#a7f0a7;border-color:#1f5a2c}
   .deliv .s-html{color:#ffd4f5;border-color:#5a2348}
-  .tl-item.done-item{border-color:#2ecc7133;background:#0e1a12}
-  .tl-item.done-item::before{background:var(--ok)}
+  .deliv .s-done{color:var(--ok);border-color:#2ecc7144}
 
   .threecol{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-top:8px}
   .col{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px}
+  .col.highlight{border-color:var(--accent);background:linear-gradient(180deg,#1e1208,#141821)}
   .col h4{margin:0;font-size:16px}
   .col .pain{font-size:12px;color:var(--muted);margin-top:4px;line-height:1.6}
   .col .row{margin-top:14px;font-size:13px}
   .col .row b{color:var(--accent2);font-weight:600}
   .col .pill{display:inline-block;font-size:11px;padding:2px 8px;border-radius:6px;background:#1f2735;color:#9fb0d0;margin-right:4px;margin-top:4px}
-  .col .pill.hot{background:#3a1a0a;color:var(--accent2);border:1px solid #5a3010}
+  .col .pill.hot{background:#3a1a08;color:var(--accent2)}
 
   .demo{background:linear-gradient(135deg,#1a1f2c,#13161e);border:1px dashed #3a4256;border-radius:12px;padding:20px;margin-top:8px}
   .demo .flow{display:flex;align-items:center;flex-wrap:wrap;gap:6px;margin-top:10px}
   .demo .node{background:#222a3a;border:1px solid #2f3b52;padding:8px 12px;border-radius:8px;font-size:13px}
+  .demo .node.hot{background:#2a1808;border-color:#5a3010;color:var(--accent2)}
   .demo .arr{color:var(--accent);font-weight:700}
   .demo .out{margin-top:14px;background:#0d0f15;border:1px solid #232936;border-radius:8px;padding:14px;font-size:12.5px;color:#cdd3df}
 
@@ -80,12 +87,8 @@
   .promise .p{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px}
   .promise .p b{color:var(--accent)}
 
-  .status-bar{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px 20px;margin-top:16px;display:flex;gap:32px;flex-wrap:wrap}
-  .status-bar .s{font-size:13px}
-  .status-bar .s .sk{color:var(--muted);font-size:11px;margin-bottom:4px}
-  .status-bar .s .sv{font-weight:600}
-  .status-bar .s .sv.green{color:var(--ok)}
-  .status-bar .s .sv.orange{color:var(--accent2)}
+  .quote-block{margin:20px 0;padding:18px 22px;background:#1a1f2c;border-left:3px solid var(--accent);border-radius:0 10px 10px 0;font-size:14px;color:#cdd3df;line-height:1.8}
+  .quote-block .who{font-size:11px;color:var(--muted);margin-top:8px}
 
   footer{margin-top:60px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:12px}
 
@@ -101,191 +104,204 @@
   <section class="hero">
     <div>
       <div>
-        <span class="tag">猫人 · 都市丽人 · 婷美</span>
-        <span class="tag gray">抖音千川投流 + 多平台直播带货</span>
+        <span class="tag">服饰内衣 · 儿童用品</span>
+        <span class="tag" style="background:#1a3a8c">抖音千川投流</span>
+        <span class="tag gray">60-70人团队 · 年营收3.2亿</span>
       </div>
-      <h1>荣总，这是接下来 2 个月我们一起跑的路</h1>
-      <div class="sub">陪跑客户：荣道清 · 陪跑老师：Lion · 项目经理：花花 · 执行参与：林韩 · 启动日：2026-05-23</div>
+      <h1>荣总，这是接下来我们一起跑的路</h1>
+      <div class="sub">陪跑客户：荣道清 · 陪跑老师：Lion · 项目经理：花花 · 启动日：2026-05-23</div>
     </div>
-    <div class="sub">版本 v3 · 2026-06-15（执行会议-003 后更新）</div>
+    <div class="sub">版本 v4 · 2026-06-17（执行会议-004 后更新）</div>
   </section>
 
-  <div class="status-bar">
-    <div class="s"><div class="sk">当前阶段</div><div class="sv orange">D+23 · 第二阶段进行中</div></div>
-    <div class="s"><div class="sk">本周重点</div><div class="sv">即梦 C4D 2.0 视频生成 + GPT 产品主图生成</div></div>
-    <div class="s"><div class="sk">下次课</div><div class="sv">2026-06-18（周三）下午 2 点</div></div>
-    <div class="s"><div class="sk">第一阶段</div><div class="sv green">✓ Codex 选品工作流（已收口）</div></div>
-  </div>
-
   <div class="meta">
-    <div class="card"><div class="k">业务模型</div><div class="v">抖音公会 70% + 视频号 + 快手 + 小红书；千川短视频测品→多平台放大；年营收 3.2 亿</div></div>
-    <div class="card"><div class="k">团队杠杆</div><div class="v">60-70 人；8 人内容团队每天 5 小时找素材；运营 + 剪辑 + 编导均偏执行，AI 需老板带头</div></div>
-    <div class="card"><div class="k">当前瓶颈</div><div class="v">选品成功率从「能测爆」降到「百里挑一」；素材人力重；下属推不动 AI</div></div>
-    <div class="card"><div class="k">核心打法</div><div class="v">「GPT 直接可以出结果，我们之前编导拆片再写脚本耗时很久。」——荣道清<br>→ 脑子活儿先 AI 化</div></div>
+    <div class="card"><div class="k">业务模型</div><div class="v">千川投流 + 多平台直播放大<br><span style="font-size:13px;color:var(--muted)">选品70% + 素材30%，5年SOP</span></div></div>
+    <div class="card"><div class="k">团队杠杆</div><div class="v">8人内容团队<br><span style="font-size:13px;color:var(--muted)">每天5小时找素材，可AI释放</span></div></div>
+    <div class="card"><div class="k">当前瓶颈</div><div class="v">视频脚本智能体调优<br><span style="font-size:13px;color:var(--muted)">有产出，负反馈循环尚未激活</span></div></div>
+    <div class="card"><div class="k">核心认知</div><div class="v">"复刻拿结果"<br><span style="font-size:13px;color:var(--muted)">李华兴自述：写文案≠拿业务结果</span></div></div>
   </div>
 
   <!-- ============ 一、AI 认知 ============ -->
   <h2>一、先建立对 AI 的正确认知</h2>
-  <p class="sub">荣总你们的核心竞争力是「复刻」——扒榜单找蓝海品，复刻同行爆款素材，让投流放大。AI 做的事情完全一样：给它一个爆款视频，让它帮你拆解所有拍摄维度，产出可以直接指挥演员的拍摄脚本，再进即梦把脚本变成视频。本质上就是「让 AI 复刻人的大脑」，而不是「让 AI 替代拍摄」。</p>
+  <p class="sub">直播电商的核心打法是"选品命中率 × 素材转化率 × 千川放大倍数"。现在每天 8 人花 5 小时找网络黄金素材、运营肉眼看抖店全榜单——这些都是可以让 AI 替掉的"体力活"。但 AI 替不了的是你对爆款的判断力和 SOP——那恰恰是我们要把它装进智能体里的东西。</p>
+
+  <div class="quote-block">
+    「认为自己懂了，其实实操过程中可能都不知道怎么跟 AI 说话——需要训练这个能力。」
+    <div class="who">— Lion，执行会议-004，2026-06-17</div>
+  </div>
 
   <h3>AI 成熟度 7 阶段 · 荣总当前位置</h3>
   <div class="ladder">
-    <div class="step done"><span class="badge">✓ 已过</span><div class="n">阶段 1</div><div class="t">基础对话</div><div class="d">知道 GPT/即梦，偶尔用一下。</div></div>
-    <div class="step done"><span class="badge">✓ 已过</span><div class="n">阶段 2</div><div class="t">结构化要求</div><div class="d">能让 AI 写脚本/总结，但每次重来、无固定格式。</div></div>
-    <div class="step now"><span class="badge">▶ 你在这</span><div class="n">阶段 3</div><div class="t">爆款模仿 + 工具尝试</div><div class="d">已用 Codex 跑选品；已建爆款分析智能体；GPT 出脚本有明确提效体感；即梦 C4D 2.0 教学中。</div></div>
-    <div class="step target"><span class="badge">W4-W5</span><div class="n">阶段 4</div><div class="t">反推提示词</div><div class="d">以爆款视频为锚点，拆解人物动作/场景/道具/服装/台词语气，AI 在有锚点的空间里精准生成脚本。</div></div>
-    <div class="step target"><span class="badge">W5-W6</span><div class="n">阶段 5</div><div class="t">系统提示词</div><div class="d">口播/剧情两类智能体分开建，角色清晰、输入输出固定、编导拿来即用。</div></div>
-    <div class="step target"><span class="badge">W6-W7</span><div class="n">阶段 6</div><div class="t">Skill 工作化</div><div class="d">「爆款分析→脚本→即梦视频→主图生成」打包成团队可调用的 Skill。</div></div>
-    <div class="step target"><span class="badge">W8</span><div class="n">阶段 7</div><div class="t">业务系统化</div><div class="d">扒榜→选品→素材 AI 生成→千川投流，AI 跑完整业务链路，不只跑单任务。</div></div>
+    <div class="step done"><span class="badge">✓ 已过</span><div class="n">阶段 1</div><div class="t">基础对话</div><div class="d">GPT/Codex 偶尔用，知道能写、翻、总结。</div></div>
+    <div class="step done"><span class="badge">✓ 已过</span><div class="n">阶段 2</div><div class="t">结构化要求</div><div class="d">Codex 跑 Python 选品脚本（D+0~D+18），能写出想要的东西。</div></div>
+    <div class="step done"><span class="badge">✓ 已过</span><div class="n">阶段 3</div><div class="t">爆款模仿 + 工具尝试</div><div class="d">GPT 智能体初版已建，GPT Image2 生图测试通过，Lovart 演示完成。</div></div>
+    <div class="step now"><span class="badge">▶ 你在这</span><div class="n">阶段 4</div><div class="t">反推提示词</div><div class="d">有脚本产出但质量未达预期——核心动作：把不满意+负反馈喂给 AI，让它自己修指令词。</div></div>
+    <div class="step target"><span class="badge">W5-W6</span><div class="n">阶段 5</div><div class="t">系统提示词</div><div class="d">智能体有角色、有目标、有限制——爆款视频→脚本闭环跑通，品质稳定。</div></div>
+    <div class="step target"><span class="badge">W6-W7</span><div class="n">阶段 6</div><div class="t">Skill 工作化</div><div class="d">编导发一条视频，自动出脚本；运营发一张图，自动出主图裂变。</div></div>
+    <div class="step target"><span class="badge">W8</span><div class="n">阶段 7</div><div class="t">业务系统化</div><div class="d">视频→脚本→AI视频→千川投放完整流水线；8人内容团队释放 60% 时间。</div></div>
   </div>
 
   <h3>对应你公司的 5 个层</h3>
   <div class="grid5">
-    <div class="m"><div class="h">① 身份层</div><div class="b">GPT 里配好「服饰内衣+儿童用品直播电商，年营收 3.2 亿，猫人/都市丽人/婷美，千川投流打法，荣道清团队」的永久身份档案，每次对话不再重复介绍背景。</div><div class="now">起点：在 gpt.com 新建专属 GPT，第一条消息填身份</div></div>
-    <div class="m"><div class="h">② 知识层</div><div class="b">把爆款 SOP（复刻/创新两类）+ 选品 S+/S/A/B/C 分级标准 + 竞品剧情分析库 + 概念词典（叙事主权/5A 人群流转等）上传进知识库，AI 调用时先查而非靠猜。</div><div class="now">已有：SOP 表格草稿（需补维度）</div></div>
-    <div class="m"><div class="h">③ 工具层</div><div class="b">3 个智能体：① 爆款视频分析+复刻脚本 ② 即梦 AI 视频生成工作流 ③ GPT/Lovart 产品主图生成。每个智能体只干一件专业事。</div><div class="now">进行中：智能体①已有合并版，分拆中</div></div>
-    <div class="m"><div class="h">④ 协作层</div><div class="b">智能体打包成分享链接，编导/运营只需发一个视频就能得到拍摄脚本；一人打磨提示词，全组受益，不需要人人学 GPT 从头配置。</div><div class="now">目标：Skill 化后团队复用率 ×10</div></div>
-    <div class="m"><div class="h">⑤ 场景层</div><div class="b">最终态：扒榜→AI 筛品→爆款分析→脚本→AI 视频→主图→投流测品→验证爆款。8 人内容团队 5 小时人工素材寻找压缩到 1 小时，选品成功率从百里挑一提到 10:2-3。</div><div class="now">目标：D+60 业务验证</div></div>
+    <div class="m"><div class="h">① 身份层</div><div class="b">让 AI 记住：抖音服饰内衣直播电商、千川投流逻辑、猫人/都市丽人/婷美品牌调性、选品 S+/S/A/B/C 分级 SOP。</div><div class="now">起点：已有 Codex 选品脚本上下文</div></div>
+    <div class="m"><div class="h">② 知识层</div><div class="b">喂进去：10 条爆款视频库 + 拆解表格、产品白底图（多角度）、爆款主图参考图、竞品概念词典。</div><div class="now">已有：白底图、10条视频库进行中</div></div>
+    <div class="m"><div class="h">③ 工具层</div><div class="b">三个智能体：① 爆款视频分析/复刻 ② AI视频生成（脚本→即梦）③ AI生图（主图裂变）。</div><div class="now">进行中：① 已有初版待调优</div></div>
+    <div class="m"><div class="h">④ 协作层</div><div class="b">编导用 /复刻脚本 出内容，运营用 /主图裂变 出图，美工用 Lovart 精修——三岗AI化，不依赖单人。</div><div class="now">目标：W6-W7 铺开给编导/运营</div></div>
+    <div class="m"><div class="h">⑤ 场景层</div><div class="b">终态：视频→脚本→即梦→AI成片→千川投流完整流水线。8人内容团队每天 5 小时素材工作 → AI 30分钟出可投放视频。</div><div class="now">目标：W8 验证第一条完整链路</div></div>
   </div>
 
   <!-- ============ 二、智能体 ============ -->
-  <h2>二、要搭建的 3 个智能体（按当前优先级）</h2>
-  <p class="sub">荣总在场景确认时坚持「先做选品」，第一阶段已收口（Codex 选品工作流跑通）。第二阶段重心是「爆款视频分析→脚本→AI 视频→产品主图」，李华兴明确说「复刻拿结果比学会拆解更重要」，所以智能体按「能最快出可投放素材」的顺序排。</p>
+  <h2>二、要搭建的 3 个智能体（按首战板块优先级）</h2>
+  <p class="sub">李华兴亲口说「复刻场景用得更多，写文案≠拿业务结果」——所以顺序是：先让编导能复刻爆款出脚本，再让脚本能直接进即梦出视频，再让美工能用主图复刻替掉重拍。</p>
 
   <div class="threecol">
-    <div class="col">
-      <h4>① 爆款视频分析 + 复刻脚本智能体</h4>
-      <div class="pain">痛点：「我们编导拆片再编写，基本上不太会重新编写，很小部分。耗时很长，GPT 直接可以出结果。」——荣道清</div>
-      <div class="row"><b>角色设定</b>：资深短视频编导，专服务猫人/都市丽人安全裤+儿童用品抖音直播电商，懂千川投流素材逻辑。</div>
-      <div class="row"><b>输入</b>：一条爆款视频（口播类或剧情类）+ 产品信息</div>
-      <div class="row"><b>输出</b>：完整拍摄脚本（含人物动作/场景/道具/服装/台词及语气/切镜头时机/时长标注），可直接指挥演员</div>
-      <div class="row"><span class="pill hot">第二阶段首战</span><span class="pill">gpt.com GPT 5.5</span><span class="pill">D+23 进行中</span></div>
+    <div class="col highlight">
+      <h4>① 爆款视频分析/复刻智能体 <span style="font-size:12px;color:var(--accent)">▶ 进行中</span></h4>
+      <div class="pain">痛点：「运营/编导每天 5 小时找网络素材，爆款复刻成功率低，脚本产出质量不稳」</div>
+      <div class="row"><b>角色设定</b>：抖音服饰内衣直播电商爆款视频分析专家，熟悉千川投流逻辑和内衣/儿童品类受众偏好</div>
+      <div class="row"><b>输入</b>：一条爆款短视频 + 产品信息（卖点/人群/品牌）</div>
+      <div class="row"><b>输出</b>：多维拆解报告（口播文案/情绪/叙事主权/分镜/CTA）+ 可直接进即梦的拍摄脚本（含人物动作/场景/道具/服装/台词语气 6 维度）</div>
+      <div class="row"><span class="pill hot">首战进行中</span><span class="pill">阶段 4→5</span><span class="pill">GPT 5.5 thinking</span></div>
     </div>
     <div class="col">
-      <h4>② 即梦 AI 视频生成工作流</h4>
-      <div class="pain">痛点：「脚本有了，但不知道怎么进即梦，素材齐不齐、时长选多少——一直出幻觉。」——荣道清</div>
-      <div class="row"><b>角色设定</b>：提示词工程师，把拍摄脚本翻译成即梦 C4D 2.0 可理解的中文大白话提示词，含素材标注、时长计算、全能参考参数配置。</div>
-      <div class="row"><b>输入</b>：拍摄脚本 + 产品多角度白底图（正/背/侧面命名好）</div>
-      <div class="row"><b>输出</b>：即梦提示词（含 @ 素材引用、时长秒数、全能参考设置）→ 直接粘贴进即梦生成成片</div>
-      <div class="row"><span class="pill">即梦 C4D 2.0</span><span class="pill">W5-W6</span></div>
+      <h4>② AI 视频生成工作流</h4>
+      <div class="pain">痛点：「有脚本但完整闭环（脚本→即梦→成片）还没跑通，理论打通两次但网络卡/脚本质量未到位」</div>
+      <div class="row"><b>角色设定</b>：智能体①出脚本后的延伸——把脚本 + 产品多角度白底图标准化送进即梦 C4D 2.0</div>
+      <div class="row"><b>输入</b>：拍摄脚本（含 6 维度）+ 产品白底图（多角度命名标注）</div>
+      <div class="row"><b>输出</b>：可直接投千川的 AI 视频成片</div>
+      <div class="row"><span class="pill">阶段 5-6</span><span class="pill">W5-W6</span><span class="pill">即梦 C4D 2.0</span></div>
     </div>
     <div class="col">
-      <h4>③ 产品主图生成智能体</h4>
-      <div class="pain">痛点：「测爆了之后原始图片不够用，重新拍一套图周期很长、费时费力也费钱。」——荣道清（执行会议-003 新增）</div>
-      <div class="row"><b>角色设定</b>：AI 美工，用产品原图（正/背/侧面 3-8 张）参考竞品主图风格，生成新版详情页主图，严谨提示词确保卖点准确呈现。</div>
-      <div class="row"><b>输入</b>：产品多角度原图（命名正面/背面/侧面）+ 3-8 张参考竞品主图</div>
-      <div class="row"><b>输出</b>：GPT/Lovart 提示词 → 新主图（分别生成 N 张，避免融图）</div>
-      <div class="row"><span class="pill">GPT 先用</span><span class="pill">Lovart 备用</span><span class="pill">W6-W7</span></div>
+      <h4>③ AI 生图智能体（爆款主图裂变）</h4>
+      <div class="pain">痛点：「测爆后重新拍摄周期长费钱，荣总亲口提需求：基于详情页主图生成新详情页」</div>
+      <div class="row"><b>角色设定</b>：基于一张已验证爆款主图，快速裂变出换场景/换卖点/换人群的多版本主图，替代美工重拍</div>
+      <div class="row"><b>输入</b>：一张爆款主图 + 裂变方向（场景/卖点/人群）</div>
+      <div class="row"><b>输出</b>：可直接上架的新主图（5-8 张）；内衣品类用 Nano Banana，外穿用 GPT Image2</div>
+      <div class="row"><span class="pill">阶段 6</span><span class="pill">W6-W7</span><span class="pill">GPT / Lovart</span></div>
     </div>
   </div>
 
   <!-- ============ 三、Skills ============ -->
-  <h2>三、把智能体打包成 Skill（编导/运营人人能用，跨品复用）</h2>
-  <p class="sub">你们有 60-70 人，但 AI 推进靠老板一个人带。Skill 的作用是：把打磨好的智能体打包成一个指令，发给编导/运营，他们只需要上传视频/图片就能用，不需要重新配置 GPT——就像你们的选品 SOP，一旦跑通，全组都能照着执行。</p>
+  <h2>三、把智能体打包成 Skill（编导/运营/美工人人能用，跨品类复用）</h2>
+  <p class="sub">就像你们把选品 SOP 固化成了 5 年打法——Skill 就是把智能体的用法固化成一个触发词，编导不需要懂提示词，发视频就能出脚本。这个打法可以从安全裤复制到童装、男装。</p>
 
   <div class="threecol">
     <div class="col">
-      <h4>Skill 1 · 爆款脚本生成器</h4>
-      <div class="row">触发词：<code style="color:var(--accent2)">/爆款脚本</code></div>
-      <div class="row">能力：上传一条爆款视频 → 自动拆解人物动作/场景/道具/服装/台词语气 → 输出可拍摄脚本</div>
-      <div class="row">复用：口播类、剧情类分别一个 Skill；猫人 / 都市丽人 / 婷美跨品通用，只需替换产品信息段</div>
+      <h4>Skill 1 · 爆款复刻</h4>
+      <div class="row">触发词：<code style="color:var(--accent2)">/复刻脚本</code></div>
+      <div class="row">能力：上传一条爆款视频，自动出带人物动作/场景/道具/服装/台词语气 6 维度的拍摄脚本</div>
+      <div class="row">复用：安全裤 → 童装 → 男装，换品类只改产品信息，SOP 不变</div>
     </div>
     <div class="col">
-      <h4>Skill 2 · 即梦提示词生成器</h4>
-      <div class="row">触发词：<code style="color:var(--accent2)">/即梦提示词</code></div>
-      <div class="row">能力：输入拍摄脚本 + 产品图 → 输出即梦 C4D 2.0 提示词（含全能参考参数、时长标注、素材 @ 引用）</div>
-      <div class="row">复用：安全裤/儿童用品/睡衣等内穿品类通用；素材标注规则模板化，不同品替换产品图即可</div>
+      <h4>Skill 2 · AI 出视频</h4>
+      <div class="row">触发词：<code style="color:var(--accent2)">/出视频</code></div>
+      <div class="row">能力：把脚本 + 产品白底图标准化处理后送进即梦，输出参数/素材命名/提示词完整包</div>
+      <div class="row">复用：任意品类，提示词框架不变，只换产品素材</div>
     </div>
     <div class="col">
-      <h4>Skill 3 · 产品主图生成器</h4>
-      <div class="row">触发词：<code style="color:var(--accent2)">/主图生成</code></div>
-      <div class="row">能力：输入产品多角度原图 + 参考竞品主图 → 输出 GPT/Lovart 提示词 → 生成新版主图</div>
-      <div class="row">复用：解决「测爆无图、重拍周期长」的通用痛点；美工都能用，不需懂 AI 底层</div>
+      <h4>Skill 3 · 主图裂变</h4>
+      <div class="row">触发词：<code style="color:var(--accent2)">/主图裂变</code></div>
+      <div class="row">能力：上传一张爆款主图，告诉 AI 换哪个卖点/场景/人群，自动出 5-8 张可上架新图</div>
+      <div class="row">复用：内衣用 Nano Banana（审核宽松），外穿用 Image2；美工可在 Lovart 精修</div>
     </div>
   </div>
 
   <!-- ============ 四、工作流 + HTML ============ -->
-  <h2>四、把 Skills 串成工作流，产出可复用的素材库</h2>
-  <p class="sub">单个智能体解决单个问题，串成工作流才能替代人工每天 5 小时的素材寻找。下面是「爆款视频→AI 素材生产」完整链路，这是 8 人内容团队的核心释放场景。</p>
+  <h2>四、把 Skills 串成工作流，让一条爆款视频变成可投放素材</h2>
+  <p class="sub">这是最终要跑通的链路：编导每天找到 1 条爆款，用 Skills 串联，30 分钟出可以直接投千川的 AI 视频。</p>
 
   <div class="demo">
-    <div style="font-size:13px;color:var(--muted)">工作流 · 爆款视频→AI 素材生产（直播电商版）</div>
+    <div style="font-size:13px;color:var(--muted)">工作流 · 爆款视频→千川可投放 AI 视频（目标链路）</div>
     <div class="flow">
-      <span class="node">📱 抖店榜单<br><small style="color:#8a93a6">Codex 自动筛趋势款</small></span>
+      <span class="node">📹 编导找到 1 条爆款视频</span>
       <span class="arr">→</span>
-      <span class="node">🎬 收集爆款视频<br><small style="color:#8a93a6">运营收集 10 条目标视频</small></span>
+      <span class="node hot">/复刻脚本</span>
       <span class="arr">→</span>
-      <span class="node">🧠 /爆款脚本<br><small style="color:#8a93a6">AI 拆解→出拍摄脚本</small></span>
+      <span class="node">脚本（含 6 维度）</span>
       <span class="arr">→</span>
-      <span class="node">🎥 /即梦提示词<br><small style="color:#8a93a6">脚本+产品图→即梦生成</small></span>
+      <span class="node hot">/出视频</span>
       <span class="arr">→</span>
-      <span class="node">🖼️ /主图生成<br><small style="color:#8a93a6">GPT/Lovart 产品主图</small></span>
+      <span class="node">即梦 C4D 2.0 生成</span>
       <span class="arr">→</span>
-      <span class="node">📊 千川投流测品</span>
+      <span class="node">✅ AI 视频成片</span>
+      <span class="arr">→</span>
+      <span class="node">💰 千川投流测品</span>
     </div>
     <div class="out">
-      <b style="color:var(--accent2)">工作流产出（每周可交付）</b><br>
-      · <b>拍摄脚本库</b>：10 条爆款视频 → 10 套可拍摄脚本（口播类 / 剧情类分类存档）<br>
-      · <b>AI 视频素材</b>：脚本 + 产品白底图 → 即梦生成的 AI 成片，可直接进千川测品<br>
-      · <b>产品主图包</b>：测爆后不重拍，GPT/Lovart 生成同款风格主图，周期从 2 周压到 2 天<br>
-      · <b>素材复用率</b>：同一套提示词框架，猫人 / 都市丽人 / 婷美三个品轮换测，不重复劳动
+      <b style="color:var(--accent2)">并行：主图裂变链路</b><br>
+      📸 爆款主图 → <code>/主图裂变</code> → 换场景/卖点/人群的 5-8 张新图 → 上架详情页<br><br>
+      <b style="color:var(--accent2)">当前进度（v4 · 2026-06-17）</b><br>
+      ① 复刻脚本智能体：已有初版，负反馈循环激活中，脚本质量调优进行中<br>
+      ② 视频生成链路：即梦/Lovart 演示完成，完整闭环 W5 验收目标<br>
+      ③ 主图裂变：单次对话测试阶段，生图提示词模板待 Lion 发群，W6 萃取成智能体
     </div>
   </div>
 
   <!-- ============ 时间轴 ============ -->
-  <h2>五、两个月周里程碑</h2>
+  <h2>五、两个月周里程碑（D+0 = 2026-05-23）</h2>
   <div class="timeline">
 
     <div class="tl-item done-item">
-      <h4><span class="wk">W1-W3</span>✓ 第一阶段：Codex 选品工作流（已收口）</h4>
+      <h4><span class="wk">W1-W3</span>✅ Codex 选品工作流上线（D+0 ~ D+18）</h4>
       <ul>
-        <li>Codex + Python 跑通抖店罗盘 D-1 vs D-2 单量差自动筛趋势款</li>
-        <li>客户已能写出符合需求的选品脚本，业务结果受供应链/市场制约，持续验证</li>
-        <li>Mac + 网络环境 + GPT 账号配置完成</li>
+        <li>Lion 交付 Python demo（抖店罗盘 D-1 vs D-2 单量差爬取，迭代到第六版）</li>
+        <li>荣道清用 Codex 自行迭代，写出"想要的东西"，业务结果受供应链/市场制约</li>
+        <li>第一阶段告一段落，正式进入第二阶段（爆款视频分析/复刻）</li>
       </ul>
-      <div class="deliv"><span class="s-flow" style="color:var(--ok)">✓ Codex 选品工作流</span><span style="color:var(--ok)">✓ 已收口</span></div>
+      <div class="deliv"><span class="s-done">✅ Codex 选品脚本 v6</span><span class="s-done">✅ 抖店罗盘爬取跑通</span></div>
+    </div>
+
+    <div class="tl-item done-item">
+      <h4><span class="wk">W4</span>✅ 智能体初版 + AI 视频/生图工具矩阵演示</h4>
+      <ul>
+        <li>Lion 全程演示智能体三件套（搭建/使用/迭代），gpt.com GPT 5.5 thinking</li>
+        <li>林韩演示即梦 C4D 2.0 视频生成（参数/素材权重/时长/提示词逻辑）</li>
+        <li>林韩演示 Lovart（画布/Agent/模型选择/标记工具）</li>
+        <li>GPT 生图测试通过，内容审核卡点解法确认（换词/Nano Banana/多重试，不封号）</li>
+        <li>美工参会，后续可协助精细化生图</li>
+      </ul>
+      <div class="deliv"><span class="s-done">✅ 智能体初版</span><span class="s-done">✅ Lovart 演示</span><span class="s-done">✅ 生图审核方案</span></div>
+    </div>
+
+    <div class="tl-item now-item">
+      <h4><span class="wk">W5</span>▶ 现在 · 负反馈循环激活 + 视频完整闭环（D+25）</h4>
+      <ul>
+        <li>激活负反馈循环：脚本不满意 → 把负反馈告诉 AI → 调指令词 → 再跑（每天填飞书表格）</li>
+        <li>实操完整链路：爆款视频→复刻脚本→即梦→AI视频成片，跑通一遍</li>
+        <li>AI 生图：收到 Lion 生图提示词模板后，单次对话磨出满意爆款主图</li>
+        <li>GPT 会议复盘：荣道清用 Lion 发的指令词 + 逐字稿做会议复盘发群</li>
+      </ul>
+      <div class="deliv"><span class="s-agent">智能体①调优版</span><span class="s-flow">视频生成链路验证</span></div>
     </div>
 
     <div class="tl-item">
-      <h4><span class="wk">W4（当前）</span>爆款视频分析智能体 · 视频拆解维度精准化</h4>
+      <h4><span class="wk">W6</span>智能体①到 85 分 · 生图智能体搭建</h4>
       <ul>
-        <li>在剧情对话复刻 SOP 表格补充维度：人物动作 / 场景 / 道具 / 服装 / 台词语气</li>
-        <li>对话里磨提示词 → 产出可直接进即梦的拍摄脚本</li>
-        <li>课后实操即梦 C4D 2.0（解决网络卡顿，完成真实视频生成演示）</li>
-        <li>GPT 生图初试：准备产品多角度原图 + 3-8 张参考图，周三（2026-06-18）汇报</li>
+        <li>爆款视频分析/复刻智能体：脚本质量 85 分，可直接交给编导使用</li>
+        <li>AI 生图智能体初版：爆款主图裂变（单图输入 → 5-8 张不同版本输出）</li>
+        <li>两套脚本+生成参数标准化成 SOP，编导可自行操作</li>
       </ul>
-      <div class="deliv"><span class="s-agent">智能体① 维度升级</span><span class="s-flow">即梦首次实操</span><span>周三 14:00 汇报</span></div>
+      <div class="deliv"><span class="s-agent">智能体① 85分</span><span class="s-agent">智能体③ 生图初版</span><span class="s-skill">Skill /复刻脚本</span></div>
     </div>
 
     <div class="tl-item">
-      <h4><span class="wk">W5-W6</span>智能体① 封装 + 即梦视频生成跑通</h4>
+      <h4><span class="wk">W7</span>工作流串联 · 编导/运营自主操作</h4>
       <ul>
-        <li>把爆款脚本智能体拆分：口播类一个 / 剧情类一个（不强求大一统，实操中发现共性再融合）</li>
-        <li>即梦 C4D 2.0 完整链路跑通：脚本 + 白底图 → 成片（可投放质量）</li>
-        <li>爆款视频表格建好（10 条，播放量/点赞/完播率 + 爆火分析）</li>
+        <li>完整链路 Skill 化：/复刻脚本 + /出视频 + /主图裂变，编导可独立运行</li>
+        <li>横向复刻验证：把安全裤链路复制到童装/男装（非标品 AI 视频带货）</li>
+        <li>美工 Lovart 独立操作（精修主图，替代重拍环节）</li>
       </ul>
-      <div class="deliv"><span class="s-agent">智能体① 正式版（口播 + 剧情）</span><span class="s-skill">Skill /爆款脚本</span><span class="s-flow">即梦视频生成跑通</span></div>
+      <div class="deliv"><span class="s-skill">Skill /复刻脚本</span><span class="s-skill">Skill /出视频</span><span class="s-skill">Skill /主图裂变</span><span class="s-flow">完整工作流</span></div>
     </div>
 
     <div class="tl-item">
-      <h4><span class="wk">W6-W7</span>即梦提示词 Skill + 产品主图生成</h4>
+      <h4><span class="wk">W8</span>业务系统化 · 结业交付</h4>
       <ul>
-        <li>即梦提示词封装成 Skill：编导只需发脚本+产品图，自动出提示词</li>
-        <li>GPT/Lovart 产品主图生成正式跑通（解决「测爆无图」痛点）</li>
-        <li>三品（猫人/都市丽人/婷美）横向复刻验证：同一 Skill 切换产品测试</li>
+        <li>目标验证：视频生产时间从"8人×5小时"压到"2人×1小时+AI自动跑"</li>
+        <li>童装/男装 AI 视频带货链路跑通（6月计划测非标品）</li>
+        <li>所有 Skill + SOP 打包，运营/编导/美工各自独立操作</li>
       </ul>
-      <div class="deliv"><span class="s-skill">Skill /即梦提示词</span><span class="s-agent">智能体③ 主图生成</span><span class="s-skill">Skill /主图生成</span></div>
-    </div>
-
-    <div class="tl-item">
-      <h4><span class="wk">W8</span>业务系统化 · 结业</h4>
-      <ul>
-        <li>「扒榜→选品→爆款分析→脚本→AI 视频→主图→投流测品」完整链路验证</li>
-        <li>编导/运营培训（Skill 分享链接，人人能调用，不依赖老板）</li>
-        <li>非标品延伸：童装/男装 AI 视频带货模型复刻（根据 W6-W7 验证结果决定优先级）</li>
-        <li>陪跑结业 HTML 报告 + 长期续约讨论</li>
-      </ul>
-      <div class="deliv"><span class="s-flow">完整业务链路</span><span class="s-html">交付：陪跑结业报告 HTML</span><span>续约方案</span></div>
+      <div class="deliv"><span class="s-flow">完整业务系统</span><span class="s-html">交付：陪跑结业报告 HTML</span></div>
     </div>
 
   </div>
@@ -293,14 +309,14 @@
   <!-- ============ 承诺 ============ -->
   <h2>六、陪跑承诺</h2>
   <div class="promise">
-    <div class="p"><b>① 落地承诺</b><br>不求快，每个工作流必须跑到你自己满意再启动下一个。Lion 的铁律：「都做 60 分会丧失 AI 热情。」先把「爆款分析→脚本→即梦视频」这条链路做扎实，再叠加主图生成，不并行多任务。</div>
-    <div class="p"><b>② 节奏承诺</b><br>每周三下午 2 点固定会期（已定），群里随时响应。遇到网络/工具问题不卡进度——无法演示就下课自行实操，再针对具体问题下次课解决。林韩提供生图提示词模板，不让你从零摸索。</div>
-    <div class="p"><b>③ 团队承诺</b><br>每个智能体打磨好后打包成分享链接发给编导/运营，让团队以最低学习成本上手。不要求人人学 GPT，但要确保「一人优化提示词，全组受益」的协作模式建立起来。</div>
+    <div class="p"><b>① 落地承诺</b><br>一个智能体吃透再推进下一个。卡住了会上解决，不靠群里文字猜——Lion 在执行会议-004 当场确认：遇到"一两句话说不清的卡点"直接拉会。飞书表格每日可视化进度，不让进展变黑盒。</div>
+    <div class="p"><b>② 复刻承诺</b><br>所有 Skill 按品类参数化——安全裤的 /复刻脚本 换一个产品信息文件就能用于童装/男装。6月测非标品 AI 视频的计划，在 W7 横向复刻时同步验证。</div>
+    <div class="p"><b>③ 员工承诺</b><br>编导/运营/美工都能独立用，不依赖荣总或 Lion 在场。陪跑团队远程 review 方向是否对，GPT 对话链接分享机制已确认（不用截图，直接发链接定位问题）。</div>
   </div>
 
   <footer>
-    数据来源：面试妙记（2026-05-20）+ 场景确认妙记（2026-05-23）+ 执行会议 001/002/003（2026-05-26 / 2026-06-10 / 2026-06-15）<br>
-    Lion 对荣总的判断：「你认为他给不出来，是因为没说清楚你想要的东西。当你能很清晰地表达出来，他不会给不到你。」——执行会议-002
+    数据来源：面试妙记（2026-05-20）+ 场景确认（2026-05-23）+ 执行会议-001~004（2026-05-26 / 06-10 / 06-15 / 06-17）完整逐字稿 · 本版本（v4）基于执行会议-004 更新<br><br>
+    陪跑团队对荣总的判断：「执行力强、认知高，自我驱动够，缺的是 AI 工程化能力——我们来补这块。」 · Lion 组 · 第 9 期
   </footer>
 
 </div>
