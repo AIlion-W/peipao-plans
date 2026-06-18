@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>亚马逊家具-刘月婷 · 执行-003 会议总结</title>
+<style>
+  :root {
+    --bg: #F5F4ED;
+    --paper: #FAF9F5;
+    --ink: #2D2A26;
+    --ink-soft: #4A4742;
+    --muted: #8C8579;
+    --line: #E8E4D8;
+    --line-soft: #EFEBE0;
+    --accent: #C96442;
+    --accent-soft: #F4E4DA;
+    --accent-line: #E5BFAB;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body {
+    font-family: ui-serif, "Iowan Old Style", "Songti SC", "Source Han Serif SC", "Noto Serif CJK SC", "PingFang SC", Georgia, serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.75;
+    padding: 56px 20px 80px;
+    font-size: 16px;
+  }
+  .sans {
+    font-family: -apple-system, "Inter", "PingFang SC", "Helvetica Neue", sans-serif;
+  }
+  .container { max-width: 760px; margin: 0 auto; }
+
+  /* HEADER */
+  header {
+    background: var(--paper);
+    padding: 56px 56px 44px;
+    border-radius: 16px 16px 0 0;
+    border: 1px solid var(--line);
+    border-bottom: none;
+  }
+  .eyebrow {
+    font-family: -apple-system, "Inter", sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    color: var(--accent);
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 6px; height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    display: inline-block;
+  }
+  h1 {
+    font-size: 34px;
+    color: var(--ink);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+    margin-bottom: 14px;
+  }
+  .sub {
+    font-size: 16px;
+    color: var(--muted);
+    margin-bottom: 36px;
+    font-style: italic;
+  }
+  .meta {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 20px 32px;
+    padding-top: 28px;
+    border-top: 1px solid var(--line);
+  }
+  .meta-item { font-family: -apple-system, "Inter", sans-serif; font-size: 14px; }
+  .meta-item .k {
+    display: block;
+    color: var(--muted);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .meta-item .v { color: var(--ink); font-weight: 500; }
+
+  /* MAIN */
+  main {
+    background: var(--paper);
+    padding: 8px 56px 56px;
+    border-radius: 0 0 16px 16px;
+    border: 1px solid var(--line);
+    border-top: none;
+  }
+  section { padding: 36px 0; border-bottom: 1px solid var(--line-soft); }
+  section:last-child { border-bottom: none; padding-bottom: 12px; }
+
+  h2 {
+    font-family: -apple-system, "Inter", sans-serif;
+    font-size: 11px;
+    color: var(--accent);
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  h3 {
+    font-size: 17px;
+    color: var(--ink);
+    font-weight: 600;
+    margin-bottom: 14px;
+    letter-spacing: -0.005em;
+  }
+
+  /* LISTS */
+  ol, ul { padding-left: 0; list-style: none; }
+  .num-list { counter-reset: item; }
+  .num-list li {
+    counter-increment: item;
+    position: relative;
+    padding: 10px 0 10px 40px;
+    color: var(--ink-soft);
+    font-size: 16px;
+    line-height: 1.8;
+  }
+  .num-list li + li { border-top: 1px dashed var(--line-soft); }
+  .num-list li::before {
+    content: counter(item);
+    position: absolute;
+    left: 0;
+    top: 14px;
+    width: 26px;
+    height: 26px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: 700;
+    font-family: -apple-system, "Inter", sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .num-list strong { color: var(--ink); font-weight: 600; }
+
+  /* QUOTE */
+  .quote {
+    margin: 32px 0 0;
+    padding: 24px 28px;
+    background: var(--accent-soft);
+    border-radius: 12px;
+    color: var(--ink);
+    font-size: 18px;
+    line-height: 1.65;
+    border-left: 3px solid var(--accent);
+  }
+  .quote-label {
+    display: block;
+    font-family: -apple-system, "Inter", sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+  .quote strong { font-weight: 700; }
+
+  /* PULL */
+  .pull {
+    padding: 24px 28px;
+    background: var(--ink);
+    color: var(--paper);
+    margin-bottom: 24px;
+    font-size: 16px;
+    line-height: 1.7;
+    border-radius: 12px;
+  }
+  .pull-label {
+    display: block;
+    font-family: -apple-system, "Inter", sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--accent-line);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+  .pull strong { color: var(--paper); font-weight: 600; }
+
+  /* DECISION GRID */
+  .grid {
+    background: var(--bg);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+  }
+  .grid-row {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    padding: 16px 22px;
+    border-bottom: 1px solid var(--line);
+    font-size: 15.5px;
+  }
+  .grid-row:last-child { border-bottom: none; }
+  .grid-row .k {
+    color: var(--muted);
+    font-size: 13px;
+    font-family: -apple-system, "Inter", sans-serif;
+    padding-top: 2px;
+  }
+  .grid-row .v { color: var(--ink-soft); line-height: 1.65; }
+
+  /* ROLE */
+  .role {
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 24px 26px;
+    margin-bottom: 16px;
+  }
+  .role:last-child { margin-bottom: 0; }
+  .role-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding-bottom: 14px;
+    margin-bottom: 6px;
+    border-bottom: 1px solid var(--line);
+  }
+  .role-header h3 { margin: 0; }
+  .role-tag {
+    font-family: -apple-system, "Inter", sans-serif;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  /* TASK */
+  .task {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 14px;
+    padding: 12px 0;
+    font-size: 15px;
+    color: var(--ink-soft);
+    line-height: 1.65;
+    border-bottom: 1px dashed var(--line-soft);
+  }
+  .task:last-child { border-bottom: none; }
+  .badge {
+    font-family: -apple-system, "Inter", sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding-top: 4px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .badge::before {
+    content: "";
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .badge.done { color: var(--muted); }
+  .badge.done::before { background: var(--muted); }
+  .badge.doing { color: var(--accent); }
+  .badge.doing::before { background: var(--accent); }
+  .badge.todo { color: var(--ink); }
+  .badge.todo::before { background: transparent; border: 1.5px solid var(--ink); }
+  .task-body .owner { color: var(--muted); font-size: 14px; margin-left: 4px; font-style: italic; }
+
+  /* NEXT */
+  .next {
+    background: var(--accent-soft);
+    border: 1px solid var(--accent-line);
+    border-radius: 12px;
+    padding: 26px 28px;
+  }
+  .next h3 {
+    color: var(--accent);
+    font-size: 17px;
+    margin-bottom: 18px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--accent-line);
+  }
+  .next-row {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    padding: 8px 0;
+    font-size: 15.5px;
+  }
+  .next-row .k {
+    color: var(--muted);
+    font-size: 13px;
+    font-family: -apple-system, "Inter", sans-serif;
+  }
+  .next-row .v { color: var(--ink); }
+
+  /* FOOTER */
+  footer {
+    margin-top: 32px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-family: -apple-system, "Inter", sans-serif;
+  }
+
+  @media (max-width: 640px) {
+    body { padding: 32px 14px; font-size: 15px; }
+    header, main { padding-left: 28px; padding-right: 28px; }
+    h1 { font-size: 26px; }
+    .grid-row, .task, .next-row { grid-template-columns: 1fr; gap: 4px; }
+    .meta { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <div class="eyebrow">执行会议 · 003</div>
+  <h1>亚马逊家具 — 刘月婷</h1>
+  <div class="sub">从打磨 Skill 到规模化推广 · 让所有运营用上统一审美标准</div>
+  <div class="meta">
+    <div class="meta-item"><span class="k">时间</span><span class="v">2026-06-18</span></div>
+    <div class="meta-item"><span class="k">时长</span><span class="v">2 小时 13 分钟</span></div>
+    <div class="meta-item"><span class="k">陪跑老师</span><span class="v">Lion</span></div>
+    <div class="meta-item"><span class="k">客户参会</span><span class="v">刘月婷（美工/设计负责人）、运营同学（用户 543656）</span></div>
+  </div>
+</header>
+
+<main>
+
+<section>
+  <h2>本次会议干了什么</h2>
+  <ol class="num-list">
+    <li><strong>刘月婷展示生图 Skill V4 现状。</strong>已覆盖主图/副图/A 加图全流程，内容分析完整；残留问题是产品模型有形变，美工负责后期渲染修正。</li>
+    <li><strong>Lion 手把手演示 Skill → GPT 智能体封装全流程。</strong>从「我的 GPT」→ 创建 → 粘贴指令 → 处理超 8000 字（拆成指令+知识库）→ 分享链接给运营，完整走了一遍。</li>
+    <li><strong>锁定审美统一路径。</strong>收集高/低审美图各 20 张 → GPT 提炼语言化审美标准 → 写进智能体指令。Lion 承诺会后发"审美提取"提示词到群里。</li>
+    <li><strong>新需求提出：亚马逊图 → 美国本土平台图转换 SKU。</strong>保留产品内容，只换排版和场景，按本土平台设计风格输出，下次会议深入讨论。</li>
+    <li><strong>爆款视频公式库 review。</strong>刘月婷展示了基于自家产品链接生成的视频公式库（已实际跑通），Lion 会后发群优化反馈。</li>
+  </ol>
+
+  <div class="quote">
+    <span class="quote-label">Lion 核心判断</span>
+    设计同学已经把 Skill 打磨到 V4 了，运营不用从零搭建——<strong>直接拿现成提示词封装智能体，分享链接就能统一标准。</strong>
+  </div>
+</section>
+
+<section>
+  <h2>本周核心决策</h2>
+
+  <div class="pull">
+    <span class="pull-label">节奏铁律</span>
+    先封装智能体让所有运营用上，<strong>解决"只有刘月婷会用"的瓶颈，再谈扩展下一个场景。</strong>
+  </div>
+
+  <div class="grid">
+    <div class="grid-row"><div class="k">本周核心动作</div><div class="v">刘月婷把生图 Skill V4 翻译成中文版，按"指令+知识库"格式拆分，封装成 GPT 智能体后分享链接给所有运营</div></div>
+    <div class="grid-row"><div class="k">审美统一路径</div><div class="v">收集高/低审美图各 20 张 → 用 Lion 发的审美提取提示词让 GPT 解构标准 → 写进智能体指令</div></div>
+    <div class="grid-row"><div class="k">迭代智能体的方法</div><div class="v">出了不满意的图 → 把结果+改进需求发回"打磨对话框" → GPT 迭代指令 → 替换掉原来的</div></div>
+    <div class="grid-row"><div class="k">下一步需求</div><div class="v">亚马逊图转本土平台图 SKU（保留产品内容，换排版+场景），下次会议深入讨论方案</div></div>
+  </div>
+</section>
+
+<section>
+  <h2>落地清单</h2>
+
+  <div class="role">
+    <div class="role-header"><h3>客户侧</h3><span class="role-tag">刘月婷 / 用户 543656（运营）</span></div>
+    <div class="task"><div class="badge todo">待启动</div><div class="task-body">把生图 Skill V4 翻译成中文版，按"指令+知识库"拆分，封装成 GPT 智能体<span class="owner">— @刘月婷（美工）</span><br><small style="color:var(--muted)">完成标准：分享链接给运营同学能打开使用</small></div></div>
+    <div class="task"><div class="badge todo">待启动</div><div class="task-body">收集高审美产品图 20 张 + 低审美 20 张，等 Lion 发提示词后执行审美提取<span class="owner">— @用户 543656（运营）</span><br><small style="color:var(--muted)">完成标准：图片整理好，跑完 GPT 提炼，输出审美标准文档</small></div></div>
+  </div>
+
+  <div class="role">
+    <div class="role-header"><h3>陪跑团队侧</h3><span class="role-tag">Lion</span></div>
+    <div class="task"><div class="badge todo">待启动</div><div class="task-body">发"审美提取"智能体提示词到客户微信群<span class="owner">— @Lion</span></div></div>
+    <div class="task"><div class="badge todo">待启动</div><div class="task-body">发爆款视频公式库优化反馈到客户微信群<span class="owner">— @Lion</span></div></div>
+  </div>
+
+  <div class="role">
+    <div class="role-header"><h3>本次会议已完成</h3><span class="role-tag">Closed</span></div>
+    <div class="task"><div class="badge done">完成</div><div class="task-body">刘月婷展示生图 Skill V4 完整链路，双方对现状对齐</div></div>
+    <div class="task"><div class="badge done">完成</div><div class="task-body">Lion 手把手演示 Skill → GPT 智能体封装全流程，运营同学跟随操作</div></div>
+    <div class="task"><div class="badge done">完成</div><div class="task-body">公司业务流程 AI 化全景梳理（刘华老师提示词版），展示了经验萃取的最佳实践</div></div>
+  </div>
+</section>
+
+<section>
+  <h2>下次会议方向</h2>
+  <div class="next">
+    <h3>智能体使用效果验收 + 本土平台图转换方案</h3>
+    <div class="next-row"><span class="k">触发条件</span><span class="v">运营同学跑通了智能体并有实际使用记录，或刘月婷完成智能体封装+分享</span></div>
+    <div class="next-row"><span class="k">会议内容</span><span class="v">① 验收智能体使用效果（审美是否统一）② 讨论亚马逊→本土平台图转换 SKU 方案 ③ 爆款视频公式库迭代优化成果</span></div>
+    <div class="next-row"><span class="k">迭代记录表</span><span class="v"><a href="https://qcnsjrr3eh57.feishu.cn/base/BxD7b9uzKamL0RsWdWociPl4npg" style="color:var(--accent)">每次调完指令的版本、产出结果、满意度</a></span></div>
+  </div>
+</section>
+
+</main>
+
+<footer>正心 AI 陪跑项目 — 第 7 期 — Lion 组 — 2026.06.18</footer>
+
+</div>
+</body>
+</html>
