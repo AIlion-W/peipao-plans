@@ -351,6 +351,7 @@
   <ol class="num-list">
     <li><strong>刘月婷展示生图 Skill V4 现状。</strong>已覆盖主图/副图/A 加图全流程，内容分析完整；残留问题是产品模型有形变，美工负责后期渲染修正。</li>
     <li><strong>Lion 手把手演示 Skill → GPT 智能体封装全流程。</strong>从「我的 GPT」→ 创建 → 粘贴指令 → 处理超 8000 字（拆成指令+知识库）→ 分享链接给运营，完整走了一遍。</li>
+    <li><strong>现场搭建「提问式教练智能体」。</strong>用户 543656 提出核心痛点：运营各自为政，每人跟 GPT 聊的内容都不完整。Lion 现场演示搭建了一个智能体——它主动逐一向运营提问（卖点是什么？场景是什么？规格要求？），所有问题答完才输出图片策划方案，再生图。解决"运营不知道该告诉 AI 什么"的根本问题。</li>
     <li><strong>锁定审美统一路径。</strong>收集高/低审美图各 20 张 → GPT 提炼语言化审美标准 → 写进智能体指令。Lion 承诺会后发"审美提取"提示词到群里。</li>
     <li><strong>新需求提出：亚马逊图 → 美国本土平台图转换 SKU。</strong>保留产品内容，只换排版和场景，按本土平台设计风格输出，下次会议深入讨论。</li>
     <li><strong>爆款视频公式库 review。</strong>刘月婷展示了基于自家产品链接生成的视频公式库（已实际跑通），Lion 会后发群优化反馈。</li>
@@ -367,12 +368,13 @@
 
   <div class="pull">
     <span class="pull-label">节奏铁律</span>
-    先封装智能体让所有运营用上，<strong>解决"只有刘月婷会用"的瓶颈，再谈扩展下一个场景。</strong>
+    先让智能体管住运营的输入，<strong>所有问题答完才能生图——解决"每个人给 AI 的信息参差不齐"这个根本问题。</strong>
   </div>
 
   <div class="grid">
-    <div class="grid-row"><div class="k">本周核心动作</div><div class="v">刘月婷把生图 Skill V4 翻译成中文版，按"指令+知识库"格式拆分，封装成 GPT 智能体后分享链接给所有运营</div></div>
-    <div class="grid-row"><div class="k">审美统一路径</div><div class="v">收集高/低审美图各 20 张 → 用 Lion 发的审美提取提示词让 GPT 解构标准 → 写进智能体指令</div></div>
+    <div class="grid-row"><div class="k">提问式教练智能体</div><div class="v">AI 主动逐一向运营提问（卖点/场景/规格/参考图等），所有问题回答完后才输出图片策划方案，策划方案确认后再生图。运营无需懂提示词，只需回答问题。</div></div>
+    <div class="grid-row"><div class="k">Skill 封装智能体</div><div class="v">刘月婷把生图 Skill V4 翻译成中文版，按"指令+知识库"格式拆分，上传 GPT 智能体配置后分享链接给所有运营</div></div>
+    <div class="grid-row"><div class="k">审美统一路径</div><div class="v">收集高/低审美图各 20 张 → 用 Lion 发的审美提取提示词让 GPT 解构标准 → 写进智能体指令，成为出图的强制约束</div></div>
     <div class="grid-row"><div class="k">迭代智能体的方法</div><div class="v">出了不满意的图 → 把结果+改进需求发回"打磨对话框" → GPT 迭代指令 → 替换掉原来的</div></div>
     <div class="grid-row"><div class="k">下一步需求</div><div class="v">亚马逊图转本土平台图 SKU（保留产品内容，换排版+场景），下次会议深入讨论方案</div></div>
   </div>
@@ -383,12 +385,14 @@
 
   <div class="role">
     <div class="role-header"><h3>客户侧</h3><span class="role-tag">刘月婷 / 用户 543656（运营）</span></div>
-    <div class="task"><div class="badge todo">待启动</div><div class="task-body">把生图 Skill V4 翻译成中文版，按"指令+知识库"拆分，封装成 GPT 智能体<span class="owner">— @刘月婷（美工）</span><br><small style="color:var(--muted)">完成标准：分享链接给运营同学能打开使用</small></div></div>
+    <div class="task"><div class="badge todo">待启动</div><div class="task-body"><strong>搭建「提问式教练智能体」</strong>：用 Lion 发的破冰提示词，把出图必须回答的问题全部穷举出来，搭成一个智能体——主动提问，所有问题答完才出策划方案<span class="owner">— @用户 543656（运营）</span><br><small style="color:var(--muted)">完成标准：至少 1 个运营跑通完整流程（提问→策划方案→生图）</small></div></div>
+    <div class="task"><div class="badge todo">待启动</div><div class="task-body"><strong>翻译 Skill V4 为中文版 + 封装 GPT 智能体</strong>，分享链接给所有运营<span class="owner">— @刘月婷（美工）</span><br><small style="color:var(--muted)">完成标准：运营打开链接能直接使用</small></div></div>
     <div class="task"><div class="badge todo">待启动</div><div class="task-body">收集高审美产品图 20 张 + 低审美 20 张，等 Lion 发提示词后执行审美提取<span class="owner">— @用户 543656（运营）</span><br><small style="color:var(--muted)">完成标准：图片整理好，跑完 GPT 提炼，输出审美标准文档</small></div></div>
   </div>
 
   <div class="role">
     <div class="role-header"><h3>陪跑团队侧</h3><span class="role-tag">Lion</span></div>
+    <div class="task"><div class="badge todo">待启动</div><div class="task-body">发"提问式教练"破冰提示词到客户微信群（用于穷举出图必须回答的问题列表）<span class="owner">— @Lion</span></div></div>
     <div class="task"><div class="badge todo">待启动</div><div class="task-body">发"审美提取"智能体提示词到客户微信群<span class="owner">— @Lion</span></div></div>
     <div class="task"><div class="badge todo">待启动</div><div class="task-body">发爆款视频公式库优化反馈到客户微信群<span class="owner">— @Lion</span></div></div>
   </div>
@@ -397,6 +401,7 @@
     <div class="role-header"><h3>本次会议已完成</h3><span class="role-tag">Closed</span></div>
     <div class="task"><div class="badge done">完成</div><div class="task-body">刘月婷展示生图 Skill V4 完整链路，双方对现状对齐</div></div>
     <div class="task"><div class="badge done">完成</div><div class="task-body">Lion 手把手演示 Skill → GPT 智能体封装全流程，运营同学跟随操作</div></div>
+    <div class="task"><div class="badge done">完成</div><div class="task-body">Lion 现场搭建提问式教练智能体初版（"运营做图"），运营同学实际测试跑通</div></div>
     <div class="task"><div class="badge done">完成</div><div class="task-body">公司业务流程 AI 化全景梳理（刘华老师提示词版），展示了经验萃取的最佳实践</div></div>
   </div>
 </section>
