@@ -262,7 +262,7 @@
     <div class="card">
       <div class="card-tag">首战场景</div>
       <h4>亚马逊图片优化智能体</h4>
-      <p>两路并行：① 从同行评价提炼差异化卖点 ② 快速生成不同场景的产品图（场景图 + 详情页）。目标：封装成 GPT 智能体供全员运营使用。</p>
+      <p>两路并行：① 从同行评价提炼差异化卖点 ② 快速生成不同场景的产品图（场景图 + 详情页）。当前核心：把 Skill 封装成 GPT 智能体 + 搭提问式教练智能体规范运营输入。</p>
     </div>
     <div class="card">
       <div class="card-tag">长期愿景</div>
@@ -364,6 +364,11 @@
       <div><span class="tag mid">进行中</span></div>
     </div>
     <div class="need-row">
+      <div><div class="need-label">提问式教练智能体</div><div class="need-sub">AI 主动逐一提问（卖点/场景/规格/参考图），所有问题答完才出策划方案再生图，解决"运营不知道告诉 AI 什么"</div></div>
+      <div><span class="tag high">高</span></div>
+      <div><span class="tag mid">本周启动</span></div>
+    </div>
+    <div class="need-row">
       <div><div class="need-label">统一运营审美标准</div><div class="need-sub">高/低审美图各 20 张 → GPT 提炼语言化标准 → 写进智能体指令</div></div>
       <div><span class="tag high">高</span></div>
       <div><span class="tag mid">本周启动</span></div>
@@ -396,10 +401,14 @@
 
   <div class="pull">
     <span class="pull-label">核心瓶颈</span>
-    <p>Skill 打磨到 V4 了，<strong>现在的卡点是"只有刘月婷会用"</strong>——封装智能体让所有运营用上，才算真正规模化。</p>
+    <p>Skill V4 打磨好了，<strong>现在要解决两件事：① 封装成智能体让运营用上；② 用提问式教练管住运营的输入——没答完所有问题不能生图。</strong></p>
   </div>
 
   <div class="todo-list">
+    <div class="todo-item">
+      <div class="todo-circle"></div>
+      <div class="todo-text"><strong>运营团队：搭建「提问式教练智能体」</strong>——用 Lion 发的破冰提示词穷举出图必须回答的所有问题，搭成 GPT 智能体，主动问运营所有问题后才输出策划方案再生图。<span class="owner">— 运营同学</span><br><small style="color:var(--muted)">完成标准：至少 1 个运营跑通完整流程（提问→策划方案→生图）</small></div>
+    </div>
     <div class="todo-item">
       <div class="todo-circle"></div>
       <div class="todo-text"><strong>刘月婷：翻译 Skill V4 为中文版 + 封装 GPT 智能体</strong>，分享链接给所有运营。<span class="owner">— 刘月婷（美工）</span><br><small style="color:var(--muted)">完成标准：运营同学打开链接能直接使用</small></div>
@@ -410,7 +419,7 @@
     </div>
     <div class="todo-item">
       <div class="todo-circle"></div>
-      <div class="todo-text"><strong>Lion：发"审美提取"智能体提示词</strong>到客户微信群（猫课-刘月婷AI陪跑年度 第七期）。</div>
+      <div class="todo-text"><strong>Lion：发"提问式教练"破冰提示词 + "审美提取"提示词</strong>到客户微信群（猫课-刘月婷AI陪跑年度 第七期）。</div>
     </div>
     <div class="todo-item">
       <div class="todo-circle"></div>
