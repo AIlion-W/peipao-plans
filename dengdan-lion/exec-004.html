@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>亚马逊文具-邓丹 · 执行-004 会议总结</title>
+<style>
+  :root {
+    --bg: #F5F4ED;
+    --paper: #FAF9F5;
+    --ink: #2D2A26;
+    --ink-soft: #4A4742;
+    --muted: #8C8579;
+    --line: #E8E4D8;
+    --line-soft: #EFEBE0;
+    --accent: #C96442;
+    --accent-soft: #F4E4DA;
+    --accent-line: #E5BFAB;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body {
+    font-family: ui-serif, "Iowan Old Style", "Songti SC", "Source Han Serif SC", "Noto Serif CJK SC", "PingFang SC", Georgia, serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.75;
+    padding: 56px 20px 80px;
+    font-size: 16px;
+  }
+  .sans { font-family: -apple-system, "Inter", "PingFang SC", "Helvetica Neue", sans-serif; }
+  .container { max-width: 760px; margin: 0 auto; }
+  header {
+    background: var(--paper);
+    padding: 56px 56px 44px;
+    border-radius: 16px 16px 0 0;
+    border: 1px solid var(--line);
+    border-bottom: none;
+  }
+  .eyebrow {
+    font-family: -apple-system, "Inter", sans-serif;
+    font-size: 11px; letter-spacing: 0.22em; color: var(--accent);
+    text-transform: uppercase; font-weight: 600; margin-bottom: 20px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .eyebrow::before { content: ""; width: 6px; height: 6px; background: var(--accent); border-radius: 50%; display: inline-block; }
+  h1 { font-size: 34px; color: var(--ink); font-weight: 500; letter-spacing: -0.01em; line-height: 1.25; margin-bottom: 14px; }
+  .sub { font-size: 16px; color: var(--muted); margin-bottom: 36px; font-style: italic; }
+  .meta {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 20px 32px; padding-top: 28px; border-top: 1px solid var(--line);
+  }
+  .meta-item { font-family: -apple-system, "Inter", sans-serif; font-size: 14px; }
+  .meta-item .k { display: block; color: var(--muted); font-size: 11px; letter-spacing: 0.14em; margin-bottom: 6px; text-transform: uppercase; font-weight: 500; }
+  .meta-item .v { color: var(--ink); font-weight: 500; }
+  main {
+    background: var(--paper); padding: 8px 56px 56px;
+    border-radius: 0 0 16px 16px; border: 1px solid var(--line); border-top: none;
+  }
+  section { padding: 36px 0; border-bottom: 1px solid var(--line-soft); }
+  section:last-child { border-bottom: none; padding-bottom: 12px; }
+  h2 { font-family: -apple-system, "Inter", sans-serif; font-size: 11px; color: var(--accent); font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; margin-bottom: 24px; }
+  h3 { font-size: 17px; color: var(--ink); font-weight: 600; margin-bottom: 14px; letter-spacing: -0.005em; }
+  ol, ul { padding-left: 0; list-style: none; }
+  .num-list { counter-reset: item; }
+  .num-list li { counter-increment: item; position: relative; padding: 10px 0 10px 40px; color: var(--ink-soft); font-size: 16px; line-height: 1.8; }
+  .num-list li + li { border-top: 1px dashed var(--line-soft); }
+  .num-list li::before {
+    content: counter(item); position: absolute; left: 0; top: 14px;
+    width: 26px; height: 26px; background: var(--accent-soft); color: var(--accent);
+    border-radius: 50%; font-size: 12px; font-weight: 700;
+    font-family: -apple-system, "Inter", sans-serif; display: flex; align-items: center; justify-content: center;
+  }
+  .num-list strong { color: var(--ink); font-weight: 600; }
+  .quote { margin: 32px 0 0; padding: 24px 28px; background: var(--accent-soft); border-radius: 12px; color: var(--ink); font-size: 18px; line-height: 1.65; border-left: 3px solid var(--accent); }
+  .quote-label { display: block; font-family: -apple-system, "Inter", sans-serif; font-size: 11px; letter-spacing: 0.18em; color: var(--accent); text-transform: uppercase; margin-bottom: 8px; font-weight: 600; }
+  .quote strong { font-weight: 700; }
+  .pull { padding: 24px 28px; background: var(--ink); color: var(--paper); margin-bottom: 24px; font-size: 16px; line-height: 1.7; border-radius: 12px; }
+  .pull-label { display: block; font-family: -apple-system, "Inter", sans-serif; font-size: 11px; letter-spacing: 0.2em; color: var(--accent-line); text-transform: uppercase; margin-bottom: 10px; font-weight: 600; }
+  .pull strong { color: var(--paper); font-weight: 600; }
+  .grid { background: var(--bg); border-radius: 12px; overflow: hidden; border: 1px solid var(--line); }
+  .grid-row { display: grid; grid-template-columns: 200px 1fr; padding: 16px 22px; border-bottom: 1px solid var(--line); font-size: 15.5px; }
+  .grid-row:last-child { border-bottom: none; }
+  .grid-row .k { color: var(--muted); font-size: 13px; font-family: -apple-system, "Inter", sans-serif; padding-top: 2px; }
+  .grid-row .v { color: var(--ink-soft); line-height: 1.65; }
+  .role { background: var(--bg); border: 1px solid var(--line); border-radius: 12px; padding: 24px 26px; margin-bottom: 16px; }
+  .role:last-child { margin-bottom: 0; }
+  .role-header { display: flex; align-items: baseline; justify-content: space-between; padding-bottom: 14px; margin-bottom: 6px; border-bottom: 1px solid var(--line); }
+  .role-header h3 { margin: 0; }
+  .role-tag { font-family: -apple-system, "Inter", sans-serif; font-size: 11px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; }
+  .task { display: grid; grid-template-columns: 80px 1fr; gap: 14px; padding: 12px 0; font-size: 15px; color: var(--ink-soft); line-height: 1.65; border-bottom: 1px dashed var(--line-soft); }
+  .task:last-child { border-bottom: none; }
+  .badge { font-family: -apple-system, "Inter", sans-serif; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; padding-top: 4px; font-weight: 600; display: flex; align-items: center; gap: 6px; }
+  .badge::before { content: ""; width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+  .badge.done { color: var(--muted); } .badge.done::before { background: var(--muted); }
+  .badge.doing { color: var(--accent); } .badge.doing::before { background: var(--accent); }
+  .badge.todo { color: var(--ink); } .badge.todo::before { background: transparent; border: 1.5px solid var(--ink); }
+  .task-body .owner { color: var(--muted); font-size: 14px; margin-left: 4px; font-style: italic; }
+  .next { background: var(--accent-soft); border: 1px solid var(--accent-line); border-radius: 12px; padding: 26px 28px; }
+  .next h3 { color: var(--accent); font-size: 17px; margin-bottom: 18px; padding-bottom: 14px; border-bottom: 1px solid var(--accent-line); }
+  .next-row { display: grid; grid-template-columns: 110px 1fr; padding: 8px 0; font-size: 15.5px; }
+  .next-row .k { color: var(--muted); font-size: 13px; font-family: -apple-system, "Inter", sans-serif; }
+  .next-row .v { color: var(--ink); }
+  footer { margin-top: 32px; text-align: center; color: var(--muted); font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; font-family: -apple-system, "Inter", sans-serif; }
+  @media (max-width: 640px) {
+    body { padding: 32px 14px; font-size: 15px; }
+    header, main { padding-left: 28px; padding-right: 28px; }
+    h1 { font-size: 26px; }
+    .grid-row, .task, .next-row { grid-template-columns: 1fr; gap: 4px; }
+    .meta { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <div class="eyebrow">执行会议 · 004</div>
+  <h1>亚马逊文具 — 邓丹</h1>
+  <div class="sub">库存预测新工作线 · 先捋业务再用 AI · AI 当计算逻辑测试器</div>
+  <div class="meta">
+    <div class="meta-item"><span class="k">时间</span><span class="v">2026-06-23 14:55</span></div>
+    <div class="meta-item"><span class="k">时长</span><span class="v">33 分钟 8 秒</span></div>
+    <div class="meta-item"><span class="k">陪跑老师</span><span class="v">Lion</span></div>
+    <div class="meta-item"><span class="k">客户参会</span><span class="v">邓丹</span></div>
+  </div>
+</header>
+
+<main>
+
+<section>
+  <h2>本次会议干了什么</h2>
+  <ol class="num-list">
+    <li><strong>开启库存预测/补货智能体新工作线。</strong>目标：根据 ERP 导出数据预测每个品本周补多少货=采购该采多少货。当前流程（周四导销量→系统按固定货量逻辑给建议补货量→人工复核→采购）"不够智能"，补货过多压库存。</li>
+    <li><strong>逐列梳理 ERP 导出表。</strong>Lion 带邓丹过表：输入=销量（7/14/30 天）+ 现有库存（亚马逊仓库 + 在途）。可售/不可售（坏货已减）/预留转运（在路上，算入）/入库接收（算入）/预留订单（可减）/在途（算可售）/调查中（忽略）——<strong>其实只需采 3 列</strong>，采购量 = 预测需求 − 现有总库存。</li>
+    <li><strong>确诊核心卡点=加权日均。</strong>现按固定货量逻辑（保证约 101 天的货）补货，"死的、不灵活"，销量一波动就补过多压库存。邓丹自己也不清楚加权日均怎么算。</li>
+    <li><strong>定方法：先捋业务，再用 AI。</strong>先只捋顺一个品（每列含义/加权算法/补单量推导），向供应链/采购问清，第一个品捋顺后其他品 AI 自动套算。先不要谈 AI、不要一上来看整张表。</li>
+    <li><strong>定 AI 角色=计算逻辑测试器。</strong>让 AI 针对每个品个性化出补货量（而非一个公式套全部），喂全面历史信息（预算方式/计算逻辑/准确率/逻辑变动好坏）让它基于负反馈迭代。先试 21 天加权对比 AI vs 人工准确性，前期人工为主、跑准了再切。</li>
+    <li><strong>定工具时机。</strong>前期 ChatGPT 聊清业务/计算逻辑；捋顺、写成提示词后迁 Codex 做 Skill（能编辑文件/控制电脑/自动跑）。邓丹仍未真正用 Codex；业务捋顺后 Lion "一个多小时教会"。</li>
+  </ol>
+
+  <div class="quote">
+    <span class="quote-label">Lion · 一句话</span>
+    先把自己的业务逻辑捋顺，再去用 AI——<strong>AI 智能体就是帮我们测试哪种计算逻辑更准，看是 AI 预估的准，还是人类预估的准。</strong>
+  </div>
+</section>
+
+<section>
+  <h2>本周核心决策</h2>
+
+  <div class="pull">
+    <span class="pull-label">节奏铁律</span>
+    真卡点不在 AI，在业务逻辑本身还没捋清。<strong>先把一个品的补货逻辑人肉捋顺（每列含义+加权算法+补单量推导），先不谈 AI；捋顺了再喂 AI。</strong>
+  </div>
+
+  <div class="grid">
+    <div class="grid-row"><div class="k">本周动作</div><div class="v">先只捋顺一个品的 ERP 表各列含义 + 加权日均算法 + 补单量推导，向供应链/采购问清</div></div>
+    <div class="grid-row"><div class="k">AI 定位</div><div class="v">计算逻辑测试器：针对每个品个性化出补货量，喂全面历史信息基于负反馈迭代；前期人工为主、AI 仅参考</div></div>
+    <div class="grid-row"><div class="k">测试基线</div><div class="v">先试 21 天销量加权平均补货，AI 同步测算其他逻辑，对比 AI vs 人工/表格哪个更贴近实际</div></div>
+    <div class="grid-row"><div class="k">工具路线</div><div class="v">前期 ChatGPT 聊清逻辑 → 业务捋顺后迁 Codex 做 Skill（自动跑）；Codex 课待业务理顺后开</div></div>
+  </div>
+</section>
+
+<section>
+  <h2>落地清单</h2>
+
+  <div class="role">
+    <div class="role-header"><h3>客户侧</h3><span class="role-tag">邓丹</span></div>
+    <div class="task"><div class="badge todo">待启动</div><div class="task-body">梳理 ERP 导出表所有数据含义，明确如何推导补单量——先只捋一个品/一个 SKU，暂不考虑 AI<span class="owner">— 邓丹</span></div></div>
+    <div class="task"><div class="badge todo">待启动</div><div class="task-body">跟供应链/采购问清加权日均怎么算、补货量怎么从表格数据推出来<span class="owner">— 邓丹</span></div></div>
+    <div class="task"><div class="badge todo">待启动</div><div class="task-body">测试 21 天销量加权平均补货逻辑，让 AI 测算其他逻辑对比准确性（前期 AI 仅参考）<span class="owner">— 邓丹</span></div></div>
+    <div class="task"><div class="badge todo">待启动</div><div class="task-body">用 ChatGPT 把库存计算逻辑 + 文案业务流程聊顺、优化提示词，业务捋顺后再上 Codex<span class="owner">— 邓丹</span></div></div>
+  </div>
+
+  <div class="role">
+    <div class="role-header"><h3>本次会议已完成</h3><span class="role-tag">Closed</span></div>
+    <div class="task"><div class="badge done">完成</div><div class="task-body">逐列梳理 ERP 导出表含义（明确只需 3 列：销量/现有总库存/需求预测）</div></div>
+    <div class="task"><div class="badge done">完成</div><div class="task-body">确诊核心卡点=加权日均（固定货量逻辑死板致压库存）</div></div>
+    <div class="task"><div class="badge done">完成</div><div class="task-body">确定方法论（先捋业务再用 AI、先只捋一个品）+ AI 定位（计算逻辑测试器）</div></div>
+    <div class="task"><div class="badge done">完成</div><div class="task-body">确定工具路线（先 ChatGPT 后 Codex）+ 测试基线（21 天加权对比）</div></div>
+  </div>
+</section>
+
+<section>
+  <h2>下次会议方向</h2>
+  <div class="next">
+    <h3>单品补货逻辑捋顺验收 · 库存预测初版</h3>
+    <div class="next-row"><span class="k">触发条件</span><span class="v">邓丹把一个品的 ERP 各列含义 + 加权日均 + 补单量推导捋顺（人肉版），并用 ChatGPT 聊出初步计算逻辑；或 21 天加权测试有了对比数据</span></div>
+    <div class="next-row"><span class="k">预计时间</span><span class="v">待确认（Lion 视进展定）</span></div>
+    <div class="next-row"><span class="k">会议内容</span><span class="v">① 核查单品补货逻辑是否捋顺；② 把逻辑喂 AI 搭库存预测初版对话；③ 业务捋顺则开 Codex 课（做成 Skill 自动跑）</span></div>
+  </div>
+</section>
+
+</main>
+
+<footer>正心 AI 陪跑项目 — 第 9 期 — Lion 组 — 2026.06.23</footer>
+
+</div>
+</body>
+</html>
