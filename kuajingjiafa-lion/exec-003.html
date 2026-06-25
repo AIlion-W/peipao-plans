@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>跨境假发-李德奎 · 执行-003 会议总结</title>
+<style>
+  :root {
+    --bg: #F5F4ED;
+    --paper: #FAF9F5;
+    --ink: #2D2A26;
+    --ink-soft: #4A4742;
+    --muted: #8C8579;
+    --line: #E8E4D8;
+    --line-soft: #EFEBE0;
+    --accent: #C96442;
+    --accent-soft: #F4E4DA;
+    --accent-line: #E5BFAB;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body {
+    font-family: ui-serif, "Iowan Old Style", "Songti SC", "Source Han Serif SC", "Noto Serif CJK SC", "PingFang SC", Georgia, serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.75;
+    padding: 56px 20px 80px;
+    font-size: 16px;
+  }
+  .sans {
+    font-family: -apple-system, "Inter", "PingFang SC", "Helvetica Neue", sans-serif;
+  }
+  .container { max-width: 760px; margin: 0 auto; }
+
+  /* HEADER */
+  header {
+    background: var(--paper);
+    padding: 56px 56px 44px;
+    border-radius: 16px 16px 0 0;
+    border: 1px solid var(--line);
+    border-bottom: none;
+  }
+  .eyebrow {
+    font-family: -apple-system, "Inter", sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    color: var(--accent);
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 6px; height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    display: inline-block;
+  }
+  h1 {
+    font-size: 34px;
+    color: var(--ink);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+    margin-bottom: 14px;
+  }
+  .sub {
+    font-size: 16px;
+    color: var(--muted);
+    margin-bottom: 36px;
+    font-style: italic;
+  }
+  .meta {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 20px 32px;
+    padding-top: 28px;
+    border-top: 1px solid var(--line);
+  }
+  .meta-item { font-family: -apple-system, "Inter", sans-serif; font-size: 14px; }
+  .meta-item .k {
+    display: block;
+    color: var(--muted);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .meta-item .v { color: var(--ink); font-weight: 500; }
+
+  /* MAIN */
+  main {
+    background: var(--paper);
+    padding: 8px 56px 56px;
+    border-radius: 0 0 16px 16px;
+    border: 1px solid var(--line);
+    border-top: none;
+  }
+  section { padding: 36px 0; border-bottom: 1px solid var(--line-soft); }
+  section:last-child { border-bottom: none; padding-bottom: 12px; }
+
+  h2 {
+    font-family: -apple-system, "Inter", sans-serif;
+    font-size: 11px;
+    color: var(--accent);
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  h3 {
+    font-size: 17px;
+    color: var(--ink);
+    font-weight: 600;
+    margin-bottom: 14px;
+    letter-spacing: -0.005em;
+  }
+
+  /* LISTS */
+  ol, ul { padding-left: 0; list-style: none; }
+  .num-list { counter-reset: item; }
+  .num-list li {
+    counter-increment: item;
+    position: relative;
+    padding: 10px 0 10px 40px;
+    color: var(--ink-soft);
+    font-size: 16px;
+    line-height: 1.8;
+  }
+  .num-list li + li { border-top: 1px dashed var(--line-soft); }
+  .num-list li::before {
+    content: counter(item);
+    position: absolute;
+    left: 0;
+    top: 14px;
+    width: 26px;
+    height: 26px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: 700;
+    font-family: -apple-system, "Inter", sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .num-list strong { color: var(--ink); font-weight: 600; }
+
+  /* QUOTE */
+  .quote {
+    margin: 32px 0 0;
+    padding: 24px 28px;
+    background: var(--accent-soft);
+    border-radius: 12px;
+    color: var(--ink);
+    font-size: 18px;
+    line-height: 1.65;
+    border-left: 3px solid var(--accent);
+  }
+  .quote-label {
+    display: block;
+    font-family: -apple-system, "Inter", sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+  .quote strong { font-weight: 700; }
+
+  /* PULL */
+  .pull {
+    padding: 24px 28px;
+    background: var(--ink);
+    color: var(--paper);
+    margin-bottom: 24px;
+    font-size: 16px;
+    line-height: 1.7;
+    border-radius: 12px;
+  }
+  .pull-label {
+    display: block;
+    font-family: -apple-system, "Inter", sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--accent-line);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+  .pull strong { color: var(--paper); font-weight: 600; }
+
+  /* DECISION GRID */
+  .grid {
+    background: var(--bg);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+  }
+  .grid-row {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    padding: 16px 22px;
+    border-bottom: 1px solid var(--line);
+    font-size: 15.5px;
+  }
+  .grid-row:last-child { border-bottom: none; }
+  .grid-row .k {
+    color: var(--muted);
+    font-size: 13px;
+    font-family: -apple-system, "Inter", sans-serif;
+    padding-top: 2px;
+  }
+  .grid-row .v { color: var(--ink-soft); line-height: 1.65; }
+
+  /* ROLE */
+  .role {
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 24px 26px;
+    margin-bottom: 16px;
+  }
+  .role:last-child { margin-bottom: 0; }
+  .role-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding-bottom: 14px;
+    margin-bottom: 6px;
+    border-bottom: 1px solid var(--line);
+  }
+  .role-header h3 { margin: 0; }
+  .role-tag {
+    font-family: -apple-system, "Inter", sans-serif;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  /* TASK */
+  .task {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 14px;
+    padding: 12px 0;
+    font-size: 15px;
+    color: var(--ink-soft);
+    line-height: 1.65;
+    border-bottom: 1px dashed var(--line-soft);
+  }
+  .task:last-child { border-bottom: none; }
+  .badge {
+    font-family: -apple-system, "Inter", sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding-top: 4px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .badge::before {
+    content: "";
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .badge.done { color: var(--muted); }
+  .badge.done::before { background: var(--muted); }
+  .badge.doing { color: var(--accent); }
+  .badge.doing::before { background: var(--accent); }
+  .badge.todo { color: var(--ink); }
+  .badge.todo::before { background: transparent; border: 1.5px solid var(--ink); }
+  .task-body .owner { color: var(--muted); font-size: 14px; margin-left: 4px; font-style: italic; }
+
+  /* NEXT */
+  .next {
+    background: var(--accent-soft);
+    border: 1px solid var(--accent-line);
+    border-radius: 12px;
+    padding: 26px 28px;
+  }
+  .next h3 {
+    color: var(--accent);
+    font-size: 17px;
+    margin-bottom: 18px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--accent-line);
+  }
+  .next-row {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    padding: 8px 0;
+    font-size: 15.5px;
+  }
+  .next-row .k {
+    color: var(--muted);
+    font-size: 13px;
+    font-family: -apple-system, "Inter", sans-serif;
+  }
+  .next-row .v { color: var(--ink); }
+
+  /* FOOTER */
+  footer {
+    margin-top: 32px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-family: -apple-system, "Inter", sans-serif;
+  }
+
+  @media (max-width: 640px) {
+    body { padding: 32px 14px; font-size: 15px; }
+    header, main { padding-left: 28px; padding-right: 28px; }
+    h1 { font-size: 26px; }
+    .grid-row, .task, .next-row { grid-template-columns: 1fr; gap: 4px; }
+    .meta { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <div class="eyebrow">执行会议 · 003</div>
+  <h1>跨境假发 — 李德奎</h1>
+  <div class="sub">指令与知识库分工 · 打通视频生成全链路</div>
+  <div class="meta">
+    <div class="meta-item"><span class="k">时间</span><span class="v">2026-06-25 16:55</span></div>
+    <div class="meta-item"><span class="k">时长</span><span class="v">53 分钟</span></div>
+    <div class="meta-item"><span class="k">陪跑团队</span><span class="v">Lion / 林韩</span></div>
+    <div class="meta-item"><span class="k">客户参会</span><span class="v">做图/运营同学</span></div>
+  </div>
+</header>
+
+<main>
+
+<section>
+  <h2>本次会议干了什么</h2>
+  <ol class="num-list">
+    <li><strong>客户自学有了明显进展。</strong>团队这次带着成果来：已独立搭出写博客智能体（效果好）、爆款视频拆解智能体、脚本生成智能体（部分），并听完第 1/3/4/5 节课 + 当天下午考拉的视频课。从"等着被教"转向"带着具体问题来"。</li>
+    <li><strong>讲透指令 vs 知识库的分工。</strong>客户卡在"指令超 8000 字加不进去"。Lion 给出解法：把超长指令整段发群，让 AI 切成「指令文件 + 知识库文件」——业务理解进指令，亚马逊规则、关键词定义这类长内容下沉知识库，指令里提到关键词时 AI 自动去知识库找补充。</li>
+    <li><strong>梳理从爆款到自家可上架视频的完整链路。</strong>爆款视频拆解智能体（找爆点）→ 脚本生成智能体（产出复刻脚本）→ 脚本转提示词 + 自家参考图 → seedance 2.0 逐镜头生成 → 剪辑拼凑。带货短视频本质是混剪：一镜头 2-3 秒，一分钟约 20 多个镜头。</li>
+    <li><strong>诊断博客智能体不出图。</strong>"博客 + 图片一起出"图片总卡住——根因是单个智能体分不清优先级。解法：拆成「写博客」+「按博客内容生成图片」两个智能体，第二个智能体输入博客内容、写清出图标准即可。</li>
+    <li><strong>处理 GPT 账号掉订阅事故。</strong>做图账号突然变普通版，林韩判断是代充渠道问题致官方取消订阅，建议找代充售后恢复；普通版仍可查历史聊天记录。</li>
+  </ol>
+
+  <div class="quote">
+    <span class="quote-label">林韩 · 核心判断</span>
+    <strong>指令这一块，它需要的是公式，而不是具体的某些题目。</strong>对目标有帮助就多写，没帮助就精简——核心永远看是否服务于产出结果。
+  </div>
+</section>
+
+<section>
+  <h2>本周核心决策</h2>
+
+  <div class="pull">
+    <span class="pull-label">节奏铁律</span>
+    <strong>一个智能体只干一件事，先把最小视频链路跑通。</strong>下周只打磨"爆款拆解"+"脚本生成"两个智能体并实操跑通，下次会议把整条链路串起来系统化梳理——贪多嚼不烂。
+  </div>
+
+  <div class="grid">
+    <div class="grid-row"><div class="k">指令超长怎么办</div><div class="v">超 8000 字的指令发群，让 AI 切成「指令文件 + 知识库文件」；业务理解进指令，规则/关键词定义进知识库</div></div>
+    <div class="grid-row"><div class="k">视频生成链路</div><div class="v">爆款拆解 → 脚本生成 → 脚本转提示词 + 参考图 → seedance 2.0 逐镜头 → 剪辑拼凑（混剪，2-3 秒/镜头）</div></div>
+    <div class="grid-row"><div class="k">博客智能体</div><div class="v">拆成「写博客」+「按博客内容出图」两个，解决单智能体分不清优先级、图片卡住不出图</div></div>
+    <div class="grid-row"><div class="k">Codex 定位</div><div class="v">各模块智能体打磨好后，用 Codex 串成长手脚的智能体（源链接抓取、优先级调度、跨工具操作）</div></div>
+  </div>
+</section>
+
+<section>
+  <h2>落地清单</h2>
+
+  <div class="role">
+    <div class="role-header"><h3>客户侧</h3><span class="role-tag">做图/运营同学 + 客户团队</span></div>
+    <div class="task"><div class="badge todo">待启动</div><div class="task-body">把超 8000 字的智能体指令整段发群，让 AI 分类打包成「指令文件 + 知识库文件」两份<span class="owner">— 客户团队</span></div></div>
+    <div class="task"><div class="badge doing">进行中</div><div class="task-body">下周打磨「爆款视频拆解智能体」+「脚本生成智能体」两个，喂入更多行业爆款视频/图片素材<span class="owner">— 客户团队</span></div></div>
+    <div class="task"><div class="badge todo">待启动</div><div class="task-body">实操跑通视频生成链路，三种模式都试：文生视频 / 图生视频 / 图参考视频，问题记录或发群<span class="owner">— 客户团队</span></div></div>
+    <div class="task"><div class="badge todo">待启动</div><div class="task-body">把写博客智能体拆成「写博客」+「按博客内容生成图片」两个智能体<span class="owner">— 客户团队</span></div></div>
+    <div class="task"><div class="badge todo">待启动</div><div class="task-body">找代充售后恢复掉订阅的做图 GPT 账号<span class="owner">— 客户团队</span></div></div>
+  </div>
+
+  <div class="role">
+    <div class="role-header"><h3>陪跑团队侧</h3><span class="role-tag">Lion / 林韩</span></div>
+    <div class="task"><div class="badge todo">待启动</div><div class="task-body">把「提示词教练」智能体链接分享到群（把脚本改写成适合 seedance 2.0 生成的脚本）<span class="owner">— Lion</span></div></div>
+    <div class="task"><div class="badge todo">待启动</div><div class="task-body">客户有需要时，把后台将近 2 万字的指令/知识库文件无偿分享到群<span class="owner">— 林韩</span></div></div>
+  </div>
+
+  <div class="role">
+    <div class="role-header"><h3>本次会议已完成</h3><span class="role-tag">Closed</span></div>
+    <div class="task"><div class="badge done">完成</div><div class="task-body">讲清指令与知识库的分工逻辑（超长指令分层、关键词下沉知识库）</div></div>
+    <div class="task"><div class="badge done">完成</div><div class="task-body">梳理从爆款到自家可上架视频的完整生成链路</div></div>
+    <div class="task"><div class="badge done">完成</div><div class="task-body">诊断博客智能体不出图根因并给出拆分方案</div></div>
+    <div class="task"><div class="badge done">完成</div><div class="task-body">定位 GPT 账号掉订阅原因（代充渠道问题）并给出处理路径</div></div>
+  </div>
+</section>
+
+<section>
+  <h2>下次会议方向</h2>
+  <div class="next">
+    <h3>视频生成全链路串联 + 系统化梳理</h3>
+    <div class="next-row"><span class="k">触发条件</span><span class="v">客户打磨完「爆款拆解」+「脚本生成」两个智能体，并实操跑通至少一种视频生成模式、记录好问题</span></div>
+    <div class="next-row"><span class="k">预计时间</span><span class="v">1 周左右（下周客户实操后约会）</span></div>
+    <div class="next-row"><span class="k">会议内容</span><span class="v">把"爆款→拆解→脚本→seedance 生成→剪辑"整条链路串起来系统化梳理 + 检查博客智能体拆分效果</span></div>
+  </div>
+</section>
+
+</main>
+
+<footer>正心 AI 陪跑项目 — 第 9 期 — Lion 组 — 2026.06.25</footer>
+
+</div>
+</body>
+</html>
