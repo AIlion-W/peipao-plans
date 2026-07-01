@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>鸿星尔克-蒋成楠 · 执行-007 会议总结</title>
+<style>
+  :root {
+    --bg: #F5F4ED;
+    --paper: #FAF9F5;
+    --ink: #2D2A26;
+    --ink-soft: #4A4742;
+    --muted: #8C8579;
+    --line: #E8E4D8;
+    --line-soft: #EFEBE0;
+    --accent: #C96442;
+    --accent-soft: #F4E4DA;
+    --accent-line: #E5BFAB;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body {
+    font-family: ui-serif, "Iowan Old Style", "Songti SC", "Source Han Serif SC", "Noto Serif CJK SC", "PingFang SC", Georgia, serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.75;
+    padding: 56px 20px 80px;
+    font-size: 16px;
+  }
+  .container { max-width: 760px; margin: 0 auto; }
+  header {
+    background: var(--paper);
+    padding: 56px 56px 44px;
+    border-radius: 16px 16px 0 0;
+    border: 1px solid var(--line);
+    border-bottom: none;
+  }
+  .eyebrow {
+    font-family: -apple-system, "Inter", sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    color: var(--accent);
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 6px; height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    display: inline-block;
+  }
+  h1 {
+    font-size: 34px;
+    color: var(--ink);
+    font-weight: 500;
+    line-height: 1.25;
+    margin-bottom: 14px;
+  }
+  .sub {
+    font-size: 16px;
+    color: var(--muted);
+    margin-bottom: 36px;
+    font-style: italic;
+  }
+  .meta {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 20px 32px;
+    padding-top: 28px;
+    border-top: 1px solid var(--line);
+  }
+  .meta-item { font-family: -apple-system, "Inter", sans-serif; font-size: 14px; }
+  .meta-item .k {
+    display: block;
+    color: var(--muted);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .meta-item .v { color: var(--ink); font-weight: 500; }
+  main {
+    background: var(--paper);
+    padding: 8px 56px 56px;
+    border-radius: 0 0 16px 16px;
+    border: 1px solid var(--line);
+    border-top: none;
+  }
+  section { padding: 36px 0; border-bottom: 1px solid var(--line-soft); }
+  section:last-child { border-bottom: none; padding-bottom: 12px; }
+  h2 {
+    font-family: -apple-system, "Inter", sans-serif;
+    font-size: 11px;
+    color: var(--accent);
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  h3 {
+    font-size: 17px;
+    color: var(--ink);
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+  ol, ul { padding-left: 0; list-style: none; }
+  .num-list { counter-reset: item; }
+  .num-list li {
+    counter-increment: item;
+    position: relative;
+    padding: 10px 0 10px 40px;
+    color: var(--ink-soft);
+    font-size: 16px;
+    line-height: 1.8;
+  }
+  .num-list li + li { border-top: 1px dashed var(--line-soft); }
+  .num-list li::before {
+    content: counter(item);
+    position: absolute;
+    left: 0;
+    top: 14px;
+    width: 26px;
+    height: 26px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: 700;
+    font-family: -apple-system, "Inter", sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .num-list strong { color: var(--ink); font-weight: 600; }
+  .quote {
+    margin: 32px 0 0;
+    padding: 24px 28px;
+    background: var(--accent-soft);
+    border-radius: 12px;
+    color: var(--ink);
+    font-size: 18px;
+    line-height: 1.65;
+    border-left: 3px solid var(--accent);
+  }
+  .quote-label {
+    display: block;
+    font-family: -apple-system, "Inter", sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+  .pull {
+    padding: 24px 28px;
+    background: var(--ink);
+    color: var(--paper);
+    margin-bottom: 24px;
+    font-size: 16px;
+    line-height: 1.7;
+    border-radius: 12px;
+  }
+  .pull-label {
+    display: block;
+    font-family: -apple-system, "Inter", sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--accent-line);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+  .grid {
+    background: var(--bg);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+  }
+  .grid-row {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    padding: 16px 22px;
+    border-bottom: 1px solid var(--line);
+    font-size: 15.5px;
+  }
+  .grid-row:last-child { border-bottom: none; }
+  .grid-row .k {
+    color: var(--muted);
+    font-size: 13px;
+    font-family: -apple-system, "Inter", sans-serif;
+    padding-top: 2px;
+  }
+  .grid-row .v { color: var(--ink-soft); line-height: 1.65; }
+  .role {
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 24px 26px;
+    margin-bottom: 16px;
+  }
+  .role:last-child { margin-bottom: 0; }
+  .role-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding-bottom: 14px;
+    margin-bottom: 6px;
+    border-bottom: 1px solid var(--line);
+  }
+  .role-header h3 { margin: 0; }
+  .role-tag {
+    font-family: -apple-system, "Inter", sans-serif;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .task {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 14px;
+    padding: 12px 0;
+    font-size: 15px;
+    color: var(--ink-soft);
+    line-height: 1.65;
+    border-bottom: 1px dashed var(--line-soft);
+  }
+  .task:last-child { border-bottom: none; }
+  .badge {
+    font-family: -apple-system, "Inter", sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding-top: 4px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .badge::before {
+    content: "";
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .badge.done { color: var(--muted); }
+  .badge.done::before { background: var(--muted); }
+  .badge.doing { color: var(--accent); }
+  .badge.doing::before { background: var(--accent); }
+  .badge.todo { color: var(--ink); }
+  .badge.todo::before { background: transparent; border: 1.5px solid var(--ink); }
+  .task-body .owner { color: var(--muted); font-size: 14px; margin-left: 4px; font-style: italic; }
+  .next {
+    background: var(--accent-soft);
+    border: 1px solid var(--accent-line);
+    border-radius: 12px;
+    padding: 26px 28px;
+  }
+  .next h3 {
+    color: var(--accent);
+    font-size: 17px;
+    margin-bottom: 18px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--accent-line);
+  }
+  .next-row {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    padding: 8px 0;
+    font-size: 15.5px;
+  }
+  .next-row .k {
+    color: var(--muted);
+    font-size: 13px;
+    font-family: -apple-system, "Inter", sans-serif;
+  }
+  .next-row .v { color: var(--ink); }
+  footer {
+    margin-top: 32px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-family: -apple-system, "Inter", sans-serif;
+  }
+  @media (max-width: 640px) {
+    body { padding: 32px 14px; font-size: 15px; }
+    header, main { padding-left: 28px; padding-right: 28px; }
+    h1 { font-size: 26px; }
+    .grid-row, .task, .next-row { grid-template-columns: 1fr; gap: 4px; }
+    .meta { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <div class="eyebrow">执行会议 · 007</div>
+  <h1>鸿星尔克 — 蒋成楠</h1>
+  <div class="sub">直播板块启动 · 现场搭建话术优化 GPT</div>
+  <div class="meta">
+    <div class="meta-item"><span class="k">时间</span><span class="v">2026-07-01 14:58</span></div>
+    <div class="meta-item"><span class="k">时长</span><span class="v">41 分 48 秒</span></div>
+    <div class="meta-item"><span class="k">陪跑老师</span><span class="v">Lion</span></div>
+    <div class="meta-item"><span class="k">客户参会</span><span class="v">严崇瑞</span></div>
+  </div>
+</header>
+
+<main>
+
+<section>
+  <h2>本次会议干了什么</h2>
+  <ol class="num-list">
+    <li><strong>直播板块正式开工。</strong>执行-006 定下下一模块做直播后，本次由严崇瑞共享屏幕，梳理直播间现有 SOP 与资料。</li>
+    <li><strong>先收敛到一个关键场景。</strong>Lion 明确不要同时铺开 3-4 个智能体，先把「直播间话术优化」做深做透。</li>
+    <li><strong>拆清楚人工流程。</strong>过去靠录竞品直播间、飞书妙记转文字、XMind 拆开场互动/逼单/塑品/人群点名/痛点提问，再迁移到自己直播间。</li>
+    <li><strong>现场搭建第一版 GPT。</strong>输入确定为自身话术、竞品话术、产品信息；输出确定为主播能直接使用的优化后话术。</li>
+    <li><strong>讲清楚指令与知识库边界。</strong>指令写处理流程，知识库放话术模板、品牌资料、产品卖点、人群痛点和业务判断规则。</li>
+  </ol>
+
+  <div class="quote">
+    <span class="quote-label">Lion · 本次定调</span>
+    搭智能体一定要先想清楚输入输出：上传什么信息、AI 中间怎么处理、最后要给到什么可用结果。
+  </div>
+</section>
+
+<section>
+  <h2>核心链路</h2>
+
+  <div class="pull">
+    <span class="pull-label">本次最重要的收敛</span>
+    直播板块先只做话术优化。先把一个智能体跑到可用，再把同一套搭建方法复制到选款、测款和数据分析。
+  </div>
+
+  <div class="grid">
+    <div class="grid-row"><div class="k">输入</div><div class="v">自身直播间话术、竞品直播间话术、自身产品信息</div></div>
+    <div class="grid-row"><div class="k">拆解维度</div><div class="v">开场拉人、人群点名、痛点提问、逼单、塑品、互动等既有话术模块</div></div>
+    <div class="grid-row"><div class="k">AI 处理</div><div class="v">先提炼自身与竞品的话术结构，再对比每个模块的差异点，并给出优化建议</div></div>
+    <div class="grid-row"><div class="k">人工判断</div><div class="v">用户判断哪些建议采纳、哪些忽略；前期不能让 AI 直接替代业务判断</div></div>
+    <div class="grid-row"><div class="k">输出</div><div class="v">一版优化后的直播话术，可以直接给直播间主播使用</div></div>
+    <div class="grid-row"><div class="k">知识库</div><div class="v">话术输出模板、鸿星尔克/361/斯凯奇产品资料、卖点、人群、痛点、场景和价格段</div></div>
+  </div>
+</section>
+
+<section>
+  <h2>落地清单</h2>
+
+  <div class="role">
+    <div class="role-header"><h3>客户侧 · 严崇瑞</h3><span class="role-tag">直播板块</span></div>
+    <div class="task"><div class="badge doing">进行中</div><div class="task-body">基于本次现场搭建的「直播间话术优化」GPT，补齐第一版指令和知识库</div></div>
+    <div class="task"><div class="badge todo">待启动</div><div class="task-body">把直播话术输出模板整理成知识库文件，并在指令中要求按模板输出</div></div>
+    <div class="task"><div class="badge todo">待启动</div><div class="task-body">整理鸿星尔克、361、斯凯奇等品牌/单品资料：卖点、人群、痛点、场景、价格段</div></div>
+    <div class="task"><div class="badge todo">待启动</div><div class="task-body">用真实竞品话术 + 自身话术测试智能体，记录可采纳建议、不准确建议和指令迭代点</div></div>
+    <div class="task"><div class="badge todo">待启动</div><div class="task-body">下次做选款、测款或数据分析智能体前，先按输入、输出、处理逻辑重拆 SOP</div></div>
+  </div>
+
+  <div class="role">
+    <div class="role-header"><h3>陪跑团队侧</h3><span class="role-tag">Lion</span></div>
+    <div class="task"><div class="badge todo">待启动</div><div class="task-body">下次验收直播话术优化 GPT 的实测效果，重点看输入输出、知识库调用和话术可用性</div></div>
+    <div class="task"><div class="badge todo">待启动</div><div class="task-body">如果两三天内话术智能体跑顺，再推进选款/测款或直播经营数据分析智能体</div></div>
+  </div>
+
+  <div class="role">
+    <div class="role-header"><h3>本次会议已确认</h3><span class="role-tag">Closed</span></div>
+    <div class="task"><div class="badge done">完成</div><div class="task-body">直播板块第一个场景确定为话术优化，不并行铺开多个智能体</div></div>
+    <div class="task"><div class="badge done">完成</div><div class="task-body">现场创建「直播间话术优化」GPT，并讲清楚指令、知识库和分享方式</div></div>
+  </div>
+</section>
+
+<section>
+  <h2>下次会议方向</h2>
+  <div class="next">
+    <h3>验收直播话术优化 GPT</h3>
+    <div class="next-row"><span class="k">触发条件</span><span class="v">严崇瑞完成第一轮真实话术测试，并记录智能体输出问题</span></div>
+    <div class="next-row"><span class="k">会议内容</span><span class="v">看拆解是否准确、建议是否可采纳、输出话术是否能给主播直接用；基于负反馈迭代指令和知识库</span></div>
+    <div class="next-row"><span class="k">后续模块</span><span class="v">选款/测款判断或直播经营数据分析，二选一推进，不同时铺开</span></div>
+  </div>
+</section>
+
+</main>
+<footer>ZHENGXIN AI · EXECUTION MEETING 007</footer>
+</div>
+</body>
+</html>
