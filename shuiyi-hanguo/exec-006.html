@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>睡衣-许忠煌 · 执行-006 会议总结</title>
+<style>
+  :root {
+    --bg: #F5F4ED;
+    --paper: #FAF9F5;
+    --ink: #2D2A26;
+    --ink-soft: #4A4742;
+    --muted: #8C8579;
+    --line: #E8E4D8;
+    --line-soft: #EFEBE0;
+    --accent: #C96442;
+    --accent-soft: #F4E4DA;
+    --accent-line: #E5BFAB;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body {
+    font-family: ui-serif, "Iowan Old Style", "Songti SC", "Source Han Serif SC", "Noto Serif CJK SC", "PingFang SC", Georgia, serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.75;
+    padding: 56px 20px 80px;
+    font-size: 16px;
+  }
+  .sans {
+    font-family: -apple-system, "Inter", "PingFang SC", "Helvetica Neue", sans-serif;
+  }
+  .container { max-width: 760px; margin: 0 auto; }
+
+  /* HEADER */
+  header {
+    background: var(--paper);
+    padding: 56px 56px 44px;
+    border-radius: 16px 16px 0 0;
+    border: 1px solid var(--line);
+    border-bottom: none;
+  }
+  .eyebrow {
+    font-family: -apple-system, "Inter", sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    color: var(--accent);
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 6px; height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    display: inline-block;
+  }
+  h1 {
+    font-size: 34px;
+    color: var(--ink);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+    margin-bottom: 14px;
+  }
+  .sub {
+    font-size: 16px;
+    color: var(--muted);
+    margin-bottom: 36px;
+    font-style: italic;
+  }
+  .meta {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 20px 32px;
+    padding-top: 28px;
+    border-top: 1px solid var(--line);
+  }
+  .meta-item { font-family: -apple-system, "Inter", sans-serif; font-size: 14px; }
+  .meta-item .k {
+    display: block;
+    color: var(--muted);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .meta-item .v { color: var(--ink); font-weight: 500; }
+
+  /* MAIN */
+  main {
+    background: var(--paper);
+    padding: 8px 56px 56px;
+    border-radius: 0 0 16px 16px;
+    border: 1px solid var(--line);
+    border-top: none;
+  }
+  section { padding: 36px 0; border-bottom: 1px solid var(--line-soft); }
+  section:last-child { border-bottom: none; padding-bottom: 12px; }
+
+  h2 {
+    font-family: -apple-system, "Inter", sans-serif;
+    font-size: 11px;
+    color: var(--accent);
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  h3 {
+    font-size: 17px;
+    color: var(--ink);
+    font-weight: 600;
+    margin-bottom: 14px;
+    letter-spacing: -0.005em;
+  }
+
+  /* LISTS */
+  ol, ul { padding-left: 0; list-style: none; }
+  .num-list { counter-reset: item; }
+  .num-list li {
+    counter-increment: item;
+    position: relative;
+    padding: 10px 0 10px 40px;
+    color: var(--ink-soft);
+    font-size: 16px;
+    line-height: 1.8;
+  }
+  .num-list li + li { border-top: 1px dashed var(--line-soft); }
+  .num-list li::before {
+    content: counter(item);
+    position: absolute;
+    left: 0;
+    top: 14px;
+    width: 26px;
+    height: 26px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: 700;
+    font-family: -apple-system, "Inter", sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .num-list strong { color: var(--ink); font-weight: 600; }
+
+  /* QUOTE */
+  .quote {
+    margin: 32px 0 0;
+    padding: 24px 28px;
+    background: var(--accent-soft);
+    border-radius: 12px;
+    color: var(--ink);
+    font-size: 18px;
+    line-height: 1.65;
+    border-left: 3px solid var(--accent);
+  }
+  .quote-label {
+    display: block;
+    font-family: -apple-system, "Inter", sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+  .quote strong { font-weight: 700; }
+
+  /* PULL */
+  .pull {
+    padding: 24px 28px;
+    background: var(--ink);
+    color: var(--paper);
+    margin-bottom: 24px;
+    font-size: 16px;
+    line-height: 1.7;
+    border-radius: 12px;
+  }
+  .pull-label {
+    display: block;
+    font-family: -apple-system, "Inter", sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--accent-line);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+  .pull strong { color: var(--paper); font-weight: 600; }
+
+  /* DECISION GRID */
+  .grid {
+    background: var(--bg);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+  }
+  .grid-row {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    padding: 16px 22px;
+    border-bottom: 1px solid var(--line);
+    font-size: 15.5px;
+  }
+  .grid-row:last-child { border-bottom: none; }
+  .grid-row .k {
+    color: var(--muted);
+    font-size: 13px;
+    font-family: -apple-system, "Inter", sans-serif;
+    padding-top: 2px;
+  }
+  .grid-row .v { color: var(--ink-soft); line-height: 1.65; }
+
+  /* ROLE */
+  .role {
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 24px 26px;
+    margin-bottom: 16px;
+  }
+  .role:last-child { margin-bottom: 0; }
+  .role-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding-bottom: 14px;
+    margin-bottom: 6px;
+    border-bottom: 1px solid var(--line);
+  }
+  .role-header h3 { margin: 0; }
+  .role-tag {
+    font-family: -apple-system, "Inter", sans-serif;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  /* TASK */
+  .task {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 14px;
+    padding: 12px 0;
+    font-size: 15px;
+    color: var(--ink-soft);
+    line-height: 1.65;
+    border-bottom: 1px dashed var(--line-soft);
+  }
+  .task:last-child { border-bottom: none; }
+  .badge {
+    font-family: -apple-system, "Inter", sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding-top: 4px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .badge::before {
+    content: "";
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .badge.done { color: var(--muted); }
+  .badge.done::before { background: var(--muted); }
+  .badge.doing { color: var(--accent); }
+  .badge.doing::before { background: var(--accent); }
+  .badge.todo { color: var(--ink); }
+  .badge.todo::before { background: transparent; border: 1.5px solid var(--ink); }
+  .task-body .owner { color: var(--muted); font-size: 14px; margin-left: 4px; font-style: italic; }
+
+  /* NEXT */
+  .next {
+    background: var(--accent-soft);
+    border: 1px solid var(--accent-line);
+    border-radius: 12px;
+    padding: 26px 28px;
+  }
+  .next h3 {
+    color: var(--accent);
+    font-size: 17px;
+    margin-bottom: 18px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--accent-line);
+  }
+  .next-row {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    padding: 8px 0;
+    font-size: 15.5px;
+  }
+  .next-row .k {
+    color: var(--muted);
+    font-size: 13px;
+    font-family: -apple-system, "Inter", sans-serif;
+  }
+  .next-row .v { color: var(--ink); }
+
+  /* FOOTER */
+  footer {
+    margin-top: 32px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-family: -apple-system, "Inter", sans-serif;
+  }
+
+  @media (max-width: 640px) {
+    body { padding: 32px 14px; font-size: 15px; }
+    header, main { padding-left: 28px; padding-right: 28px; }
+    h1 { font-size: 26px; }
+    .grid-row, .task, .next-row { grid-template-columns: 1fr; gap: 4px; }
+    .meta { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <div class="eyebrow">执行会议 · 006</div>
+    <h1>睡衣-许忠煌</h1>
+    <p class="sub">老板任务跟进 AI 助理：先用 Codex + 飞书跑半自动闭环</p>
+    <div class="meta">
+      <div class="meta-item"><span class="k">时间</span><span class="v">2026-07-06 15:25</span></div>
+      <div class="meta-item"><span class="k">时长</span><span class="v">56 分 24 秒</span></div>
+      <div class="meta-item"><span class="k">陪跑老师</span><span class="v">韩国</span></div>
+      <div class="meta-item"><span class="k">参会</span><span class="v">许忠煌、王鑫隆 Lion、林韦韩</span></div>
+    </div>
+  </header>
+  <main>
+    <section>
+      <h2>本次会议干了什么</h2>
+      <ol class="num-list">
+        <li><strong>拆出新需求。</strong>许总想要一个“AI 助理 / 工作安排龙虾”，替代老板跟进每周销售报表、违规提醒、平台问题处理等日常任务。</li>
+        <li><strong>把目标从“实时对话”降到“定时巡检”。</strong>先不追求像人一样实时聊天，改成 Codex 定时扫任务表 / 群消息，判断完成状态并推送提醒或日报。</li>
+        <li><strong>明确飞书是更合适的自动化中台。</strong>企业微信开放度不够，飞书的 Lark Skill、多维表格、消息、日历和知识库更适合先跑试点。</li>
+        <li><strong>压住工具诱惑。</strong>小龙虾、Hermes、N8N、Dify 都不是第一步；没有角色、流程、规则和完成标准，换工具只会增加维护成本。</li>
+        <li><strong>把 AI 助理拆成业务规则。</strong>任务从哪里来、谁负责、何时交付、怎么反馈、什么算完成、超时怎么上报，要先写成 AI 能执行的机械流程。</li>
+        <li><strong>同步图片 / 视频进展。</strong>评价图智能体已有可用结果；主图 / 详情图继续以即梦为主；视频线仍薄弱，后续另约张航波跟进。</li>
+      </ol>
+      <div class="quote"><span class="quote-label">关键判断</span><strong>先用流程替代“思考”。</strong>AI 不是先变成老板，而是先按老板已经写清的规则巡检、提醒、汇总。</div>
+    </section>
+
+    <section>
+      <h2>本周核心决策</h2>
+      <div class="pull"><span class="pull-label">节奏铁律</span><strong>不要从“全自动代理”开始；先用 Codex + 飞书把一个任务跟进场景跑成半自动闭环。</strong></div>
+      <div class="grid">
+        <div class="grid-row"><div class="k">首个试点</div><div class="v">从每周销售报表登记或违规提醒处理二选一，不一开始覆盖全公司所有任务。</div></div>
+        <div class="grid-row"><div class="k">系统载体</div><div class="v">飞书测试群 / 多维表格作为任务载体，字段包含来源、责任人、截止时间、状态、证据、下次提醒和上报对象。</div></div>
+        <div class="grid-row"><div class="k">运行机制</div><div class="v">Codex 定时巡检任务表 / 群消息，按规则判断“完成 / 已完成 / 处理中 / 未完成”，再推送提醒或生成老板日报。</div></div>
+        <div class="grid-row"><div class="k">工具边界</div><div class="v">小龙虾 / Hermes / N8N / Dify 暂不优先；流程和规则成熟后再评估是否需要更强代理。</div></div>
+        <div class="grid-row"><div class="k">部署边界</div><div class="v">先在一台电脑上跑出手感，确认锁屏运行和定时任务稳定；云端部署、多电脑同步后置。</div></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>落地清单</h2>
+      <div class="role">
+        <h3>客户侧</h3>
+        <div class="task"><div class="badge todo">待启动</div><div class="task-body">选定第一个任务跟进试点：每周销售报表登记或违规提醒处理。</div></div>
+        <div class="task"><div class="badge todo">待启动</div><div class="task-body">整理人员角色表：老板、运营、财务、客服、图片 / 视频负责人和各类任务责任人。</div></div>
+        <div class="task"><div class="badge todo">待启动</div><div class="task-body">统一任务反馈话术，例如“完成 / 已完成 / 处理中 / 未完成 + 原因 + 预计完成时间”。</div></div>
+        <div class="task"><div class="badge todo">待启动</div><div class="task-body">在飞书建立测试群或多维表格，先让任务有标准载体。</div></div>
+        <div class="task"><div class="badge todo">待启动</div><div class="task-body">验证 Codex 的 Lark / 飞书能力：读消息、写表格、发提醒。</div></div>
+        <div class="task"><div class="badge todo">待启动</div><div class="task-body">把当前评价图智能体链接和优质买家秀图片发群，同步给花花老师。</div></div>
+      </div>
+      <div class="role">
+        <h3>陪跑团队侧</h3>
+        <div class="task"><div class="badge todo">待启动</div><div class="task-body">协助客户把第一个任务巡检流程写成 SOP，跑通后再沉淀为 Skill。</div></div>
+        <div class="task"><div class="badge todo">待启动</div><div class="task-body">另约张航波同步视频线进展，继续补睡衣视频生成指导。</div></div>
+      </div>
+      <div class="role">
+        <h3>本次会议已完成</h3>
+        <div class="task"><div class="badge done">完成</div><div class="task-body">把“老板 AI 助理”需求拆成任务来源、责任人、截止时间、反馈话术和超时上报规则。</div></div>
+        <div class="task"><div class="badge done">完成</div><div class="task-body">明确当前不优先部署小龙虾 / Hermes / N8N / Dify。</div></div>
+        <div class="task"><div class="badge done">完成</div><div class="task-body">确认评价图智能体已有可用结果，主图 / 详情图继续以即梦为主。</div></div>
+      </div>
+    </section>
+
+    <section class="next">
+      <h2>下次会议方向</h2>
+      <p><strong>触发条件：</strong>客户选定一个任务跟进试点，并准备好人员角色、任务字段、完成话术和超时规则。</p>
+      <p><strong>会议内容：</strong>现场跑一次 Codex + 飞书定时巡检：读取任务 / 群消息，判断完成状态，发送提醒，生成老板日报；另行同步张航波的视频线进度。</p>
+    </section>
+  </main>
+</div>
+</body>
+</html>
