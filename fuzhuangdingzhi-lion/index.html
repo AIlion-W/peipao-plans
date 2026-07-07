@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>涂志武 · 服装定制 AI 陪跑方案</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+  :root{
+    --bg:#0b0d12; --panel:#141821; --line:#232936; --ink:#e8ecf3;
+    --muted:#8a93a6; --accent:#ff6a00; --accent2:#ffb15c;
+    --ok:#2ecc71; --brand:#1f7a6b;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.7}
+  .wrap{max-width:1180px;margin:0 auto;padding:48px 32px}
+  h1{font-size:34px;margin:0 0 8px;letter-spacing:1px}
+  h2{font-size:22px;margin:48px 0 16px;padding-left:12px;border-left:4px solid var(--accent)}
+  h3{font-size:17px;margin:24px 0 10px;color:var(--accent2)}
+  .sub{color:var(--muted);font-size:14px}
+  .hero{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px;padding-bottom:24px;border-bottom:1px solid var(--line)}
+  .tag{display:inline-block;padding:3px 10px;border-radius:999px;background:var(--brand);color:#eafff9;font-size:12px;margin-right:6px;font-weight:600}
+  .tag.gray{background:#2c3340;color:var(--muted)}
+  .meta{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:24px}
+  .meta .card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+  .meta .k{font-size:12px;color:var(--muted)}
+  .meta .v{font-size:16px;margin-top:4px}
+  .ladder{position:relative;display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-top:16px}
+  .step{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 12px;position:relative}
+  .step .n{font-size:11px;color:var(--muted)}
+  .step .t{font-weight:600;margin-top:2px;font-size:14px}
+  .step .d{font-size:12px;color:var(--muted);margin-top:6px;line-height:1.5}
+  .step.done{border-color:#2ecc7144;background:#11261b}
+  .step.now{border-color:var(--accent);background:linear-gradient(180deg,#241408,#191c24);box-shadow:0 0 0 2px #ff6a0033}
+  .step.target{border-color:#3a4256;background:#181b24}
+  .step .badge{position:absolute;top:-10px;left:10px;font-size:10px;padding:2px 8px;border-radius:999px}
+  .step.done .badge{background:var(--ok);color:#08210f}
+  .step.now .badge{background:var(--accent);color:#fff}
+  .step.target .badge{background:#3a4256;color:#cdd3df}
+  .grid5{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:8px}
+  .m{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px}
+  .m .h{font-weight:600;font-size:14px;color:var(--accent2)}
+  .m .b{font-size:12.5px;color:#cdd3df;margin-top:6px;line-height:1.6}
+  .m .now{font-size:11px;margin-top:8px;color:var(--muted)}
+  .threecol{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-top:8px}
+  .twocol{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:8px}
+  .col{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px}
+  .col.highlight{border-color:var(--accent);background:linear-gradient(180deg,#1e1208,#141821)}
+  .col h4{margin:0;font-size:16px}
+  .col .pain{font-size:12px;color:var(--muted);margin-top:4px;line-height:1.6}
+  .col .row{margin-top:14px;font-size:13px}
+  .col .row b{color:var(--accent2);font-weight:600}
+  .col .pill{display:inline-block;font-size:11px;padding:2px 8px;border-radius:6px;background:#1f2735;color:#9fb0d0;margin-right:4px;margin-top:4px}
+  .col .pill.hot{background:#3a1a08;color:var(--accent2)}
+  .demo{background:linear-gradient(135deg,#1a1f2c,#13161e);border:1px dashed #3a4256;border-radius:12px;padding:20px;margin-top:8px}
+  .demo .flow{display:flex;align-items:center;flex-wrap:wrap;gap:6px;margin-top:10px}
+  .demo .node{background:#222a3a;border:1px solid #2f3b52;padding:8px 12px;border-radius:8px;font-size:13px}
+  .demo .node.hot{background:#2a1808;border-color:#5a3010;color:var(--accent2)}
+  .demo .arr{color:var(--accent);font-weight:700}
+  .demo .out{margin-top:14px;background:#0d0f15;border:1px solid #232936;border-radius:8px;padding:14px;font-size:12.5px;color:#cdd3df}
+  .timeline{position:relative;margin-top:8px;border-left:2px solid var(--line);padding-left:22px}
+  .tl-item{position:relative;padding:14px 16px 14px 8px;background:var(--panel);border:1px solid var(--line);border-radius:10px;margin-bottom:14px}
+  .tl-item::before{content:"";position:absolute;left:-31px;top:20px;width:12px;height:12px;background:var(--accent);border-radius:50%;border:3px solid var(--bg)}
+  .tl-item.done-item{border-color:#2ecc7144}
+  .tl-item.done-item::before{background:var(--ok)}
+  .tl-item.now-item{border-color:var(--accent);box-shadow:0 0 0 1px #ff6a0033}
+  .tl-item.now-item::before{background:var(--accent)}
+  .tl-item .wk{display:inline-block;background:#2c3340;color:#cdd3df;padding:2px 10px;border-radius:6px;font-size:12px;margin-right:8px}
+  .tl-item.done-item .wk{background:#11261b;color:var(--ok)}
+  .tl-item.now-item .wk{background:#ff6a0022;color:var(--accent)}
+  .tl-item h4{margin:0 0 6px;font-size:16px}
+  .tl-item ul{margin:6px 0 0 18px;padding:0;font-size:13.5px;color:#cdd3df}
+  .tl-item li{margin:3px 0}
+  .deliv{margin-top:10px;display:flex;flex-wrap:wrap;gap:6px}
+  .deliv span{font-size:11px;background:#1f2735;color:#9fb0d0;border:1px solid #2a3346;padding:3px 8px;border-radius:6px}
+  .deliv .s-agent{color:#ffb15c;border-color:#5a3a1a}
+  .deliv .s-skill{color:#7fd1ff;border-color:#1f4a66}
+  .deliv .s-flow{color:#a7f0a7;border-color:#1f5a2c}
+  .deliv .s-html{color:#ffd4f5;border-color:#5a2348}
+  .deliv .s-done{color:var(--ok);border-color:#2ecc7144}
+  .note{background:#181b24;border:1px solid #2a3346;border-radius:10px;padding:14px 16px;margin-top:14px;font-size:13px;color:#cdd3df}
+  .note b{color:var(--accent2)}
+  .quote-block{margin:20px 0;padding:18px 22px;background:#1a1f2c;border-left:3px solid var(--accent);border-radius:0 10px 10px 0;font-size:14px;color:#cdd3df;line-height:1.8}
+  footer{margin-top:60px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:12px}
+  @media (max-width:900px){
+    .meta,.grid5,.threecol,.twocol{grid-template-columns:1fr 1fr}
+    .ladder{grid-template-columns:1fr 1fr;gap:10px}
+  }
+  @media (max-width:640px){
+    .wrap{padding:32px 18px}
+    .meta,.grid5,.threecol,.twocol{grid-template-columns:1fr}
+    h1{font-size:28px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <section class="hero">
+    <div>
+      <div>
+        <span class="tag">运动服装定制</span>
+        <span class="tag" style="background:#1a3060;color:#8ab0ff">自有工厂 · 小单快返</span>
+        <span class="tag gray">D+61 · 产品标题智能体小闭环阶段</span>
+      </div>
+      <h1>涂总，这是接下来我们一起跑的路</h1>
+      <div class="sub">陪跑客户：涂志武 · 陪跑老师：Lion · 启动日：2026-05-07</div>
+    </div>
+    <div class="sub">版本 v3 · 2026-07-07（执行会议-004 后更新）</div>
+  </section>
+
+  <div class="meta">
+    <div class="card"><div class="k">业务模型</div><div class="v">欧美 ToB 运动服装定制<br><span style="font-size:13px;color:var(--muted)">50-500 件小单快返，自有工厂交付</span></div></div>
+    <div class="card"><div class="k">当前进度</div><div class="v">产品标题智能体<br><span style="font-size:13px;color:var(--muted)">从提示词、样例、反馈和知识库索引跑小闭环</span></div></div>
+    <div class="card"><div class="k">首批杠杆</div><div class="v">设计支持提效<br><span style="font-size:13px;color:var(--muted)">部分图像任务从半天压到 5-10 分钟</span></div></div>
+    <div class="card"><div class="k">当前卡点</div><div class="v">标题规则 + 知识库索引<br><span style="font-size:13px;color:var(--muted)">不能只让 AI 翻译，要写清产品专员的选词判断</span></div></div>
+  </div>
+
+  <h2>一、先建立对 AI 的正确认知</h2>
+  <p class="sub">你们已经不是“要不要用 AI”的阶段，而是“公司级智能体系统怎么运营”的阶段。现在最危险的不是工具不够，而是业务反馈跟不上、SOP 拆不细、程序员只能按模糊需求做后台。下一阶段要把 AI 当作公司内部的新生产系统：每个智能体必须有调用、反馈、负责人、迭代记录和业务指标。</p>
+
+  <div class="quote-block">
+    先让 AI 解决一个具体问题，再把多个具体问题串成工作流。不要幻想一个智能体替代整个岗位；真正可复制的，是 SOP 颗粒、提示词和反馈机制。
+  </div>
+
+  <h3>AI 成熟度 7 阶段 · 涂总团队当前位置</h3>
+  <div class="ladder">
+    <div class="step done"><span class="badge">✓ 已过</span><div class="n">阶段 1</div><div class="t">基础对话</div><div class="d">老板和团队已能用 GPT / AI 工具完成基础内容与分析。</div></div>
+    <div class="step done"><span class="badge">✓ 已过</span><div class="n">阶段 2</div><div class="t">结构化要求</div><div class="d">知道要用角色、任务、输入输出约束来组织提示词。</div></div>
+    <div class="step done"><span class="badge">✓ 已过</span><div class="n">阶段 3</div><div class="t">工具尝试</div><div class="d">Lovart / Image 2 / 生图 / 抠图 / 主图分析等工具已进入业务试用。</div></div>
+    <div class="step done"><span class="badge">✓ 已过</span><div class="n">阶段 4</div><div class="t">智能体雏形</div><div class="d">程序员已做出内部智能体后台，18 个智能体真实调用。</div></div>
+    <div class="step now"><span class="badge">▶ 你在这</span><div class="n">阶段 5</div><div class="t">反馈系统</div><div class="d">用真实标题样例、同事试用记录、负反馈和知识库索引，把提示词迭代管起来。</div></div>
+    <div class="step target"><span class="badge">下一阶段</span><div class="n">阶段 6</div><div class="t">Skill 工作化</div><div class="d">把跑通的 SOP 写成可复用 skill / MD 文件，沉淀到“吉音 OS”。</div></div>
+    <div class="step target"><span class="badge">远期</span><div class="n">阶段 7</div><div class="t">业务系统化</div><div class="d">CRM/ERP、客户资料、本地 RAG、公共 Codex 任务机串成公司级 AI 操作系统。</div></div>
+  </div>
+
+  <h3>对应你公司的 5 个层</h3>
+  <div class="grid5">
+    <div class="m"><div class="h">① 身份层</div><div class="b">让 AI 记住：欧美 ToB 运动服装定制、自有工厂、小单快返、先交付后获客。</div><div class="now">起点：客户档案 + 业务背景 MD</div></div>
+    <div class="m"><div class="h">② 知识层</div><div class="b">沉淀 SOP、产品资料、客户资料、供应链规则、CRM/ERP 字段和历史项目。</div><div class="now">目标：“吉音 OS”数据资产</div></div>
+    <div class="m"><div class="h">③ 工具层</div><div class="b">生图、抠图、客户背调、运营分析、详情页、主图优化等内部智能体。</div><div class="now">已搭：约 18 个智能体</div></div>
+    <div class="m"><div class="h">④ 协作层</div><div class="b">飞书反馈表 + 每周会议 + 程序员迭代，让业务语言转成技术实现。</div><div class="now">当前最需要补强</div></div>
+    <div class="m"><div class="h">⑤ 场景层</div><div class="b">运营、业务、交付三条线按 SOP 拆颗粒，先单点，再工作流。</div><div class="now">下周从一个 SOP 开始</div></div>
+  </div>
+
+  <h2>二、要优先搭建的 3 类智能体</h2>
+  <p class="sub">排序原则：先选高频、耗人力、反馈标准清楚的业务颗粒。已经有效的生图 / 抠图类继续跑，当前最小闭环先落在“产品英文标题”这个产品内容颗粒上。</p>
+
+  <div class="threecol">
+    <div class="col highlight">
+      <h4>① 产品英文标题智能体 <span style="font-size:12px;color:var(--accent)">▶ 当前首战</span></h4>
+      <div class="pain">痛点：产品标题不是机械翻译，产品专员要判断款式、类目、工艺、面料、设计细节和英文表达高级感。</div>
+      <div class="row"><b>能力</b>：产品图片 + 中文属性 → 英文标题 / 产品特性描述。</div>
+      <div class="row"><b>目标</b>：先用 3-5 个真实产品跑稳标题公式，再接入彩页和目录内容输出。</div>
+      <div class="row"><span class="pill hot">本周推进</span><span class="pill">提示词 + 样例 + 负反馈 + 知识库索引</span></div>
+    </div>
+    <div class="col">
+      <h4>② 产品彩页 / 目录生成链路</h4>
+      <div class="pain">痛点：彩页和目录需要标题、卖点、图片、尺寸表、模板规则共同稳定，不能只生成一段文案。</div>
+      <div class="row"><b>能力</b>：在标题智能体跑稳后，继续生成彩页内容，并用 Codex 排版成可交付 PDF。</div>
+      <div class="row"><b>目标</b>：先单页，再目录册；先规则稳定，再模板升级。</div>
+      <div class="row"><span class="pill">下一阶段</span><span class="pill">产品内容 → PDF</span></div>
+    </div>
+    <div class="col">
+      <h4>③ 设计支持 / CRM / 运营智能体</h4>
+      <div class="pain">痛点：生图、抠图、客户背调和运营分析已有小范围试用，但要继续补调用反馈和负责人机制。</div>
+      <div class="row"><b>能力</b>：设计支持、客户资料追溯、竞品分析、推广建议和销售辅助。</div>
+      <div class="row"><b>目标</b>：把现有 18 个内部智能体从“可调用”推进到“可运营”。</div>
+      <div class="row"><span class="pill">持续推进</span><span class="pill">智能体运营中台</span></div>
+    </div>
+  </div>
+
+  <h2>三、把智能体打包成 Skill / MD 资产</h2>
+  <p class="sub">公司真正能留下来的不是某一次对话，而是可以复用的 SOP、提示词、字段定义和反馈记录。建议所有跑通的智能体都配套一份 MD 说明：触发场景、输入格式、输出格式、使用示例、负反馈规则、负责人。</p>
+
+  <div class="twocol">
+    <div class="col">
+      <h4>Skill 1 · 产品英文标题 SOP</h4>
+      <div class="row">触发场景：产品图片和中文属性已齐，需要英文标题 / 产品特性描述。</div>
+      <div class="row">沉淀内容：标题公式、参考样例、选词依据、相似词取舍、知识库索引。</div>
+      <div class="row">负责人：产品专员 + 程序员。</div>
+    </div>
+    <div class="col">
+      <h4>Skill 2 · 运营分析 SOP</h4>
+      <div class="row">触发场景：选品、竞品、主图、详情页、推广动作分析。</div>
+      <div class="row">沉淀内容：链接采集规则、分析维度、输出模板、复盘字段。</div>
+      <div class="row">负责人：网站运营 + 业务主管。</div>
+    </div>
+    <div class="col">
+      <h4>Skill 3 · 客户背调 / CRM 追溯</h4>
+      <div class="row">触发场景：新客户进入、历史客户重复跟进、业务冲突判断。</div>
+      <div class="row">沉淀内容：客户名称标准化、历史沟通检索、风险标签、跟进建议。</div>
+      <div class="row">负责人：业务主管 + 程序员。</div>
+    </div>
+    <div class="col">
+      <h4>Skill 4 · Codex 本地任务机</h4>
+      <div class="row">触发场景：本地文件批处理、客户案例分析、批量报告生成。</div>
+      <div class="row">沉淀内容：NAS 输入文件夹、任务格式、输出路径、权限边界。</div>
+      <div class="row">负责人：涂志武 + 程序员。</div>
+    </div>
+  </div>
+
+  <h2>四、把反馈系统变成智能体运营中台</h2>
+  <p class="sub">下阶段最关键的不是继续加新工具，而是把“同事怎么用、哪里不满意、哪条知识库没调用、下一版是否变好”留下证据。产品标题智能体的首轮反馈，是这套机制的第一块试金石。</p>
+
+  <div class="demo">
+    <div style="font-size:13px;color:var(--muted)">反馈闭环 · 每 10 次调用至少 1 次反馈</div>
+    <div class="flow">
+      <span class="node">业务同事调用智能体</span>
+      <span class="arr">→</span>
+      <span class="node hot">飞书反馈表</span>
+      <span class="arr">→</span>
+      <span class="node">程序员看负反馈</span>
+      <span class="arr">→</span>
+      <span class="node">修改提示词 / 工具</span>
+      <span class="arr">→</span>
+      <span class="node">下一周复盘验证</span>
+    </div>
+    <div class="out">
+      <b style="color:var(--accent2)">建议字段</b><br>
+      智能体名称、调用人、使用场景、输入类型、输出评分、是否可直接使用、负反馈、修改建议、负责人、状态、下次验证时间。<br><br>
+      <b style="color:var(--accent2)">管理原则</b><br>
+      调用量只是热度，负反馈才是迭代燃料；没有反馈的高调用，不等于真正落地。
+    </div>
+  </div>
+
+  <h2>五、接下来 8 周里程碑（D+61 后校准）</h2>
+  <div class="timeline">
+    <div class="tl-item done-item">
+      <h4><span class="wk">已完成</span>程序员入职 + 内部智能体后台雏形</h4>
+      <ul>
+        <li>已搭建约 18 个智能体，总调用 183 次，小范围 19 人测试。</li>
+        <li>首批在生图 / 抠图 / 设计支持 / 客户背调方向体现效率。</li>
+      </ul>
+      <div class="deliv"><span class="s-done">内部后台</span><span class="s-done">小范围测试</span></div>
+    </div>
+    <div class="tl-item now-item">
+      <h4><span class="wk">W1</span>产品英文标题智能体首轮试用</h4>
+      <ul>
+        <li>整理标题公式：款式、类目、工艺、面料、设计细节和字符规则。</li>
+        <li>准备 3-5 个真实产品样例，补齐英文标题和选词依据。</li>
+        <li>把初版提示词导出为 MD / TXT，给同事试用。</li>
+      </ul>
+      <div class="deliv"><span class="s-agent">标题智能体初版</span><span class="s-flow">样例集</span></div>
+    </div>
+    <div class="tl-item now-item">
+      <h4><span class="wk">W2</span>提示词迭代 + 知识库索引</h4>
+      <ul>
+        <li>收集同事输入、输出、聊天记录、满意点和负反馈。</li>
+        <li>用提示词文件 + 试用记录让 AI 修订完整提示词。</li>
+        <li>在 GPT 指令中写清面料、尺寸、价格、真实产品资料的知识库索引。</li>
+      </ul>
+      <div class="deliv"><span class="s-flow">反馈闭环</span><span class="s-skill">知识库索引</span></div>
+    </div>
+    <div class="tl-item">
+      <h4><span class="wk">W3-W4</span>彩页内容与目录 PDF 最小闭环</h4>
+      <ul>
+        <li>把标题智能体接入产品彩页字段。</li>
+        <li>用真实产品跑一页彩页内容生成。</li>
+        <li>用 Codex 测试排版为可交付 PDF。</li>
+      </ul>
+      <div class="deliv"><span class="s-agent">彩页智能体</span><span class="s-html">PDF 样张</span></div>
+    </div>
+    <div class="tl-item">
+      <h4><span class="wk">W5-W6</span>沉淀 Skill / MD 文件</h4>
+      <ul>
+        <li>把跑通的提示词、输入输出、负反馈规则写成 MD。</li>
+        <li>纳入“吉音 OS”文件结构。</li>
+        <li>训练业务同事按同一模板提需求和反馈。</li>
+      </ul>
+      <div class="deliv"><span class="s-skill">Skill / MD 资产</span></div>
+    </div>
+    <div class="tl-item">
+      <h4><span class="wk">W7</span>公共 Mac + NAS + Codex 流程试跑</h4>
+      <ul>
+        <li>确定哪些本地文件任务交给 Codex 处理。</li>
+        <li>设计 NAS 输入文件夹、输出文件夹、任务命名规则和权限边界。</li>
+        <li>先跑一个低风险批处理任务，验证链路。</li>
+      </ul>
+      <div class="deliv"><span class="s-flow">Codex 本地任务机</span></div>
+    </div>
+    <div class="tl-item">
+      <h4><span class="wk">W8</span>数据资产与本地 RAG 方案评估</h4>
+      <ul>
+        <li>梳理 CRM/ERP 数据、客户资料、skill 文件的统一目录。</li>
+        <li>评估千问 / DeepSeek / 本地开源模型的硬件要求和适用场景。</li>
+        <li>明确哪些敏感客户数据优先本地处理。</li>
+      </ul>
+      <div class="deliv"><span class="s-flow">数据资产方案</span><span class="s-html">阶段复盘报告</span></div>
+    </div>
+  </div>
+
+  <h2>六、陪跑承诺</h2>
+  <div class="threecol">
+    <div class="col"><h4>① 不泛讲工具</h4><div class="row">下次会议直接围绕一个真实 SOP 拆智能体，输出具体字段、提示词和反馈方式。</div></div>
+    <div class="col"><h4>② 不只看调用量</h4><div class="row">陪跑侧会盯“能不能直接用、哪里失败、改完是否变好”，把反馈表变成迭代抓手。</div></div>
+    <div class="col"><h4>③ 不丢数据资产</h4><div class="row">跑通一个场景就沉淀一个 MD / skill 文件，最终形成公司自己的“吉音 OS”。</div></div>
+  </div>
+
+  <footer>
+    数据来源：2026-04-28 首次面试、2026-05-07 场景确认、2026-05-09 执行会议-001、2026-06-27 执行会议-002、2026-06-30 执行会议-003、2026-07-07 执行会议-004 及客户档案。<br>
+    陪跑团队判断：涂志武团队已经具备技术落地能力，下一阶段的胜负手是把产品专员的判断依据、知识库索引和同事负反馈写进智能体。
+  </footer>
+
+</div>
+</body>
+</html>
