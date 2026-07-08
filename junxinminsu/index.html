@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>君欣民宿小红书获客陪跑方案</title>
+<style>
+  :root{
+    --bg: #F5F4EE;
+    --paper: #FAF9F5;
+    --card: #FFFFFF;
+    --ink: #2E2B26;
+    --ink-soft: #5C574D;
+    --line: #E5E2D6;
+    --accent: #CC785C;
+    --accent-deep: #B35F45;
+    --accent-tint: #F3E3DA;
+    --tag-bg: #EEEAE0;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+    line-height:1.75;
+    font-size:16px;
+  }
+  .shell{
+    max-width:900px;
+    margin:0 auto;
+    padding:0 24px 120px;
+  }
+
+  /* Hero */
+  .hero{
+    padding:72px 24px 56px;
+    max-width:900px;
+    margin:0 auto;
+    text-align:left;
+  }
+  .hero-eyebrow{
+    display:inline-block;
+    font-size:13px;
+    letter-spacing:.06em;
+    color:var(--accent-deep);
+    background:var(--accent-tint);
+    padding:6px 14px;
+    border-radius:999px;
+    font-weight:600;
+    margin-bottom:20px;
+  }
+  .hero h1{
+    font-family:Georgia,"Songti SC","STSong",serif;
+    font-size:38px;
+    line-height:1.35;
+    margin:0 0 18px;
+    color:var(--ink);
+    font-weight:600;
+  }
+  .hero p{
+    color:var(--ink-soft);
+    font-size:16px;
+    max-width:640px;
+    margin:0;
+  }
+  .hero-badges{
+    margin-top:28px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+  .badge{
+    font-size:13px;
+    color:var(--ink-soft);
+    background:var(--card);
+    border:1px solid var(--line);
+    padding:8px 14px;
+    border-radius:10px;
+  }
+
+  /* Section */
+  section.block{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:20px;
+    padding:36px 40px;
+    margin-bottom:28px;
+  }
+  .sec-head{
+    display:flex;
+    align-items:baseline;
+    gap:14px;
+    margin-bottom:20px;
+  }
+  .sec-num{
+    font-family:Georgia,serif;
+    font-size:15px;
+    color:var(--accent);
+    font-weight:700;
+    letter-spacing:.02em;
+  }
+  h2{
+    font-family:Georgia,"Songti SC","STSong",serif;
+    font-size:24px;
+    margin:0;
+    color:var(--ink);
+    font-weight:600;
+  }
+  h3{
+    font-size:17px;
+    margin:28px 0 12px;
+    color:var(--ink);
+    font-weight:700;
+  }
+  h3:first-child{margin-top:0;}
+  h4{
+    font-size:15px;
+    margin:20px 0 8px;
+    color:var(--accent-deep);
+    font-weight:700;
+  }
+  p{margin:0 0 12px;color:var(--ink);}
+  p.muted{color:var(--ink-soft);}
+  ul, ol{margin:0 0 14px; padding-left:22px;}
+  li{margin-bottom:6px;}
+  strong{color:var(--ink); font-weight:700;}
+
+  .lede{
+    font-size:15px;
+    color:var(--ink-soft);
+    background:var(--paper);
+    border-left:3px solid var(--accent);
+    padding:14px 18px;
+    border-radius:8px;
+    margin-bottom:24px;
+  }
+
+  /* Grid cards for 卖点/人群 */
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(230px,1fr));
+    gap:14px;
+    margin:16px 0 4px;
+  }
+  .cell{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:16px 18px;
+  }
+  .cell .cell-title{
+    font-weight:700;
+    font-size:14px;
+    color:var(--accent-deep);
+    margin-bottom:8px;
+  }
+  .cell ul{margin:0; padding-left:18px;}
+  .cell li{font-size:14px; color:var(--ink-soft); margin-bottom:4px;}
+
+  /* Timeline for 获客目标 阶段 */
+  .timeline{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+    margin:16px 0;
+  }
+  .stage{
+    display:grid;
+    grid-template-columns:120px 1fr;
+    gap:16px;
+    padding:16px 18px;
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:12px;
+  }
+  .stage .tag{
+    font-size:13px;
+    font-weight:700;
+    color:var(--accent-deep);
+  }
+  .stage .desc{font-size:14px; color:var(--ink-soft);}
+
+  /* Table */
+  .table-wrap{overflow-x:auto; margin:16px 0;}
+  table{
+    width:100%;
+    border-collapse:collapse;
+    font-size:13.5px;
+    min-width:760px;
+  }
+  th{
+    background:var(--accent-tint);
+    color:var(--accent-deep);
+    font-weight:700;
+    text-align:left;
+    padding:10px 12px;
+    border:1px solid var(--line);
+    white-space:nowrap;
+  }
+  td{
+    padding:10px 12px;
+    border:1px solid var(--line);
+    color:var(--ink-soft);
+    vertical-align:top;
+  }
+  tr:nth-child(even) td{background:var(--paper);}
+
+  /* Pill list for 记忆点 / 内容方向 */
+  .pill-list{display:flex; flex-direction:column; gap:10px; margin:14px 0;}
+  .pill{
+    display:flex;
+    gap:12px;
+    align-items:flex-start;
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:12px 16px;
+  }
+  .pill .num{
+    flex:none;
+    width:24px; height:24px;
+    border-radius:50%;
+    background:var(--accent);
+    color:#fff;
+    font-size:12px;
+    font-weight:700;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .pill .txt{font-size:14px; color:var(--ink);}
+
+  /* Callout */
+  .callout{
+    background:var(--accent-tint);
+    border-radius:12px;
+    padding:16px 20px;
+    margin:16px 0;
+    font-size:14px;
+    color:var(--accent-deep);
+  }
+  .callout strong{color:var(--accent-deep);}
+
+  /* Funnel */
+  .funnel{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    gap:8px;
+    margin:16px 0;
+    font-size:13.5px;
+    font-weight:600;
+  }
+  .funnel .step{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:8px 12px;
+    color:var(--ink);
+  }
+  .funnel .arrow{color:var(--accent);}
+
+  /* Pricing */
+  .price-card{
+    background:linear-gradient(135deg, var(--accent-tint), var(--paper));
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:28px 32px;
+    margin-top:12px;
+  }
+  .price-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-bottom:18px;
+    border-bottom:1px dashed var(--accent);
+    padding-bottom:16px;
+  }
+  .price-head .name{font-size:17px; font-weight:700;}
+  .price-head .num{font-size:28px; font-weight:700; color:var(--accent-deep); font-family:Georgia,serif;}
+  .price-head .num span{font-size:14px; font-weight:500; color:var(--ink-soft);}
+  .price-card ol{padding-left:20px; margin:0;}
+  .price-card li{font-size:14.5px; margin-bottom:8px;}
+  .addon{
+    margin-top:18px;
+    padding-top:16px;
+    border-top:1px solid var(--line);
+    font-size:13.5px;
+    color:var(--ink-soft);
+  }
+
+  /* Footer */
+  .footer{
+    text-align:center;
+    color:var(--ink-soft);
+    font-size:13px;
+    margin-top:40px;
+    padding-top:20px;
+  }
+
+  a{color:var(--accent-deep);}
+
+  @media (max-width:640px){
+    .hero{padding:48px 20px 36px;}
+    .hero h1{font-size:28px;}
+    section.block{padding:26px 22px;}
+    .stage{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <span class="hero-eyebrow">陪跑方案 · 小红书获客</span>
+  <h1>君欣民宿小红书获客陪跑方案</h1>
+  <p>三清山港首索道口品质家庭民宿 · 从账号搭建到私域转化的完整陪跑体系</p>
+  <div class="hero-badges">
+    <span class="badge">手把手 AI 创作教学</span>
+    <span class="badge">赠送 3 篇获客笔记</span>
+    <span class="badge">每周 5–7 个选题方向</span>
+    <span class="badge">每周数据复盘 + 月度报告</span>
+    <span class="badge">摄影指导</span>
+  </div>
+</div>
+
+<div class="shell">
+
+  <section class="block" id="s1">
+    <div class="sec-head"><span class="sec-num">01</span><h2>店铺定位</h2></div>
+    <p>君欣民宿是位于国家 5A 级旅游景点三清山，港首索道口附近的品质家庭民宿。</p>
+    <h3>核心卖点梳理</h3>
+    <div class="grid">
+      <div class="cell">
+        <div class="cell-title">位置</div>
+        <ul>
+          <li>三清山港首索道口附近，距索道口 2–3 分钟车程（可接送）</li>
+          <li>港首索道 → 三清宫 → 郁松林 → 高空栈道 → 巨蟒出山 → 东方女神 → 金沙服务区，轻松爬山路线</li>
+          <li>停车场可看到老子看经峰景点</li>
+        </ul>
+      </div>
+      <div class="cell">
+        <div class="cell-title">服务</div>
+        <ul>
+          <li>免费停车场（含充电桩）</li>
+          <li>免费娱乐配套（KTV、台球厅）</li>
+          <li>冬天卫生间配有取暖器</li>
+          <li>可预约定制私房菜</li>
+        </ul>
+      </div>
+      <div class="cell">
+        <div class="cell-title">品质</div>
+        <ul>
+          <li>现代简约新中式风格，店内干净整洁</li>
+          <li>去年新装修，慕思床垫、ToTo 卫浴、恒温花洒、1.75 米大浴缸</li>
+        </ul>
+      </div>
+      <div class="cell">
+        <div class="cell-title">适用</div>
+        <ul>
+          <li>亲子家庭、闺蜜兄弟团、公司团建均可承接</li>
+          <li>价钱中等偏上</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="s2">
+    <div class="sec-head"><span class="sec-num">02</span><h2>客户画像</h2></div>
+    <div class="grid">
+      <div class="cell">
+        <div class="cell-title">人群一 · 自驾家庭客</div>
+        <ul><li>华东周边（江西、浙江、福建），带娃出游</li><li>重视亲子房、停车、接送、干净安静</li></ul>
+      </div>
+      <div class="cell">
+        <div class="cell-title">人群二 · 情侣 / 年轻游客</div>
+        <ul><li>为景观和出片而来</li><li>看重免费 KTV</li></ul>
+      </div>
+      <div class="cell">
+        <div class="cell-title">人群三 · 中高端品质客 / 小团体</div>
+        <ul><li>愿意为本地特色私房菜付费</li><li>愿意为包场安静环境付费</li></ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="s3">
+    <div class="sec-head"><span class="sec-num">03</span><h2>运营目标</h2></div>
+
+    <h3>1）品牌定位</h3>
+    <div class="callout">建立「<strong>君欣民宿 = 三清山风景区民宿 + 品质家庭民宿</strong>」的用户认知</div>
+
+    <h3>2）内容目标</h3>
+    <p class="muted">官方账号表述内容：</p>
+    <h4>硬件</h4>
+    <ul>
+      <li>民宿就在三清山山脚下，距港首索道 2–3 分钟车程（有免费接送服务），有一条轻松爬山路线，适合老人和小孩</li>
+      <li>家庭游玩，住在港首索道附近更合适，君欣民宿的房间类型更适合选择</li>
+      <li>公司团建、家庭游玩，除了爬山还有更多的玩法</li>
+    </ul>
+    <h4>软装</h4>
+    <p>增加核心板块老板一日工作日常待客细节（卷服务、卷卫生），打感情牌凸显老板的亲和力，讲民宿故事，通过带有场景化的服务内容去引流（例如：下完雨的三清山有些冷，提供给顾客衣物、三清山脚下的民宿，碰到了懂我酒的顾客）</p>
+    <h4>福利</h4>
+    <p>免费 KTV 和台球室，团建和亲子高性价比的好去处（主打性价比）；免费的停车场（配有充电桩）</p>
+
+    <h3>3）获客目标</h3>
+    <p class="muted">围绕暑假旺季启动期，实现提升店铺的曝光、搜索量、主页访问、私信咨询与用户转化，并增加住客 UGC（真实顾客发帖）</p>
+    <div class="timeline">
+      <div class="stage">
+        <div class="tag">前期<br>7.6 – 8.6</div>
+        <div class="desc">完成账号搭建与内容体系，蓝V认证、聚光开户，产出内容确定品牌特性的笔记，测试在当地能够跑起流量的内容方向，进行投流测试，实现小红书首批客源转化</div>
+      </div>
+      <div class="stage">
+        <div class="tag">中期<br>8.6 – 9.6</div>
+        <div class="desc">稳定日更，增加聚光投流笔记，同时间段测出流量较好的笔记，实现内容的复制粘贴，为后期运营助力。主力笔记进入本地/景区关键搜索词前排，私域（微信）稳定沉淀客资、朋友圈及时更新促进转化</div>
+      </div>
+      <div class="stage">
+        <div class="tag">后期<br>9.6 – 10.6</div>
+        <div class="desc">借景区流量拉满入住率，实现小红书渠道预订占比明显提升</div>
+      </div>
+    </div>
+
+    <h3>4）月度选题库（每周 5 个方向参考）</h3>
+    <p class="muted">以下为示例月度框架，实际每周根据数据与热点动态调整</p>
+    <div class="callout"><strong>置顶笔记：</strong>1、民宿房型介绍　2、民宿正式入驻官宣</div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>周次</th><th>选题 1</th><th>选题 2</th><th>选题 3</th><th>选题 4</th><th>选题 5</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>第一周</strong><br>账号启动期</td>
+            <td>三清山脚下，一家本地人开的民宿</td>
+            <td>君欣民宿攻略篇，之超详细房型介绍</td>
+            <td>三清山住哪方便？离索道 2 分钟老板还接送</td>
+            <td>君欣今日提醒，下雨后的三清山建议多穿衣</td>
+            <td>没开美颜没调色，这就是我们家的房间</td>
+          </tr>
+          <tr>
+            <td><strong>第二周</strong><br>攻略引流期</td>
+            <td>三清山北部索道怎么玩？这条线更适合低精力人群</td>
+            <td>三清山避暑亲子游｜住进山脚下民宿，凉快又省心</td>
+            <td>三清山 2 天 1 晚行程，省心又舒服</td>
+            <td>黄山/三清山串游，住君欣体验新装修 + 免费 KTV</td>
+            <td>三清山脚下的君欣民宿，老板很会酿酒</td>
+          </tr>
+          <tr>
+            <td><strong>第三周</strong><br>人群种草期</td>
+            <td>君欣民宿的接送｜不是顺路，是专程</td>
+            <td>三清山 + 婺源篁岭怎么玩？第一晚住君欣民宿最顺路</td>
+            <td>三清山的君欣民宿，团建超划算</td>
+            <td>在三清山脚下，吃上老板亲手做的本地菜</td>
+            <td>客人镜头里的君欣民宿｜比我们官方拍得还好看</td>
+          </tr>
+          <tr>
+            <td><strong>第四周</strong><br>冲刺转化期</td>
+            <td>君欣民宿登山提醒｜爬三清山前看这一篇，少走弯路</td>
+            <td>望仙谷 + 三清山 + 篁岭，住君欣民宿省心省力</td>
+            <td>爬完三清山，这张床是我们最大的诚意</td>
+            <td>在三清山开民宿，最暖心的就是客人说"下次还来"</td>
+            <td>山脚下的新民宿，凉快又舒服</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="block" id="s4">
+    <div class="sec-head"><span class="sec-num">04</span><h2>多引流定位策略</h2></div>
+    <p class="muted">采用矩阵打法，各账号分工明确：</p>
+    <div class="pill-list">
+      <div class="pill"><span class="num">1</span><span class="txt"><strong>蓝V企业号</strong>（信任背书 + 承接）— 核心作用是资质背书、私域引流、活动发布，主要吸粉引流号</span></div>
+      <div class="pill"><span class="num">2</span><span class="txt"><strong>真人体验/攻略号</strong>（探店博主）— 以"游客视角"输出三清山攻略 + 住宿体验，主打真实体验还可提供民宿照片</span></div>
+      <div class="pill"><span class="num">3</span><span class="txt"><strong>素人种草号</strong>（专业建议）— 借素人真实体验扩大声量，配合投流做搜索卡位</span></div>
+    </div>
+    <div class="callout">建议初期做好官方账号，这是携程顾客来小红书能够直接了解到的唯一渠道</div>
+  </section>
+
+  <section class="block" id="s5">
+    <div class="sec-head"><span class="sec-num">05</span><h2>内容运营策略</h2></div>
+
+    <h3>更新节奏</h3>
+    <p>主号建议日更 1 条（旺季尤其重要），围绕"我是做什么的、我有什么、为什么来找我"来做内容，笔记质量很重要</p>
+
+    <h3>内容方向（4 大类）</h3>
+    <div class="pill-list">
+      <div class="pill"><span class="num">①</span><span class="txt"><strong>攻略干货类</strong>：三清山几日游、日出攻略、索道路线（自带搜索流量）</span></div>
+      <div class="pill"><span class="num">②</span><span class="txt"><strong>民宿种草类</strong>：房间实拍、接送体验、民宿服务（抓痛点）</span></div>
+      <div class="pill"><span class="num">③</span><span class="txt"><strong>体验项目类</strong>：私房菜、免费的 KTV 和台球室（种草游玩感受）</span></div>
+      <div class="pill"><span class="num">④</span><span class="txt"><strong>服务/答疑类</strong>：停车充电、亲子设施、预订须知、三清山今日爬山提醒（加深客户对君欣民宿的好感度）</span></div>
+      <div class="pill"><span class="num">⑤</span><span class="txt"><strong>情感故事类</strong>：我为疲惫归来的客户准备好了温水、跟顾客一起聊当地的故事、送带有顾客的小孩去火车站等等（为搜索关键词的顾客进行最强的转化）</span></div>
+    </div>
+
+    <h3>反复打的记忆点</h3>
+    <div class="pill-list">
+      <div class="pill"><span class="num">①</span><span class="txt">住君欣民宿，带你轻松爬三清山（港首索道特有的轻松路线，是我们的特点）</span></div>
+      <div class="pill"><span class="num">②</span><span class="txt">暑假游玩三清山，君欣民宿是最佳选择（免费的 KTV、棋牌室、台球室）</span></div>
+      <div class="pill"><span class="num">③</span><span class="txt">亲子游玩三清山，港首索道附近看我这里（路线 + 亲子房 + 我们的卫生环境）</span></div>
+      <div class="pill"><span class="num">④</span><span class="txt">君欣民宿，团建游玩看我们（五间各种类型房间带免费的体验设施）</span></div>
+    </div>
+
+    <h3>获客型笔记公式</h3>
+    <h4>标题</h4>
+    <p>地点 + 人群 + 核心利益点 + 情绪词 —— 如「三清山亲子游｜离索道 2 分钟这家民宿还接送」</p>
+    <h4>封面</h4>
+    <p>景区实景照片（可辨认性）+ 一句强钩子文字（避免纯 logo 图）</p>
+    <h4>正文结构（爆款获客模板）</h4>
+    <ol>
+      <li>痛点或场景开头带有疑问（住哪个索道口合适）</li>
+      <li>我们的解决方案（离索道 2 分钟 + 免费接送）</li>
+      <li>植入民宿（新中式简约风民宿、家庭游玩好去处、三清山爬完放松的好地方）</li>
+      <li>信任背书（好评、主理人故事）</li>
+      <li>结尾引导（评论区问套餐档期、私信关键词领攻略）</li>
+    </ol>
+    <div class="callout">
+      <strong>埋词：</strong>正文与标签密集埋入 #三清山 #三清山攻略 #江西旅游 #三清山民宿推荐 #上饶周边游 #三清山旅游 #隐居山林的民宿 #小众避暑地，<strong>必带话题：#君欣民宿</strong>
+    </div>
+
+    <h3>AI 辅助使用建议（陪跑教学，重点）</h3>
+    <ul>
+      <li>用 AI 批量生成选题、标题、文案初稿，再人工加真实细节，提高日更效率</li>
+      <li>用 AI 做评论区话术、私信应答模板</li>
+      <li><strong>提醒：</strong>AI 初稿必须人工改写，避免内容生硬、同质化被限流</li>
+    </ul>
+
+    <h3>关于拍照/摄影建议（陪跑教学，重点）</h3>
+    <ul>
+      <li><strong>必拍清单：</strong>三清山打卡点、民宿窗外景、民宿外观、观景阳台、各体验项目过程图、私房菜美食照片、每个房间的照片、民宿细节的角落（好看有氛围感）</li>
+      <li><strong>出片技巧：</strong>黄金时段拍摄（光线好）、人物入镜增代入感、建议竖屏（日常需要店家协助拍摄）</li>
+      <li><strong>建素材库：</strong>按场景分类归档，供日更长期复用</li>
+    </ul>
+
+    <h3>置换免费流量做活动招募（陪跑教学）</h3>
+    <ul>
+      <li>用免费住宿/体验券置换本地探店博主、亲子博主、摄影博主到店产出内容</li>
+      <li>设置门槛：内容质量、发布要求</li>
+      <li>活动体验设计：入住仪式感（赠饮 + 私房菜体验），引导客人自发小红书带定位</li>
+    </ul>
+  </section>
+
+  <section class="block" id="s6">
+    <div class="sec-head"><span class="sec-num">06</span><h2>种草投放建议</h2></div>
+    <p class="muted" style="margin-bottom:16px;">增值服务，另计费</p>
+    <ul>
+      <li>素人种草：以真实游客口吻铺量，抢占搜索关键词，营造"很多人都住过"的氛围</li>
+      <li><strong>收费标准：</strong>300 元/篇，20 篇起投（合计 5000 元）</li>
+      <li><strong>投放节奏：</strong>集中在旺季期间铺开，配合聚光投流放大</li>
+      <li><strong>内容分工：</strong>素人负责真实体验 + 攻略场景，覆盖不同人群关键词（亲子、情侣、日出、接送）</li>
+    </ul>
+  </section>
+
+  <section class="block" id="s7">
+    <div class="sec-head"><span class="sec-num">07</span><h2>聚光投流</h2></div>
+    <p class="muted" style="margin-bottom:16px;">另行收费</p>
+    <ul>
+      <li>强烈建议投放，<strong>月预算 1000–3000 元</strong></li>
+      <li><strong>投放对象：</strong>蓝V优质笔记、素人种草内容、探店博主优质笔记</li>
+      <li><strong>投放目标：</strong>以私信咨询/收资为主，而非单纯曝光</li>
+      <li><strong>打法：</strong>先小额测试多条笔记，挑出咨询成本最优的加投放大</li>
+    </ul>
+    <div class="callout">陪跑及素人种草合作期间，选择代投服务，服务费优惠价 <strong>2000 元/月</strong>；陪跑结束以后代投服务费 <strong>3500 元/月</strong></div>
+  </section>
+
+  <section class="block" id="s8">
+    <div class="sec-head"><span class="sec-num">08</span><h2>公转私链路设计</h2></div>
+    <div class="funnel">
+      <span class="step">公域种草</span><span class="arrow">→</span>
+      <span class="step">搜索/推荐看到</span><span class="arrow">→</span>
+      <span class="step">主号承接</span><span class="arrow">→</span>
+      <span class="step">私信咨询</span><span class="arrow">→</span>
+      <span class="step">加微信</span><span class="arrow">→</span>
+      <span class="step">转化预订</span><span class="arrow">→</span>
+      <span class="step">复购/转介绍</span>
+    </div>
+    <h3>落地动作</h3>
+    <ol>
+      <li>评论区：常见问题预埋 + 统一话术引导私信</li>
+      <li>私信：设置自动回复 + 人工跟进，合规引导加微信（避免在正文直接留号被限）</li>
+      <li>微信端：做朋友圈运营 + 客户分层，沉淀复购与团建客户</li>
+      <li>老客户晒图返现/转介绍奖励，反哺小红书内容</li>
+    </ol>
+  </section>
+
+  <section class="block" id="s9">
+    <div class="sec-head"><span class="sec-num">09</span><h2>风险提示与应对</h2></div>
+    <div class="pill-list">
+      <div class="pill"><span class="num">1</span><span class="txt"><strong>限流风险：</strong>避免硬广、违禁词、频繁外引；AI 稿人工改写、内容真实化</span></div>
+      <div class="pill"><span class="num">2</span><span class="txt"><strong>引流违规：</strong>私信用合规话术引导，不在正文直接留微信</span></div>
+      <div class="pill"><span class="num">3</span><span class="txt"><strong>内容产能不足：</strong>建素材库与选题库，培养老板团队自产能力（陪跑核心目标之一）</span></div>
+      <div class="pill"><span class="num">4</span><span class="txt"><strong>投放打水漂：</strong>聚光小额测试再放大，不盲目堆预算</span></div>
+    </div>
+  </section>
+
+  <section class="block" id="s10">
+    <div class="sec-head"><span class="sec-num">10</span><h2>效果评估与周期性复盘</h2></div>
+    <div class="grid">
+      <div class="cell">
+        <div class="cell-title">日维度</div>
+        <ul><li>更新完成</li><li>笔记数据（曝光、点赞、收藏、评论、私信）</li></ul>
+      </div>
+      <div class="cell">
+        <div class="cell-title">周复盘</div>
+        <ul><li>笔记数据（曝光、互动、咨询）</li><li>爆款提炼</li><li>下周选题与方向调整</li></ul>
+      </div>
+      <div class="cell">
+        <div class="cell-title">月复盘</div>
+        <ul><li>加微量、预订转化</li><li>投流 ROI</li><li>搜索排名变化，输出月度报告</li></ul>
+      </div>
+      <div class="cell">
+        <div class="cell-title">阶段复盘（第三个月）</div>
+        <ul><li>整体获客成效与策略迭代</li></ul>
+      </div>
+    </div>
+    <div class="callout"><strong>考核口径：</strong>以私信咨询量、加微量、预订转化为最终成效，曝光与互动为过程指标，粉丝增长量不为考核指标</div>
+  </section>
+
+  <section class="block" id="s11">
+    <div class="sec-head"><span class="sec-num">附</span><h2>陪跑服务清单</h2></div>
+    <div class="price-card">
+      <div class="price-head">
+        <span class="name">君欣民宿陪跑服务</span>
+        <span class="num">9800 <span>元 / 月</span></span>
+      </div>
+      <ol>
+        <li>账号搭建与定位指导</li>
+        <li>获客型笔记写作手把手教学（标题、封面、结构、埋词）</li>
+        <li>AI 高效出稿与运营工具教学</li>
+        <li>摄影拍摄与素材库搭建建议</li>
+        <li>免费流量置换与活动招募策划</li>
+        <li>体验项目内容包装</li>
+        <li>聚光投流策略</li>
+        <li>公转私链路与私域承接搭建</li>
+        <li>赠送 3 篇获客笔记代写</li>
+        <li>每周一次数据复盘</li>
+      </ol>
+      <div class="addon">
+        <strong>附加服务（另计）：</strong>素人种草投放 300 元/篇，20 篇打底（5000 元）；陪跑合作期间聚光投流服务费优惠价 2000 元/月，陪跑结束以后代投服务费 3500 元/月。
+      </div>
+    </div>
+  </section>
+
+  <div class="footer">君欣民宿小红书获客陪跑方案</div>
+
+</div>
+</body>
+</html>
