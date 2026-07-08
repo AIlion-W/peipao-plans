@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>新中式珠宝 · AI 陪跑方案</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+  :root{
+    --bg:#0b0d12; --panel:#141821; --line:#232936; --ink:#e8ecf3;
+    --muted:#8a93a6; --accent:#ff6a00; --accent2:#ffb15c;
+    --ok:#2ecc71; --doing:#f1c40f; --todo:#5b6577;
+    --brand:#e30613;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.7}
+  .wrap{max-width:1180px;margin:0 auto;padding:48px 32px}
+  h1{font-size:34px;margin:0 0 8px;letter-spacing:1px}
+  h2{font-size:22px;margin:48px 0 16px;padding-left:12px;border-left:4px solid var(--accent)}
+  h3{font-size:17px;margin:24px 0 10px;color:var(--accent2)}
+  .sub{color:var(--muted);font-size:14px}
+  .hero{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px;padding-bottom:24px;border-bottom:1px solid var(--line)}
+  .tag{display:inline-block;padding:3px 10px;border-radius:999px;background:var(--brand);color:#fff;font-size:12px;margin-right:6px}
+  .tag.gray{background:#2c3340;color:var(--muted)}
+  .meta{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:24px}
+  .meta .card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+  .meta .k{font-size:12px;color:var(--muted)}
+  .meta .v{font-size:16px;margin-top:4px}
+
+  .ladder{position:relative;display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-top:16px}
+  .step{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 12px;position:relative}
+  .step .n{font-size:11px;color:var(--muted)}
+  .step .t{font-weight:600;margin-top:2px;font-size:14px}
+  .step .d{font-size:12px;color:var(--muted);margin-top:6px;line-height:1.5}
+  .step.done{border-color:#2ecc7144;background:#11261b}
+  .step.now{border-color:var(--accent);background:linear-gradient(180deg,#241408,#191c24);box-shadow:0 0 0 2px #ff6a0033}
+  .step.target{border-color:#3a4256;background:#181b24}
+  .step .badge{position:absolute;top:-10px;left:10px;font-size:10px;padding:2px 8px;border-radius:999px}
+  .step.done .badge{background:var(--ok);color:#08210f}
+  .step.now .badge{background:var(--accent);color:#fff}
+  .step.target .badge{background:#3a4256;color:#cdd3df}
+
+  .grid5{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:8px}
+  .m{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px}
+  .m .h{font-weight:600;font-size:14px;color:var(--accent2)}
+  .m .b{font-size:12.5px;color:#cdd3df;margin-top:6px;line-height:1.6}
+  .m .now{font-size:11px;margin-top:8px;color:var(--muted)}
+
+  .timeline{position:relative;margin-top:8px;border-left:2px solid var(--line);padding-left:22px}
+  .tl-item{position:relative;padding:14px 16px 14px 8px;background:var(--panel);border:1px solid var(--line);border-radius:10px;margin-bottom:14px}
+  .tl-item::before{content:"";position:absolute;left:-31px;top:20px;width:12px;height:12px;background:var(--accent);border-radius:50%;border:3px solid var(--bg)}
+  .tl-item .wk{display:inline-block;background:#2c3340;color:#cdd3df;padding:2px 10px;border-radius:6px;font-size:12px;margin-right:8px}
+  .tl-item h4{margin:0 0 6px;font-size:16px}
+  .tl-item ul{margin:6px 0 0 18px;padding:0;font-size:13.5px;color:#cdd3df}
+  .tl-item li{margin:3px 0}
+  .deliv{margin-top:10px;display:flex;flex-wrap:wrap;gap:6px}
+  .deliv span{font-size:11px;background:#1f2735;color:#9fb0d0;border:1px solid #2a3346;padding:3px 8px;border-radius:6px}
+  .deliv .s-agent{color:#ffb15c;border-color:#5a3a1a}
+  .deliv .s-skill{color:#7fd1ff;border-color:#1f4a66}
+  .deliv .s-flow{color:#a7f0a7;border-color:#1f5a2c}
+  .deliv .s-html{color:#ffd4f5;border-color:#5a2348}
+
+  .threecol{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-top:8px}
+  .col{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px}
+  .col h4{margin:0;font-size:16px}
+  .col .pain{font-size:12px;color:var(--muted);margin-top:4px;line-height:1.6}
+  .col .row{margin-top:14px;font-size:13px}
+  .col .row b{color:var(--accent2);font-weight:600}
+  .col .pill{display:inline-block;font-size:11px;padding:2px 8px;border-radius:6px;background:#1f2735;color:#9fb0d0;margin-right:4px;margin-top:4px}
+
+  .demo{background:linear-gradient(135deg,#1a1f2c,#13161e);border:1px dashed #3a4256;border-radius:12px;padding:20px;margin-top:8px}
+  .demo .flow{display:flex;align-items:center;flex-wrap:wrap;gap:6px;margin-top:10px}
+  .demo .node{background:#222a3a;border:1px solid #2f3b52;padding:8px 12px;border-radius:8px;font-size:13px}
+  .demo .arr{color:var(--accent);font-weight:700}
+  .demo .out{margin-top:14px;background:#0d0f15;border:1px solid #232936;border-radius:8px;padding:14px;font-size:12.5px;color:#cdd3df}
+
+  .promise{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:8px}
+  .promise .p{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px}
+  .promise .p b{color:var(--accent)}
+
+  footer{margin-top:60px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:12px}
+
+  @media (max-width:900px){
+    .meta,.grid5,.threecol,.promise{grid-template-columns:1fr 1fr}
+    .ladder{grid-template-columns:1fr 1fr;gap:10px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <section class="hero">
+    <div>
+      <div>
+        <span class="tag">新中式珠宝</span>
+        <span class="tag gray">抖音直播 + 商品卡 + 私域</span>
+      </div>
+      <h1>接下来 2 个月，先把商品卡增长链路跑成系统</h1>
+      <div class="sub">陪跑客户：新中式珠宝业务 · 陪跑老师：主陪跑老师 · 项目经理：待补充 · 启动：场景确认后</div>
+    </div>
+    <div class="sub">版本 v1</div>
+  </section>
+
+  <div class="meta">
+    <div class="card"><div class="k">业务模型</div><div class="v">审美型珠宝 · 抖音为主渠道</div></div>
+    <div class="card"><div class="k">团队杠杆</div><div class="v">老板高自驱，团队需接住 SOP</div></div>
+    <div class="card"><div class="k">当前瓶颈</div><div class="v">商品卡图文链路未系统化</div></div>
+    <div class="card"><div class="k">核心打法</div><div class="v">先策略，再出图，再测链接</div></div>
+  </div>
+
+  <h2>一、先建立对 AI 的正确认知</h2>
+  <p class="sub">这个项目不是「用 AI 多做几张漂亮图」。真正要解决的是：把老板对产品审美、客群、场景和链接策略的判断，沉淀成团队能重复调用的智能体和工作流。AI 在这里不是美工外包，而是把商品卡上品、打品、测图和详情页策划变成标准化生产线。</p>
+
+  <h3>AI 成熟度 7 阶段 · 当前所在位置</h3>
+  <div class="ladder">
+    <div class="step done"><span class="badge">✓ 已过</span><div class="n">阶段 1</div><div class="t">基础对话</div><div class="d">已经能用通用 AI 工具做基础问答和内容辅助。</div></div>
+    <div class="step done"><span class="badge">✓ 已过</span><div class="n">阶段 2</div><div class="t">结构化要求</div><div class="d">能把直播复盘、对标拆解、图片需求拆成更清晰的问题。</div></div>
+    <div class="step now"><span class="badge">▶ 你在这</span><div class="n">阶段 3</div><div class="t">爆款模仿 + 工具尝试</div><div class="d">已经尝试直播复盘、切片混剪、白底图、场景图和人物佩戴图，但还缺稳定标准。</div></div>
+    <div class="step target"><span class="badge">W1-W2</span><div class="n">阶段 4</div><div class="t">反推提示词</div><div class="d">用高点击率对标图反推元素结构，再写出图提示词。</div></div>
+    <div class="step target"><span class="badge">W3-W4</span><div class="n">阶段 5</div><div class="t">系统提示词</div><div class="d">形成产品定位策略智能体，输出可执行的上品策略。</div></div>
+    <div class="step target"><span class="badge">W5-W6</span><div class="n">阶段 6</div><div class="t">Skill 工作化</div><div class="d">把主图、详情页、话术复盘打包成可调用 Skill。</div></div>
+    <div class="step target"><span class="badge">W7-W8</span><div class="n">阶段 7</div><div class="t">业务系统化</div><div class="d">多个 Skill 串成商品卡增长工作流，持续产出测试报告。</div></div>
+  </div>
+
+  <h3>对应公司的 5 个层</h3>
+  <div class="grid5">
+    <div class="m"><div class="h">① 身份层</div><div class="b">让 AI 理解「新中式珠宝」不是普通标品：审美、工艺、客群、场景感都决定表达。</div><div class="now">起点：业务判断在老板脑中</div></div>
+    <div class="m"><div class="h">② 知识层</div><div class="b">沉淀产品图、历史点击图、详情页、对标账号、直播高光和高转化切片。</div><div class="now">先做商品卡资料库 v1</div></div>
+    <div class="m"><div class="h">③ 工具层</div><div class="b">产品定位策略、商品主图 / 推广图、详情页策划 3 个智能体。</div><div class="now">先上产品定位策略</div></div>
+    <div class="m"><div class="h">④ 协作层</div><div class="b">让执行同学按表格和 Skill 操作，老板只验收策略与结果。</div><div class="now">避免老板长期亲自执行</div></div>
+    <div class="m"><div class="h">⑤ 场景层</div><div class="b">商品卡增长工作流稳定后，再扩展到私域销售智能体。</div><div class="now">第二阶段再切私域</div></div>
+  </div>
+
+  <h2>二、要搭建的 3 个智能体（按首战板块优先级）</h2>
+  <p class="sub">排序依据很简单：商品卡当前最容易直接拿结果。直播基本盘已有复盘工具和切片策略，私域销售潜力大但数据链路还不完整，因此第一阶段先打商品卡。</p>
+
+  <div class="threecol">
+    <div class="col">
+      <h4>① 商品卡产品定位策略智能体</h4>
+      <div class="pain">痛点：同一个产品可以走不同风格、场景、人群和链接策略，但这些判断现在还没有被结构化。</div>
+      <div class="row"><b>角色设定</b>：商品卡增长策略师，先判断产品适合什么风格和场景，再决定链接打法。</div>
+      <div class="row"><b>输入</b>：产品图、产品名、材质 / 工艺、目标客群、历史数据、对标图。</div>
+      <div class="row"><b>输出</b>：多场景 / 多人群 / 多链接定位表，附主图和详情页方向。</div>
+      <div class="row"><span class="pill">阶段 5</span><span class="pill">W3-W4</span><span class="pill">首战</span></div>
+    </div>
+    <div class="col">
+      <h4>② 商品主图 / 推广图智能体</h4>
+      <div class="pain">痛点：已经能用 AI 出图，但产品容易变形，且缺少高点击率反推标准。</div>
+      <div class="row"><b>角色设定</b>：视觉增长设计师，先反推对标图元素，再生成可测试图。</div>
+      <div class="row"><b>输入</b>：定位策略表、产品白底图、模特 / 场景素材、对标图。</div>
+      <div class="row"><b>输出</b>：主图 / 推广图提示词、出图版本、测试说明和淘汰理由。</div>
+      <div class="row"><span class="pill">阶段 5-6</span><span class="pill">W5-W6</span></div>
+    </div>
+    <div class="col">
+      <h4>③ 详情页策划智能体</h4>
+      <div class="pain">痛点：详情页目前偏简单，无法承接高客单珠宝的审美、信任和价值塑造。</div>
+      <div class="row"><b>角色设定</b>：高客单珠宝详情页策划，按产品定位组织卖点、场景和信任证明。</div>
+      <div class="row"><b>输入</b>：产品定位、主图方向、工艺卖点、客群顾虑、历史详情页。</div>
+      <div class="row"><b>输出</b>：详情页结构、模块文案、图片需求和转化检查表。</div>
+      <div class="row"><span class="pill">阶段 6</span><span class="pill">W7</span></div>
+    </div>
+  </div>
+
+  <h2>三、把智能体打包成 Skill（团队人人能用，跨场景复用）</h2>
+  <p class="sub">Skill 的价值是把一次会议里的判断，变成每个产品都能调用的标准动作。以后不是每次都问「这张图好不好看」，而是让团队按输入规范得到策略、图片方案和详情页方案。</p>
+
+  <div class="threecol">
+    <div class="col">
+      <h4>Skill 1 · 产品定位</h4>
+      <div class="row">触发词：<code style="color:var(--accent2)">/珠宝产品定位</code></div>
+      <div class="row">能力：把单品拆成风格、场景、人群、卖点、链接策略。</div>
+      <div class="row">复用：可用于新品上架、旧品重做、不同客群链接裂变。</div>
+    </div>
+    <div class="col">
+      <h4>Skill 2 · 主图推广图</h4>
+      <div class="row">触发词：<code style="color:var(--accent2)">/珠宝主图裂变</code></div>
+      <div class="row">能力：根据定位策略和对标图生成主图 / 推广图提示词。</div>
+      <div class="row">复用：白底图、场景图、人物佩戴图分别形成子模板。</div>
+    </div>
+    <div class="col">
+      <h4>Skill 3 · 详情页策划</h4>
+      <div class="row">触发词：<code style="color:var(--accent2)">/珠宝详情页策划</code></div>
+      <div class="row">能力：把产品定位翻译成详情页结构和素材需求。</div>
+      <div class="row">复用：按不同产品线复刻，沉淀高客单珠宝详情页 SOP。</div>
+    </div>
+  </div>
+
+  <h2>四、把 Skills 串成工作流，产出可交付的 HTML 报告</h2>
+  <p class="sub">首个工作流建议叫「商品卡上新测试报告」。它不只是给图片，而是给老板和执行同学一个能决策的页面：这个产品走什么策略、出了哪些图、为什么测、下一轮怎么改。</p>
+
+  <div class="demo">
+    <div style="font-size:13px;color:var(--muted)">工作流 · 商品卡上新测试报告（示例）</div>
+    <div class="flow">
+      <span class="node">产品资料入库</span>
+      <span class="arr">→</span>
+      <span class="node">/珠宝产品定位</span>
+      <span class="arr">→</span>
+      <span class="node">/珠宝主图裂变</span>
+      <span class="arr">→</span>
+      <span class="node">/珠宝详情页策划</span>
+      <span class="arr">→</span>
+      <span class="node">📊 HTML 报告生成器</span>
+      <span class="arr">→</span>
+      <span class="node">📧 推送相关人</span>
+    </div>
+    <div class="out">
+      <b style="color:var(--accent2)">交付物示例（HTML 报告）</b><br>
+      1. 单品定位：目标人群、场景、风格、卖点、链接策略。<br>
+      2. 主图方案：每组图的生成逻辑、适用场景、风险点。<br>
+      3. 详情页方案：模块顺序、信任要素、素材缺口。<br>
+      4. 测试建议：先测哪几张图、看什么指标、下一轮怎么改。
+    </div>
+  </div>
+
+  <h2>五、两个月周里程碑</h2>
+  <div class="timeline">
+
+    <div class="tl-item">
+      <h4><span class="wk">W1</span>认知打底 · 资料归集</h4>
+      <ul>
+        <li>确认 AI 负责人和执行同学，明确老板只做策略验收。</li>
+        <li>归集首批试点产品、现有图、详情页、对标图和历史数据。</li>
+      </ul>
+      <div class="deliv"><span class="s-html">交付：商品卡资料清单</span></div>
+    </div>
+
+    <div class="tl-item">
+      <h4><span class="wk">W2</span>知识层入库 · 反推提示词</h4>
+      <ul>
+        <li>建立高点击率对标图库，拆出风格、构图、人物、场景和信任元素。</li>
+        <li>区分白底图、场景图、人物佩戴图 3 类出图路线。</li>
+      </ul>
+      <div class="deliv"><span>知识层素材库 v1</span></div>
+    </div>
+
+    <div class="tl-item">
+      <h4><span class="wk">W3-W4</span>产品定位策略智能体上线</h4>
+      <ul>
+        <li>用首批试点产品跑出定位策略表。</li>
+        <li>验证多场景、多风格、多链接策略是否能指导后续出图。</li>
+      </ul>
+      <div class="deliv"><span class="s-agent">产品定位策略智能体</span><span class="s-skill">Skill /珠宝产品定位</span></div>
+    </div>
+
+    <div class="tl-item">
+      <h4><span class="wk">W5-W6</span>主图 / 推广图智能体上线</h4>
+      <ul>
+        <li>基于定位策略生成主图和推广图版本。</li>
+        <li>建立测试记录：图型、卖点、点击率、转化反馈、淘汰原因。</li>
+      </ul>
+      <div class="deliv"><span class="s-agent">主图 / 推广图智能体</span><span class="s-skill">Skill /珠宝主图裂变</span><span class="s-flow">测图工作流</span><span class="s-html">HTML 报告</span></div>
+    </div>
+
+    <div class="tl-item">
+      <h4><span class="wk">W7</span>详情页策划智能体上线</h4>
+      <ul>
+        <li>把主图定位延伸到详情页结构。</li>
+        <li>输出每个单品的详情页模块、素材需求和转化检查表。</li>
+      </ul>
+      <div class="deliv"><span class="s-agent">详情页策划智能体</span><span class="s-skill">Skill /珠宝详情页策划</span></div>
+    </div>
+
+    <div class="tl-item">
+      <h4><span class="wk">W8</span>业务系统化 · 私域第二阶段准备</h4>
+      <ul>
+        <li>复盘商品卡首战，筛出可复用模板和低效路径。</li>
+        <li>整理私域销售数据口径，为第二阶段销售智能体做准备。</li>
+      </ul>
+      <div class="deliv"><span class="s-flow">商品卡增长工作流</span><span class="s-html">交付：陪跑阶段报告 HTML</span></div>
+    </div>
+
+  </div>
+
+  <h2>六、陪跑承诺</h2>
+  <div class="promise">
+    <div class="p"><b>① 落地承诺</b><br>不做泛泛的 AI 工具体验，第一阶段只围绕商品卡增长，把策略、图、详情页和测试表跑通。</div>
+    <div class="p"><b>② 复刻承诺</b><br>每个有效动作都沉淀成 Skill：同一套逻辑可以复用到更多单品、更多链接和后续渠道。</div>
+    <div class="p"><b>③ 员工承诺</b><br>老板负责判断方向，执行同学按表格和 Skill 操作，逐步把能力从个人经验迁移到团队流程。</div>
+  </div>
+
+  <footer>
+    本方案基于场景确认会议资料生成。关键判断：该业务不缺产品和审美基础，缺的是把商品卡增长动作系统化，让 AI 从「临时做图」进入「持续产出可测试方案」。
+  </footer>
+
+</div>
+</body>
+</html>
