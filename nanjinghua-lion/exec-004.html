@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>南京花-黄金、白银、贵金属 · 执行-004 会议总结</title>
+<style>
+  :root {
+    --bg: #F5F4ED;
+    --paper: #FAF9F5;
+    --ink: #2D2A26;
+    --ink-soft: #4A4742;
+    --muted: #8C8579;
+    --line: #E8E4D8;
+    --line-soft: #EFEBE0;
+    --accent: #C96442;
+    --accent-soft: #F4E4DA;
+    --accent-line: #E5BFAB;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: ui-serif, "Iowan Old Style", "Songti SC", "Source Han Serif SC", "Noto Serif CJK SC", "PingFang SC", Georgia, serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.75;
+    padding: 56px 20px 80px;
+    font-size: 16px;
+  }
+  .container { max-width: 760px; margin: 0 auto; }
+  header, main { background: var(--paper); border: 1px solid var(--line); }
+  header { padding: 56px 56px 44px; border-radius: 16px 16px 0 0; border-bottom: none; }
+  main { padding: 8px 56px 56px; border-radius: 0 0 16px 16px; border-top: none; }
+  .eyebrow, h2, .meta-item, .role-tag, .badge, .next-row .k, footer {
+    font-family: -apple-system, "Inter", "PingFang SC", "Helvetica Neue", sans-serif;
+  }
+  .eyebrow { font-size: 11px; letter-spacing: 0.22em; color: var(--accent); text-transform: uppercase; font-weight: 600; margin-bottom: 20px; }
+  h1 { font-size: 34px; font-weight: 500; line-height: 1.25; margin-bottom: 14px; }
+  .sub { color: var(--muted); margin-bottom: 36px; font-style: italic; }
+  .meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 20px 32px; padding-top: 28px; border-top: 1px solid var(--line); }
+  .meta-item { font-size: 14px; }
+  .meta-item .k { display: block; color: var(--muted); font-size: 11px; letter-spacing: 0.14em; margin-bottom: 6px; }
+  section { padding: 36px 0; border-bottom: 1px solid var(--line-soft); }
+  section:last-child { border-bottom: none; padding-bottom: 12px; }
+  h2 { font-size: 11px; color: var(--accent); font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; margin-bottom: 24px; }
+  h3 { font-size: 17px; margin-bottom: 14px; }
+  ol, ul { padding-left: 0; list-style: none; }
+  .num-list { counter-reset: item; }
+  .num-list li { counter-increment: item; position: relative; padding: 10px 0 10px 40px; color: var(--ink-soft); }
+  .num-list li + li { border-top: 1px dashed var(--line-soft); }
+  .num-list li::before {
+    content: counter(item);
+    position: absolute;
+    left: 0;
+    top: 14px;
+    width: 26px;
+    height: 26px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .num-list strong { color: var(--ink); }
+  .quote, .next { background: var(--accent-soft); border: 1px solid var(--accent-line); border-radius: 12px; padding: 24px 28px; }
+  .quote { margin-top: 32px; border-left: 3px solid var(--accent); font-size: 18px; }
+  .quote-label, .pull-label { display: block; font-family: -apple-system, "Inter", sans-serif; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 8px; font-weight: 600; }
+  .quote-label { color: var(--accent); }
+  .pull { padding: 24px 28px; background: var(--ink); color: var(--paper); margin-bottom: 24px; border-radius: 12px; }
+  .pull-label { color: var(--accent-line); }
+  .grid { background: var(--bg); border-radius: 12px; overflow: hidden; border: 1px solid var(--line); }
+  .grid-row { display: grid; grid-template-columns: 180px 1fr; padding: 16px 22px; border-bottom: 1px solid var(--line); }
+  .grid-row:last-child { border-bottom: none; }
+  .grid-row .k { color: var(--muted); }
+  .grid-row .v { color: var(--ink-soft); }
+  .role { background: var(--bg); border: 1px solid var(--line); border-radius: 12px; padding: 24px 26px; margin-bottom: 16px; }
+  .role-header { display: flex; justify-content: space-between; border-bottom: 1px solid var(--line); padding-bottom: 14px; margin-bottom: 6px; }
+  .role-tag { color: var(--muted); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; }
+  .task { display: grid; grid-template-columns: 80px 1fr; gap: 14px; padding: 12px 0; color: var(--ink-soft); border-bottom: 1px dashed var(--line-soft); }
+  .task:last-child { border-bottom: none; }
+  .badge { font-size: 11px; letter-spacing: 0.08em; padding-top: 4px; font-weight: 600; }
+  .badge.done { color: var(--muted); }
+  .badge.doing { color: var(--accent); }
+  .badge.todo { color: var(--ink); }
+  .next h3 { color: var(--accent); border-bottom: 1px solid var(--accent-line); padding-bottom: 14px; }
+  .next-row { display: grid; grid-template-columns: 110px 1fr; padding: 8px 0; }
+  .next-row .k { color: var(--muted); font-size: 13px; }
+  footer { margin-top: 32px; text-align: center; color: var(--muted); font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; }
+  @media (max-width: 640px) {
+    body { padding: 32px 14px; font-size: 15px; }
+    header, main { padding-left: 28px; padding-right: 28px; }
+    h1 { font-size: 26px; }
+    .grid-row, .task, .next-row { grid-template-columns: 1fr; gap: 4px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <div class="eyebrow">执行会议 · 004</div>
+  <h1>南京花 — 黄金、白银、贵金属</h1>
+  <div class="sub">黄金投资品主图裂变智能体 · 搭建方法课</div>
+  <div class="meta">
+    <div class="meta-item"><span class="k">时间</span><span class="v">2026-07-08 14:55</span></div>
+    <div class="meta-item"><span class="k">时长</span><span class="v">24 分钟</span></div>
+    <div class="meta-item"><span class="k">陪跑老师</span><span class="v">Lion</span></div>
+    <div class="meta-item"><span class="k">客户参会</span><span class="v">浦建伟</span></div>
+  </div>
+</header>
+
+<main>
+<section>
+  <h2>本次会议干了什么</h2>
+  <ol class="num-list">
+    <li><strong>确认产品图片现状。</strong>客户侧产品以金豆、金条、小金珠为主，行业图片普遍简单，成交核心仍是价格。</li>
+    <li><strong>确认主图优化价值。</strong>把规格、克重、成分和卖点做进主图，比只放白底产品图更直观。</li>
+    <li><strong>首战收敛为主图裂变智能体。</strong>输入产品白底图和产品信息，输出带卖点、场景、人群和产品属性表达的主图方案。</li>
+    <li><strong>讲解 GPT 智能体创建路径。</strong>通过「更多 → GPT → 创建」新建智能体，填写名称、描述和指令。</li>
+    <li><strong>明确知识库和负反馈迭代。</strong>金条、金豆、小金珠资料放入知识库；输出不符合业务时，用负反馈让 GPT 迭代指令。</li>
+  </ol>
+  <div class="quote">
+    <span class="quote-label">本次核心判断</span>
+    南京花第一战不要做“大而全代运营 AI”，先做很窄的黄金投资品主图裂变智能体。
+  </div>
+</section>
+
+<section>
+  <h2>本周核心决策</h2>
+  <div class="pull">
+    <span class="pull-label">落地焦点</span>
+    先让设计/运营同学用真实产品图测试主图智能体，拿负反馈迭代指令，再扩展到副图、详情图和上架素材。
+  </div>
+  <div class="grid">
+    <div class="grid-row"><div class="k">产品范围</div><div class="v">金豆、金条、小金珠等黄金投资品。</div></div>
+    <div class="grid-row"><div class="k">输入材料</div><div class="v">产品白底图、产品信息、历史参考图或优秀同行图。</div></div>
+    <div class="grid-row"><div class="k">输出目标</div><div class="v">主图方案、卖点表达、场景/人群变体和可用于生图的提示词。</div></div>
+    <div class="grid-row"><div class="k">迭代机制</div><div class="v">输出结果 + 业务负反馈 → 新指令 → 粘回智能体。</div></div>
+  </div>
+</section>
+
+<section>
+  <h2>落地清单</h2>
+  <div class="role">
+    <div class="role-header"><h3>客户侧</h3><span class="role-tag">浦建伟 / 设计 / 运营</span></div>
+    <div class="task"><div class="badge todo">待启动</div><div class="task-body">开通 ChatGPT Plus，并确认参与主图智能体测试的账号。</div></div>
+    <div class="task"><div class="badge todo">待启动</div><div class="task-body">创建「主图裂变智能体」，填入名称、描述和课堂提供的指令框架。</div></div>
+    <div class="task"><div class="badge todo">待启动</div><div class="task-body">整理金条、金豆、小金珠产品资料，包含规格、克重、成分、卖点和白底图。</div></div>
+    <div class="task"><div class="badge todo">待启动</div><div class="task-body">用 3 个产品做首轮测试，记录可用图、不可用图和具体负反馈。</div></div>
+  </div>
+  <div class="role">
+    <div class="role-header"><h3>陪跑团队侧</h3><span class="role-tag">Lion</span></div>
+    <div class="task"><div class="badge todo">待启动</div><div class="task-body">同步主图裂变智能体指令框架 / 示例提示词，便于客户侧复制到 GPT 创建智能体。</div></div>
+    <div class="task"><div class="badge todo">待启动</div><div class="task-body">根据客户首轮测试图，协助迭代指令和知识库索引。</div></div>
+  </div>
+  <div class="role">
+    <div class="role-header"><h3>本次会议已完成</h3><span class="role-tag">Closed</span></div>
+    <div class="task"><div class="badge done">完成</div><div class="task-body">确认黄金投资品主图裂变是 AI 生图第一战。</div></div>
+    <div class="task"><div class="badge done">完成</div><div class="task-body">讲解 GPT 智能体创建路径、指令结构和知识库使用方式。</div></div>
+  </div>
+</section>
+
+<section>
+  <h2>下次会议方向</h2>
+  <div class="next">
+    <h3>首轮产品图测试复盘</h3>
+    <div class="next-row"><span class="k">触发条件</span><span class="v">客户侧开通 Plus，创建智能体，并用 3 个真实产品完成首轮测试。</span></div>
+    <div class="next-row"><span class="k">预计内容</span><span class="v">看输出图、收集负反馈、迭代指令和知识库索引。</span></div>
+    <div class="next-row"><span class="k">扩展方向</span><span class="v">主图稳定后，再扩展到副图、详情图和批量上架素材。</span></div>
+  </div>
+</section>
+</main>
+
+<footer>正心 AI 陪跑项目 — 第 8 期 — Lion 组 — 2026.07.08</footer>
+</div>
+</body>
+</html>
