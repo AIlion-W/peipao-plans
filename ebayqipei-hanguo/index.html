@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>eBay汽配 · 两个月 AI 落地计划</title>
+<style>
+  :root { --bg:#f5f4ed; --paper:#fffdfa; --ink:#2b2723; --muted:#716b62; --line:#ddd6ca; --accent:#c96442; --dark:#1f1d1a; --soft:#eee7da; --green:#2f7d55; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font-family:Inter,-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif; line-height:1.68; }
+  main { width:min(1100px,calc(100% - 40px)); margin:0 auto; padding:42px 0 58px; }
+  header { padding-bottom:26px; border-bottom:1px solid var(--line); }
+  .eyebrow { color:var(--accent); font-weight:800; font-size:13px; margin-bottom:10px; }
+  h1,h2,h3 { font-family:Georgia,"Songti SC","STSong",serif; letter-spacing:0; }
+  h1 { max-width:920px; margin:0; font-size:36px; line-height:1.16; }
+  h2 { font-size:23px; margin:34px 0 14px; }
+  h3 { font-size:18px; margin:0 0 10px; }
+  .lead { margin:16px 0 0; max-width:900px; color:var(--muted); font-size:16px; }
+  .meta,.grid { display:grid; gap:14px; }
+  .meta { grid-template-columns:repeat(4,1fr); margin-top:24px; }
+  .grid.two { grid-template-columns:1fr 1fr; }
+  .grid.three { grid-template-columns:repeat(3,1fr); }
+  .card,.panel,.block { background:var(--paper); border:1px solid var(--line); border-radius:8px; padding:18px; }
+  .card { padding:14px 16px; }
+  .label { color:var(--muted); font-size:12px; margin-bottom:5px; }
+  .value { font-weight:800; font-size:15px; }
+  .panel { border-left:4px solid var(--accent); }
+  .panel p,.block p { margin:0; color:var(--muted); }
+  ul { margin:0; padding-left:18px; }
+  li { margin:5px 0; }
+  table { width:100%; border-collapse:collapse; font-size:14px; background:var(--paper); border:1px solid var(--line); border-radius:8px; overflow:hidden; }
+  th,td { text-align:left; vertical-align:top; padding:11px 10px; border-bottom:1px solid var(--line); }
+  th { color:#8d472f; background:#f0e8dc; font-size:13px; }
+  .quote { margin-top:18px; background:var(--dark); color:#fffaf2; border-radius:8px; padding:20px 22px; font-family:Georgia,"Songti SC","STSong",serif; font-size:19px; line-height:1.58; }
+  .tag { display:inline-block; background:var(--soft); color:var(--muted); border-radius:999px; padding:2px 9px; font-size:12px; margin-bottom:10px; }
+  footer { margin-top:34px; padding-top:16px; border-top:1px solid var(--line); color:var(--muted); font-size:13px; }
+  @media (max-width:760px){ .meta,.grid.two,.grid.three{ grid-template-columns:1fr; } h1{font-size:30px;} }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="eyebrow">第 10 期 · 场景确认 · 韩国组</div>
+    <h1>eBay 汽配：第一战只抓素材端，不把项目做成大系统</h1>
+    <p class="lead">汽配业务的 SKU、链接、选品和 ERP 问题都很大，但第一阶段不能全部展开。最清晰、反馈最快的切口是通铺 / 精铺图片生产效率。</p>
+    <div class="meta">
+      <div class="card"><div class="label">会议时间</div><div class="value">2026.07.08</div></div>
+      <div class="card"><div class="label">首战场景</div><div class="value">图片素材效率</div></div>
+      <div class="card"><div class="label">陪跑负责</div><div class="value">韩国</div></div>
+      <div class="card"><div class="label">关键负责人</div><div class="value">李自强</div></div>
+    </div>
+  </header>
+
+  <section>
+    <h2>核心判断</h2>
+    <div class="panel">
+      <p><strong>首战不要做 ERP，也不要先做选品策略。</strong>先让运营会用 AI 作图，把通铺主图、白底图和精铺 A+ 图式结构拆出来，解决 3 名美工支撑 50 多个店铺的效率瓶颈。</p>
+    </div>
+    <div class="quote">先解决那些原本要花很多时间、现在可能几秒钟能完成的事。</div>
+  </section>
+
+  <section>
+    <h2>首批交付物</h2>
+    <div class="grid.three">
+      <div class="block"><span class="tag">01</span><h3>通铺主图工作流</h3><p>输入配件图和车型要求，生成多版车型图 + 配件图组合，并配套白底图。</p></div>
+      <div class="block"><span class="tag">02</span><h3>精铺图片结构表</h3><p>拆出上车图、尺寸图、前后对比图、安装说明图等模块和样例标准。</p></div>
+      <div class="block"><span class="tag">03</span><h3>运营 AI 作图训练</h3><p>让 3-5 名运营先掌握基础生图 / 改图，减少基础图片需求对美工的等待。</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>两个月推进节奏</h2>
+    <table>
+      <thead><tr><th>阶段</th><th>重点</th><th>客户侧输入</th><th>陪跑交付</th><th>过关标准</th></tr></thead>
+      <tbody>
+        <tr><td>W1</td><td>账号和资料</td><td>3-5 个账号对象、通铺 / 精铺样例图</td><td>资料清单和作图工具路径</td><td>样例足够看出标准</td></tr>
+        <tr><td>W2</td><td>流程拆解</td><td>通铺主图、精铺 A+ 图式结构</td><td>图片工作流输入 / 输出表</td><td>每类图都有样例和验收标准</td></tr>
+        <tr><td>W3-W4</td><td>AI 作图训练</td><td>运营真实产品图和车型要求</td><td>首批主图、白底图、辅助图</td><td>运营能独立完成基础改图</td></tr>
+        <tr><td>W5-W6</td><td>工作流固化</td><td>试用反馈和失败案例</td><td>提示词模板和 SOP 1.0</td><td>可复用到多个 SKU / 店铺</td></tr>
+        <tr><td>W7-W8</td><td>老板 Codex 支线</td><td>店铺前端链接或产品线</td><td>最小数据分析练习</td><td>老板能用 Codex 做低成本分析</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>下次会议必须定清楚</h2>
+    <div class="grid.two">
+      <div class="block"><h3>素材侧</h3><ul><li>通铺主图标准是什么？</li><li>精铺每张图分别服务什么目的？</li><li>哪些图必须保证产品不变形？</li></ul></div>
+      <div class="block"><h3>组织侧</h3><ul><li>运营核心负责人是谁？</li><li>账号先给哪 3-5 人？</li><li>老板支线先分析哪个店铺或产品线？</li></ul></div>
+    </div>
+  </section>
+
+  <footer>正心 AI 陪跑项目 · 第 10 期 · eBay汽配-李自强 · 2026.07.08</footer>
+</main>
+</body>
+</html>
+

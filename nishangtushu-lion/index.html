@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>逆熵图书 · 两个月 AI 落地计划</title>
+<style>
+  :root { --bg:#f5f4ed; --paper:#fffdfa; --ink:#2b2723; --muted:#716b62; --line:#ddd6ca; --accent:#c96442; --dark:#1f1d1a; --soft:#eee7da; --green:#2f7d55; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font-family:Inter,-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif; line-height:1.68; }
+  main { width:min(1100px,calc(100% - 40px)); margin:0 auto; padding:42px 0 58px; }
+  header { padding-bottom:26px; border-bottom:1px solid var(--line); }
+  .eyebrow { color:var(--accent); font-weight:800; font-size:13px; margin-bottom:10px; }
+  h1,h2,h3 { font-family:Georgia,"Songti SC","STSong",serif; letter-spacing:0; }
+  h1 { max-width:920px; margin:0; font-size:36px; line-height:1.16; }
+  h2 { font-size:23px; margin:34px 0 14px; }
+  h3 { font-size:18px; margin:0 0 10px; }
+  .lead { margin:16px 0 0; max-width:900px; color:var(--muted); font-size:16px; }
+  .meta,.grid { display:grid; gap:14px; }
+  .meta { grid-template-columns:repeat(4,1fr); margin-top:24px; }
+  .grid.two { grid-template-columns:1fr 1fr; }
+  .grid.three { grid-template-columns:repeat(3,1fr); }
+  .card,.panel,.block { background:var(--paper); border:1px solid var(--line); border-radius:8px; padding:18px; }
+  .card { padding:14px 16px; }
+  .label { color:var(--muted); font-size:12px; margin-bottom:5px; }
+  .value { font-weight:800; font-size:15px; }
+  .panel { border-left:4px solid var(--accent); }
+  .panel p,.block p { margin:0; color:var(--muted); }
+  ul { margin:0; padding-left:18px; }
+  li { margin:5px 0; }
+  table { width:100%; border-collapse:collapse; font-size:14px; background:var(--paper); border:1px solid var(--line); border-radius:8px; overflow:hidden; }
+  th,td { text-align:left; vertical-align:top; padding:11px 10px; border-bottom:1px solid var(--line); }
+  th { color:#8d472f; background:#f0e8dc; font-size:13px; }
+  .quote { margin-top:18px; background:var(--dark); color:#fffaf2; border-radius:8px; padding:20px 22px; font-family:Georgia,"Songti SC","STSong",serif; font-size:19px; line-height:1.58; }
+  .tag { display:inline-block; background:var(--soft); color:var(--muted); border-radius:999px; padding:2px 9px; font-size:12px; margin-bottom:10px; }
+  footer { margin-top:34px; padding-top:16px; border-top:1px solid var(--line); color:var(--muted); font-size:13px; }
+  @media (max-width:760px){ .meta,.grid.two,.grid.three{ grid-template-columns:1fr; } h1{font-size:30px;} }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="eyebrow">第 10 期 · 场景确认 · Lion 组</div>
+    <h1>逆熵图书：把图书短视频生产线做成 AI 工作流</h1>
+    <p class="lead">这不是一个「让 AI 写文案」项目。真正的价值在于把逆熵已经验证过的爆款选题、编导经验、素材要求和投流反馈，变成可持续迭代的内容生产闭环。</p>
+    <div class="meta">
+      <div class="card"><div class="label">会议时间</div><div class="value">2026.07.09</div></div>
+      <div class="card"><div class="label">首战场景</div><div class="value">内容生产全链路</div></div>
+      <div class="card"><div class="label">陪跑负责</div><div class="value">Lion</div></div>
+      <div class="card"><div class="label">项目经理</div><div class="value">考拉</div></div>
+    </div>
+  </header>
+
+  <section>
+    <h2>核心判断</h2>
+    <div class="panel">
+      <p><strong>逆熵的瓶颈不是缺内容方法，而是强方法没有被结构化。</strong>首战必须围绕「爆款输入 → 爆款拆解 → 选题生成筛选 → 内容策划 → 素材提示词 → 投流复盘」这条链路展开。</p>
+    </div>
+    <div class="quote">AI 不应该替代编导拍脑袋，而应该把已经跑出来的爆款规律和核心编导的判断放大。</div>
+  </section>
+
+  <section>
+    <h2>首批交付物</h2>
+    <div class="grid.three">
+      <div class="block"><span class="tag">01</span><h3>选题裂变智能体</h3><p>把通用图书框架和产品专属框架分类，让 AI 基于已验证类型做同类型裂变。</p></div>
+      <div class="block"><span class="tag">02</span><h3>文案 / 分镜提示词智能体</h3><p>输出视频风格、口播文案、分镜画面和素材生成提示词，让剪辑能直接执行。</p></div>
+      <div class="block"><span class="tag">03</span><h3>投流复盘智能体</h3><p>读取投流数据和卡审反馈，生成下一轮选题建议、脚本修改建议和测试方向。</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>两个月推进节奏</h2>
+    <table>
+      <thead><tr><th>阶段</th><th>重点</th><th>客户侧输入</th><th>陪跑交付</th><th>过关标准</th></tr></thead>
+      <tbody>
+        <tr><td>W1</td><td>资料补齐</td><td>脚本库、选题类型、接单表、云管家字段</td><td>现有内容生产工作流初版</td><td>能看清每一步输入 / 输出 / 负责人</td></tr>
+        <tr><td>W2</td><td>工作流确认</td><td>吴俊满和胡梦湘补充流程缺口</td><td>完整工作流图和模块边界</td><td>确认首批试点产品或爆款类型</td></tr>
+        <tr><td>W3-W4</td><td>选题与文案</td><td>已验证爆款类型、核心编导经验</td><td>选题裂变和文案 / 分镜提示词智能体 1.0</td><td>编导能试用，剪辑能按提示词执行</td></tr>
+        <tr><td>W5-W6</td><td>素材与投放</td><td>首批测试视频、投放数据、卡审反馈</td><td>投流复盘智能体 1.0</td><td>能输出下一轮选题和脚本修改建议</td></tr>
+        <tr><td>W7-W8</td><td>闭环固化</td><td>真实试用反馈</td><td>工作流 SOP + 工作台迁移准备</td><td>员工可按流程重复使用，不依赖单个高手</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>下次会议必须定清楚</h2>
+    <div class="grid.two">
+      <div class="block"><h3>资料侧</h3><ul><li>首批试点产品或爆款类型。</li><li>脚本库、选题库、投流数据是否可导出。</li><li>云管家数据字段和卡审反馈形式。</li></ul></div>
+      <div class="block"><h3>组织侧</h3><ul><li>内部 AI 资料接口人。</li><li>AI 陪跑老师主负责人。</li><li>员工后续使用企业工作台的路径。</li></ul></div>
+    </div>
+  </section>
+
+  <footer>正心 AI 陪跑项目 · 第 10 期 · 逆熵图书-吴俊满 · 2026.07.09</footer>
+</main>
+</body>
+</html>
+
