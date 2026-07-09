@@ -8,7 +8,7 @@
   :root { --bg:#f5f4ed; --paper:#fffdfa; --ink:#2b2723; --muted:#716b62; --line:#ddd6ca; --accent:#c96442; --dark:#1f1d1a; --soft:#eee7da; --green:#2f7d55; }
   * { box-sizing:border-box; }
   body { margin:0; background:var(--bg); color:var(--ink); font-family:Inter,-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif; line-height:1.68; }
-  main { width:min(1100px,calc(100% - 40px)); margin:0 auto; padding:42px 0 58px; }
+  main { width:min(1080px,calc(100% - 96px)); margin:0 auto; padding:48px 0 64px; }
   header { padding-bottom:26px; border-bottom:1px solid var(--line); }
   .eyebrow { color:var(--accent); font-weight:800; font-size:13px; margin-bottom:10px; }
   h1,h2,h3 { font-family:Georgia,"Songti SC","STSong",serif; letter-spacing:0; }
@@ -34,7 +34,9 @@
   .quote { margin-top:18px; background:var(--dark); color:#fffaf2; border-radius:8px; padding:20px 22px; font-family:Georgia,"Songti SC","STSong",serif; font-size:19px; line-height:1.58; }
   .tag { display:inline-block; background:var(--soft); color:var(--muted); border-radius:999px; padding:2px 9px; font-size:12px; margin-bottom:10px; }
   footer { margin-top:34px; padding-top:16px; border-top:1px solid var(--line); color:var(--muted); font-size:13px; }
-  @media (max-width:760px){ .meta,.grid.two,.grid.three{ grid-template-columns:1fr; } h1{font-size:30px;} }
+  @media print{ main{ width:min(1080px,calc(100% - 96px)); padding:48px 0 64px; } }
+  @media (max-width:760px){ main{ width:calc(100% - 40px); padding-top:30px; } .meta,.grid.two,.grid.three{ grid-template-columns:1fr; } h1{font-size:30px;} }
+  @media (max-width:520px){ main{ width:calc(100% - 32px); } }
 </style>
 </head>
 <body>
