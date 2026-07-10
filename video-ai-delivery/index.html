@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI 视频生产标准化框架 · 公开脱敏版</title>
+<style>
+:root{--bg:#0b0d12;--panel:#141821;--line:#273043;--ink:#edf1f7;--muted:#9aa4b6;--accent:#ff6a00;--accent2:#ffb15c}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.75}.wrap{max-width:1080px;margin:auto;padding:48px 28px 72px}h1{font-size:36px;margin:8px 0}h2{font-size:22px;margin:44px 0 16px;border-left:4px solid var(--accent);padding-left:12px}.sub{color:var(--muted)}.tag{display:inline-block;background:var(--accent);padding:4px 12px;border-radius:999px;font-size:12px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px}.card h3{color:var(--accent2);margin:0 0 8px}.flow{display:flex;gap:8px;flex-wrap:wrap;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px}.node{background:#202838;border:1px solid #35425a;padding:8px 12px;border-radius:8px}.arr{color:var(--accent);font-weight:700}.stage{margin:12px 0;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px 18px}.stage b{color:var(--accent2)}footer{margin-top:52px;border-top:1px solid var(--line);padding-top:18px;color:var(--muted);font-size:12px}@media(max-width:760px){.grid{grid-template-columns:1fr}h1{font-size:28px}}
+</style>
+</head>
+<body><main class="wrap">
+<span class="tag">公开脱敏版</span>
+<h1>AI 视频生产标准化框架</h1>
+<p class="sub">本页只保留可复用的方法、结构和验收口径，不包含客户身份、业务数据、内部决策或会议原文。</p>
+
+<h2>三个核心模块</h2>
+<div class="grid">
+  <article class="card"><h3>拆解标准</h3><p>把参考内容、角色与场景约束、历史样本和结果组织成结构化输入，输出可验证的定位假设。</p></article>
+  <article class="card"><h3>资产与分镜生产</h3><p>由定位假设驱动角色、场景与分镜方案，记录素材来源、生成参数、版本和测试目的，避免只追求「好看」。</p></article>
+  <article class="card"><h3>结果复盘</h3><p>把定位与视觉统一到成片结构中，明确每一部分承担的信息、信任和转化任务。</p></article>
+</div>
+
+<h2>通用工作流</h2>
+<div class="flow">
+  <span class="node">选择单一视频类型</span><span class="arr">→</span>
+  <span class="node">补齐事实与样本</span><span class="arr">→</span>
+  <span class="node">形成标准拆解</span><span class="arr">→</span>
+  <span class="node">生成资产与分镜</span><span class="arr">→</span>
+  <span class="node">小批量验证</span><span class="arr">→</span>
+  <span class="node">回收结果并迭代</span>
+</div>
+
+<h2>阶段推进与过关标准</h2>
+<div class="stage"><b>阶段一 · 资料关口</b><br>输入来源清楚、字段完整、正负样本可比较；缺失信息明确标注，不用推测补齐。</div>
+<div class="stage"><b>阶段二 · 策略关口</b><br>输出能解释目标对象、适用场景、核心表达和验证方式，并能直接指导后续生产。</div>
+<div class="stage"><b>阶段三 · 生产关口</b><br>每个产物都有对应策略和测试假设，版本可追溯，关键主体保持一致。</div>
+<div class="stage"><b>阶段四 · 验证关口</b><br>结果数据能够回写到样本库，形成下一轮迭代依据，而不是一次性生成后结束。</div>
+<div class="stage"><b>阶段五 · 复用关口</b><br>把成熟流程封装为可调用的 Skill 或工作流，让执行人员可以稳定复现。</div>
+
+<h2>协作边界</h2>
+<div class="grid">
+  <article class="card"><h3>业务负责人</h3><p>提供事实、关键样本和验收判断，不长期承担重复执行。</p></article>
+  <article class="card"><h3>执行人员</h3><p>维护资料、运行流程、记录版本和结果，及时暴露缺口与异常。</p></article>
+  <article class="card"><h3>陪跑团队</h3><p>设计结构、训练流程、审查结果并定义进入下一阶段的条件。</p></article>
+</div>
+
+<footer>公开交付版 · 仅展示通用方法论</footer>
+</main></body>
+</html>
