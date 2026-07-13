@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>逆熵图书-吴俊满 · 执行-001 会议总结</title>
+<style>
+  :root { --bg: #F5F4ED; --paper: #FAF9F5; --ink: #2D2A26; --ink-soft: #4A4742; --muted: #8C8579; --line: #E8E4D8; --line-soft: #EFEBE0; --accent: #C96442; --accent-soft: #F4E4DA; --accent-line: #E5BFAB; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: ui-serif, "Iowan Old Style", "Songti SC", "Source Han Serif SC", "Noto Serif CJK SC", "PingFang SC", Georgia, serif; background: var(--bg); color: var(--ink); line-height: 1.75; padding: 56px 20px 80px; font-size: 16px; }
+  .container { max-width: 760px; margin: 0 auto; }
+  header { background: var(--paper); padding: 56px 56px 44px; border-radius: 16px 16px 0 0; border: 1px solid var(--line); border-bottom: none; }
+  .eyebrow, h2, .meta-item, .pull-label, .quote-label, .badge, footer { font-family: -apple-system, "Inter", "PingFang SC", "Helvetica Neue", sans-serif; }
+  .eyebrow { font-size: 11px; letter-spacing: 0.22em; color: var(--accent); text-transform: uppercase; font-weight: 600; margin-bottom: 20px; }
+  h1 { font-size: 34px; font-weight: 500; line-height: 1.25; margin-bottom: 14px; }
+  .sub { font-size: 16px; color: var(--muted); margin-bottom: 36px; font-style: italic; }
+  .meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 20px 32px; padding-top: 28px; border-top: 1px solid var(--line); }
+  .meta-item .k { display: block; color: var(--muted); font-size: 11px; letter-spacing: 0.14em; margin-bottom: 6px; text-transform: uppercase; font-weight: 500; }
+  .meta-item .v { color: var(--ink); font-weight: 500; }
+  main { background: var(--paper); padding: 8px 56px 56px; border-radius: 0 0 16px 16px; border: 1px solid var(--line); border-top: none; }
+  section { padding: 36px 0; border-bottom: 1px solid var(--line-soft); }
+  section:last-child { border-bottom: none; }
+  h2 { font-size: 11px; color: var(--accent); font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; margin-bottom: 24px; }
+  h3 { font-size: 17px; font-weight: 600; margin-bottom: 14px; }
+  ol, ul { list-style: none; }
+  .num-list { counter-reset: item; }
+  .num-list li { counter-increment: item; position: relative; padding: 10px 0 10px 40px; color: var(--ink-soft); line-height: 1.8; }
+  .num-list li + li { border-top: 1px dashed var(--line-soft); }
+  .num-list li::before { content: counter(item); position: absolute; left: 0; top: 14px; width: 26px; height: 26px; background: var(--accent-soft); color: var(--accent); border-radius: 50%; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+  .quote { margin: 32px 0 0; padding: 24px 28px; background: var(--accent-soft); border-radius: 12px; color: var(--ink); font-size: 18px; line-height: 1.65; border-left: 3px solid var(--accent); }
+  .quote-label { display: block; font-size: 11px; letter-spacing: 0.18em; color: var(--accent); text-transform: uppercase; margin-bottom: 8px; font-weight: 600; }
+  .pull { padding: 24px 28px; background: var(--ink); color: var(--paper); margin-bottom: 24px; font-size: 16px; line-height: 1.7; border-radius: 12px; }
+  .pull-label { display: block; font-size: 11px; letter-spacing: 0.2em; color: var(--accent-line); text-transform: uppercase; margin-bottom: 10px; font-weight: 600; }
+  .grid { background: var(--bg); border-radius: 12px; overflow: hidden; border: 1px solid var(--line); }
+  .grid-row { display: grid; grid-template-columns: 180px 1fr; padding: 16px 22px; border-bottom: 1px solid var(--line); font-size: 15.5px; }
+  .grid-row:last-child { border-bottom: none; }
+  .grid-row .k { color: var(--muted); font-family: -apple-system, "Inter", sans-serif; }
+  .role { padding: 18px 20px; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; margin-bottom: 14px; }
+  .role-title { font-weight: 700; margin-bottom: 6px; }
+  .task { display: grid; grid-template-columns: 72px 1fr; gap: 14px; padding: 14px 0; border-top: 1px dashed var(--line-soft); }
+  .badge { align-self: start; display: inline-block; text-align: center; padding: 3px 8px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); font-size: 12px; font-weight: 700; }
+  .next { background: var(--bg); border: 1px solid var(--line); border-radius: 12px; padding: 22px 24px; }
+  footer { max-width: 760px; margin: 22px auto 0; color: var(--muted); text-align: center; font-size: 12px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <div class="eyebrow">执行会议 · 001</div>
+    <h1>逆熵图书-吴俊满：先补事实层，再训练内容智能体</h1>
+    <div class="sub">把编导经验、正负案例和投放数据变成 AI 能学习的业务标准。</div>
+    <div class="meta">
+      <div class="meta-item"><span class="k">Date</span><span class="v">2026-07-13</span></div>
+      <div class="meta-item"><span class="k">Duration</span><span class="v">55 分 44 秒</span></div>
+      <div class="meta-item"><span class="k">Coach</span><span class="v">Lion / 考拉</span></div>
+      <div class="meta-item"><span class="k">Client</span><span class="v">吴俊满团队</span></div>
+    </div>
+  </header>
+  <main>
+    <section>
+      <h2>What Happened</h2>
+      <ol class="num-list">
+        <li><strong>执行动作前置到案例采集。</strong> 本轮没有急着创建 GPT，而是先把内容案例整理成 AI 可学习的事实层。</li>
+        <li><strong>案例表按脚本类型组织。</strong> 每个类型建议不少于 20 条，正负案例各约 10 条，记录判断与结果不一致的负样本。</li>
+        <li><strong>数据和主观判断一起进入训练。</strong> 标题、文案、分镜、产品、投放数据、计划数据和编导判断缺一不可。</li>
+        <li><strong>外部参考分层。</strong> 自身数据是一环，竞品和同类图书 / 教辅 / 益智产品是二环或弱参考，要写明迁移原因。</li>
+      </ol>
+      <div class="quote"><span class="quote-label">Key Quote</span><strong>案例表的主观判断栏，比单纯堆更多视频更有价值。</strong></div>
+    </section>
+    <section>
+      <h2>Core Decisions</h2>
+      <div class="pull"><span class="pull-label">Operating Rule</span><strong>先让 AI 理解标准，再让 AI 生成内容。</strong> 没有事实层，后面的选题、脚本和复盘智能体都会变成低质量复述。</div>
+      <div class="grid">
+        <div class="grid-row"><div class="k">训练单元</div><div class="v">脚本类型 / 内容模板，而不是单一人物或 IP。</div></div>
+        <div class="grid-row"><div class="k">数据要求</div><div class="v">正负案例、分镜、文案、产品、投放数据和人工判断。</div></div>
+        <div class="grid-row"><div class="k">近期节奏</div><div class="v">先跑通一个类型的小闭环，再扩展到更多产品。</div></div>
+        <div class="grid-row"><div class="k">风险控制</div><div class="v">暂不承诺自动生成完整视频，先验证选题和脚本能力。</div></div>
+      </div>
+    </section>
+    <section>
+      <h2>Action Items</h2>
+      <div class="role"><div class="role-title">客户侧</div><div class="task"><span class="badge">待启动</span><div class="task-body">按脚本类型整理案例表，每类不少于 20 条，补充正负案例和主观判断。</div></div><div class="task"><span class="badge">待启动</span><div class="task-body">为竞品和同类品参考补充参考强度、迁移原因和数据口径。</div></div></div>
+      <div class="role"><div class="role-title">陪跑侧</div><div class="task"><span class="badge">进行中</span><div class="task-body">协助客户选定第一个最小类型，跑通案例表到选题 / 脚本智能体的小闭环。</div></div><div class="task"><span class="badge">完成</span><div class="task-body">已完成首次执行沟通，明确事实层训练字段和案例采集口径。</div></div></div>
+    </section>
+    <section>
+      <h2>Next Meeting</h2>
+      <div class="next">检查至少一个脚本类型的案例表质量，确认正负案例、分镜、数据和业务判断是否足够进入选题智能体训练。</div>
+    </section>
+  </main>
+</div>
+<footer>正心 AI 陪跑项目 · 第 10 期 · Lion 组 · 2026.07.13</footer>
+</body>
+</html>
