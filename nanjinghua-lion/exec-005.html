@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>贵金属服务客户 · 执行会议总结</title>
+<style>
+  :root {
+    --bg: #F5F4ED;
+    --paper: #FAF9F5;
+    --ink: #2D2A26;
+    --ink-soft: #4A4742;
+    --muted: #8C8579;
+    --line: #E8E4D8;
+    --line-soft: #EFEBE0;
+    --accent: #C96442;
+    --accent-soft: #F4E4DA;
+    --accent-line: #E5BFAB;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: ui-serif, "Iowan Old Style", "Songti SC", "Source Han Serif SC", "Noto Serif CJK SC", "PingFang SC", Georgia, serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.75;
+    padding: 56px 20px 80px;
+    font-size: 16px;
+  }
+  .container { max-width: 760px; margin: 0 auto; }
+  header, main { background: var(--paper); border: 1px solid var(--line); }
+  header { padding: 56px 56px 44px; border-radius: 16px 16px 0 0; border-bottom: none; }
+  main { padding: 8px 56px 56px; border-radius: 0 0 16px 16px; border-top: none; }
+  .eyebrow, h2, .meta-item, .role-tag, .badge, .next-row .k, footer {
+    font-family: -apple-system, "Inter", "PingFang SC", "Helvetica Neue", sans-serif;
+  }
+  .eyebrow { font-size: 11px; letter-spacing: 0.22em; color: var(--accent); text-transform: uppercase; font-weight: 600; margin-bottom: 20px; }
+  h1 { font-size: 34px; font-weight: 500; line-height: 1.25; margin-bottom: 14px; }
+  .sub { color: var(--muted); margin-bottom: 36px; font-style: italic; }
+  .meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 20px 32px; padding-top: 28px; border-top: 1px solid var(--line); }
+  .meta-item { font-size: 14px; }
+  .meta-item .k { display: block; color: var(--muted); font-size: 11px; letter-spacing: 0.14em; margin-bottom: 6px; }
+  section { padding: 36px 0; border-bottom: 1px solid var(--line-soft); }
+  section:last-child { border-bottom: none; padding-bottom: 12px; }
+  h2 { font-size: 11px; color: var(--accent); font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; margin-bottom: 24px; }
+  h3 { font-size: 17px; margin-bottom: 14px; }
+  ol, ul { padding-left: 0; list-style: none; }
+  .num-list { counter-reset: item; }
+  .num-list li { counter-increment: item; position: relative; padding: 10px 0 10px 40px; color: var(--ink-soft); }
+  .num-list li + li { border-top: 1px dashed var(--line-soft); }
+  .num-list li::before {
+    content: counter(item);
+    position: absolute;
+    left: 0;
+    top: 14px;
+    width: 26px;
+    height: 26px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .num-list strong { color: var(--ink); }
+  .quote, .next { background: var(--accent-soft); border: 1px solid var(--accent-line); border-radius: 12px; padding: 24px 28px; }
+  .quote { margin-top: 32px; border-left: 3px solid var(--accent); font-size: 18px; }
+  .quote-label, .pull-label { display: block; font-family: -apple-system, "Inter", sans-serif; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 8px; font-weight: 600; }
+  .quote-label { color: var(--accent); }
+  .pull { padding: 24px 28px; background: var(--ink); color: var(--paper); margin-bottom: 24px; border-radius: 12px; }
+  .pull-label { color: var(--accent-line); }
+  .grid { background: var(--bg); border-radius: 12px; overflow: hidden; border: 1px solid var(--line); }
+  .grid-row { display: grid; grid-template-columns: 180px 1fr; padding: 16px 22px; border-bottom: 1px solid var(--line); }
+  .grid-row:last-child { border-bottom: none; }
+  .grid-row .k { color: var(--muted); }
+  .grid-row .v { color: var(--ink-soft); }
+  .role { background: var(--bg); border: 1px solid var(--line); border-radius: 12px; padding: 24px 26px; margin-bottom: 16px; }
+  .role-header { display: flex; justify-content: space-between; border-bottom: 1px solid var(--line); padding-bottom: 14px; margin-bottom: 6px; }
+  .role-tag { color: var(--muted); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; }
+  .task { display: grid; grid-template-columns: 80px 1fr; gap: 14px; padding: 12px 0; color: var(--ink-soft); border-bottom: 1px dashed var(--line-soft); }
+  .task:last-child { border-bottom: none; }
+  .badge { font-size: 11px; letter-spacing: 0.08em; padding-top: 4px; font-weight: 600; }
+  .badge.done { color: var(--muted); }
+  .badge.doing { color: var(--accent); }
+  .badge.todo { color: var(--ink); }
+  .next h3 { color: var(--accent); border-bottom: 1px solid var(--accent-line); padding-bottom: 14px; }
+  .next-row { display: grid; grid-template-columns: 110px 1fr; padding: 8px 0; }
+  .next-row .k { color: var(--muted); font-size: 13px; }
+  footer { margin-top: 32px; text-align: center; color: var(--muted); font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; }
+  @media (max-width: 640px) {
+    body { padding: 32px 14px; font-size: 15px; }
+    header, main { padding-left: 28px; padding-right: 28px; }
+    h1 { font-size: 26px; }
+    .grid-row, .task, .next-row { grid-template-columns: 1fr; gap: 4px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <div class="eyebrow">执行会议 · 005</div>
+  <h1>贵金属服务客户</h1>
+  <div class="sub">补齐使用环境 · 从主图测试切入 Codex 数据分析</div>
+  <div class="meta">
+    <div class="meta-item"><span class="k">时间</span><span class="v">近期</span></div>
+    <div class="meta-item"><span class="k">时长</span><span class="v">11 分钟</span></div>
+    <div class="meta-item"><span class="k">陪跑角色</span><span class="v">AI 落地顾问</span></div>
+    <div class="meta-item"><span class="k">客户参会</span><span class="v">业务执行负责人</span></div>
+  </div>
+</header>
+
+<main>
+<section>
+  <h2>本次会议干了什么</h2>
+  <ol class="num-list">
+    <li><strong>确认主图智能体尚未进入真实测试。</strong>搭建方法和初版配置已有，但 Plus 使用环境未补齐，近期铺新品也挤压了测试时间。</li>
+    <li><strong>把第一个动作压缩为「开通后重跑」。</strong>不再新增图片方向，先让现有主图智能体在真实产品上跑起来并记录异常。</li>
+    <li><strong>锁定下一条执行主线。</strong>客户侧准备真实表格、字段关系和人工比对逻辑，下次会议直接用 Codex 生成首轮差异结果。</li>
+    <li><strong>确定实时金价看板的前置条件。</strong>先明确融通金、上海黄金交易所等公开数据源中真正需要的字段和刷新频率，再进入开发。</li>
+    <li><strong>明确预测自动化的质量要求。</strong>后续不仅定时生成金价预测，还要保留历史预测并与实际走势校验。</li>
+  </ol>
+  <div class="quote">
+    <span class="quote-label">本次核心判断</span>
+    现在的卡点不是再设计一个智能体，而是先让已经搭好的智能体真正跑起来。
+  </div>
+</section>
+
+<section>
+  <h2>本周核心决策</h2>
+  <div class="pull">
+    <span class="pull-label">节奏铁律</span>
+    主图智能体先验收，Codex 表格比对再跑通，实时金价看板最后接入；三条线不并行开工。
+  </div>
+  <div class="grid">
+    <div class="grid-row"><div class="k">第一动作</div><div class="v">补齐 Plus 使用环境，重跑主图智能体并记录具体异常。</div></div>
+    <div class="grid-row"><div class="k">下一主线</div><div class="v">真实表格 + 人工比对规则 → Codex 差异结果。</div></div>
+    <div class="grid-row"><div class="k">数据看板</div><div class="v">先定公开数据源、目标字段、刷新频率和展示口径。</div></div>
+    <div class="grid-row"><div class="k">预测自动化</div><div class="v">定时生成只是起点，必须保留历史结果并持续校验。</div></div>
+  </div>
+</section>
+
+<section>
+  <h2>落地清单</h2>
+  <div class="role">
+    <div class="role-header"><h3>客户侧</h3><span class="role-tag">业务执行团队</span></div>
+    <div class="task"><div class="badge doing">进行中</div><div class="task-body">完成 ChatGPT Plus 开通，随后重跑主图裂变智能体并记录异常。</div></div>
+    <div class="task"><div class="badge todo">待启动</div><div class="task-body">准备数据分析所需的真实表格，写清主键字段、表间关系和人工比对规则。</div></div>
+    <div class="task"><div class="badge todo">待启动</div><div class="task-body">明确实时金价看板的数据源、字段、刷新频率和展示口径。</div></div>
+    <div class="task"><div class="badge todo">待启动</div><div class="task-body">梳理金价预测自动化的输入因子、历史留档和效果校验方式。</div></div>
+  </div>
+  <div class="role">
+    <div class="role-header"><h3>陪跑团队侧</h3><span class="role-tag">AI 落地顾问</span></div>
+    <div class="task"><div class="badge todo">待启动</div><div class="task-body">同步 Codex 学习材料和必要的使用环境说明。</div></div>
+    <div class="task"><div class="badge todo">待启动</div><div class="task-body">下一次会议带客户用真实表格跑首轮比对，并判断哪些环节可替代人工。</div></div>
+  </div>
+  <div class="role">
+    <div class="role-header"><h3>本次会议已完成</h3><span class="role-tag">Closed</span></div>
+    <div class="task"><div class="badge done">完成</div><div class="task-body">确认主图智能体未测试的真实原因，并停止新增图片方向。</div></div>
+    <div class="task"><div class="badge done">完成</div><div class="task-body">锁定「主图验收 → 表格比对 → 实时金价看板」的执行顺序。</div></div>
+    <div class="task"><div class="badge done">完成</div><div class="task-body">已明确下一次会议的准备项与验收目标。</div></div>
+  </div>
+</section>
+
+<section>
+  <h2>下次会议方向</h2>
+  <div class="next">
+    <h3>主图验收 + Codex 表格比对</h3>
+    <div class="next-row"><span class="k">触发条件</span><span class="v">客户完成 Plus 开通，并准备至少 1 份真实表格和人工比对规则。</span></div>
+    <div class="next-row"><span class="k">预计时间</span><span class="v">双方另行确认。</span></div>
+    <div class="next-row"><span class="k">会议内容</span><span class="v">检查主图智能体运行结果；用 Codex 生成首轮表格差异；确认实时金价看板的数据源和字段。</span></div>
+  </div>
+</section>
+</main>
+
+<footer>AI 陪跑项目 · 客户交付脱敏版</footer>
+</div>
+</body>
+</html>
