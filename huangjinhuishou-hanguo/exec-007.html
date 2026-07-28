@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>黄金回收-付华友 · 执行-007 会议总结</title>
+<style>
+  :root {
+    --bg: #F5F4ED;
+    --paper: #FAF9F5;
+    --ink: #2D2A26;
+    --ink-soft: #4A4742;
+    --muted: #8C8579;
+    --line: #E8E4D8;
+    --line-soft: #EFEBE0;
+    --accent: #C96442;
+    --accent-soft: #F4E4DA;
+    --accent-line: #E5BFAB;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: ui-serif, "Iowan Old Style", "Songti SC", "Source Han Serif SC", "Noto Serif CJK SC", "PingFang SC", Georgia, serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.75;
+    padding: 56px 20px 80px;
+    font-size: 16px;
+  }
+  .container { max-width: 760px; margin: 0 auto; }
+  header, main { background: var(--paper); border: 1px solid var(--line); }
+  header { padding: 56px 56px 44px; border-bottom: none; border-radius: 16px 16px 0 0; }
+  main { padding: 8px 56px 56px; border-top: none; border-radius: 0 0 16px 16px; }
+  .eyebrow, h2, .meta-item, .pull-label, .quote-label, .role-tag, .badge, .next-row .k, footer {
+    font-family: -apple-system, "Inter", "PingFang SC", "Helvetica Neue", sans-serif;
+  }
+  .eyebrow { font-size: 11px; letter-spacing: 0.22em; color: var(--accent); text-transform: uppercase; font-weight: 600; margin-bottom: 20px; }
+  h1 { font-size: 34px; font-weight: 500; line-height: 1.25; margin-bottom: 14px; }
+  .sub { font-size: 16px; color: var(--muted); margin-bottom: 36px; font-style: italic; }
+  .meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 20px 32px; padding-top: 28px; border-top: 1px solid var(--line); }
+  .meta-item { font-size: 14px; }
+  .meta-item .k { display: block; color: var(--muted); font-size: 11px; letter-spacing: 0.14em; margin-bottom: 6px; text-transform: uppercase; }
+  section { padding: 36px 0; border-bottom: 1px solid var(--line-soft); }
+  section:last-child { border-bottom: none; padding-bottom: 12px; }
+  h2 { font-size: 11px; color: var(--accent); font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; margin-bottom: 24px; }
+  h3 { font-size: 17px; font-weight: 600; margin-bottom: 14px; }
+  ol, ul { padding-left: 0; list-style: none; }
+  .num-list { counter-reset: item; }
+  .num-list li { counter-increment: item; position: relative; padding: 10px 0 10px 40px; color: var(--ink-soft); line-height: 1.8; }
+  .num-list li + li { border-top: 1px dashed var(--line-soft); }
+  .num-list li::before { content: counter(item); position: absolute; left: 0; top: 14px; width: 26px; height: 26px; background: var(--accent-soft); color: var(--accent); border-radius: 50%; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+  .quote { margin: 32px 0 0; padding: 24px 28px; background: var(--accent-soft); border-radius: 12px; border-left: 3px solid var(--accent); font-size: 18px; line-height: 1.65; }
+  .quote-label, .pull-label { display: block; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 8px; font-weight: 600; color: var(--accent); }
+  .pull { padding: 24px 28px; background: var(--ink); color: var(--paper); margin-bottom: 24px; font-size: 16px; line-height: 1.7; border-radius: 12px; }
+  .pull-label { color: var(--accent-line); }
+  .grid { background: var(--bg); border-radius: 12px; overflow: hidden; border: 1px solid var(--line); }
+  .grid-row { display: grid; grid-template-columns: 180px 1fr; padding: 16px 22px; border-bottom: 1px solid var(--line); font-size: 15.5px; }
+  .grid-row:last-child { border-bottom: none; }
+  .grid-row .k { color: var(--muted); font-size: 13px; }
+  .grid-row .v { color: var(--ink-soft); }
+  .role { background: var(--bg); border: 1px solid var(--line); border-radius: 12px; padding: 24px 26px; margin-bottom: 16px; }
+  .role-header { display: flex; align-items: baseline; justify-content: space-between; padding-bottom: 14px; margin-bottom: 6px; border-bottom: 1px solid var(--line); }
+  .role-tag { font-size: 11px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; }
+  .task { display: grid; grid-template-columns: 80px 1fr; gap: 14px; padding: 12px 0; font-size: 15px; color: var(--ink-soft); line-height: 1.65; border-bottom: 1px dashed var(--line-soft); }
+  .task:last-child { border-bottom: none; }
+  .badge { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; padding-top: 4px; font-weight: 600; color: var(--accent); }
+  .badge.todo { color: var(--ink); }
+  .badge.doing { color: var(--accent); }
+  .badge.done { color: var(--muted); }
+  .next { background: var(--accent-soft); border: 1px solid var(--accent-line); border-radius: 12px; padding: 26px 28px; }
+  .next h3 { color: var(--accent); padding-bottom: 14px; border-bottom: 1px solid var(--accent-line); }
+  .next-row { display: grid; grid-template-columns: 110px 1fr; padding: 8px 0; font-size: 15.5px; }
+  .next-row .k { color: var(--muted); font-size: 13px; }
+  footer { margin-top: 32px; text-align: center; color: var(--muted); font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; }
+  @media (max-width: 640px) {
+    body { padding: 32px 14px; font-size: 15px; }
+    header, main { padding-left: 28px; padding-right: 28px; }
+    h1 { font-size: 26px; }
+    .grid-row, .task, .next-row { grid-template-columns: 1fr; gap: 4px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+<header>
+  <div class="eyebrow">执行会议 · 007</div>
+  <h1>黄金回收 — 付华友</h1>
+  <div class="sub">从 AI 图文发布，进入数据驱动的账号级智能体迭代</div>
+  <div class="meta">
+    <div class="meta-item"><span class="k">时间</span><span class="v">2026-07-28 10:57</span></div>
+    <div class="meta-item"><span class="k">时长</span><span class="v">60 分 22 秒</span></div>
+    <div class="meta-item"><span class="k">陪跑老师</span><span class="v">韩国 / Lion / 花花</span></div>
+    <div class="meta-item"><span class="k">客户参会</span><span class="v">付华友团队</span></div>
+  </div>
+</header>
+<main>
+<section>
+  <h2>本次会议干了什么</h2>
+  <ol class="num-list">
+    <li><strong>复盘第一批发布数据。</strong>AI 图文已经进入小红书和抖音矩阵账号，部分账号和笔记获得了较好的公开数据反馈，但客资与成交仍未跑通。</li>
+    <li><strong>现场跑通 AI 漏斗诊断。</strong>选取代表账号和单篇笔记，将内容、单篇数据与账号整体数据一起交给 ChatGPT，分析曝光之后的转化断点。</li>
+    <li><strong>拆开账号目标。</strong>小号可以先承担曝光与涨粉，蓝 V 账号重点验证私信、客资和成交；目标不同，提示词、指标与优化动作也必须不同。</li>
+    <li><strong>建立数据记录节奏。</strong>同一篇笔记至少记录 24 小时、72 小时、5—7 天数据，避免拿单一时间点做结论。</li>
+    <li><strong>校准 AI 使用方法。</strong>AI 分析必须同时接收客观数据、业务标准和人工判断；经过多轮反馈后，再把稳定对话封装成账号级智能体。</li>
+    <li><strong>区分平台打法。</strong>抖音图文要重新找本平台同类目的高表现对标，不能直接搬运小红书内容并据此判断图文能力无效。</li>
+  </ol>
+  <div class="quote">
+    <span class="quote-label">本次关键判断</span>
+    “模型的形成，本质是因为训练。”团队要持续给 AI 数据、标准和反馈，让它逐步逼近真实业务，而不是只说“我要爆款”。
+  </div>
+</section>
+<section>
+  <h2>本周核心决策</h2>
+  <div class="pull">
+    <span class="pull-label">执行节奏</span>
+    先让真实账号、真实笔记和分时数据跑出稳定复盘链路，再封装智能体；没有数据和人工判断，不进入规模化复制。
+  </div>
+  <div class="grid">
+    <div class="grid-row"><div class="k">当前主线</div><div class="v">内容数据分析与账号级智能体迭代，从“能生成”推进到“能归因、能优化”。</div></div>
+    <div class="grid-row"><div class="k">数据口径</div><div class="v">24 小时、72 小时、5—7 天；曝光、浏览、互动、涨粉、私信、客资、成交分层记录。</div></div>
+    <div class="grid-row"><div class="k">账号拆分</div><div class="v">流量小号与蓝 V 获客账号分别设定目标、内容调性和核心指标，一账号一套复盘逻辑。</div></div>
+    <div class="grid-row"><div class="k">判断机制</div><div class="v">客观数据 + 人工业务判断 + AI 判断三方校准，AI 结论必须接受真实反馈修正。</div></div>
+  </div>
+</section>
+<section>
+  <h2>落地清单</h2>
+  <div class="role">
+    <div class="role-header"><h3>客户侧</h3><span class="role-tag">付华友团队</span></div>
+    <div class="task"><div class="badge todo">待启动</div><div class="task-body">把全账号笔记运营数据表共享链接和当前最新智能体提示词同步到项目群。</div></div>
+    <div class="task"><div class="badge doing">进行中</div><div class="task-body">为代表笔记补齐 24 小时、72 小时、5—7 天数据，并把曝光、互动、客资与成交分层记录。</div></div>
+    <div class="task"><div class="badge todo">待启动</div><div class="task-body">为每个矩阵账号标注定位、目标、主要指标和内容调性，先区分流量小号与蓝 V 获客账号。</div></div>
+    <div class="task"><div class="badge todo">待启动</div><div class="task-body">完成至少 3 个真实样本的 AI 复盘，逐条反馈不符合业务的结论；稳定后按账号封装智能体。</div></div>
+    <div class="task"><div class="badge todo">待启动</div><div class="task-body">单独收集抖音银饰图文高表现同行账号和选题，形成抖音测试清单。</div></div>
+  </div>
+  <div class="role">
+    <div class="role-header"><h3>陪跑团队侧</h3><span class="role-tag">韩国 / Lion / 花花</span></div>
+    <div class="task"><div class="badge doing">进行中</div><div class="task-body">检查客户当前提示词与数据表，协助统一账号目标、分时数据和漏斗诊断口径。</div></div>
+    <div class="task"><div class="badge todo">待启动</div><div class="task-body">下次用至少 3 个真实样本检查 AI 结论是否能指导下一轮图片、选题、标题和文案优化。</div></div>
+    <div class="task"><div class="badge todo">待启动</div><div class="task-body">在复盘链路稳定后，协助把不同账号的对话沉淀成可复用智能体 / Skill。</div></div>
+  </div>
+  <div class="role">
+    <div class="role-header"><h3>本次会议已完成</h3><span class="role-tag">会议产物</span></div>
+    <div class="task"><div class="badge done">完成</div><div class="task-body">确认第一批 AI 图文已发布，并识别当前主要断点从“生成质量”转为“客资与成交转化”。</div></div>
+    <div class="task"><div class="badge done">完成</div><div class="task-body">现场示范单篇内容 + 单篇数据 + 账号数据的 AI 漏斗诊断方法。</div></div>
+    <div class="task"><div class="badge done">完成</div><div class="task-body">确定分时数据记录、账号目标拆分和一账号一智能体的下一阶段路线。</div></div>
+  </div>
+</section>
+<section>
+  <h2>下次会议方向</h2>
+  <div class="next">
+    <h3>账号级内容复盘链路首轮验收</h3>
+    <div class="next-row"><span class="k">触发条件</span><span class="v">数据表、最新提示词和至少 3 个真实样本准备完成。</span></div>
+    <div class="next-row"><span class="k">会议内容</span><span class="v">对比流量小号与蓝 V 获客账号，检查 AI 是否准确识别漏斗断点并给出可执行优化。</span></div>
+    <div class="next-row"><span class="k">过关标准</span><span class="v">同一输入口径连续复盘 3 个样本，结论可被业务团队理解、纠错并转成下一轮内容动作。</span></div>
+  </div>
+</section>
+</main>
+<footer>正心 AI 陪跑项目 — 第 9 期 — 韩国组 — 2026.07.28</footer>
+</div>
+</body>
+</html>
