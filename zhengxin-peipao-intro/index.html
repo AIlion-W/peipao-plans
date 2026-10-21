@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<style>*,*::before,*::after{box-sizing:border-box}body{margin:0}img{max-width:100%}</style>
+</head>
+<body>
+<title>正心AI企业陪跑</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@600;800&family=Noto+Sans+SC:wght@400;500;700&display=swap">
+<style>
+/* 布局：单列阅读页，上半「产品介绍」、下半「交付标准」，宽表格独立横向滚动；沿用陪跑方案的暖米色口径 */
+:root{
+  --bg:#F2EADD; --paper:#FBF7F0; --ink:#2A231C; --muted:#6E6356; --line:#E0D3BF;
+  --accent:#B4652B; --accent-soft:#F0DCC5; --ok:#4D7647; --ok-soft:#DDE8D6;
+  --f-display:"Noto Serif SC","Songti SC","STSong",serif;
+  --f-body:"Noto Sans SC","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#1C1814; --paper:#25201A; --ink:#EEE5D6; --muted:#AEA290; --line:#3B342B;
+  --accent:#E29B5E; --accent-soft:#3B2B1D; --ok:#93BA8A; --ok-soft:#24301F; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#1C1814; --paper:#25201A; --ink:#EEE5D6; --muted:#AEA290; --line:#3B342B;
+  --accent:#E29B5E; --accent-soft:#3B2B1D; --ok:#93BA8A; --ok-soft:#24301F; color-scheme:dark}
+
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.75;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:880px;margin:0 auto;padding-block:40px 72px;display:flex;flex-direction:column;gap:56px}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0;line-height:1.3}
+h1{font-size:clamp(30px,6vw,46px);font-weight:800}
+h2{font-size:clamp(23px,4vw,30px);font-weight:800}
+h3{font-size:18px;font-weight:600}
+p{margin:0}
+a{color:var(--accent)}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.muted{color:var(--muted)}
+.small{font-size:14px}
+.eyebrow{font-size:13px;letter-spacing:.12em;color:var(--accent);font-weight:700}
+section{display:flex;flex-direction:column;gap:20px}
+.lead{font-size:18px;max-width:40em}
+
+/* 顶部 */
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;font-size:14px;color:var(--muted);border-bottom:1px solid var(--line);padding-bottom:14px}
+.top nav{display:flex;gap:18px}
+.top nav a{text-decoration:none;font-weight:500}
+.hero{display:flex;flex-direction:column;gap:18px}
+.hero .lead{color:var(--muted)}
+.part{border-top:3px solid var(--ink);padding-top:14px;display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.part span{font-size:14px;color:var(--muted)}
+
+/* 网格与卡片 */
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.grid > *{min-width:0}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:18px 20px;display:flex;flex-direction:column;gap:8px}
+.card .q{font-family:var(--f-display);font-weight:600;font-size:17px}
+.fit{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.fit > div{min-width:0;padding:18px 20px;border-radius:6px;display:flex;flex-direction:column;gap:10px}
+.fit .yes{background:var(--ok-soft)}
+.fit .no{background:var(--paper);border:1px solid var(--line)}
+ul.clean{margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:6px}
+
+/* 原则 */
+.rules{display:flex;flex-direction:column;border-top:1px solid var(--line)}
+.rules > div{display:grid;grid-template-columns:9em 1fr;gap:16px;padding:16px 0;border-bottom:1px solid var(--line)}
+.rules b{font-family:var(--f-display);font-size:17px}
+@media (max-width:560px){.rules > div{grid-template-columns:1fr;gap:4px}}
+
+/* 场景分布条 */
+.bars{display:flex;flex-direction:column;gap:10px;font-variant-numeric:tabular-nums}
+.bar{display:grid;grid-template-columns:9.5em 1fr 3.2em;gap:12px;align-items:center;font-size:15px}
+.bar .track{height:12px;background:var(--line);border-radius:2px;overflow:hidden}
+.bar .fill{height:100%;background:var(--accent)}
+.bar .v{text-align:right;color:var(--muted)}
+@media (max-width:480px){.bar{grid-template-columns:7em 1fr 3em;font-size:14px}}
+
+/* 阶段时间线 */
+.steps{display:flex;flex-direction:column;gap:0;counter-reset:s}
+.step{display:grid;grid-template-columns:44px 1fr;gap:16px;padding-bottom:22px;position:relative}
+.step::before{counter-increment:s;content:counter(s,decimal-leading-zero);font-family:var(--f-display);font-weight:800;font-size:15px;
+  width:40px;height:40px;border-radius:50%;border:2px solid var(--accent);color:var(--accent);display:grid;place-items:center;background:var(--bg);z-index:1}
+.step::after{content:"";position:absolute;left:21px;top:42px;bottom:0;width:2px;background:var(--line)}
+.step:last-child::after{display:none}
+.step > div{display:flex;flex-direction:column;gap:6px;min-width:0;padding-top:6px}
+.step .meta{font-size:14px;color:var(--muted)}
+.step .get{font-size:14px;background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:8px 12px}
+
+/* 表格 */
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:6px;background:var(--paper)}
+table{border-collapse:collapse;width:100%;min-width:620px;font-size:14.5px;line-height:1.6}
+th,td{text-align:left;vertical-align:top;padding:11px 14px;border-bottom:1px solid var(--line)}
+th{font-weight:700;background:var(--accent-soft);white-space:nowrap}
+tr:last-child td{border-bottom:none}
+td:first-child{font-weight:700;white-space:nowrap}
+.num{font-variant-numeric:tabular-nums}
+
+/* 案例 */
+.case{display:flex;flex-direction:column;gap:8px}
+.case .big{font-family:var(--f-display);font-weight:800;font-size:24px;color:var(--accent);font-variant-numeric:tabular-nums}
+.case .src{font-size:13px;color:var(--muted);border-top:1px dashed var(--line);padding-top:8px;margin-top:auto}
+
+/* 四层有效 */
+.layers{display:grid;gap:10px;grid-template-columns:repeat(4,1fr)}
+.layers > div{min-width:0;padding:14px 16px;border-radius:6px;background:var(--paper);border:1px solid var(--line);display:flex;flex-direction:column;gap:6px}
+.layers > div:nth-child(1){border-top:4px solid color-mix(in srgb,var(--accent) 35%,transparent)}
+.layers > div:nth-child(2){border-top:4px solid color-mix(in srgb,var(--accent) 55%,transparent)}
+.layers > div:nth-child(3){border-top:4px solid color-mix(in srgb,var(--accent) 78%,transparent)}
+.layers > div:nth-child(4){border-top:4px solid var(--accent)}
+.layers .who{font-size:13px;color:var(--muted)}
+@media (max-width:720px){.layers{grid-template-columns:1fr 1fr}}
+@media (max-width:420px){.layers{grid-template-columns:1fr}}
+
+.note{background:var(--accent-soft);border-radius:6px;padding:14px 18px;font-size:15px}
+.split{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.split > div{min-width:0}
+.cta{background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:24px;display:flex;flex-direction:column;gap:12px}
+footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:14px}
+</style>
+
+<div class="wrap">
+
+<div class="top">
+  <span>正心 AI · 企业陪跑</span>
+  <nav><a href="#product">产品介绍</a><a href="#standard">交付标准</a></nav>
+</div>
+
+<header class="hero" id="product">
+  <span class="eyebrow">面向电商与品牌企业老板</span>
+  <h1>把你业务里已经跑通的动作，<br>复制成团队每天能用的 AI 工具</h1>
+  <p class="lead">我们不教一堆工具。陪跑从你最高频、最能说清好坏的一项工作开始，用你自己的产品和素材，做到执行人员认可“能用”，再把方法交给团队复用。</p>
+</header>
+
+<section>
+  <h2>你可能正卡在这几处</h2>
+  <div class="grid">
+    <div class="card"><span class="q">工具很多，先做哪件？</span><p class="muted small">今天试生图，明天试自动化，时间花了不少，却没有优先级，也没有验收目标。</p></div>
+    <div class="card"><span class="q">能生成，为什么还用不好？</span><p class="muted small">图出来了，产品细节变形、卖点不准，真正上架前还要大量返工。</p></div>
+    <div class="card"><span class="q">一个人会，团队用不起来</span><p class="muted small">有效经验留在某个人的对话里。换产品、换员工，就要从头讲一遍。</p></div>
+    <div class="card"><span class="q">做了不少，说不清效果</span><p class="muted small">汇报的是“智能体搭好了”，老板想看的是点击、产能和人力，两边用的不是一把尺子。</p></div>
+  </div>
+</section>
+
+<section>
+  <h2>适合谁，不适合谁</h2>
+  <p class="muted">签约前我们会用面试和场景会判断这四件事。不合适的情况，我们会直接说明，或建议先做轻量启动。</p>
+  <div class="fit">
+    <div class="yes">
+      <h3>适合</h3>
+      <ul class="clean">
+        <li>业务里有已经验证过的打法：爆款、销冠话术、点击好的主图，能拿出来给我们看</li>
+        <li>老板或核心人员能说清什么是“好图”“好文案”</li>
+        <li>能指定一位执行人，每周有固定时间实际使用</li>
+        <li>老板能参加关键节点的复盘</li>
+      </ul>
+    </div>
+    <div class="no">
+      <h3>暂不适合</h3>
+      <ul class="clean">
+        <li>选品或商业模式还在摸索，没有可复制的成功动作</li>
+        <li>期待代运营，或希望一步做成全自动系统</li>
+        <li>没有人能每天用，只想买一套工具放着</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>我们做事的三条原则</h2>
+  <div class="rules">
+    <div><b>复制，不凭空创造</b><p>AI 最擅长放大已经被验证的动作。我们先找你业务里跑通的那一步，再用 AI 让它更快、更稳、能交给更多人。</p></div>
+    <div><b>先看事实，再下判断</b><p>流程、素材、后台数据，请直接共享给我们看。“贵、慢、难”要落到具体数字；AI 效果好不好，先和人工基线比。</p></div>
+    <div><b>一次只推一件事</b><p>先把一个场景做到可用，1 到 2 周内出第一版结果，验收后再开第二个场景。首个工具先做分析辅助或生成草稿，由人审核；全自动放在标准稳定之后。</p></div>
+  </div>
+</section>
+
+<section>
+  <h2>大多数客户从哪里开始</h2>
+  <p class="muted">已确定首战场景的 99 家陪跑客户中，首个场景的分布如下。图片类最常见，因为它的好坏容易判断、样本容易拿到，一个人就能承接。</p>
+  <div class="bars" role="img" aria-label="首战场景分布：图片与主图 54%，短视频 16%，销售话术与客服 10%，文案与标题 8%，选品与产品策划 5%，数据分析与复盘 4%，其他 3%">
+    <div class="bar"><span>图片 / 主图 / 视觉</span><div class="track"><div class="fill" style="width:54%"></div></div><span class="v">54%</span></div>
+    <div class="bar"><span>短视频 / AI 视频</span><div class="track"><div class="fill" style="width:16%"></div></div><span class="v">16%</span></div>
+    <div class="bar"><span>销售话术 / 客服</span><div class="track"><div class="fill" style="width:10%"></div></div><span class="v">10%</span></div>
+    <div class="bar"><span>文案 / 标题 / listing</span><div class="track"><div class="fill" style="width:8%"></div></div><span class="v">8%</span></div>
+    <div class="bar"><span>选品 / 产品策划</span><div class="track"><div class="fill" style="width:5%"></div></div><span class="v">5%</span></div>
+    <div class="bar"><span>数据分析 / 复盘</span><div class="track"><div class="fill" style="width:4%"></div></div><span class="v">4%</span></div>
+    <div class="bar"><span>其他</span><div class="track"><div class="fill" style="width:3%"></div></div><span class="v">3%</span></div>
+  </div>
+  <p class="small muted">统计口径：第 1–10 期陪跑客户档案中已锁定首战场景的 99 家，2026 年 8 月整理。</p>
+</section>
+
+<section>
+  <h2>陪跑怎么走</h2>
+  <p class="muted">每一段有明确产出和过关标准，过关后才进入下一段。具体周期、场景范围和会议安排在合同与方案中约定。</p>
+  <div class="steps">
+    <div class="step"><div>
+      <h3>诊断业务，定下首战</h3>
+      <p>通过面试和场景确认会，沿着你的业务链路看流程、素材和数据，选出一个最值得先做的场景，并约定指标、执行人和验收方式。</p>
+      <p class="get">你会拿到：首战场景、指标共识表、双方作业清单</p>
+    </div></div>
+    <div class="step"><div>
+      <h3>首战跑通，做到可用</h3>
+      <p>第一次执行会带来用你自己产品做的初版，随后每周一次实操，用好坏样本定位问题，逐版改进。</p>
+      <p class="meta">过往实测：场景会到第一次执行会中位 3 天；首个业务可用成果通常在 1 个月左右、3–6 次会内出现。</p>
+      <p class="get">你会拿到：可用版智能体或 Skill、迭代记录、可用率记录</p>
+    </div></div>
+    <div class="step"><div>
+      <h3>进入业务，验证变化</h3>
+      <p>把产出放进真实上架、投放或使用，回收数据，和人工做法对比，说清改善了什么、还断在哪一环。</p>
+      <p class="get">你会拿到：上线清单、数据回收表、前后对比与阶段复盘</p>
+    </div></div>
+    <div class="step"><div>
+      <h3>沉淀方法，交给团队</h3>
+      <p>把有效做法封装成 Skill、知识库和操作说明，让另一位员工用新产品独立跑一遍，达标后再开第二个场景。</p>
+      <p class="get">你会拿到：可复用工具包、版本记录、操作说明、第二场景建议</p>
+    </div></div>
+    <div class="step"><div>
+      <h3>组织化（年度客户）</h3>
+      <p>建立公司内部的 AI 场景台账和月度案例复盘，培养一位懂业务的内部 AI 负责人，让团队自己发现和推进新场景。</p>
+      <p class="get">你会拿到：场景台账、案例复盘机制、扩展路线</p>
+    </div></div>
+  </div>
+</section>
+
+<section>
+  <h2>客户实践</h2>
+  <p class="muted">以下为陪跑过程中的阶段结果，已匿名。每条都注明了证据来源，不同来源的数字不能直接对比。</p>
+  <div class="grid">
+    <div class="card case">
+      <span class="eyebrow">天猫 · 办公椅主图</span>
+      <span class="big">5.37% → 6.69%</span>
+      <p class="small">同链接一次测 5 张图，人工图点击率 5.37%，AI 图最高 6.69%，点击率前两名都是 AI 图，优选图已上线。</p>
+      <p class="src">来源：2026-09 执行会议展示与口述，后台源表待补</p>
+    </div>
+    <div class="card case">
+      <span class="eyebrow">宠物洗护电器 · 图片团队</span>
+      <span class="big">2 人 ≈ 过去 4 人</span>
+      <p class="small">“AI 出方案 + AI 出图”沉淀为绘图 Skill，执行人一周完成 10 款产品的主图策划与测图。</p>
+      <p class="src">来源：老板与执行人反馈，业绩口径待核</p>
+    </div>
+    <div class="card case">
+      <span class="eyebrow">保健品 · 3,300 个 SKU</span>
+      <span class="big">主图 Skill 迭代 8 版</span>
+      <p class="small">产品库统一卖点，主图 Skill 一个月内迭代到第 8 版，运营可自主出图、上架测图。</p>
+      <p class="src">来源：会议逐字稿；运营反馈点击表现提升，正式报表待补</p>
+    </div>
+    <div class="card case">
+      <span class="eyebrow">抖音 · 模玩短视频</span>
+      <span class="big">约 2 万 vs 约 1,800</span>
+      <p class="small">同产品下，AI 生成视频约 2 万曝光，官方素材混剪约 1,800 曝光。</p>
+      <p class="src">来源：客户口述，统计窗口待补</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>双方分工</h2>
+  <div class="split">
+    <div class="card"><h3>我们负责</h3><ul class="clean small">
+      <li>场景判断与优先级排序</li>
+      <li>用你的产品和素材做初版，现场带执行人实操</li>
+      <li>每次会议的纪要、作业清单和下一步</li>
+      <li>模板、Skill、知识库结构和操作说明</li>
+      <li>阶段复盘，说清结果证明到哪一层</li>
+    </ul></div>
+    <div class="card"><h3>你负责</h3><ul class="clean small">
+      <li>指定执行人，安排固定会期</li>
+      <li>提供素材、好坏样本和必要的业务资料</li>
+      <li>让执行人每天实际使用，回填反馈</li>
+      <li>按约定提供上线后的数据</li>
+      <li>老板参加关键节点复盘，确认方向</li>
+    </ul></div>
+    <div class="card"><h3>不在服务范围</h3><ul class="clean small">
+      <li>代运营、代做日常内容</li>
+      <li>替你验证尚未跑通的新业务</li>
+      <li>违反平台规则的采集或操作</li>
+      <li>一次性搭建全公司系统</li>
+    </ul></div>
+  </div>
+</section>
+
+<div class="part" id="standard"><h2>交付标准</h2><span>每一阶段做什么、交什么、怎样算过关</span></div>
+
+<section>
+  <h3>“有效”分四层，每层由不同的人验收</h3>
+  <p class="muted">汇报时我们会写明当前证明到哪一层，不用前一层的证据宣称后一层的结论。</p>
+  <div class="layers">
+    <div><b>技术可用</b><span class="small">能生成符合要求的图、视频或文案</span><span class="who">验收人：陪跑老师</span></div>
+    <div><b>岗位有效</b><span class="small">单位合格产出的耗时下降，返工减少</span><span class="who">验收人：实际使用者</span></div>
+    <div><b>流程有效</b><span class="small">可发布、可投放的成果增加，周期缩短</span><span class="who">验收人：业务负责人</span></div>
+    <div><b>经营有效</b><span class="small">在约定成本和质量下，相关业务指标改善</span><span class="who">验收人：老板</span></div>
+  </div>
+</section>
+
+<section>
+  <h3>分阶段交付与过关标准</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>阶段</th><th>进入条件</th><th>交付物</th><th>过关标准</th></tr></thead>
+    <tbody>
+      <tr><td>0 准备</td><td>完成签约</td><td>指标共识表；环境就绪清单；双方分工确认</td><td>指标、执行人、数据提供人填写完整；电脑、网络、AI 账号、必要软件、课程回放五项就绪</td></tr>
+      <tr><td>1 首战跑通</td><td>阶段 0 过关</td><td>首次执行会带来用客户产品做的初版；可用版智能体或 Skill；迭代记录（每版指令、输入、输出、人工评价，统一编号）</td><td>实际使用者随机抽取不少于 10 条真实产出，按“可用 / 不可用”打标，可用率不低于 60%</td></tr>
+      <tr><td>2 业务验证</td><td>可用率达标</td><td>上线清单；数据回收表（24 小时与 7 天）；与人工基线的前后对比；阶段复盘记录</td><td>老板参加复盘，确认证明到哪一层；结果不理想时，能说清断在素材、标准、使用、测试还是判读</td></tr>
+      <tr><td>3 资产化与复制</td><td>完成业务验证复盘</td><td>Skill / 知识库 / 操作说明；版本记录；第二场景建议</td><td>另一位执行人用新产品独立运行，可用率达到原打磨人的 80% 以上，再启动第二场景</td></tr>
+      <tr><td>4 组织化</td><td>年度客户，阶段 3 过关</td><td>AI 场景台账；月度案例复盘；内部 AI 负责人工作清单</td><td>台账持续新增场景，且至少一个场景有业务结果证据</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section>
+  <h3>服务节奏</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>事项</th><th>标准</th></tr></thead>
+    <tbody>
+      <tr><td>首次执行会</td><td>场景确认会后尽快安排，目标 3 天内</td></tr>
+      <tr><td>会议频次</td><td>建议每周一次，固定时段</td></tr>
+      <tr><td>会议形式</td><td>操作台式实操，现场共享屏幕、现场改，不开汇报会</td></tr>
+      <tr><td>会后交付</td><td>当天发会议纪要和作业清单，每次 3–10 项，下次会开头逐条核对</td></tr>
+      <tr><td>日常答疑</td><td>卡点请截图并说明卡在哪一步，发到服务群，24 小时内回复</td></tr>
+      <tr><td>阶段复盘</td><td>每个阶段结束时一次，老板参加</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section>
+  <h3>指标共识表（签约后第一件事）</h3>
+  <p class="muted">开始执行前，双方先用这张表把“做成什么样算成功”写清楚。下面是一个示例。</p>
+  <div class="tbl"><table>
+    <thead><tr><th>字段</th><th>示例</th></tr></thead>
+    <tbody>
+      <tr><td>经营目标</td><td>拼多多主推款点击率提升</td></tr>
+      <tr><td>本期改善的过程指标</td><td>每周可测试的合格主图数量</td></tr>
+      <tr><td>指标定义与统计周期</td><td>运营判定“可上架”的主图，按周统计</td></tr>
+      <tr><td>当前值与证据</td><td class="num">每周 3 张，来源：设计工单表</td></tr>
+      <tr><td>目标值与依据</td><td class="num">每周 15 张，依据：测图计划需要</td></tr>
+      <tr><td>质量与成本红线</td><td>产品还原度不低于现有标准；不使用真人脸</td></tr>
+      <tr><td>负责人 / 执行人 / 授权人</td><td>运营主管 / 设计 / 老板</td></tr>
+      <tr><td>数据提供与复盘时间</td><td>运营主管每周五提供数据；按阶段节点复盘</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section>
+  <h3>节奏受阻时怎么处理</h3>
+  <ul class="clean">
+    <li>同一项资料或数据连续两次会议未到位，陪跑老师会与老板直接沟通，重新确认执行人和时间。</li>
+    <li>首战还没验收，不启动新的场景。</li>
+    <li>老板连续缺席阶段复盘时，交付目标收窄到“岗位有效”，不再承诺经营层面的结果。</li>
+    <li>你对效果有疑问时，我们会在 48 小时内用你自己的试跑数据回应，说明证明到了哪一层、断在哪一环。</li>
+  </ul>
+</section>
+
+<section class="cta">
+  <h2>从一项具体的工作开始</h2>
+  <p>来聊之前，准备好这三样，第一次沟通就能判断适不适合、先做什么：</p>
+  <ul class="clean">
+    <li>一项高频、耗时或反复返工的工作</li>
+    <li>这项工作的几份真实输入、产出，以及好坏样例</li>
+    <li>一位了解业务、能够参与的执行人</li>
+  </ul>
+</section>
+
+<footer>正心 AI · 企业陪跑 ｜ 产品介绍与交付标准 · 2026 年 10 月版 ｜ 案例数据按来源分别标注，具体目标与验收方式以双方签署的方案为准。</footer>
+
+</div>
+
+</body>
+</html>
