@@ -118,6 +118,28 @@ td:first-child{font-weight:700;white-space:nowrap}
 .split > div{min-width:0}
 .cta{background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:24px;display:flex;flex-direction:column;gap:12px}
 footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:14px}
+
+/* 打印 / PDF：A4 纵向，常规页边距，固定浅色，避免卡片和表格行被拦腰截断 */
+@page{size:A4 portrait;margin:16mm 14mm}
+@media print{
+  :root,:root:not([data-theme="light"]),:root[data-theme="dark"]{
+    --bg:#FFFFFF; --paper:#FBF7F0; --ink:#2A231C; --muted:#6E6356; --line:#E0D3BF;
+    --accent:#B4652B; --accent-soft:#F0DCC5; --ok:#4D7647; --ok-soft:#DDE8D6; color-scheme:light}
+  html,body{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  body{font-size:11pt;padding:0}
+  .wrap{max-width:none;padding-block:0;gap:28px}
+  .top nav{display:none}
+  h1{font-size:24pt} h2{font-size:17pt} h3{font-size:13pt}
+  .lead{font-size:12pt}
+  .split{grid-template-columns:repeat(3,1fr)}
+  .tbl{overflow:visible}
+  table{min-width:0;font-size:9.5pt}
+  td:first-child{white-space:normal}
+  section{break-inside:avoid}
+  .card,.step,.fit > div,.layers > div,tr,.rules > div,.bar,.cta{break-inside:avoid}
+  h2,h3,.part{break-after:avoid}
+  #standard{break-before:page}
+}
 </style>
 
 <div class="wrap">
